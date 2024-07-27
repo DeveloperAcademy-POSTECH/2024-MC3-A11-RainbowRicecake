@@ -12,8 +12,9 @@ import SwiftData
 struct YouTalkAwesomeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            LogicalSpeakingRecord.self,
         ])
+        
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {

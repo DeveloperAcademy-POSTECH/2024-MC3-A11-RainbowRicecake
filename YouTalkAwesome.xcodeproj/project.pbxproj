@@ -9,18 +9,22 @@
 /* Begin PBXBuildFile section */
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
 		4007DC752C53949D00EA528E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC742C53949D00EA528E /* ContentView.swift */; };
-		4007DC772C53949D00EA528E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC762C53949D00EA528E /* Item.swift */; };
+		4007DC772C53949D00EA528E /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC762C53949D00EA528E /* Typealias.swift */; };
 		4007DC792C53949E00EA528E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4007DC782C53949E00EA528E /* Assets.xcassets */; };
 		4007DC7C2C53949E00EA528E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */; };
+		4007DC862C5396E600EA528E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC852C5396E600EA528E /* DataModel.swift */; };
+		4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTalkAwesomeApp.swift; sourceTree = "<group>"; };
 		4007DC742C53949D00EA528E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4007DC762C53949D00EA528E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4007DC762C53949D00EA528E /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		4007DC782C53949E00EA528E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4007DC852C5396E600EA528E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */,
+				4007DC8A2C54789A00EA528E /* Helper */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
-				4007DC762C53949D00EA528E /* Item.swift */,
+				4007DC822C5396C700EA528E /* View */,
+				4007DC842C5396D400EA528E /* Model */,
 				4007DC782C53949E00EA528E /* Assets.xcassets */,
 				4007DC7A2C53949E00EA528E /* Preview Content */,
 			);
@@ -68,6 +74,38 @@
 				4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4007DC822C5396C700EA528E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4007DC842C5396D400EA528E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4007DC872C53C9B300EA528E /* TestView */,
+				4007DC852C5396E600EA528E /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4007DC872C53C9B300EA528E /* TestView */ = {
+			isa = PBXGroup;
+			children = (
+				4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */,
+			);
+			path = TestView;
+			sourceTree = "<group>";
+		};
+		4007DC8A2C54789A00EA528E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4007DC762C53949D00EA528E /* Typealias.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
-				4007DC772C53949D00EA528E /* Item.swift in Sources */,
+				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
+				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,
+				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
