@@ -17,16 +17,16 @@ enum ModelSchemaV0: VersionedSchema {
     }
 
     @Model
-    class LogicalSpeakingRecord { // final 을 붙여서 좋은 점이 뭐였지? s
-        @Attribute(.unique) var id : UUID
+    final class LogicalSpeakingRecord { 
+        var id: UUID
         var topic: String
         var logicalStructureName: String
         var content : [String]
-        var duration: Duration
+        var duration: Int
         var isDone: Bool
         var timestamp : Date
         
-        init (id: UUID = UUID(), topic: String, logicalStructureName: String, content: [String],duration: Duration, isDone: Bool, timestamp: Date ) {
+        init (id: UUID = UUID(), topic: String, logicalStructureName: String, content: [String],duration: Int, isDone: Bool, timestamp: Date ) {
             self.id = id
             self.topic = topic
             self.logicalStructureName = logicalStructureName

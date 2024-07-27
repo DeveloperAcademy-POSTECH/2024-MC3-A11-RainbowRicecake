@@ -59,7 +59,6 @@
 			children = (
 				4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */,
 				4007DC8A2C54789A00EA528E /* Helper */,
-				4007DC742C53949D00EA528E /* ContentView.swift */,
 				4007DC822C5396C700EA528E /* View */,
 				4007DC842C5396D400EA528E /* Model */,
 				4007DC782C53949E00EA528E /* Assets.xcassets */,
@@ -79,6 +78,7 @@
 		4007DC822C5396C700EA528E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4007DC742C53949D00EA528E /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
