@@ -8,4 +8,4 @@
 import Foundation
 import SwiftData
 
-typealias LogicalSpeakingRecord = ModelSchemaV1.LogicalSpeakingRecord
+typealias LogicalSpeakingRecord = ModelSchemaV0.LogicalSpeakingRecord
