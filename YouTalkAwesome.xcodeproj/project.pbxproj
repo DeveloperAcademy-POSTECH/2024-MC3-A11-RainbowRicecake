@@ -14,6 +14,7 @@
 		4007DC7C2C53949E00EA528E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */; };
 		4007DC862C5396E600EA528E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC852C5396E600EA528E /* DataModel.swift */; };
 		4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */; };
+		40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96AF62C5632CB0099E603 /* TypeDefinition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4007DC852C5396E600EA528E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestView.swift; sourceTree = "<group>"; };
+		40E96AF62C5632CB0099E603 /* TypeDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefinition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				4007DC872C53C9B300EA528E /* TestView */,
 				4007DC852C5396E600EA528E /* DataModel.swift */,
+				40E96AF62C5632CB0099E603 /* TypeDefinition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
+				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,

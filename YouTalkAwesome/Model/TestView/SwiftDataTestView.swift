@@ -13,11 +13,11 @@ struct SwiftDataTestView : View {
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
     var body: some View {
-        ForEach(records) { record in
+        ForEach(0..<records.count, id:\.self) { recordIndex in
             VStack {
-                ForEach (0..<record.logicalStructureName.count, id : \.self) { index in
+                ForEach (0..<records[recordIndex].logicalStructure.rawValue.count, id : \.self) { index in
                     
-                    Text("\(record.content[index])")
+                    Text("\(records[recordIndex].content[index])")
                     
                     Divider()
                 }
@@ -40,7 +40,7 @@ struct SwiftDataTestView : View {
     
     let testRecord = LogicalSpeakingRecord(
         topic: "스티브잡스 스탠포드 연설 중 발췌",
-        logicalStructureName: "STAR",
+        logicalStructure: .star,
         content: [
 """
 들려 드릴 첫 번째 이야기는 점 잇기에 관한 것입니다.
@@ -68,10 +68,10 @@ Reed College에 입학한 지 6 개월 만에 자퇴를 했으나 일 년 반 �
 물론, 제가 대학에 있었을 때에는 이런 미래의 점들을 이을 수가 없었습니다. 그러나 10년이 지난 후, 과거를 돌아보았을 때, 모든 게 분명히 보였습니다.
                                                                                           
 다시 말씀드리지만, 우리는 미래의 점들을 이을 수는 없습니다. 과거의 점들만 이을 수 있는 거죠. 그러므로 이런 점들이 미래에 어떤 식으로든 이어진다고 믿어야 합니다.
-"""], 
+"""],
         duration: 0,
         isDone: true,
-        timestamp: Date())
+        designatedTimestamp: Date())
     
     container.mainContext.insert(testRecord)
     
