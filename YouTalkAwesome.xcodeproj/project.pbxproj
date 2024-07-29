@@ -15,6 +15,9 @@
 		4007DC862C5396E600EA528E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC852C5396E600EA528E /* DataModel.swift */; };
 		4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */; };
 		40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96AF62C5632CB0099E603 /* TypeDefinition.swift */; };
+		EEF2258D2C5758FA002EF8D1 /* LogicalStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258C2C5758FA002EF8D1 /* LogicalStructureView.swift */; };
+		EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */; };
+		EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF225902C575940002EF8D1 /* ArchiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		4007DC852C5396E600EA528E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestView.swift; sourceTree = "<group>"; };
 		40E96AF62C5632CB0099E603 /* TypeDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefinition.swift; sourceTree = "<group>"; };
+		EEF2258C2C5758FA002EF8D1 /* LogicalStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalStructureView.swift; sourceTree = "<group>"; };
+		EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptWritingView.swift; sourceTree = "<group>"; };
+		EEF225902C575940002EF8D1 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				4007DC742C53949D00EA528E /* ContentView.swift */,
+				EEF2258C2C5758FA002EF8D1 /* LogicalStructureView.swift */,
+				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
+				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +195,9 @@
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
+				EEF2258D2C5758FA002EF8D1 /* LogicalStructureView.swift in Sources */,
+				EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */,
+				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
