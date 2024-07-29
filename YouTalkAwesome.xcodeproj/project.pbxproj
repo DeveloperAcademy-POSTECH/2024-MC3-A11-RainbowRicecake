@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C29AC062C577DEA005E914A /* AnswerCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AC052C577DEA005E914A /* AnswerCompleteView.swift */; };
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
 		4007DC752C53949D00EA528E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC742C53949D00EA528E /* ContentView.swift */; };
 		4007DC772C53949D00EA528E /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC762C53949D00EA528E /* Typealias.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C29AC052C577DEA005E914A /* AnswerCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCompleteView.swift; sourceTree = "<group>"; };
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTalkAwesomeApp.swift; sourceTree = "<group>"; };
 		4007DC742C53949D00EA528E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C29AC042C57608A005E914A /* ScriptWriting */ = {
+			isa = PBXGroup;
+			children = (
+				2C29AC052C577DEA005E914A /* AnswerCompleteView.swift */,
+			);
+			path = ScriptWriting;
+			sourceTree = "<group>";
+		};
 		4007DC662C53949D00EA528E = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		4007DC822C5396C700EA528E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C29AC042C57608A005E914A /* ScriptWriting */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
 				EEF2258C2C5758FA002EF8D1 /* LogicalStructureView.swift */,
 				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
@@ -197,6 +208,7 @@
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
 				EEF2258D2C5758FA002EF8D1 /* LogicalStructureView.swift in Sources */,
 				EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */,
+				2C29AC062C577DEA005E914A /* AnswerCompleteView.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 			);
