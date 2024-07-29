@@ -43,9 +43,6 @@ struct LSCardView: View {
                             .frame(width: 165, height: 165)
                     }
                 }
-                .frame(maxWidth: .infinity)
-                
-                
             }
             .padding() 
     }

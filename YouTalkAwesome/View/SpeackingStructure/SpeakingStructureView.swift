@@ -53,6 +53,7 @@ struct SpeakingStructureView: View {
                             ExampleCardView(logicalStructure: example.logicalStructure, title: example.title)
                         }
                     }
+                    .padding(.vertical)
                 }
                 
                 HStack {
@@ -62,14 +63,12 @@ struct SpeakingStructureView: View {
                 }
                 ScrollView(.horizontal) {
                     HStack {
-                        HStack {
-                            ForEach(interviewExample, id: \.self) { example in
-                                ExampleCardView(logicalStructure: example.logicalStructure, title: example.title)
-                            }
+                        ForEach(interviewExample, id: \.self) { example in
+                            ExampleCardView(logicalStructure: example.logicalStructure, title: example.title)
                         }
                     }
+                    .padding(.vertical)
                 }
-                
             }
             .padding()
             .background(Color.background)

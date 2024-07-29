@@ -27,7 +27,6 @@ struct ExampleCardView: View {
                         .frame(width: 140)
                 }.padding()
             }
-            .padding()
     }
 }
 

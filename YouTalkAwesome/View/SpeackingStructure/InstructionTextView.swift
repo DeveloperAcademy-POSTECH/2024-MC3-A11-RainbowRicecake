@@ -23,7 +23,6 @@ struct InstructionTextView: View {
                 }
                 .font(.system(size: 30, weight: .semibold))
             }
-            
         }
         
     }
