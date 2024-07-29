@@ -53,7 +53,8 @@ struct SpeakingStructureView: View {
                             ExampleCardView(logicalStructure: example.logicalStructure, title: example.title)
                         }
                     }
-                    .padding(.vertical)
+                    .padding(.top, 9)
+                    .padding(.bottom, 17)
                 }
                 
                 HStack {
@@ -67,7 +68,8 @@ struct SpeakingStructureView: View {
                             ExampleCardView(logicalStructure: example.logicalStructure, title: example.title)
                         }
                     }
-                    .padding(.vertical)
+                    .padding(.top, 9)
+                    .padding(.bottom, 17)
                 }
             }
             .padding()
