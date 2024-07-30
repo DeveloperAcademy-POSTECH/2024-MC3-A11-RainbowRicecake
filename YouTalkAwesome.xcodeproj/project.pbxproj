@@ -32,6 +32,8 @@
 		EEEBF0BD2C58BCA500B26DBF /* StructureFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */; };
 		EEEBF0BF2C58BDCE00B26DBF /* StructureQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BE2C58BDCE00B26DBF /* StructureQuizView.swift */; };
 		EEEBF0C22C58C1DD00B26DBF /* FlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */; };
+		40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B292C5878D80099E603 /* QuizView.swift */; };
+		40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */; };
 		EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */; };
 		EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */; };
 		EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF225902C575940002EF8D1 /* ArchiveView.swift */; };
@@ -64,6 +66,8 @@
 		EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureFlowView.swift; sourceTree = "<group>"; };
 		EEEBF0BE2C58BDCE00B26DBF /* StructureQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureQuizView.swift; sourceTree = "<group>"; };
 		EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowComponentView.swift; sourceTree = "<group>"; };
+		40E96B292C5878D80099E603 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDoneView.swift; sourceTree = "<group>"; };
 		EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingStructureView.swift; sourceTree = "<group>"; };
 		EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptWritingView.swift; sourceTree = "<group>"; };
 		EEF225902C575940002EF8D1 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */,
 				40E96B1E2C57B2360099E603 /* InstructionTextView.swift */,
 				40E96B202C57BC9F0099E603 /* ExampleTitleView.swift */,
+				40E96B292C5878D80099E603 /* QuizView.swift */,
+				40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */,
 			);
 			path = SpeackingStructure;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			files = (
 				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
+				40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */,
@@ -322,6 +329,7 @@
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 				2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */,
 				EEEBF0BF2C58BDCE00B26DBF /* StructureQuizView.swift in Sources */,
+				40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */,
 				40E96B242C57BF870099E603 /* LSStickerView.swift in Sources */,
 				40E96B262C57C2370099E603 /* ExampleCardView.swift in Sources */,
 			);
