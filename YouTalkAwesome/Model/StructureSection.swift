@@ -6,7 +6,7 @@
 //
 
 
-struct Section: Hashable {
+struct StructureSection: Hashable {
     let topContent: String
     let bodyContent: String
     let isScript: Bool

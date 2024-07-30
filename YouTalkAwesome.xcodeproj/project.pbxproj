@@ -11,7 +11,7 @@
 		2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645B42C58BB7000804B04 /* Date + Extension.swift */; };
 		2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645B62C58BBFE00804B04 /* SpeechSpeedSelectionView.swift */; };
 		2C0645B92C58BC2000804B04 /* StructureSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645B82C58BC2000804B04 /* StructureSectionView.swift */; };
-		2C0645BB2C58BC4F00804B04 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645BA2C58BC4F00804B04 /* Section.swift */; };
+		2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645BA2C58BC4F00804B04 /* StructureSection.swift */; };
 		2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645BC2C58BC7E00804B04 /* PromptGuageView.swift */; };
 		2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AC052C577DEA005E914A /* WritingCompleteView.swift */; };
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
@@ -32,7 +32,7 @@
 		2C0645B42C58BB7000804B04 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		2C0645B62C58BBFE00804B04 /* SpeechSpeedSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSpeedSelectionView.swift; sourceTree = "<group>"; };
 		2C0645B82C58BC2000804B04 /* StructureSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSectionView.swift; sourceTree = "<group>"; };
-		2C0645BA2C58BC4F00804B04 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		2C0645BA2C58BC4F00804B04 /* StructureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSection.swift; sourceTree = "<group>"; };
 		2C0645BC2C58BC7E00804B04 /* PromptGuageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptGuageView.swift; sourceTree = "<group>"; };
 		2C29AC052C577DEA005E914A /* WritingCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingCompleteView.swift; sourceTree = "<group>"; };
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +143,7 @@
 				4007DC872C53C9B300EA528E /* TestView */,
 				4007DC852C5396E600EA528E /* DataModel.swift */,
 				40E96AF62C5632CB0099E603 /* TypeDefinition.swift */,
-				2C0645BA2C58BC4F00804B04 /* Section.swift */,
+				2C0645BA2C58BC4F00804B04 /* StructureSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C0645BB2C58BC4F00804B04 /* Section.swift in Sources */,
+				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
