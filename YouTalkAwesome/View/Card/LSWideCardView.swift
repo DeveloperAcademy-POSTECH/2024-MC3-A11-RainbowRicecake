@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LSWideCardView: View {
-    var logicalStructure: LogicalStructure
+    var speakingStructure: SpeakingStructure
     
     let width: CGFloat = 354
     let height: CGFloat = 118
@@ -20,17 +20,17 @@ struct LSWideCardView: View {
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(logicalStructure.color)
+                    .fill(speakingStructure.color)
                     .offset(x: 10, y: 10)
             }
             .overlay {
                 HStack{
                     VStack (alignment: .leading) {
-                        LSNameView(name: logicalStructure)
-                        LSDescriptionView(shortDescription: logicalStructure.description )
+                        LSNameView(name: speakingStructure)
+                        LSDescriptionView(shortDescription: speakingStructure.description )
                     }
                     Spacer()
-                    Image("\(logicalStructure.rawValue)")
+                    Image("\(speakingStructure.rawValue)")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
@@ -41,5 +41,5 @@ struct LSWideCardView: View {
 }
 
 #Preview {
-    LSWideCardView(logicalStructure: .prep)
+    LSWideCardView(speakingStructure: .prep)
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExampleCardView: View {
-    var logicalStructure : LogicalStructure
+    var speakingStructure : SpeakingStructure
     var title: String
     
     var body: some View {
@@ -18,7 +18,7 @@ struct ExampleCardView: View {
                 VStack (alignment: .leading) {
                     HStack {
                         Spacer()
-                        LSStickerView(lsName: logicalStructure.rawValue)
+                        LSStickerView(lsName: speakingStructure.rawValue)
                     }
                     Spacer()
                     Text(title)
@@ -31,5 +31,5 @@ struct ExampleCardView: View {
 }
 
 #Preview {
-    ExampleCardView(logicalStructure: .psb, title: "원인이 어려운 장애 극복하기")
+    ExampleCardView(speakingStructure: .psb, title: "원인이 어려운 장애 극복하기")
 }
