@@ -19,14 +19,22 @@ struct FlowComponentView: View {
             Circle()
                 .fill(speakingStructure.color)
                 .frame(width: 8, height: 8)
+                .offset(y: 7)
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
                         .fontWeight(.bold)
                         .foregroundStyle(speakingStructure.color)
-                    Text("\(speakingStructure.componentDescriptions[index])")
-                        .foregroundStyle(Color(hex:"898A8D"))
-                        .font(.system(size: 14))
+                    if showExampleContents {
+                        Text("\(speakingStructure.componentDescriptions[index])")
+                            .foregroundStyle(Color(hex:"898A8D"))
+                            .font(.system(size: 14))
+                    } else {
+                        Text("\(speakingStructure.componentDescriptions[index])")
+                            .foregroundStyle(Color(hex:"898A8D"))
+                            .font(.system(size: 14))
+                            .padding(.bottom)
+                    }
                 }
                 
                 if showExampleContents {
@@ -42,6 +50,7 @@ struct FlowComponentView: View {
                             alignment: .topLeading
                         )
                         .frame(height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width))
+                        .padding(.bottom)
                 }
             }
         }
@@ -50,7 +59,7 @@ struct FlowComponentView: View {
                 Rectangle()
                     .foregroundColor(speakingStructure.color)
                     .frame(width: 3/*, height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width)*/)
-                    .offset(x: 3)
+                    .offset(x: 3, y: 7)
             }
         }
     }
@@ -64,3 +73,6 @@ struct FlowComponentView: View {
     }
 }
 
+#Preview {
+    FlowComponentView(speakingStructure: .aida, index: 1, showExampleContents: .constant(true))
+}

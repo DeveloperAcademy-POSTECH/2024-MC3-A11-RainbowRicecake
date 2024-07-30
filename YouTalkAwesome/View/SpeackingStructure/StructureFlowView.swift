@@ -18,7 +18,7 @@ struct StructureFlowView: View {
                 LSWideCardView(speakingStructure: speakingStructure)
                 
                 ScrollView {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         ForEach(0..<speakingStructure.components.count, id: \.self) { index in
                             FlowComponentView(speakingStructure: speakingStructure, index: index, showExampleContents: $showExampleContents)
                         }
