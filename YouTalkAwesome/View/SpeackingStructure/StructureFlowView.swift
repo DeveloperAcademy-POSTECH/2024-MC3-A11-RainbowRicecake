@@ -55,13 +55,6 @@ struct StructureFlowView: View {
         .background(Color(hex: "F1F3F6"))
     }
     
-    func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
-        let textView = UITextView()
-        textView.text = text
-        textView.font = UIFont.systemFont(ofSize: 16)
-        let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
-        return size.height + 10 // Adding padding
-    }
 }
 
 
