@@ -41,7 +41,7 @@ struct WritingCompleteView: View {
             ScrollView(.vertical) {
                 // TODO: 나중에 수정 필요
                 ForEach(structureSectionSample, id: \.self) { section in
-                    StructureSectionView(title: section.topContent, textBody: section.bodyContent, isScript: section.isScript)
+                    StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                 }
                 
                 Spacer(minLength: self.isTopicSelected ? 200 : 70)

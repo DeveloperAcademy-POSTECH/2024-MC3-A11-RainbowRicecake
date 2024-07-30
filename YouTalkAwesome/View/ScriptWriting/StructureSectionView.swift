@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StructureSectionView: View {
-    let title: String
-    let textBody: String
+    let topContent: String
+    let bottomContent: String
     let isScript: Bool
     
     var body: some View {
@@ -23,11 +23,11 @@ struct StructureSectionView: View {
             }
             
             VStack(spacing: 4) {
-                Text(title)
+                Text(topContent)
                     .font(.title)
                     .padding(.top, 12)
                 
-                Text(textBody)
+                Text(bottomContent)
                     .padding(10)
             }
         }
