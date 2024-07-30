@@ -15,7 +15,7 @@ struct SwiftDataTestView : View {
     var body: some View {
         ForEach(0..<records.count, id:\.self) { recordIndex in
             VStack {
-                ForEach (0..<records[recordIndex].logicalStructure.rawValue.count, id : \.self) { index in
+                ForEach (0..<records[recordIndex].speakingStructure.rawValue.count, id : \.self) { index in
                     
                     Text("\(records[recordIndex].content[index])")
                     
@@ -40,7 +40,7 @@ struct SwiftDataTestView : View {
     
     let testRecord = LogicalSpeakingRecord(
         topic: "스티브잡스 스탠포드 연설 중 발췌",
-        logicalStructure: .star,
+        speakingStructure: .star,
         content: [
 """
 들려 드릴 첫 번째 이야기는 점 잇기에 관한 것입니다.

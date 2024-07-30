@@ -9,7 +9,7 @@ import SwiftUI
 
 //LS: Logical Speaking
 struct LSCardView: View {
-    var logicalStructure: LogicalStructure
+    var speakingStructure: SpeakingStructure
     
     let width: CGFloat = 260
     let height: CGFloat = 318
@@ -21,15 +21,15 @@ struct LSCardView: View {
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(logicalStructure.color)
+                    .fill(speakingStructure.color)
                     .offset(x: 10, y: 10)
             }
             .overlay {
                 VStack  {
                     HStack {
                         VStack (alignment: .leading) {
-                            LSNameView(name: logicalStructure)
-                            LSDescriptionView(shortDescription: logicalStructure.description )
+                            LSNameView(name: speakingStructure)
+                            LSDescriptionView(shortDescription: speakingStructure.description )
                         }
                         Spacer()
                     }
@@ -37,7 +37,7 @@ struct LSCardView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Image("\(logicalStructure.rawValue)")
+                        Image("\(speakingStructure.rawValue)")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 165, height: 165)
@@ -49,13 +49,12 @@ struct LSCardView: View {
 }
 
 struct LSNameView : View {
-    var name : LogicalStructure
+    var name : SpeakingStructure
     
     var body: some View {
         Text("\(name.rawValue)")
             .font(.system(size: 40))
             .fontWeight(.black)
-        
     }
 }
 
@@ -72,5 +71,5 @@ struct LSDescriptionView : View {
 }
 
 #Preview {
-    LSCardView(logicalStructure: .prep)
+    LSCardView(speakingStructure: .prep)
 }

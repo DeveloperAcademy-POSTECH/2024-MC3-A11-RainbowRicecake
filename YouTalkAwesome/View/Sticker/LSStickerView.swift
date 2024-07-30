@@ -23,5 +23,5 @@ struct LSStickerView: View {
 }
 
 #Preview {
-    LSStickerView(lsName: LogicalStructure.prep.rawValue)
+    LSStickerView(lsName: SpeakingStructure.prep.rawValue)
 }
