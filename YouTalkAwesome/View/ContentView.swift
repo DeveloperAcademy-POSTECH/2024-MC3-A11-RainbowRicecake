@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            LogicalStructureView()
+            SpeakingStructureView()
                 .tabItem {
-                    Label("논리 구조", systemImage: "text.bubble")
+                    Label("말하기 구조", systemImage: "text.bubble")
                 }
             ScriptWritingView()
                 .tabItem {
