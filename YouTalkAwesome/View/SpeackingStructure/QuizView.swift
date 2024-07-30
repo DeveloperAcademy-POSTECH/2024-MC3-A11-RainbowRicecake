@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuizView: View {
-    let lsStructure : LogicalStructure
+    let lsStructure : SpeakingStructure
     
     @State private var isButtonDisabled = true
     @State private var isResultCorrect: Bool? = nil

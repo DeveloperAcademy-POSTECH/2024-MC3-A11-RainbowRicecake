@@ -9,13 +9,12 @@ import SwiftUI
 
 struct QuizDoneView: View {
     
-    var speakingStructure: LogicalStructure
+    var speakingStructure: SpeakingStructure
     @State private var isAnimating = false
     
     var body: some View {
         
         ZStack {
-            
             Color.background
                 .ignoresSafeArea()
             
