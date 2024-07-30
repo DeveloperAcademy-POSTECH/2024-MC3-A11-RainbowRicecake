@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    //탭바 배경을 흰색으로, 투명하지 않게
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        UITabBar.appearance().standardAppearance = appearance
+    }
+
     var body: some View {
         TabView {
             SpeakingStructureView()
@@ -23,7 +31,6 @@ struct ContentView: View {
                     Label("저장소", systemImage: "person.crop.circle.fill")
                 }
         }
-        
     }
 }
 
