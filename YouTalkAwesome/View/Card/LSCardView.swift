@@ -19,7 +19,7 @@ struct LSCardView: View {
             .stroke(.black, lineWidth: 3)
             .fill(.white)
             .frame(width: width, height: height)
-            .background() {
+            .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(logicalStructure.color)
                     .offset(x: 10, y: 10)
@@ -70,7 +70,6 @@ struct LSDescriptionView : View {
             
     }
 }
-
 
 #Preview {
     LSCardView(logicalStructure: .prep)

@@ -23,6 +23,7 @@ struct ContentView: View {
                     Label("저장소", systemImage: "person.crop.circle.fill")
                 }
         }
+        
     }
 }
 

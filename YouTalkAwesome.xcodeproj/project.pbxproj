@@ -28,6 +28,7 @@
 		40E96B242C57BF870099E603 /* LSStickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B232C57BF870099E603 /* LSStickerView.swift */; };
 		40E96B262C57C2370099E603 /* ExampleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B252C57C2370099E603 /* ExampleCardView.swift */; };
 		40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B272C57C6E80099E603 /* LSWideCardView.swift */; };
+		EEEBF0BB2C58B65900B26DBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Extensions.swift */; };
 		EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */; };
 		EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */; };
 		EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF225902C575940002EF8D1 /* ArchiveView.swift */; };
@@ -56,6 +57,7 @@
 		40E96B232C57BF870099E603 /* LSStickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSStickerView.swift; sourceTree = "<group>"; };
 		40E96B252C57C2370099E603 /* ExampleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCardView.swift; sourceTree = "<group>"; };
 		40E96B272C57C6E80099E603 /* LSWideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSWideCardView.swift; sourceTree = "<group>"; };
+		EEEBF0BA2C58B65900B26DBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingStructureView.swift; sourceTree = "<group>"; };
 		EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptWritingView.swift; sourceTree = "<group>"; };
 		EEF225902C575940002EF8D1 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -141,10 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				2C29AC042C57608A005E914A /* ScriptWriting */,
+				4007DC742C53949D00EA528E /* ContentView.swift */,
 				40E96B222C57BF6D0099E603 /* Sticker */,
 				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 				40E96B1A2C5778740099E603 /* Card */,
-				4007DC742C53949D00EA528E /* ContentView.swift */,
 				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
 				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
 			);
@@ -175,6 +177,7 @@
 			children = (
 				4007DC762C53949D00EA528E /* Typealias.swift */,
 				2C0645B42C58BB7000804B04 /* Date + Extension.swift */,
+				EEEBF0BA2C58B65900B26DBF /* Extensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */,
 				2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
+				EEEBF0BB2C58B65900B26DBF /* Extensions.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 				2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */,
