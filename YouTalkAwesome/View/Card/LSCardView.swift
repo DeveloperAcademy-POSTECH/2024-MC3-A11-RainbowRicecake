@@ -55,6 +55,7 @@ struct LSNameView : View {
         Text("\(name.rawValue)")
             .font(.system(size: 40))
             .fontWeight(.black)
+            .foregroundStyle(Color.black)
     }
 }
 

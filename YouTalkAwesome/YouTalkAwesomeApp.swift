@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct YouTalkAwesomeApp: App {
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             LogicalSpeakingRecord.self,

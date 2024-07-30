@@ -10,62 +10,37 @@ import SwiftUI
 struct StructureFlowView: View {
     var speakingStructure: SpeakingStructure
     
-    @State var showExampleContents: Bool = true
+    @State var showExampleContents: Bool = false
     
     var body: some View {
         NavigationStack {
-            VStack {
-                //임시로 이미지로 넣음
+            VStack(alignment: .leading) {
                 LSWideCardView(speakingStructure: speakingStructure)
                 
-                VStack(alignment: .leading) {
-                    ForEach(0..<speakingStructure.components.count, id: \.self) { index in
-                        HStack(alignment: .top) {
-                            Circle()
-                                .fill(speakingStructure.color)
-                                .frame(width: 8, height: 8)
-                            VStack(alignment: .leading) {
-                                Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                                    .foregroundStyle(speakingStructure.color)
-                                    .fontWeight(.bold)
-                                Text("\(speakingStructure.componentDescriptions[index])")
-                                    .foregroundStyle(Color(hex: "898A8D"))
-                                if showExampleContents {
-                                    RoundedRectangle(cornerRadius: 8)
-//                                        .border(Color(hex: "898A8D"), width: 1)
-                                        .foregroundStyle(Color.white)
-                                        .overlay(
-                                            VStack(alignment: .leading) {
-                                                Text("\(speakingStructure.componentExamples[index])")
-                                            }
-                                        )
-                                }
-                            }
-                            Spacer()
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(0..<speakingStructure.components.count, id: \.self) { index in
+                            FlowComponentView(speakingStructure: speakingStructure, index: index, showExampleContents: $showExampleContents)
                         }
                     }
-                }
-                .padding()
-                
-                //예시문장 열고 닫는 버튼
-                Button(action: {
-                    showExampleContents.toggle()
-                }) {
-                    HStack {
-                        if showExampleContents {
-                            Text("예시닫기")
-                            Image(systemName: "chevron.up")
-                        } else {
-                            Text("예시보기")
-                            Image(systemName: "chevron.down")
+                    .padding()
+                    // 예시문장 열고 닫는 버튼
+                    Button(action: {
+                        withAnimation {
+                            showExampleContents.toggle()
                         }
+                    }) {
+                        HStack {
+                            Text(showExampleContents ? "예시닫기" : "예시보기")
+                            Image(systemName: showExampleContents ? "chevron.up" : "chevron.down")
+                        }
+                        .foregroundColor(Color(hex:"898A8D"))
                     }
-                    .foregroundColor(Color(hex:"898A8D"))
                 }
                 
                 Spacer()
                 
-                //퀴즈로 넘어가는 버튼
+                // 퀴즈로 넘어가는 버튼
                 NavigationLink(destination: StructureQuizView()) {
                     RoundedRectangle(cornerRadius: 18)
                         .foregroundStyle(Color(hex: "51D7A7"))
@@ -76,13 +51,22 @@ struct StructureFlowView: View {
                                 .foregroundStyle(Color.white)
                         )
                 }
-                
             }
             .padding()
             .background(Color(hex: "F1F3F6"))
         }
     }
+    
+    func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
+        let textView = UITextView()
+        textView.text = text
+        textView.font = UIFont.systemFont(ofSize: 16)
+        let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
+        return size.height + 10 // Adding padding
+    }
 }
+
+
 
 #Preview {
     StructureFlowView(speakingStructure: .prep)

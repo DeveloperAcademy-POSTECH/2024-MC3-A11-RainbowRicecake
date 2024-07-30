@@ -31,6 +31,7 @@
 		EEEBF0BB2C58B65900B26DBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Extensions.swift */; };
 		EEEBF0BD2C58BCA500B26DBF /* StructureFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */; };
 		EEEBF0BF2C58BDCE00B26DBF /* StructureQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BE2C58BDCE00B26DBF /* StructureQuizView.swift */; };
+		EEEBF0C22C58C1DD00B26DBF /* FlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */; };
 		EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */; };
 		EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */; };
 		EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF225902C575940002EF8D1 /* ArchiveView.swift */; };
@@ -62,6 +63,7 @@
 		EEEBF0BA2C58B65900B26DBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureFlowView.swift; sourceTree = "<group>"; };
 		EEEBF0BE2C58BDCE00B26DBF /* StructureQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureQuizView.swift; sourceTree = "<group>"; };
+		EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowComponentView.swift; sourceTree = "<group>"; };
 		EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingStructureView.swift; sourceTree = "<group>"; };
 		EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptWritingView.swift; sourceTree = "<group>"; };
 		EEF225902C575940002EF8D1 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				2C29AC042C57608A005E914A /* ScriptWriting */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
+				EEEBF0C02C58C1D100B26DBF /* Flow */,
 				40E96B222C57BF6D0099E603 /* Sticker */,
 				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 				40E96B1A2C5778740099E603 /* Card */,
@@ -214,6 +217,14 @@
 				40E96B232C57BF870099E603 /* LSStickerView.swift */,
 			);
 			path = Sticker;
+			sourceTree = "<group>";
+		};
+		EEEBF0C02C58C1D100B26DBF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */,
+			);
+			path = Flow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */,
 				2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */,
 				2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */,
+				EEEBF0C22C58C1DD00B26DBF /* FlowComponentView.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				EEEBF0BB2C58B65900B26DBF /* Extensions.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
