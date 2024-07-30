@@ -10,6 +10,7 @@ import SwiftUI
 struct QuizDoneView: View {
     
     var speakingStructure: LogicalStructure
+    @State private var isAnimating = false
     
     var body: some View {
         
@@ -24,6 +25,12 @@ struct QuizDoneView: View {
             
             Image("Glitter")
                 .offset(y: -80)
+                .scaleEffect(isAnimating ? 1 : 0.3)
+                .onAppear {
+                    withAnimation(.bouncy, {
+                        isAnimating = true
+                    })
+                }
             
             VStack {
                 Spacer()
@@ -32,13 +39,17 @@ struct QuizDoneView: View {
                 
                 Text("말하기 구조 학습을 완료했어요.")
                     .font(.system(size: 20))
-                    
                 
                 Image("\(speakingStructure.rawValue)")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 165, height: 165)
-                    
+                    .scaleEffect(isAnimating ? 1 : 0.3)
+                    .onAppear {
+                        withAnimation(.bouncy, {
+                            isAnimating = true
+                        })
+                    }
                 
                 RoundedRectangle(cornerRadius: 18)
                     .stroke(.main, lineWidth: 5)

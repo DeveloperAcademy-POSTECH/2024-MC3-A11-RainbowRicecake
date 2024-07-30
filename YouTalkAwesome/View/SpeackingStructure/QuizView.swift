@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuizView: View {
+    let lsStructure : LogicalStructure
     
     @State private var isButtonDisabled = true
     @State private var isResultCorrect: Bool? = nil
@@ -18,7 +19,7 @@ struct QuizView: View {
     
     
     @State private var confirmationMessage : String = ""
-
+    
     struct LSQuizComponent: Identifiable {
         var id : UUID = .init()
         var order : Int
@@ -107,7 +108,7 @@ struct QuizView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        VStack {
             VStack (alignment: .leading) {
                 Text("글을 움직여 아래 순서대로 배치해보세요")
                     .font(.system(size: 20, weight: .semibold))
@@ -120,7 +121,6 @@ struct QuizView: View {
                 
                 ForEach(quiz) { component in
                     makeQuizComponentRow(component)
-                    
                 }
             }
             
@@ -128,34 +128,48 @@ struct QuizView: View {
             
             VStack {
                 if isResultCorrect != nil {
-                        Text(confirmationMessage)
+                    Text(confirmationMessage)
                         .foregroundStyle(messageColor)
                         .font(.system(size: 20, weight: .semibold))
                         .padding(.top, 28)
                 }
                 
                 Spacer()
-                Button {
-                    let orderInTheQuiz:[Int] = quiz.map({$0.order})
-                    if orderInTheQuiz == [1,2,3,4] {
-                        isResultCorrect = true
-                    } else {
-                        isResultCorrect = false
+                
+                if isResultCorrect != nil && isResultCorrect == true {
+                    NavigationLink(destination: QuizDoneView(speakingStructure: .prep)) {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(Color.main)
+                            .frame(width: 353, height: 54)
+                            .overlay {
+                                Text(buttonText)
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 18, weight: .semibold))
+                            }
                     }
-                    
-                    changeUIBasedOnTheResult()
-                    
-                } label: {
-                    RoundedRectangle(cornerRadius: 18)
-                        .fill(isButtonDisabled ? Color.disabledButton : Color.main)
-                        .frame(width: 353, height: 54)
-                        .overlay {
-                            Text(buttonText)
-                                .foregroundStyle(.white)
-                                .font(.system(size: 18, weight: .semibold))
+                } else {
+                    Button {
+                        let orderInTheQuiz:[Int] = quiz.map({$0.order})
+                        if orderInTheQuiz == [1,2,3,4] {
+                            isResultCorrect = true
+                        } else {
+                            isResultCorrect = false
                         }
+                        
+                        changeUIBasedOnTheResult()
+                        
+                    } label: {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(isButtonDisabled ? Color.disabledButton : Color.main)
+                            .frame(width: 353, height: 54)
+                            .overlay {
+                                Text(buttonText)
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 18, weight: .semibold))
+                            }
+                    }
+                    .disabled(isButtonDisabled)
                 }
-                .disabled(isButtonDisabled)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 164)
@@ -165,5 +179,7 @@ struct QuizView: View {
 }
 
 #Preview {
-    QuizView()
+    NavigationStack {
+        QuizView(lsStructure: .prep)
+    }
 }

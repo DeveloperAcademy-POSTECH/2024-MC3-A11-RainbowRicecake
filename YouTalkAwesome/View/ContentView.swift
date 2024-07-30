@@ -19,7 +19,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            QuizView()
+            SpeakingStructureView()
                 .tabItem {
                     Label("말하기 구조", systemImage: "text.bubble")
                 }
