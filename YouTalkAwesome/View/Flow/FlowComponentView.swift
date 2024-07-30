@@ -9,6 +9,7 @@ import SwiftUI
 
 //재활용 버전을 위해 일단 만들어 둠, 아직 완성은 아님
 //TODO: TextEditor를 이용한 input 받는 뷰는 따로 만들어야 함
+//TODO: 해당 뷰가 나타났을 때 width가 늘어나 세로로만 펼쳐지는게 아닌 가로로도 펼쳐지는 느낌이 조금 남
 struct FlowComponentView: View {
     var speakingStructure: SpeakingStructure
     var index: Int

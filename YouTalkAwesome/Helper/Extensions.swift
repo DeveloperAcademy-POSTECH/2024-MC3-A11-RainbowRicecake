@@ -5,7 +5,6 @@
 //  Created by Kyuhee hong on 7/29/24.
 //
 
-import Foundation
 import SwiftUI
 
 //hex코드 값으로 색 지정 가능하게 해주는 확장기능
