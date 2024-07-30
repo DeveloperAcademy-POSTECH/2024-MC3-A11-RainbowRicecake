@@ -13,9 +13,11 @@ struct ScriptPracticeView: View {
     @Binding var isPresented: Bool
     
     let time: Int = 330
+    let isTopicSelected: Bool
     
-    init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>, isTopicSelected: Bool) {
         self._isPresented = isPresented
+        self.isTopicSelected = isTopicSelected
         
         let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -27,7 +29,6 @@ struct ScriptPracticeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-
                 ScrollView {
                     Spacer(minLength: 30)
                     
@@ -66,27 +67,24 @@ struct ScriptPracticeView: View {
             .navigationTitle("프롬프트")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        // TODO: 기능 구현 필요
-                        self.isPresented = false
-                    } label: {
-                        Image(systemName: "xmark")
+                if !self.isTopicSelected {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            // TODO: 기능 구현 필요
+                            self.isPresented = false
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
                     }
                 }
             }
             .ignoresSafeArea(edges: .bottom)
+            .navigationBarBackButtonHidden()
         }
     }
 }
 
 #Preview {
-    ScriptPracticeView(isPresented: .constant(true))
+    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: false)
 }
 
-
-
-
-#Preview {
-    PromptGuageView(time: 330, elapsedTime: .constant(50))
-}

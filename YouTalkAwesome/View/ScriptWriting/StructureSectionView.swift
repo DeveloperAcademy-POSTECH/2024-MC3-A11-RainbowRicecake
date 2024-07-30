@@ -31,6 +31,7 @@ struct StructureSectionView: View {
                     .padding(10)
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
     }
 }

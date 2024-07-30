@@ -33,17 +33,6 @@ struct WritingCompleteView: View {
                     }
                     
                     Spacer()
-                    
-                    if !isTopicSelected {
-                        Button {
-                            // TODO: 재생 버튼 기능 구현
-                            self.isPresented = true
-                        } label: {
-                            Image(systemName: "play.circle.fill")
-                                .resizable()
-                                .frame(width: 38, height: 38)
-                        }
-                    }
                 }
                 .padding(.horizontal, 22)
                 .padding(.bottom, 16)
@@ -55,50 +44,83 @@ struct WritingCompleteView: View {
                 ForEach(structureSectionSample, id: \.self) { section in
                     StructureSectionView(title: section.topContent, textBody: section.bodyContent, isScript: section.isScript)
                 }
+                
+                Spacer(minLength: self.isTopicSelected ? 200 : 70)
             }
         }
         .overlay(alignment: .bottom) {
             if self.isTopicSelected {
                 ZStack(alignment: .bottom) {
                     // TODO: 색 수정
-                    LinearGradient(colors: [.gray, .clear], startPoint: .center, endPoint: .top)
+                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
                     
                     VStack {
                         SpeechSpeedSelectionView(speechSpeed: calcStringCount())
 
-                        speechStartButton
+                        if self.isTopicSelected {
+                            speechStartButtonWithTopic
+                        } else {
+                            speechStartButton
+                        }
                     }
                     .padding(.horizontal, 20)
+                }
+                .frame(height: 300)
+            } else {
+                ZStack(alignment: .bottom) {
+                    // TODO: 색 수정
+                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                        .ignoresSafeArea(edges: .bottom)
+                    
+                    speechStartButton
+                        .padding(20)
+                    
                 }
                 .frame(height: 300)
             }
         }
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                // TODO: 하이파이에 따라 수정 예정
-                Button("종료") {
-                    
+            if !isTopicSelected {
+                ToolbarItem(placement: .topBarTrailing) {
+                    // TODO: 하이파이에 따라 수정 예정
+                    Button("마치기") {
+                        
+                    }
                 }
             }
         }
-        .sheet(isPresented: $isPresented) {
-            ScriptPracticeView(isPresented: $isPresented)
+        .fullScreenCover(isPresented: $isPresented) {
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected)
                 .ignoresSafeArea(edges: .bottom)
         }
     }
     
     var speechStartButton: some View {
         Button {
-            
+            isPresented = true
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
                     .frame(height: 54)
                 
-                Text("말하기 연습 시작")
+                Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
                     .foregroundStyle(.white)
                 
+            }
+        }
+    }
+    
+    var speechStartButtonWithTopic: some View {
+        NavigationLink {
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected)
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 18)
+                    .frame(height: 54)
+                
+                Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
+                    .foregroundStyle(.white)
             }
         }
     }
@@ -134,7 +156,7 @@ struct WritingCompleteView: View {
 
 #Preview {
     NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, timeStamp: Date(), duration: 330)
+        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: true, timeStamp: Date(), duration: 330)
     }
 }
 

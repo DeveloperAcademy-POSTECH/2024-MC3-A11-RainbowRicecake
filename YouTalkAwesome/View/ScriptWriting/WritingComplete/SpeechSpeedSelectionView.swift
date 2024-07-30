@@ -38,6 +38,7 @@ struct SpeechSpeedSelectionView: View {
                     Spacer()
                     
                     Text(speedStatus.speechText)
+                        .frame(width: 150)
                     
                     Spacer()
 
@@ -63,7 +64,7 @@ struct SpeechSpeedSelectionView: View {
                         .padding(.horizontal, 14)
                         .foregroundStyle(.gray)
                     
-                    HStack(spacing: 44) {
+                    HStack(spacing: 20) {
                         Text(speedMinText())
                         
                         Text(":")
