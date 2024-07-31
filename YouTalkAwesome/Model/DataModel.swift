@@ -20,16 +20,16 @@ enum ModelSchemaV0: VersionedSchema {
     final class LogicalSpeakingRecord {
         var id: UUID
         var topic: String
-        var logicalStructure: LogicalStructure
+        var speakingStructure: SpeakingStructure
         var content : [String]
         var duration: Int
         var isDone: Bool
         var designatedTimestamp : Date?
         
-        init (id: UUID = UUID(), topic: String, logicalStructure: LogicalStructure, content: [String],duration: Int, isDone: Bool, designatedTimestamp: Date? = nil ) {
+        init (id: UUID = UUID(), topic: String, speakingStructure: SpeakingStructure, content: [String],duration: Int, isDone: Bool, designatedTimestamp: Date? = nil ) {
             self.id = id
             self.topic = topic
-            self.logicalStructure = logicalStructure
+            self.speakingStructure = speakingStructure
             self.content = content
             self.duration = duration
             self.isDone = isDone

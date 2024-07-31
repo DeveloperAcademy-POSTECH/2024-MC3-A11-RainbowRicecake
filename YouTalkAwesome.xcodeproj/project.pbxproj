@@ -31,6 +31,11 @@
 		40E96B242C57BF870099E603 /* LSStickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B232C57BF870099E603 /* LSStickerView.swift */; };
 		40E96B262C57C2370099E603 /* ExampleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B252C57C2370099E603 /* ExampleCardView.swift */; };
 		40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B272C57C6E80099E603 /* LSWideCardView.swift */; };
+		40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B292C5878D80099E603 /* QuizView.swift */; };
+		40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */; };
+		EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */; };
+		EEEBF0BD2C58BCA500B26DBF /* StructureFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */; };
+		EEEBF0C22C58C1DD00B26DBF /* FlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */; };
 		EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */; };
 		EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */; };
 		EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF225902C575940002EF8D1 /* ArchiveView.swift */; };
@@ -62,6 +67,11 @@
 		40E96B232C57BF870099E603 /* LSStickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSStickerView.swift; sourceTree = "<group>"; };
 		40E96B252C57C2370099E603 /* ExampleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCardView.swift; sourceTree = "<group>"; };
 		40E96B272C57C6E80099E603 /* LSWideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSWideCardView.swift; sourceTree = "<group>"; };
+		40E96B292C5878D80099E603 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDoneView.swift; sourceTree = "<group>"; };
+		EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
+		EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureFlowView.swift; sourceTree = "<group>"; };
+		EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowComponentView.swift; sourceTree = "<group>"; };
 		EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingStructureView.swift; sourceTree = "<group>"; };
 		EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptWritingView.swift; sourceTree = "<group>"; };
 		EEF225902C575940002EF8D1 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -108,6 +118,7 @@
 		2C29AC042C57608A005E914A /* ScriptWriting */ = {
 			isa = PBXGroup;
 			children = (
+				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
 				2C0645BF2C58BCF100804B04 /* ScriptPractice */,
 				2C0645BE2C58BCC700804B04 /* WritingComplete */,
 				2C0645B82C58BC2000804B04 /* StructureSectionView.swift */,
@@ -155,13 +166,13 @@
 		4007DC822C5396C700EA528E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2C29AC042C57608A005E914A /* ScriptWriting */,
-				40E96B222C57BF6D0099E603 /* Sticker */,
-				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
-				40E96B1A2C5778740099E603 /* Card */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
-				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
-				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
+				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
+				2C29AC042C57608A005E914A /* ScriptWriting */,
+				EEB5CC7B2C5A16F200AC8196 /* Archive */,
+				EEEBF0C02C58C1D100B26DBF /* Flow */,
+				40E96B222C57BF6D0099E603 /* Sticker */,
+				40E96B1A2C5778740099E603 /* Card */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 				2C0645B42C58BB7000804B04 /* Date + Extension.swift */,
 				2C0645C32C5A1FF800804B04 /* AudioManager.swift */,
 				2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */,
+				EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -209,9 +221,11 @@
 		40E96B1D2C57B1D10099E603 /* SpeackingStructure */ = {
 			isa = PBXGroup;
 			children = (
-				EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */,
 				40E96B1E2C57B2360099E603 /* InstructionTextView.swift */,
-				40E96B202C57BC9F0099E603 /* ExampleTitleView.swift */,
+				EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */,
+				EEB5CC7C2C5A180700AC8196 /* FlowInstruction */,
+				EEB5CC7D2C5A182400AC8196 /* Quiz */,
+				EEB5CC7E2C5A186300AC8196 /* WellknownSpeech */,
 			);
 			path = SpeackingStructure;
 			sourceTree = "<group>";
@@ -222,6 +236,47 @@
 				40E96B232C57BF870099E603 /* LSStickerView.swift */,
 			);
 			path = Sticker;
+			sourceTree = "<group>";
+		};
+		EEB5CC7B2C5A16F200AC8196 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		EEB5CC7C2C5A180700AC8196 /* FlowInstruction */ = {
+			isa = PBXGroup;
+			children = (
+				EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */,
+				40E96B202C57BC9F0099E603 /* ExampleTitleView.swift */,
+			);
+			path = FlowInstruction;
+			sourceTree = "<group>";
+		};
+		EEB5CC7D2C5A182400AC8196 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B292C5878D80099E603 /* QuizView.swift */,
+				40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		EEB5CC7E2C5A186300AC8196 /* WellknownSpeech */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WellknownSpeech;
+			sourceTree = "<group>";
+		};
+		EEEBF0C02C58C1D100B26DBF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				EEEBF0C12C58C1DD00B26DBF /* FlowComponentView.swift */,
+			);
+			path = Flow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +351,7 @@
 			files = (
 				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
+				40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */,
@@ -305,6 +361,7 @@
 				2C0645B32C57F00B00804B04 /* ScriptPracticeView.swift in Sources */,
 				2C0645B92C58BC2000804B04 /* StructureSectionView.swift in Sources */,
 				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
+				EEEBF0BD2C58BCA500B26DBF /* StructureFlowView.swift in Sources */,
 				40E96B1F2C57B2360099E603 /* InstructionTextView.swift in Sources */,
 				2C0645C22C5A1FD100804B04 /* ScriptPracticeViewModel.swift in Sources */,
 				2C0645C62C5A216800804B04 /* SpeechSpeedStatus.swift in Sources */,
@@ -314,10 +371,13 @@
 				2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */,
 				2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */,
 				2C0645C42C5A1FF800804B04 /* AudioManager.swift in Sources */,
+				EEEBF0C22C58C1DD00B26DBF /* FlowComponentView.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
+				EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 				2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */,
+				40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */,
 				40E96B242C57BF870099E603 /* LSStickerView.swift in Sources */,
 				40E96B262C57C2370099E603 /* ExampleCardView.swift in Sources */,
 			);
