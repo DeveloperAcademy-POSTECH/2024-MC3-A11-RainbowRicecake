@@ -14,12 +14,14 @@ struct StructureFlowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("말하기 구조를 학습해보아요")
+                .font(.system(size: 28, weight: .medium))
             LSWideCardView(speakingStructure: speakingStructure)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(0..<speakingStructure.components.count, id: \.self) { index in
-                        FlowComponentView(speakingStructure: speakingStructure, index: index, showExampleContents: $showExampleContents)
+                        FlowComponentView(speakingStructure: speakingStructure, index: index, showTextBox: $showExampleContents)
                     }
                 }
                 .padding()
@@ -40,7 +42,7 @@ struct StructureFlowView: View {
             Spacer()
             
             // 퀴즈로 넘어가는 버튼
-            NavigationLink(destination: StructureQuizView()) {
+            NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color(hex: "51D7A7"))
                     .frame(width: 353, height: 54)
@@ -53,11 +55,10 @@ struct StructureFlowView: View {
         }
         .padding()
         .background(Color(hex: "F1F3F6"))
+        .toolbarRole(.editor)
     }
     
 }
-
-
 
 #Preview {
     NavigationStack {

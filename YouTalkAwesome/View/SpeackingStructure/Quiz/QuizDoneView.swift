@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct QuizDoneView: View {
-    
     var speakingStructure: SpeakingStructure
     @State private var isAnimating = false
     
     var body: some View {
-        
         ZStack {
             Color.background
                 .ignoresSafeArea()
@@ -36,7 +34,7 @@ struct QuizDoneView: View {
                 Text(speakingStructure.rawValue)
                     .font(.system(size: 40, weight: .bold))
                 
-                Text("말하기 구조 학습을 완료했어요.")
+                Text("말하기 구조 학습을 완료했어요!")
                     .font(.system(size: 20))
                 
                 Image("\(speakingStructure.rawValue)")
@@ -64,25 +62,27 @@ struct QuizDoneView: View {
                 Spacer()
                 
                 Button {
-                    
+                    //TODO: 말
                 } label: {
-                    RoundedRectangle(cornerRadius: 18)
-                        .fill(Color.main)
-                        .frame(width: 353, height: 54)
-                        .overlay {
-                            Text("홈으로")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 18, weight: .semibold))
-                        }
+                    NavigationLink(destination: SpeakingStructureView()) {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(Color.main)
+                            .frame(width: 353, height: 54)
+                            .overlay {
+                                Text("학습 종료하기")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 18, weight: .semibold))
+                            }
+                    }
                 }
             }
-            
-            
         }
-        
+        .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    QuizDoneView(speakingStructure: .prep)
+    NavigationStack {
+        QuizDoneView(speakingStructure: .prep)
+    }
 }
