@@ -10,6 +10,10 @@ import SwiftUI
 struct WritingCompleteView: View {
     @State private var isPresented: Bool = false
     
+    @State private var speedStatus: SpeechSpeedStatus = .standard
+    
+    @State private var audioManager: AudioManager = .init()
+    
     let title: String
     let isTopicSelected: Bool
     
@@ -55,7 +59,7 @@ struct WritingCompleteView: View {
                         .ignoresSafeArea(edges: .bottom)
                     
                     VStack {
-                        SpeechSpeedSelectionView(speechSpeed: calcStringCount())
+                        SpeechSpeedSelectionView(speechSpeedStatus: $speedStatus, speechSpeed: calcStringCount())
                         
                         speechStartButtonWithTopic
                         
@@ -87,8 +91,17 @@ struct WritingCompleteView: View {
             }
         }
         .fullScreenCover(isPresented: $isPresented) {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected)
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: duration ?? 0), audioManager: $audioManager)
                 .ignoresSafeArea(edges: .bottom)
+        }
+        .task {
+            if isTopicSelected {
+                if await audioManager.requestPermission() {
+                    print("success!")
+                } else {
+                    print("fail!")
+                }
+            }
         }
     }
     
@@ -109,7 +122,7 @@ struct WritingCompleteView: View {
     
     var speechStartButtonWithTopic: some View {
         NavigationLink {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected)
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: calcStringCount()[self.speedStatus.rawValue]), audioManager: $audioManager)
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
@@ -146,13 +159,12 @@ struct WritingCompleteView: View {
         
         return [Int(slowDuration), Int(standardDuration), Int(fastDuration)]
     }
-    
 }
 
 
 #Preview {
     NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, timeStamp: Date(), duration: 330)
+        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: true, timeStamp: Date(), duration: 3)
     }
 }
 
