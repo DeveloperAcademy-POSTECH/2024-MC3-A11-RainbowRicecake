@@ -8,29 +8,57 @@
 import SwiftUI
 
 struct PromptGuageView: View {
-    let time: Int
+    var currentTime: Int
     
-    @Binding var elapsedTime: CGFloat
+    let entireTime: Int
     
     var body: some View {
         HStack(spacing: 11) {
             
             ZStack {
-                Capsule()
-                    .frame(height: 20)
-                    .foregroundStyle(.gray)
-                
-                HStack {
+                GeometryReader { proxy in
+                    let elapsedTime = Double(entireTime - currentTime) / Double(entireTime)
+                    let spacerLength: CGFloat = proxy.size.width * CGFloat(elapsedTime)
+                    
                     Capsule()
                         .frame(height: 20)
+                        .foregroundStyle(.gray)
                     
-                    Spacer(minLength: self.elapsedTime)
-                    
+                    HStack {
+                        Capsule()
+                            .frame(height: 20)
+                        
+                        Spacer(minLength: spacerLength)
+                        
+                    }
                 }
+                .frame(height: 20)
             }
             
-            Text("\(time)")
-            
+            Text(self.currentTime < 0 ? "+\(currentMinToString()):\(currentSecToString())" : "\(currentMinToString()):\(currentSecToString())")
+                .monospaced()
+                .animation(nil)
         }
+        .animation(.linear, value: currentTime)
     }
+    
+    private func currentMinToString() -> String {
+        var result = self.currentTime / 600
+        if result < 0 {
+            result = -result
+        }
+        return ( result < 10 ) ? "0\(result)" : "\(result)"
+    }
+    
+    private func currentSecToString() -> String {
+        var result = self.currentTime % 600 / 10
+        if result < 0 {
+            result = -result
+        }
+        return ( result < 10 ) ? "0\(result)" : "\(result)"
+    }
+}
+
+#Preview {
+    PromptGuageView(currentTime: 80, entireTime: 100)
 }
