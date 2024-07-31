@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpeechSpeedSelectionView: View {
-    @State private var speedStatus: SpeechSpeedStatus = .standard
+    @Binding var speechSpeedStatus: SpeechSpeedStatus
     
     let speechSpeed: [Int]
     
@@ -23,13 +23,13 @@ struct SpeechSpeedSelectionView: View {
                     Spacer()
                     
                     Button {
-                        switch speedStatus {
+                        switch speechSpeedStatus {
                         case .slow:
                             break
                         case .standard:
-                            self.speedStatus = .slow
+                            self.speechSpeedStatus = .slow
                         case .fast:
-                            self.speedStatus = .standard
+                            self.speechSpeedStatus = .standard
                         }
                     } label: {
                         Image(systemName: "chevron.left")
@@ -37,17 +37,17 @@ struct SpeechSpeedSelectionView: View {
                     
                     Spacer()
                     
-                    Text(speedStatus.speechText)
+                    Text(speechSpeedStatus.speechText)
                         .frame(width: 150)
                     
                     Spacer()
 
                     Button {
-                        switch speedStatus {
+                        switch speechSpeedStatus {
                         case .slow:
-                            self.speedStatus = .standard
+                            self.speechSpeedStatus = .standard
                         case .standard:
-                            self.speedStatus = .fast
+                            self.speechSpeedStatus = .fast
                         case .fast:
                             break
                         }
@@ -77,7 +77,7 @@ struct SpeechSpeedSelectionView: View {
     }
     
     private func speedMinText() -> String {
-        switch self.speedStatus {
+        switch self.speechSpeedStatus {
         case .slow:
             let result = self.speechSpeed[0] / 60
             return "\(result)"
@@ -92,7 +92,7 @@ struct SpeechSpeedSelectionView: View {
     
     private func speedSecText() -> String {
         print(speechSpeed)
-        switch self.speedStatus {
+        switch self.speechSpeedStatus {
         case .slow:
             let result = self.speechSpeed[0] % 60
             return "\(result)"
@@ -104,20 +104,6 @@ struct SpeechSpeedSelectionView: View {
             return "\(result)"
         }
     }
-    
-    
-    private enum SpeechSpeedStatus {
-        case slow, standard, fast
-        
-        public var speechText: String {
-            switch self {
-            case .slow:
-                "천천히 말하기"
-            case .standard:
-                "권장 시간"
-            case .fast:
-                "속도감 있게 말하기"
-            }
-        }
-    }
 }
+
+

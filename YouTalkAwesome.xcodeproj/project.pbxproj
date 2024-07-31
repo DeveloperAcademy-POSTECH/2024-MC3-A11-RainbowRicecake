@@ -13,6 +13,9 @@
 		2C0645B92C58BC2000804B04 /* StructureSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645B82C58BC2000804B04 /* StructureSectionView.swift */; };
 		2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645BA2C58BC4F00804B04 /* StructureSection.swift */; };
 		2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645BC2C58BC7E00804B04 /* PromptGuageView.swift */; };
+		2C0645C22C5A1FD100804B04 /* ScriptPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C12C5A1FD100804B04 /* ScriptPracticeViewModel.swift */; };
+		2C0645C42C5A1FF800804B04 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C32C5A1FF800804B04 /* AudioManager.swift */; };
+		2C0645C62C5A216800804B04 /* SpeechSpeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */; };
 		2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AC052C577DEA005E914A /* WritingCompleteView.swift */; };
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
 		4007DC752C53949D00EA528E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC742C53949D00EA528E /* ContentView.swift */; };
@@ -40,6 +43,9 @@
 		2C0645B82C58BC2000804B04 /* StructureSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSectionView.swift; sourceTree = "<group>"; };
 		2C0645BA2C58BC4F00804B04 /* StructureSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureSection.swift; sourceTree = "<group>"; };
 		2C0645BC2C58BC7E00804B04 /* PromptGuageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptGuageView.swift; sourceTree = "<group>"; };
+		2C0645C12C5A1FD100804B04 /* ScriptPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPracticeViewModel.swift; sourceTree = "<group>"; };
+		2C0645C32C5A1FF800804B04 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSpeedStatus.swift; sourceTree = "<group>"; };
 		2C29AC052C577DEA005E914A /* WritingCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingCompleteView.swift; sourceTree = "<group>"; };
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTalkAwesomeApp.swift; sourceTree = "<group>"; };
@@ -84,10 +90,19 @@
 		2C0645BF2C58BCF100804B04 /* ScriptPractice */ = {
 			isa = PBXGroup;
 			children = (
+				2C0645C02C5A1F9D00804B04 /* ViewModel */,
 				2C0645B22C57F00B00804B04 /* ScriptPracticeView.swift */,
 				2C0645BC2C58BC7E00804B04 /* PromptGuageView.swift */,
 			);
 			path = ScriptPractice;
+			sourceTree = "<group>";
+		};
+		2C0645C02C5A1F9D00804B04 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C0645C12C5A1FD100804B04 /* ScriptPracticeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2C29AC042C57608A005E914A /* ScriptWriting */ = {
@@ -175,6 +190,8 @@
 			children = (
 				4007DC762C53949D00EA528E /* Typealias.swift */,
 				2C0645B42C58BB7000804B04 /* Date + Extension.swift */,
+				2C0645C32C5A1FF800804B04 /* AudioManager.swift */,
+				2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -287,13 +304,16 @@
 				2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */,
 				2C0645B32C57F00B00804B04 /* ScriptPracticeView.swift in Sources */,
 				2C0645B92C58BC2000804B04 /* StructureSectionView.swift in Sources */,
-				EEF2258D2C5758FA002EF8D1 /* LogicalStructureView.swift in Sources */,
+				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
 				40E96B1F2C57B2360099E603 /* InstructionTextView.swift in Sources */,
+				2C0645C22C5A1FD100804B04 /* ScriptPracticeViewModel.swift in Sources */,
+				2C0645C62C5A216800804B04 /* SpeechSpeedStatus.swift in Sources */,
 				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
 				40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */,
 				EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */,
 				2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */,
 				2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */,
+				2C0645C42C5A1FF800804B04 /* AudioManager.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
@@ -435,6 +455,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"YouTalkAwesome/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "A message that tells the user why the app is requesting access to the device’s microphone.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -463,6 +484,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"YouTalkAwesome/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "A message that tells the user why the app is requesting access to the device’s microphone.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
