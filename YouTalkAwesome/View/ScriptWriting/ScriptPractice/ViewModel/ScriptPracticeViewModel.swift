@@ -13,6 +13,7 @@ final class ScriptPracticeViewModel {
     var currentTime: Int
     var timer: Timer?
     var isTimerPlaying: Bool = false
+    var yOffset: CGFloat = 0
     
     init(time: Int) {
         self.time = time * 10

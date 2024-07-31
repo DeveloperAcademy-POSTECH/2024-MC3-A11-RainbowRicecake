@@ -40,7 +40,7 @@ struct StructureFlowView: View {
             Spacer()
             
             // 퀴즈로 넘어가는 버튼
-            NavigationLink(destination: StructureQuizView()) {
+            NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color(hex: "51D7A7"))
                     .frame(width: 353, height: 54)
