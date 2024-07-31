@@ -18,7 +18,7 @@ struct InstructionTextView: View {
             ForEach(0..<2) { index in
                 HStack (spacing: 0) {
                     Text(instructionKeyword[index])
-                        .foregroundStyle(.mint)
+                        .foregroundStyle(.main)
                     Text(verbalPart[index])
                 }
                 .font(.system(size: 30, weight: .semibold))
