@@ -117,6 +117,16 @@ enum SpeakingStructure : String, CaseIterable {
         case .aida : return ["퀴즈문장","퀴즈문장","퀴즈문장","퀴즈문장"]
         }
     }
+    
+    var effect: String {
+        switch self {
+        case .prep : return "prep의 효과"
+        case .star : return "복잡한 이야기를 명확하게 전달하고, 청중의 관심을 끌고, 그들의 행동을 유도하는 데 매우 유용한 기법입니다."
+        case .grow : return "grow의 효과"
+        case .psb : return "psb의 효과"
+        case .aida : return "aida의 효과"
+        }
+    }
 }
 
 extension SpeakingStructure : Codable {}

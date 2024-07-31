@@ -175,7 +175,11 @@ struct QuizView: View {
             .frame(height: 164)
             .background(bottomBackColor)
         }
+        .frame(maxHeight: .infinity)
+        .toolbar(.hidden, for: .tabBar)
+        .toolbarRole(.editor)
     }
+
 }
 
 #Preview {

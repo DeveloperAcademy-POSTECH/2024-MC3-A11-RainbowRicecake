@@ -9,12 +9,10 @@ import SwiftUI
 
 struct PromptGuageView: View {
     var currentTime: Int
-    
     let entireTime: Int
     
     var body: some View {
         HStack(spacing: 11) {
-            
             ZStack {
                 GeometryReader { proxy in
                     let elapsedTime = Double(entireTime - currentTime) / Double(entireTime)
@@ -34,7 +32,6 @@ struct PromptGuageView: View {
                 }
                 .frame(height: 20)
             }
-            
             Text(self.currentTime < 0 ? "+\(currentMinToString()):\(currentSecToString())" : "\(currentMinToString()):\(currentSecToString())")
                 .monospaced()
                 .animation(nil)

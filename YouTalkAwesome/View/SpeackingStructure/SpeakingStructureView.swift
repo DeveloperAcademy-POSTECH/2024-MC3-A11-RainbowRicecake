@@ -49,11 +49,13 @@ struct SpeakingStructureView: View {
                         Spacer()
                         Image(systemName: "chevron.forward")
                     }
-                    
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(speechExample, id: \.self) { example in
-                                ExampleCardView(speakingStructure: example.speakingStructure, title: example.title)
+                            ForEach(sampleSpeeches, id: \.self) { speech in
+                                //TODO: NavigationLink 적용하면 ExampleCardView 의 alignment 가 적용이 안됨..WHY??
+                                NavigationLink(destination: SpeechView(speech: speech)) {
+                                    ExampleCardView(speech: speech, title: speech.title)
+                                }
                             }
                         }
                         .padding(.top, 9)
@@ -67,8 +69,11 @@ struct SpeakingStructureView: View {
                     }
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(interviewExample, id: \.self) { example in
-                                ExampleCardView(speakingStructure: example.speakingStructure, title: example.title)
+                            ForEach(sampleSpeeches, id: \.self) { speech in
+                                //TODO: NavigationLink 적용하면 ExampleCardView 의 alignment 가 적용이 안됨..왜지??
+                                NavigationLink(destination: SpeechView(speech: speech)) {
+                                    ExampleCardView(speech: speech, title: speech.title)
+                                }
                             }
                         }
                         .padding(.top, 9)
@@ -79,6 +84,7 @@ struct SpeakingStructureView: View {
                 .background(Color.background)
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

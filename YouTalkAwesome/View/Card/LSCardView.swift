@@ -66,8 +66,6 @@ struct LSDescriptionView : View {
         Text("\(shortDescription)")
             .foregroundStyle(.gray)
             .font(.system(size: 16))
-            
-            
     }
 }
 
