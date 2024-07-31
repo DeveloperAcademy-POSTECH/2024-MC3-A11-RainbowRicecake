@@ -32,7 +32,9 @@ struct SpeechSpeedSelectionView: View {
                             self.speechSpeedStatus = .standard
                         }
                     } label: {
-                        Image(systemName: "chevron.left")
+                        if !(speechSpeedStatus == .slow) {
+                            Image(systemName: "chevron.left")
+                        }
                     }
                     
                     Spacer()
@@ -52,7 +54,9 @@ struct SpeechSpeedSelectionView: View {
                             break
                         }
                     } label: {
-                        Image(systemName: "chevron.right")
+                        if !(self.speechSpeedStatus == .fast) {
+                            Image(systemName: "chevron.right")
+                        }
                     }
                     
                     Spacer()

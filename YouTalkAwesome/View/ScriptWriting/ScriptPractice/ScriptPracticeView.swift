@@ -43,7 +43,6 @@ struct ScriptPracticeView: View {
                         
                         Spacer(minLength: 180)
                     }
-                    // TODO: Nav bar 스크롤 시 색 바뀜, 수정 필요
                     .overlay(alignment: .top) {
                         ZStack(alignment: .top) {
                             LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom)
