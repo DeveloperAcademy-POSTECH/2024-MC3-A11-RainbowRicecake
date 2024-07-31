@@ -61,10 +61,10 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                Button {
-                    //TODO: 말
-                } label: {
-                    NavigationLink(destination: SpeakingStructureView()) {
+                NavigationLink(destination: SpeakingStructureView()) {
+                    Button {
+                        //TODO: 말하기 포인트 추가 로직 구현 예정
+                    } label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color.main)
                             .frame(width: 353, height: 54)

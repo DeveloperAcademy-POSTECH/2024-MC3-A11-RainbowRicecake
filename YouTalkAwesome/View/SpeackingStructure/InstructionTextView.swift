@@ -14,7 +14,6 @@ struct InstructionTextView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            
             ForEach(0..<2) { index in
                 HStack (spacing: 0) {
                     Text(instructionKeyword[index])

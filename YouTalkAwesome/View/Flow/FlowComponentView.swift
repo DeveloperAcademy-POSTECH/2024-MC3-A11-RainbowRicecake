@@ -47,6 +47,7 @@ struct FlowComponentView: View {
                         .padding(.bottom)
                 }
             }
+            Spacer()
         }
         .background(alignment: .leading) {
             if index != speakingStructure.components.count - 1 {

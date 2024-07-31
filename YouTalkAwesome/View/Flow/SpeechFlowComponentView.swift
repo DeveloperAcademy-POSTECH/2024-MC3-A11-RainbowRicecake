@@ -19,24 +19,22 @@ struct SpeechFlowComponentView: View {
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
             VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
-                    Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
-                        .foregroundStyle(Color(hex: "51D7A7"))
-                        .padding(.bottom, 10)
-
-                    Text("\(speech.content[index])")
-                        .font(.system(size: 17))
-                        .padding(.bottom)
-                }
+                Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color(hex: "51D7A7"))
+                    .padding(.bottom, 10)
+                
+                Text("\(speech.content[index])")
+                    .font(.system(size: 17))
+                    .padding(.bottom)
             }
         }
         .background(alignment: .leading) {
             if index != speakingStructure.components.count - 1 {
                 Rectangle()
                     .foregroundColor(Color(hex: "51D7A7"))
-                    .frame(width: 3/*, height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width)*/)
+                    .frame(width: 3)
                     .offset(x: 3, y: 7)
             }
         }

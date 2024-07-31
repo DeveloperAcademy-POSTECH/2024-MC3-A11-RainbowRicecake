@@ -15,7 +15,7 @@ struct SpeechView: View {
             VStack(spacing: 10) {
                 SpeechTitleView(speech: speech)
                 SubCardView(speakingStructure: speech.speakingStructure)
-                SubCardView(wellknownSpeech: speech)
+                SubCardView(speech: speech)
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(0..<speech.speakingStructure.components.count, id: \.self) { index in
                         SpeechFlowComponentView(speakingStructure: speech.speakingStructure, speech: speech, index: index)
@@ -80,22 +80,20 @@ struct SpeechTitleView: View {
 
 struct SubCardView: View {
     var speakingStructure: SpeakingStructure?
-    var wellknownSpeech: WellKnownSpeech?
+    var speech: WellKnownSpeech?
     
     var topContent: String {
         if let structure = speakingStructure {
             return "\(structure.rawValue)의 효과"
-        } else if wellknownSpeech != nil {
-            return "요약"
         } else {
-            return ""
+            return "요약"
         }
     }
     
     var bodyContent: String {
         if let structure = speakingStructure {
             return structure.effect
-        } else if let speech = wellknownSpeech {
+        } else if let speech = speech {
             return speech.summary
         } else {
             return ""
@@ -118,7 +116,7 @@ struct SubCardView: View {
             .overlay {
                 HStack {
                     VStack(alignment: .leading) {
-                        if speakingStructure != nil || wellknownSpeech != nil {
+                        if speakingStructure != nil || speech != nil {
                             Label(topContent, systemImage: speakingStructure != nil ? "checkmark.circle.fill" : "square.and.pencil")
                                 .foregroundStyle(Color(hex: "51D7A7"))
                                 .fontWeight(.bold)
