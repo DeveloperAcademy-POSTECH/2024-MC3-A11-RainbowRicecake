@@ -15,7 +15,7 @@ struct QuizView: View {
     
     @State private var bottomBackColor : Color = .white
     @State private var buttonText : String = "결과 보기"
-    @State private var messageColor : Color = .negativeGreyFont
+    @State private var messageColor : Color = .gray2
     
     
     @State private var confirmationMessage : String = ""
@@ -57,7 +57,7 @@ struct QuizView: View {
                 .padding()
             Spacer()
             Image(systemName: "line.3.horizontal")
-                .foregroundStyle(.greyStroke)
+                .foregroundStyle(.gray3)
                 .padding(.trailing)
             
         }
@@ -66,7 +66,7 @@ struct QuizView: View {
             GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.white)
-                    .stroke(.greyStroke, lineWidth: 1)
+                    .stroke(.gray3, lineWidth: 1)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .shadow(color: .gray, radius: 10, x: 0, y: 10)
             }
@@ -79,7 +79,7 @@ struct QuizView: View {
                     .padding()
                 Spacer()
                 Image(systemName: "line.3.horizontal")
-                    .foregroundStyle(.greyStroke)
+                    .foregroundStyle(.gray3)
                     .padding(.trailing)
                 
             }
@@ -101,10 +101,10 @@ struct QuizView: View {
     }
     
     func changeUIBasedOnTheResult()  {
-        bottomBackColor = isResultCorrect! ? Color.bg : Color.disabledButton
+        bottomBackColor = isResultCorrect! ? Color.bg : Color.gray3
         buttonText = isResultCorrect! ? "학습 완료" : "재도전하기"
         confirmationMessage = isResultCorrect! ? "정답이에요! 🎉" : "다시 한 번 생각해볼까요? 💪"
-        messageColor = isResultCorrect! ? Color.main : Color.negativeGreyFont
+        messageColor = isResultCorrect! ? Color.main : Color.gray2
     }
     
     var body: some View {

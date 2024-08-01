@@ -51,7 +51,7 @@ struct ScriptWritingView: View {
             .background {
                 GeometryReader { geometry in
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.grey6)
+                        .fill(.gray6)
                         .frame(width: geometry.size.width + 15, height: 44)
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 }
