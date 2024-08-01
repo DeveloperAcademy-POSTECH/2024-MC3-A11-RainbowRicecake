@@ -29,27 +29,27 @@ struct ScriptRectangleView: View {
                 if isThisForAdding {
                     VStack {
                         Text("새로운 대본 추가하기")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.grey4)
+                            .font(.system(size: 18)) //별도 customfont 지정 없음
+                            .foregroundStyle(.gray4)
                         Image(systemName: "plus.circle")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30)
-                            .foregroundColor(.grey4)
+                            .foregroundColor(.gray4)
                     }
                 } else {
                     VStack(alignment: .leading) {
                         Text("D - \(leftDay!)")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.grey3)
+                            .customFont(.title4_light)
+                            .foregroundStyle(.gray3)
                         Text(scriptTitle!)
-                            .font(.system(size: 24))
+                            .customFont(.title3_bold)
                         Spacer()
                         HStack {
                             Spacer()
                             Text(isDone! ? "작성완료" : "작성 중···")
-                                .font(.system(size: 14))
-                                .foregroundStyle(.grey3)
+                                .customFont(.caption1_bold)
+                                .foregroundStyle(.gray3)
                         }
                         
                     }

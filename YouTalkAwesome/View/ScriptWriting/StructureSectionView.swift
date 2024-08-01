@@ -16,22 +16,28 @@ struct StructureSectionView: View {
         ZStack {
             if self.isScript {
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(lineWidth: 0.4)
+                    .stroke(lineWidth: 0.66)
             } else {
                 RoundedRectangle(cornerRadius: 8)
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.gray6)
             }
             
             VStack(spacing: 4) {
+                //TODO: 말하기 구조에 따른 색상 변경 추후 필요할 듯 합니다~
                 Text(topContent)
-                    .font(.title)
+                    .customFont(.body1_bold)
                     .padding(.top, 12)
                 
                 Text(bottomContent)
+                    .customFont(.body2_light)
                     .padding(10)
             }
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 10)
     }
+}
+
+#Preview {
+    StructureSectionView(topContent: "topContent", bottomContent: "bottomContent", isScript: true)
 }

@@ -53,9 +53,8 @@ struct LSNameView : View {
     
     var body: some View {
         Text("\(name.rawValue)")
-            .font(.system(size: 40))
-            .fontWeight(.black)
-            .foregroundStyle(Color.black)
+            .customFont(.point1)
+            .foregroundStyle(.black)
     }
 }
 
@@ -64,8 +63,8 @@ struct LSDescriptionView : View {
     
     var body: some View {
         Text("\(shortDescription)")
-            .foregroundStyle(.gray)
-            .font(.system(size: 16))
+            .customFont(.body2_light)
+            .foregroundStyle(.gray1)
     }
 }
 

@@ -20,7 +20,7 @@ struct InstructionTextView: View {
                         .foregroundStyle(.main)
                     Text(verbalPart[index])
                 }
-                .font(.system(size: 30, weight: .semibold))
+                .customFont(.title1_bold)
             }
         }
         

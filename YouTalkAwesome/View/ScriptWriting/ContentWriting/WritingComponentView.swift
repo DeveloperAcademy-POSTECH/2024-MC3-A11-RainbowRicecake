@@ -21,11 +21,13 @@ struct WritingComponentView: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                        .fontWeight(.bold)
+                        .customFont(.body1_bold)
                         .foregroundStyle(speakingStructure.color)
+                    
+                    //대본 작성 시에는 이 부분 필요 없는듯?
                     Text("\(speakingStructure.componentDescriptions[index])")
+                        .customFont(.caption1_light)
                         .foregroundStyle(Color(hex:"898A8D"))
-                        .font(.system(size: 14))
                         .padding(.bottom, showTextBox ? 0 : 10)
                 }
                 

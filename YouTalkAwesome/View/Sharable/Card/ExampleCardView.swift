@@ -27,17 +27,15 @@ struct ExampleCardView: View {
                     Spacer()
                     LSStickerView(lsName: speech.speakingStructure.rawValue)
                 }
-                Spacer()
                 HStack {
                 Text(speech.title)
-                    .font(.system(size: 18, weight: .semibold))
+                    .customFont(.body1_bold)
                     .foregroundStyle(.white)
                     .frame(width: 140, alignment: .leading)
                     Spacer()
                 }
             }
             .padding()
-            Spacer()
         }
         .frame(width: 205, height: 128)
     }

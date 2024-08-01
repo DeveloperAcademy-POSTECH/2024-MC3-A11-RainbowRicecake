@@ -12,7 +12,7 @@ struct ExampleTitleView: View {
     
     var body: some View {
         Text(title)
-            .font(.system(size: 20, weight: .semibold))
+        .customFont(.title4_bold)
     }
 }
 

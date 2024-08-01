@@ -46,12 +46,12 @@ struct ScriptWritingView: View {
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
         Text(situation)
-            .font(.system(size: 16))
+            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
             .frame(height: 16)
             .background {
                 GeometryReader { geometry in
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.grey6)
+                        .fill(.gray6)
                         .frame(width: geometry.size.width + 15, height: 44)
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 }
@@ -65,7 +65,8 @@ struct ScriptWritingView: View {
                     .padding()
                     .padding(.top, 45)
                 
-                if scriptRecords != nil{ // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
+                if scriptRecords != nil{ 
+                    // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(scriptRecords) {
@@ -84,7 +85,7 @@ struct ScriptWritingView: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .background(Color.background)
+            .background(Color.bg)
             
 
             
@@ -94,7 +95,7 @@ struct ScriptWritingView: View {
                 VStack {
                     HStack {
                         Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
-                            .font(.system(size: 20, weight: .bold))
+                            .customFont(.title4_bold)
                         Spacer()
                         Image(systemName: "chevron.right")
                         
@@ -116,7 +117,7 @@ struct ScriptWritingView: View {
             VStack {
                 HStack {
                     Text("어떤 상황을 준비하시나요?")
-                        .font(.system(size: 20, weight: .bold))
+                        .customFont(.title4_bold)
                     Spacer()
                     Image(systemName: "chevron.right")
                     
