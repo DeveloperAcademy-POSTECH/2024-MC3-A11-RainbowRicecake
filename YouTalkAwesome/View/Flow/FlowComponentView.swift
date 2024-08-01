@@ -21,21 +21,20 @@ struct FlowComponentView: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                        .fontWeight(.bold)
+                        .customFont(.body1_bold)
                         .foregroundStyle(speakingStructure.color)
                     Text("\(speakingStructure.componentDescriptions[index])")
-                        .foregroundStyle(Color(hex:"898A8D"))
-                        .font(.system(size: 14))
+                        .customFont(.caption1_light)
+                        .foregroundStyle(Color.gray2)
                         .padding(.bottom, showTextBox ? 0 : 10)
                 }
                 if showTextBox {
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(hex: "898A8D"), lineWidth: 1)
+                        .stroke(Color.gray3, lineWidth: 1)
                         .fill(Color.white)
                         .overlay(
                             Text("\(speakingStructure.componentExamples[index])")
-                                .font(.system(size: 14))
-                                .fontWeight(.light)
+                                .customFont(.body4_light)
                                 .padding()
                                 .fixedSize(horizontal: false, vertical: true),
                             alignment: .topLeading

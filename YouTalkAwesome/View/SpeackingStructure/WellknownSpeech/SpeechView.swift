@@ -26,17 +26,17 @@ struct SpeechView: View {
             // 말하기구조 학습하기로 넘어가는 버튼
             NavigationLink(destination: StructureFlowView(speakingStructure: speech.speakingStructure)) {
                 Text("\(speech.speakingStructure.rawValue) 학습하기")
-                    .foregroundStyle(Color(hex: "51D7A7"))
-                    .fontWeight(.bold)
+                    .customFont(.body1_bold)
+                    .foregroundStyle(Color.main)
             }
             // 대본쓰기로 넘어가는 버튼
             NavigationLink(destination: ScriptWritingView()) {
                 RoundedRectangle(cornerRadius: 18)
-                    .foregroundStyle(Color(hex: "51D7A7"))
+                    .foregroundStyle(Color.main)
                     .frame(width: 353, height: 54)
                     .overlay(
                         Text("\(speech.speakingStructure.rawValue) 기반 대본 쓰기")
-                            .fontWeight(.bold)
+                            .customFont(.body1_bold)
                             .foregroundStyle(Color.white)
                     )
             }
@@ -60,13 +60,12 @@ struct SpeechTitleView: View {
                     Spacer()
                     LSStickerView(lsName: speech.speakingStructure.rawValue)
                     Text(speech.title)
-                        .font(.system(size: 24))
+                        .customFont(.title3_bold)
                         .foregroundStyle(.white)
-                        .fontWeight(.bold)
                         .frame(width: 200, alignment: .leading)
                     HStack {
                         Text("\(speech.category) | \(speech.date)")
-                            .font(.system(size: 12))
+                            .customFont(.caption2_light)
                             .foregroundStyle(.white)
                     }
                 }
@@ -101,16 +100,16 @@ struct SubCardView: View {
     }
     
     let width: CGFloat = 361
-    let height: CGFloat = 142 //여기 flexible 하게 해야함
+    let height: CGFloat = 142 //TODO: 여기 flexible 하게 해야함
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(Color(hex: "51D7A7"), lineWidth: 2)
-            .fill(Color(hex: "F0F8F5"))
+            .stroke(Color.main, lineWidth: 2)
+            .fill(Color.bg)
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(hex: "51D7A7"))
+                    .fill(Color.main)
                     .offset(x: 5, y: 5)
             }
             .overlay {
@@ -118,14 +117,13 @@ struct SubCardView: View {
                     VStack(alignment: .leading) {
                         if speakingStructure != nil || speech != nil {
                             Label(topContent, systemImage: speakingStructure != nil ? "checkmark.circle.fill" : "square.and.pencil")
-                                .foregroundStyle(Color(hex: "51D7A7"))
-                                .fontWeight(.bold)
+                                .customFont(.body3_bold)
+                                .foregroundStyle(Color.main)
                                 .padding(.bottom, 3)
-                                .font(.system(size: 16))
                         }
                         Text(bodyContent)
-                            .foregroundStyle(.gray)
-                            .font(.system(size: 15))
+                            .customFont(.body3_light)
+                            .foregroundStyle(.gray2)
                     }
                     .padding(12)
                     Spacer()

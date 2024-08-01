@@ -66,6 +66,15 @@ extension Text {
     }
 }
 
+extension Label {
+    func customFont(_ customFont: CustomFont) -> some View {
+        self
+            .font(customFont.font)
+            .kerning(customFont.kerning)
+            .lineSpacing(customFont.lineSpacing)
+    }
+}
+
 extension VStack {
     func customFont(_ customFont: CustomFont) -> some View {
         self
@@ -84,11 +93,3 @@ extension HStack {
     }
 }
 
-extension Label {
-    func customFont(_ customFont: CustomFont) -> some View {
-        self
-            .font(customFont.font)
-            .kerning(customFont.kerning)
-            .lineSpacing(customFont.lineSpacing)
-    }
-}

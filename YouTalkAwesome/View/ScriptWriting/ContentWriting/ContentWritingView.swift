@@ -20,29 +20,35 @@ struct ContentWritingView: View {
         ScrollView {
             VStack (alignment: .leading) {
                 Text(topic)
-                    .font(.system(size: 20, weight: .semibold))
+                    .customFont(.title4_bold)
                     .padding()
                     .padding(.top, 80)
                 
                 HStack {
                     Label(
-                        title: { Text("2024. 08. 05") },
+                        title: {
+                            Text("2024. 08. 05")
+                                .customFont(.body2_light)
+                        },
                         icon: { Image(systemName: "calendar") }
                     )
                     
                     Label(
-                        title: { Text("5분 30초") },
+                        title: {
+                            Text("5분 30초")
+                                .customFont(.body2_light)
+                        },
                         icon: { Image(systemName: "clock") }
                     )
                     
                     Spacer()
                 }
-                .foregroundColor(Color(hex: "9BA4AB")).padding([.horizontal, .bottom])
+                .foregroundColor(Color.gray3).padding([.horizontal, .bottom])
                 
             }
             .frame(maxWidth: .infinity)
             .background {
-                Color.background
+                Color.bg
             }
             
             VStack {
@@ -56,6 +62,7 @@ struct ContentWritingView: View {
                 Button {
                 } label: {
                     Text("완료")
+                        .font(.system(size: 17)) //별도 customfont 지정 없음
                         .foregroundStyle(.main)
                 }
             }
