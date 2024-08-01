@@ -16,6 +16,8 @@
 		2C0645C22C5A1FD100804B04 /* ScriptPracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C12C5A1FD100804B04 /* ScriptPracticeViewModel.swift */; };
 		2C0645C42C5A1FF800804B04 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C32C5A1FF800804B04 /* AudioManager.swift */; };
 		2C0645C62C5A216800804B04 /* SpeechSpeedStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */; };
+		2C27F9DD2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C27F9DC2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift */; };
+		2C27F9DF2C5B492100B3B91B /* ListeingSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C27F9DE2C5B492100B3B91B /* ListeingSpeechView.swift */; };
 		2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AC052C577DEA005E914A /* WritingCompleteView.swift */; };
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
 		4007DC752C53949D00EA528E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC742C53949D00EA528E /* ContentView.swift */; };
@@ -51,6 +53,8 @@
 		2C0645C12C5A1FD100804B04 /* ScriptPracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPracticeViewModel.swift; sourceTree = "<group>"; };
 		2C0645C32C5A1FF800804B04 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2C0645C52C5A216800804B04 /* SpeechSpeedStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSpeedStatus.swift; sourceTree = "<group>"; };
+		2C27F9DC2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechPracticeCompleteView.swift; sourceTree = "<group>"; };
+		2C27F9DE2C5B492100B3B91B /* ListeingSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeingSpeechView.swift; sourceTree = "<group>"; };
 		2C29AC052C577DEA005E914A /* WritingCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingCompleteView.swift; sourceTree = "<group>"; };
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTalkAwesomeApp.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			children = (
 				2C0645B62C58BBFE00804B04 /* SpeechSpeedSelectionView.swift */,
 				2C29AC052C577DEA005E914A /* WritingCompleteView.swift */,
+				2C27F9DC2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift */,
+				2C27F9DE2C5B492100B3B91B /* ListeingSpeechView.swift */,
 			);
 			path = WritingComplete;
 			sourceTree = "<group>";
@@ -351,8 +357,10 @@
 			files = (
 				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
+				2C27F9DF2C5B492100B3B91B /* ListeingSpeechView.swift in Sources */,
 				40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
+				2C27F9DD2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */,
 				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,

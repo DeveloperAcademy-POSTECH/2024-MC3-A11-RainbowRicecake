@@ -13,6 +13,8 @@ import AVFoundation
 @Observable
 final class AudioManager: NSObject {
     public var isRecording: Bool = false
+    public var isPlaying: Bool = false
+    public var isStarted: Bool = false
 
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
@@ -58,5 +60,40 @@ final class AudioManager: NSObject {
     
     public func stopRecording() {
         self.audioRecorder?.stop()
+    }
+}
+
+
+extension AudioManager: AVAudioPlayerDelegate {
+    public func startAudio() {
+        if self.isStarted {
+            self.audioPlayer?.play()
+            self.isPlaying = true
+            return
+        }
+        
+        do {
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true)
+            
+            self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+            self.audioPlayer?.delegate = self
+            
+            self.audioPlayer?.play()
+            self.isPlaying = true
+            self.isStarted = true
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    public func pauseAudio() {
+        self.audioPlayer?.pause()
+        self.isPlaying = false
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.isPlaying = false
+        self.isStarted = false
     }
 }

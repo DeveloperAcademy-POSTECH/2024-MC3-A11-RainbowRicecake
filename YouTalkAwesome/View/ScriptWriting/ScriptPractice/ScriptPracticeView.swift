@@ -37,6 +37,7 @@ struct ScriptPracticeView: View {
                         Spacer(minLength: 30)
                         
                         ForEach(structureSectionSample, id: \.self) { section in
+                            // TODO: 데이터 연결
                             StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                         }
                         
@@ -47,19 +48,23 @@ struct ScriptPracticeView: View {
                         GeometryReader { proxy in
                             VStack {}
                                 .onChange(of: vm.currentTime) { before, after in
-                                    if vm.currentTime == 0 {
-                                        vm.stopTimer()
-                                    }
-                                    withAnimation(.linear) {
-                                        let elapsedTime = CGFloat(vm.time - vm.currentTime) / CGFloat(vm.time)
-                                        let pausedOffset = (-proxy.size.height + 400) * (elapsedTime)
-                                        vm.yOffset = pausedOffset
+                                    if !self.isTopicSelected {
+                                        if vm.currentTime == 0 {
+                                            vm.isTimerEnd = true
+                                            vm.stopTimer()
+                                        }
+                                        
+                                        withAnimation(.linear) {
+                                            let elapsedTime = CGFloat(vm.time - vm.currentTime) / CGFloat(vm.time)
+                                            let pausedOffset = (-proxy.size.height + 400) * (elapsedTime)
+                                            vm.yOffset = pausedOffset
+                                        }
                                     }
                                 }
                         }
                     }
                 }
-                .scrollDisabled(true)
+                .scrollDisabled( !self.isTopicSelected )
                 .overlay(alignment: .top) {
                     ZStack(alignment: .top) {
                         LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom)
@@ -74,8 +79,13 @@ struct ScriptPracticeView: View {
                         LinearGradient(colors: [.white, .clear], startPoint: .center, endPoint: .top)
                         
                         if self.isTopicSelected {
-                            Button {
-                                
+                            NavigationLink {
+                                SpeechPracticeCompleteView(standardTime: vm.time, elapsedTime: vm.currentTime, speakingStructure: .grow)
+                                    .navigationBarBackButtonHidden()
+                                    .onAppear {
+                                        self.vm.stopTimer()
+                                        self.audioManager.stopRecording()
+                                    }
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
@@ -93,6 +103,9 @@ struct ScriptPracticeView: View {
                                 if vm.isTimerPlaying {
                                     vm.stopTimer()
                                 } else {
+                                    if vm.isTimerEnd {
+                                        vm.resetModel()
+                                    }
                                     self.vm.makeTimer()
                                     self.vm.startTimer()
                                 }
@@ -135,13 +148,13 @@ struct ScriptPracticeView: View {
             if self.isTopicSelected {
                 vm.makeTimer()
                 vm.startTimer()
-//                audioManager.startRecording()
+                audioManager.startRecording()
             }
         }
     }
 }
 
 #Preview {
-    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: false, vm: .init(time: 10), audioManager: .constant(AudioManager()))
+    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 2), audioManager: .constant(AudioManager()))
 }
 
