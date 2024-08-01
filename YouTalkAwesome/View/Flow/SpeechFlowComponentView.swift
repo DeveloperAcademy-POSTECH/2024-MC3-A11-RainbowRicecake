@@ -15,25 +15,24 @@ struct SpeechFlowComponentView: View {
     var body: some View {
         HStack(alignment: .top) {
             Circle()
-                .fill(Color(hex: "51D7A7"))
+                .fill(Color.main)
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
             VStack(alignment: .leading) {
                 Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color(hex: "51D7A7"))
+                    .customFont(.title4_bold)
+                    .foregroundStyle(Color.main)
                     .padding(.bottom, 10)
                 
                 Text("\(speech.content[index])")
-                    .font(.system(size: 17))
+                    .customFont(.body2_light)
                     .padding(.bottom)
             }
         }
         .background(alignment: .leading) {
             if index != speakingStructure.components.count - 1 {
                 Rectangle()
-                    .foregroundColor(Color(hex: "51D7A7"))
+                    .foregroundColor(Color.main)
                     .frame(width: 3)
                     .offset(x: 3, y: 7)
             }

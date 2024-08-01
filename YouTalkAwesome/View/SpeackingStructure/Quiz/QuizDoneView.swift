@@ -14,7 +14,7 @@ struct QuizDoneView: View {
     
     var body: some View {
         ZStack {
-            Color.background
+            Color.bg
                 .ignoresSafeArea()
             
             Circle()
@@ -33,10 +33,11 @@ struct QuizDoneView: View {
             VStack {
                 Spacer()
                 Text(speakingStructure.rawValue)
-                    .font(.system(size: 40, weight: .bold))
+                    .customFont(.point1)
+                    .padding()
                 
                 Text("말하기 구조 학습을 완료했어요!")
-                    .font(.system(size: 20))
+                    .customFont(.title4_bold)
                 
                 Image("\(speakingStructure.rawValue)")
                     .resizable()
@@ -49,14 +50,15 @@ struct QuizDoneView: View {
                         })
                     }
                 
+                //TODO: 여기 Figma 디자인이랑 조금 다름 추후 논의 필요!
                 RoundedRectangle(cornerRadius: 18)
                     .stroke(.main, lineWidth: 5)
                     .fill(Color.white)
                     .frame(width: 115, height: 46)
                     .overlay {
                         Text("\(speakingStructure.rawValue) +1")
+                            .customFont(.point5)
                             .foregroundStyle(.main)
-                            .font(.system(size: 20, weight: .semibold))
                     }
                     .padding(.top, 70)
                 
@@ -73,8 +75,8 @@ struct QuizDoneView: View {
                             .frame(width: 353, height: 54)
                             .overlay {
                                 Text("학습 종료하기")
+                                    .customFont(.body1_bold)
                                     .foregroundStyle(.white)
-                                    .font(.system(size: 18, weight: .semibold))
                             }
                     }
                 }

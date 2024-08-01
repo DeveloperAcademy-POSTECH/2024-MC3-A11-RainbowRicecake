@@ -18,7 +18,7 @@ struct TopicBubbleView: View {
         VStack(alignment: .leading) {
             GeometryReader {
                 Text(topicContent)
-                    .font(.system(size: 16))
+                    .customFont(.body1_light)
                     .frame(width: $0.size.width - 10, alignment: .leading)
                     .lineSpacing(8)
                     .padding([.top, .leading], 10)

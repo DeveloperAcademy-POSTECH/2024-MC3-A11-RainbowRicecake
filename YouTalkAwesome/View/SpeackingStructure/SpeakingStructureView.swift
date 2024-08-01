@@ -33,7 +33,6 @@ struct SpeakingStructureView: View {
                     HStack {
                         ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
                         Spacer()
-                        Image(systemName: "chevron.forward")
                     }
                     ScrollView(.horizontal) {
                         HStack {
@@ -51,7 +50,6 @@ struct SpeakingStructureView: View {
                     HStack {
                         ExampleTitleView(title: "커리어 인터뷰 ✍🏻")
                         Spacer()
-                        Image(systemName: "chevron.forward")
                     }
                     ScrollView(.horizontal) {
                         HStack {
@@ -67,7 +65,7 @@ struct SpeakingStructureView: View {
                     }
                 }
                 .padding()
-                .background(Color.background)
+                .background(Color.bg)
             }
         }
         .navigationBarBackButtonHidden()
