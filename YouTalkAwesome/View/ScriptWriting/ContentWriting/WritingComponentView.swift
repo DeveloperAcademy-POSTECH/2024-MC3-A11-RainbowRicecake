@@ -1,0 +1,55 @@
+//
+//  WritingComponentView.swift
+//  YouTalkAwesome
+//
+//  Created by marty.academy on 8/1/24.
+//
+
+import SwiftUI
+
+struct WritingComponentView: View {
+    var speakingStructure: SpeakingStructure
+    var index: Int
+    @Binding var showTextBox: Bool
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Circle()
+                .fill(speakingStructure.color)
+                .frame(width: 9, height: 9)
+                .offset(y: 7)
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
+                        .fontWeight(.bold)
+                        .foregroundStyle(speakingStructure.color)
+                    Text("\(speakingStructure.componentDescriptions[index])")
+                        .foregroundStyle(Color(hex:"898A8D"))
+                        .font(.system(size: 14))
+                        .padding(.bottom, showTextBox ? 0 : 10)
+                }
+                
+            }
+            Spacer()
+        }
+        .background(alignment: .leading) {
+            if index != speakingStructure.components.count - 1 {
+                Rectangle()
+                    .foregroundColor(speakingStructure.color)
+                    .frame(width: 3/*, height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width)*/)
+                    .offset(x: 3, y: 7)
+            }
+        }
+    }
+    
+    func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
+        let textView = UITextView()
+        textView.text = text
+        textView.font = UIFont.systemFont(ofSize: 14)
+        let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
+        return size.height + 30 // Adding padding
+    }}
+
+#Preview {
+    WritingComponentView(speakingStructure: .prep, index: 0, showTextBox: .constant(false))
+}
