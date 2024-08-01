@@ -50,6 +50,7 @@ struct WritingCompleteView: View {
                 
                 Spacer(minLength: self.isTopicSelected ? 200 : 70)
             }
+            .scrollIndicators(.hidden)
         }
         .overlay(alignment: .bottom) {
             if self.isTopicSelected {

@@ -136,7 +136,9 @@ struct ScriptWritingView: View {
                     }
                 }
             }
-        }.ignoresSafeArea(.container, edges: [.top, .horizontal])
+        }
+        .scrollIndicators(.hidden)
+        .ignoresSafeArea(.container, edges: [.top, .horizontal])
     }
 }
 

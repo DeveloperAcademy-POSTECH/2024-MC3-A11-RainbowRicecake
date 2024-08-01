@@ -41,6 +41,7 @@ struct SpeechView: View {
                     )
             }
         }
+        .scrollIndicators(.hidden)
         .toolbarRole(.editor)
     }
 }

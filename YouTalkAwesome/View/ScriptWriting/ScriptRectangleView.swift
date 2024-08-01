@@ -65,6 +65,6 @@ struct ScriptRectangleView: View {
             ScriptRectangleView(isThisForAdding: true)
             ScriptRectangleView(isThisForAdding: false, leftDay: "5", scriptTitle: "애플 리뷰 준비", isDone: false)
         }.padding()
-        
     }
+    .scrollIndicators(.hidden)
 }

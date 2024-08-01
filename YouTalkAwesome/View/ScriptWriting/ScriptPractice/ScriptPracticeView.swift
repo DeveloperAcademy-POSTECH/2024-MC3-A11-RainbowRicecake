@@ -43,6 +43,7 @@ struct ScriptPracticeView: View {
                         
                         Spacer(minLength: 180)
                     }
+                    .scrollIndicators(.hidden)
                     .overlay(alignment: .top) {
                         ZStack(alignment: .top) {
                             LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom)
