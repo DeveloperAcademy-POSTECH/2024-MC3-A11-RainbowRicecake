@@ -35,7 +35,10 @@
 		40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */; };
 		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
 		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
-		EEB5CC802C5A1AFE00AC8196 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC7F2C5A1AFE00AC8196 /* SpeechView.swift */; };
+		40E96B312C59DC7E0099E603 /* TopicBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B302C59DC7E0099E603 /* TopicBubbleShape.swift */; };
+		40E96B332C59FE190099E603 /* TopicBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B322C59FE190099E603 /* TopicBubbleView.swift */; };
+		40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */; };
+		40E96B3A2C5B22EE0099E603 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B382C5B22EE0099E603 /* SpeechView.swift */; };
 		EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */; };
 		EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */; };
 		EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */; };
@@ -76,7 +79,10 @@
 		40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDoneView.swift; sourceTree = "<group>"; };
 		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
 		EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePointsViewModel.swift; sourceTree = "<group>"; };
-		EEB5CC7F2C5A1AFE00AC8196 /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
+		40E96B302C59DC7E0099E603 /* TopicBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBubbleShape.swift; sourceTree = "<group>"; };
+		40E96B322C59FE190099E603 /* TopicBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBubbleView.swift; sourceTree = "<group>"; };
+		40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRectangleView.swift; sourceTree = "<group>"; };
+		40E96B382C5B22EE0099E603 /* SpeechView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
 		EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellKnownSpeech.swift; sourceTree = "<group>"; };
 		EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechFlowComponentView.swift; sourceTree = "<group>"; };
 		EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				2C0645BF2C58BCF100804B04 /* ScriptPractice */,
 				2C0645BE2C58BCC700804B04 /* WritingComplete */,
 				2C0645B82C58BC2000804B04 /* StructureSectionView.swift */,
+				40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */,
 			);
 			path = ScriptWriting;
 			sourceTree = "<group>";
@@ -176,13 +183,12 @@
 		4007DC822C5396C700EA528E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40E96B2F2C59DC440099E603 /* Sharable */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
-				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 				2C29AC042C57608A005E914A /* ScriptWriting */,
 				EEB5CC7B2C5A16F200AC8196 /* Archive */,
 				EEEBF0C02C58C1D100B26DBF /* Flow */,
-				40E96B222C57BF6D0099E603 /* Sticker */,
-				40E96B1A2C5778740099E603 /* Card */,
+				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -232,11 +238,11 @@
 		40E96B1D2C57B1D10099E603 /* SpeackingStructure */ = {
 			isa = PBXGroup;
 			children = (
+				40E96B392C5B22EE0099E603 /* WellknownSpeech */,
 				40E96B1E2C57B2360099E603 /* InstructionTextView.swift */,
 				EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */,
 				EEB5CC7C2C5A180700AC8196 /* FlowInstruction */,
 				EEB5CC7D2C5A182400AC8196 /* Quiz */,
-				EEB5CC7E2C5A186300AC8196 /* WellknownSpeech */,
 			);
 			path = SpeackingStructure;
 			sourceTree = "<group>";
@@ -247,6 +253,33 @@
 				40E96B232C57BF870099E603 /* LSStickerView.swift */,
 			);
 			path = Sticker;
+			sourceTree = "<group>";
+		};
+		40E96B2E2C59DC330099E603 /* TopicBubble */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B302C59DC7E0099E603 /* TopicBubbleShape.swift */,
+				40E96B322C59FE190099E603 /* TopicBubbleView.swift */,
+			);
+			path = TopicBubble;
+			sourceTree = "<group>";
+		};
+		40E96B2F2C59DC440099E603 /* Sharable */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B222C57BF6D0099E603 /* Sticker */,
+				40E96B1A2C5778740099E603 /* Card */,
+				40E96B2E2C59DC330099E603 /* TopicBubble */,
+			);
+			path = Sharable;
+			sourceTree = "<group>";
+		};
+		40E96B392C5B22EE0099E603 /* WellknownSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B382C5B22EE0099E603 /* SpeechView.swift */,
+			);
+			path = WellknownSpeech;
 			sourceTree = "<group>";
 		};
 		EE95B85E2C5B208C008D4EF1 /* ViewModel */ = {
@@ -283,14 +316,6 @@
 				40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */,
 			);
 			path = Quiz;
-			sourceTree = "<group>";
-		};
-		EEB5CC7E2C5A186300AC8196 /* WellknownSpeech */ = {
-			isa = PBXGroup;
-			children = (
-				EEB5CC7F2C5A1AFE00AC8196 /* SpeechView.swift */,
-			);
-			path = WellknownSpeech;
 			sourceTree = "<group>";
 		};
 		EEEBF0C02C58C1D100B26DBF /* Flow */ = {
@@ -375,6 +400,7 @@
 				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
 				40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */,
+				40E96B312C59DC7E0099E603 /* TopicBubbleShape.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
@@ -382,9 +408,10 @@
 				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,
 				EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */,
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
+				40E96B332C59FE190099E603 /* TopicBubbleView.swift in Sources */,
 				2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */,
+				40E96B3A2C5B22EE0099E603 /* SpeechView.swift in Sources */,
 				2C0645B32C57F00B00804B04 /* ScriptPracticeView.swift in Sources */,
-				EEB5CC802C5A1AFE00AC8196 /* SpeechView.swift in Sources */,
 				2C0645B92C58BC2000804B04 /* StructureSectionView.swift in Sources */,
 				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
 				EEEBF0BD2C58BCA500B26DBF /* StructureFlowView.swift in Sources */,
@@ -403,6 +430,7 @@
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
+				40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 				2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */,
 				40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */,
