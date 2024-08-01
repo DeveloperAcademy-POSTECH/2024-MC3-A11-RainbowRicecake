@@ -14,14 +14,13 @@ struct InstructionTextView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            
             ForEach(0..<2) { index in
                 HStack (spacing: 0) {
                     Text(instructionKeyword[index])
-                        .foregroundStyle(.mint)
+                        .foregroundStyle(.main)
                     Text(verbalPart[index])
                 }
-                .font(.system(size: 30, weight: .semibold))
+                .customFont(.title1_bold)
             }
         }
         

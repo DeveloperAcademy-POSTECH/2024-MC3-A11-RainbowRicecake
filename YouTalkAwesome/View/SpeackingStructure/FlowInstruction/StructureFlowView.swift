@@ -9,17 +9,18 @@ import SwiftUI
 
 struct StructureFlowView: View {
     var speakingStructure: SpeakingStructure
-    
     @State var showExampleContents: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("말하기 구조를 학습해보아요")
+                .customFont(.title2_bold)
             LSWideCardView(speakingStructure: speakingStructure)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(0..<speakingStructure.components.count, id: \.self) { index in
-                        FlowComponentView(speakingStructure: speakingStructure, index: index, showExampleContents: $showExampleContents)
+                        FlowComponentView(speakingStructure: speakingStructure, index: index, showTextBox: $showExampleContents)
                     }
                 }
                 .padding()
@@ -33,7 +34,7 @@ struct StructureFlowView: View {
                         Text(showExampleContents ? "예시닫기" : "예시보기")
                         Image(systemName: showExampleContents ? "chevron.up" : "chevron.down")
                     }
-                    .foregroundColor(Color(hex:"898A8D"))
+                    .foregroundColor(Color.gray3)
                 }
             }
             
@@ -42,7 +43,7 @@ struct StructureFlowView: View {
             // 퀴즈로 넘어가는 버튼
             NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
                 RoundedRectangle(cornerRadius: 18)
-                    .foregroundStyle(Color(hex: "51D7A7"))
+                    .foregroundStyle(Color.main)
                     .frame(width: 353, height: 54)
                     .overlay(
                         Text("흐름 학습하기")
@@ -52,12 +53,11 @@ struct StructureFlowView: View {
             }
         }
         .padding()
-        .background(Color(hex: "F1F3F6"))
+        .background(Color.gray6)
+        .toolbarRole(.editor)
     }
     
 }
-
-
 
 #Preview {
     NavigationStack {

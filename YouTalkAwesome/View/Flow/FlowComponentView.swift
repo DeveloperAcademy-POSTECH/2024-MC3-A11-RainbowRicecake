@@ -7,45 +7,34 @@
 
 import SwiftUI
 
-//재활용 버전을 위해 일단 만들어 둠, 아직 완성은 아님
-//TODO: TextEditor를 이용한 input 받는 뷰는 따로 만들어야 함
-//TODO: 해당 뷰가 나타났을 때 width가 늘어나 세로로만 펼쳐지는게 아닌 가로로도 펼쳐지는 느낌이 조금 남
 struct FlowComponentView: View {
     var speakingStructure: SpeakingStructure
     var index: Int
-    @Binding var showExampleContents: Bool
+    @Binding var showTextBox: Bool
     
     var body: some View {
         HStack(alignment: .top) {
             Circle()
                 .fill(speakingStructure.color)
-                .frame(width: 8, height: 8)
+                .frame(width: 9, height: 9)
                 .offset(y: 7)
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                        .fontWeight(.bold)
+                        .customFont(.body1_bold)
                         .foregroundStyle(speakingStructure.color)
-                    if showExampleContents {
-                        Text("\(speakingStructure.componentDescriptions[index])")
-                            .foregroundStyle(Color(hex:"898A8D"))
-                            .font(.system(size: 14))
-                    } else {
-                        Text("\(speakingStructure.componentDescriptions[index])")
-                            .foregroundStyle(Color(hex:"898A8D"))
-                            .font(.system(size: 14))
-                            .padding(.bottom)
-                    }
+                    Text("\(speakingStructure.componentDescriptions[index])")
+                        .customFont(.caption1_light)
+                        .foregroundStyle(Color.gray2)
+                        .padding(.bottom, showTextBox ? 0 : 10)
                 }
-                
-                if showExampleContents {
+                if showTextBox {
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(hex: "898A8D"), lineWidth: 1)
-                        .background(Color.white)
+                        .stroke(Color.gray3, lineWidth: 1)
+                        .fill(Color.white)
                         .overlay(
                             Text("\(speakingStructure.componentExamples[index])")
-                                .font(.system(size: 14))
-                                .fontWeight(.light)
+                                .customFont(.body4_light)
                                 .padding()
                                 .fixedSize(horizontal: false, vertical: true),
                             alignment: .topLeading
@@ -54,6 +43,7 @@ struct FlowComponentView: View {
                         .padding(.bottom)
                 }
             }
+            Spacer()
         }
         .background(alignment: .leading) {
             if index != speakingStructure.components.count - 1 {
@@ -75,5 +65,5 @@ struct FlowComponentView: View {
 }
 
 #Preview {
-    FlowComponentView(speakingStructure: .aida, index: 1, showExampleContents: .constant(true))
+    FlowComponentView(speakingStructure: .aida, index: 1, showTextBox: .constant(true))
 }

@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-
-    //탭바 배경을 흰색으로, 투명하지 않게 초기화 함
-    //TODO: 처음 화면에서는 잘 반영이 되는데 화면 전이되면 풀림 -> 무니 화면에 적용된 코드 참고해서 전체 적용 예정
+    
     init() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().backgroundColor = .white
     }
-
+    
     var body: some View {
         TabView {
             SpeakingStructureView()
@@ -29,7 +28,7 @@ struct ContentView: View {
                 }
             ArchiveView()
                 .tabItem {
-                    Label("저장소", systemImage: "person.crop.circle.fill")
+                    Label("저장소", systemImage: "person.fill")
                 }
         }
     }
