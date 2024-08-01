@@ -14,7 +14,6 @@ class PracticePointsViewModel: ObservableObject {
         loadUserDictionary()
     }
     
-    //불러오기
     func loadUserDictionary() {
         if let jsonData = practicePointsJson.data(using: .utf8),
            let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Int] {
@@ -22,7 +21,6 @@ class PracticePointsViewModel: ObservableObject {
         }
     }
     
-    //저장하기
     func saveUserDictionary() {
         if let jsonData = try? JSONSerialization.data(withJSONObject: practicePoints, options: []),
            let jsonString = String(data: jsonData, encoding: .utf8) {

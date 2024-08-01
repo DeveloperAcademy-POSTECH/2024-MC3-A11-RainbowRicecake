@@ -63,6 +63,7 @@ struct QuizDoneView: View {
                 Spacer()
                 
                 //TODO: QuizDoneView 에서 학습 종료시 홈 화면으로 안돌아감
+                //버튼 안에 액션이 있으면 링크가 안되나?
                 NavigationLink(destination: SpeakingStructureView()) {
                     Button {
                         practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
