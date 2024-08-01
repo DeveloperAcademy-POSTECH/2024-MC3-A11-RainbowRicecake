@@ -45,6 +45,8 @@
 		40E96B332C59FE190099E603 /* TopicBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B322C59FE190099E603 /* TopicBubbleView.swift */; };
 		40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */; };
 		40E96B3A2C5B22EE0099E603 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B382C5B22EE0099E603 /* SpeechView.swift */; };
+		40E96B3D2C5B24CD0099E603 /* ContentWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */; };
+		40E96B3F2C5B33C10099E603 /* WritingComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */; };
 		EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */; };
 		EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */; };
 		EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */; };
@@ -96,6 +98,8 @@
 		40E96B322C59FE190099E603 /* TopicBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBubbleView.swift; sourceTree = "<group>"; };
 		40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRectangleView.swift; sourceTree = "<group>"; };
 		40E96B382C5B22EE0099E603 /* SpeechView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
+		40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWritingView.swift; sourceTree = "<group>"; };
+		40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingComponentView.swift; sourceTree = "<group>"; };
 		EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellKnownSpeech.swift; sourceTree = "<group>"; };
 		EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechFlowComponentView.swift; sourceTree = "<group>"; };
 		EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 		2C29AC042C57608A005E914A /* ScriptWriting */ = {
 			isa = PBXGroup;
 			children = (
+				40E96B3B2C5B24AA0099E603 /* ContentWriting */,
 				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
 				2C0645BF2C58BCF100804B04 /* ScriptPractice */,
 				2C0645BE2C58BCC700804B04 /* WritingComplete */,
@@ -319,12 +324,23 @@
 			path = WellknownSpeech;
 			sourceTree = "<group>";
 		};
+
 		EE95B85E2C5B208C008D4EF1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+
+		40E96B3B2C5B24AA0099E603 /* ContentWriting */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */,
+				40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */,
+			);
+			path = ContentWriting;
 			sourceTree = "<group>";
 		};
 		EEB5CC7B2C5A16F200AC8196 /* Archive */ = {
@@ -472,9 +488,11 @@
 				EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */,
 				EEF225912C575940002EF8D1 /* ArchiveView.swift in Sources */,
 				EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */,
+				40E96B3D2C5B24CD0099E603 /* ContentWritingView.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
 				40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
+				40E96B3F2C5B33C10099E603 /* WritingComponentView.swift in Sources */,
 				2C0645B52C58BB7000804B04 /* Date + Extension.swift in Sources */,
 				40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */,
 				40E96B242C57BF870099E603 /* LSStickerView.swift in Sources */,

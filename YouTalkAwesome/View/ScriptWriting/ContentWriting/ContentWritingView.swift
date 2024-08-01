@@ -8,11 +8,63 @@
 import SwiftUI
 
 struct ContentWritingView: View {
+    
+    var topic : String
+    var selectedStructure : SpeakingStructure
+    var designatedDate : Date? // 나중에 계산해야한다.
+    var expecteLeadTime : String? //나중에 계산해야한다.
+    
+    @State private var progress : Int = 1
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack (alignment: .leading) {
+                Text(topic)
+                    .font(.system(size: 20, weight: .semibold))
+                    .padding()
+                    .padding(.top, 80)
+                
+                HStack {
+                    Label(
+                        title: { Text("2024. 08. 05") },
+                        icon: { Image(systemName: "calendar") }
+                    )
+                    
+                    Label(
+                        title: { Text("5분 30초") },
+                        icon: { Image(systemName: "clock") }
+                    )
+                    
+                    Spacer()
+                }
+                .foregroundColor(Color(hex: "9BA4AB")).padding([.horizontal, .bottom])
+                
+            }
+            .frame(maxWidth: .infinity)
+            .background {
+                Color.background
+            }
+            
+            VStack {
+                Image("\(selectedStructure.rawValue)_\(progress)")
+                    .padding(10)
+            }
+        }
+        .ignoresSafeArea()
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                } label: {
+                    Text("완료")
+                        .foregroundStyle(.main)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ContentWritingView()
+    NavigationStack {
+        ContentWritingView(topic: "AI를 활용한 UX디자인", selectedStructure: .prep)
+    }
 }
