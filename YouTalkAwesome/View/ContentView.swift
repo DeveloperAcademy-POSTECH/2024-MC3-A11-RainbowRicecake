@@ -23,7 +23,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("말하기 구조", systemImage: "text.bubble")
                 }
-            ScriptWritingView()
+            Text("asdf")
                 .tabItem {
                     Label("대본 작성", systemImage: "doc.append")
                 }
