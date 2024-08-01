@@ -22,7 +22,7 @@ struct ScriptRectangleView: View {
             .frame(width: width, height: height)
             .shadow(radius: 5)
             .overlay {
-                Image("Clip")
+                Image(.clip)
                     .offset(y: -( (height + 10) / 2))
             }
             .overlay {
