@@ -33,20 +33,20 @@
 		40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B272C57C6E80099E603 /* LSWideCardView.swift */; };
 		40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B292C5878D80099E603 /* QuizView.swift */; };
 		40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */; };
-		9BBE12982C5B0E53008A4D4D /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE12942C5B0E53008A4D4D /* Pretendard-SemiBold.otf */; };
-		9BBE12992C5B0E53008A4D4D /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE12952C5B0E53008A4D4D /* Pretendard-Medium.otf */; };
-		9BBE129A2C5B0E53008A4D4D /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE12962C5B0E53008A4D4D /* Pretendard-Regular.otf */; };
-		9BBE129B2C5B0E53008A4D4D /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE12972C5B0E53008A4D4D /* Pretendard-Light.otf */; };
-		9BBE12A02C5B148D008A4D4D /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BBE129F2C5B148D008A4D4D /* Rubik-Bold.ttf */; };
-		9BBE12A22C5B1A11008A4D4D /* Text + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */; };
-		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
-		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
 		40E96B312C59DC7E0099E603 /* TopicBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B302C59DC7E0099E603 /* TopicBubbleShape.swift */; };
 		40E96B332C59FE190099E603 /* TopicBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B322C59FE190099E603 /* TopicBubbleView.swift */; };
 		40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */; };
 		40E96B3A2C5B22EE0099E603 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B382C5B22EE0099E603 /* SpeechView.swift */; };
 		40E96B3D2C5B24CD0099E603 /* ContentWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */; };
 		40E96B3F2C5B33C10099E603 /* WritingComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */; };
+		40E96B472C5B609A0099E603 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B412C5B609A0099E603 /* Pretendard-Light.otf */; };
+		40E96B482C5B609A0099E603 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B422C5B609A0099E603 /* Pretendard-Medium.otf */; };
+		40E96B492C5B609A0099E603 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B432C5B609A0099E603 /* Pretendard-Regular.otf */; };
+		40E96B4A2C5B609A0099E603 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B442C5B609A0099E603 /* Pretendard-SemiBold.otf */; };
+		40E96B4B2C5B609A0099E603 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B452C5B609A0099E603 /* Rubik-Bold.ttf */; };
+		9BBE12A22C5B1A11008A4D4D /* Text + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */; };
+		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
+		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
 		EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */; };
 		EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */; };
 		EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */; };
@@ -85,21 +85,21 @@
 		40E96B272C57C6E80099E603 /* LSWideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSWideCardView.swift; sourceTree = "<group>"; };
 		40E96B292C5878D80099E603 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDoneView.swift; sourceTree = "<group>"; };
-		9BBE12942C5B0E53008A4D4D /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../Font/Pretendard/public/static/무제 폴더/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		9BBE12952C5B0E53008A4D4D /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../Font/Pretendard/public/static/무제 폴더/Pretendard-Medium.otf"; sourceTree = "<group>"; };
-		9BBE12962C5B0E53008A4D4D /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../Font/Pretendard/public/static/무제 폴더/Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		9BBE12972C5B0E53008A4D4D /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Light.otf"; path = "../../../../Font/Pretendard/public/static/무제 폴더/Pretendard-Light.otf"; sourceTree = "<group>"; };
-		9BBE129E2C5B10E2008A4D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		9BBE129F2C5B148D008A4D4D /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Bold.ttf"; path = "../../../../Font/Rubik/static/무제 폴더/Rubik-Bold.ttf"; sourceTree = "<group>"; };
-		9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text + Extension.swift"; sourceTree = "<group>"; };
-		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
-		EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePointsViewModel.swift; sourceTree = "<group>"; };
 		40E96B302C59DC7E0099E603 /* TopicBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBubbleShape.swift; sourceTree = "<group>"; };
 		40E96B322C59FE190099E603 /* TopicBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBubbleView.swift; sourceTree = "<group>"; };
 		40E96B342C5A1E070099E603 /* ScriptRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRectangleView.swift; sourceTree = "<group>"; };
 		40E96B382C5B22EE0099E603 /* SpeechView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
 		40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWritingView.swift; sourceTree = "<group>"; };
 		40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingComponentView.swift; sourceTree = "<group>"; };
+		40E96B412C5B609A0099E603 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		40E96B422C5B609A0099E603 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		40E96B432C5B609A0099E603 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		40E96B442C5B609A0099E603 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		40E96B452C5B609A0099E603 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		9BBE129E2C5B10E2008A4D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text + Extension.swift"; sourceTree = "<group>"; };
+		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
+		EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePointsViewModel.swift; sourceTree = "<group>"; };
 		EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellKnownSpeech.swift; sourceTree = "<group>"; };
 		EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechFlowComponentView.swift; sourceTree = "<group>"; };
 		EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -180,9 +180,9 @@
 		4007DC712C53949D00EA528E /* YouTalkAwesome */ = {
 			isa = PBXGroup;
 			children = (
+				40E96B402C5B608C0099E603 /* Resource */,
 				9BBE129E2C5B10E2008A4D4D /* Info.plist */,
 				4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */,
-				9BBE12922C5B0E1B008A4D4D /* Resource */,
 				4007DC8A2C54789A00EA528E /* Helper */,
 				4007DC822C5396C700EA528E /* View */,
 				4007DC842C5396D400EA528E /* Model */,
@@ -276,27 +276,6 @@
 			path = Sticker;
 			sourceTree = "<group>";
 		};
-
-		9BBE12922C5B0E1B008A4D4D /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				9BBE12932C5B0E27008A4D4D /* Font */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		9BBE12932C5B0E27008A4D4D /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				9BBE129F2C5B148D008A4D4D /* Rubik-Bold.ttf */,
-				9BBE12972C5B0E53008A4D4D /* Pretendard-Light.otf */,
-				9BBE12952C5B0E53008A4D4D /* Pretendard-Medium.otf */,
-				9BBE12962C5B0E53008A4D4D /* Pretendard-Regular.otf */,
-				9BBE12942C5B0E53008A4D4D /* Pretendard-SemiBold.otf */,
-			);
-			path = Font;
-      sourceTree = "<group>";
-		};
 		40E96B2E2C59DC330099E603 /* TopicBubble */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,16 +303,6 @@
 			path = WellknownSpeech;
 			sourceTree = "<group>";
 		};
-
-		EE95B85E2C5B208C008D4EF1 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-
 		40E96B3B2C5B24AA0099E603 /* ContentWriting */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +310,34 @@
 				40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */,
 			);
 			path = ContentWriting;
+			sourceTree = "<group>";
+		};
+		40E96B402C5B608C0099E603 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B462C5B609A0099E603 /* Font */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		40E96B462C5B609A0099E603 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				40E96B412C5B609A0099E603 /* Pretendard-Light.otf */,
+				40E96B422C5B609A0099E603 /* Pretendard-Medium.otf */,
+				40E96B432C5B609A0099E603 /* Pretendard-Regular.otf */,
+				40E96B442C5B609A0099E603 /* Pretendard-SemiBold.otf */,
+				40E96B452C5B609A0099E603 /* Rubik-Bold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		EE95B85E2C5B208C008D4EF1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EEB5CC7B2C5A16F200AC8196 /* Archive */ = {
@@ -438,13 +435,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BBE12982C5B0E53008A4D4D /* Pretendard-SemiBold.otf in Resources */,
+				40E96B4A2C5B609A0099E603 /* Pretendard-SemiBold.otf in Resources */,
+				40E96B4B2C5B609A0099E603 /* Rubik-Bold.ttf in Resources */,
+				40E96B472C5B609A0099E603 /* Pretendard-Light.otf in Resources */,
 				4007DC7C2C53949E00EA528E /* Preview Assets.xcassets in Resources */,
-				9BBE129A2C5B0E53008A4D4D /* Pretendard-Regular.otf in Resources */,
 				4007DC792C53949E00EA528E /* Assets.xcassets in Resources */,
-				9BBE12A02C5B148D008A4D4D /* Rubik-Bold.ttf in Resources */,
-				9BBE12992C5B0E53008A4D4D /* Pretendard-Medium.otf in Resources */,
-				9BBE129B2C5B0E53008A4D4D /* Pretendard-Light.otf in Resources */,
+				40E96B492C5B609A0099E603 /* Pretendard-Regular.otf in Resources */,
+				40E96B482C5B609A0099E603 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
