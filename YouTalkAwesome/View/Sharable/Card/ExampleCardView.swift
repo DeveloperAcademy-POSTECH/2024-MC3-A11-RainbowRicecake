@@ -28,10 +28,13 @@ struct ExampleCardView: View {
                     LSStickerView(lsName: speech.speakingStructure.rawValue)
                 }
                 Spacer()
+                HStack {
                 Text(speech.title)
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(width: 140, alignment: .leading)
+                    Spacer()
+                }
             }
             .padding()
             Spacer()

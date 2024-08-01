@@ -9,7 +9,6 @@ import SwiftUI
 
 struct StructureFlowView: View {
     var speakingStructure: SpeakingStructure
-    
     @State var showExampleContents: Bool = false
     
     var body: some View {
