@@ -54,14 +54,24 @@ struct FlowComponentView: View {
             }
         }
     }
-    
+        
     func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
         let textView = UITextView()
-        textView.text = text
-        textView.font = UIFont.systemFont(ofSize: 14)
+        let customFont = UIFont(name: "Pretendard-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 12.0 // 원하는 줄 간격 값
+        let attributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: paragraphStyle,
+            .font: customFont
+        ]
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+
+        textView.attributedText = attributedString
+
         let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
-        return size.height + 30 // Adding padding
+        return size.height + 32 // 패딩 추가
     }
+
 }
 
 #Preview {
