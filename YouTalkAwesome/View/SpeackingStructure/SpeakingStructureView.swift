@@ -38,10 +38,10 @@ struct SpeakingStructureView: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches, id: \.self) { speech in
-                                //TODO: NavigationLink 적용하면 ExampleCardView 의 alignment 가 적용이 안됨..WHY??
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.top, 9)
@@ -56,10 +56,10 @@ struct SpeakingStructureView: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches, id: \.self) { speech in
-                                //TODO: NavigationLink 적용하면 ExampleCardView 의 alignment 가 적용이 안됨..왜지??
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.top, 9)
