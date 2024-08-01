@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct QuizDoneView: View {
-    var speakingStructure: SpeakingStructure
+    @StateObject var practicePointsViewModel = PracticePointsViewModel()
     @State private var isAnimating = false
+    var speakingStructure: SpeakingStructure
     
     var body: some View {
         ZStack {
@@ -61,9 +62,10 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
+                //TODO: QuizDoneView 에서 학습 종료시 홈 화면으로 안돌아감
                 NavigationLink(destination: SpeakingStructureView()) {
                     Button {
-                        //TODO: 말하기 포인트 추가 로직 구현 예정
+                        practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
                     } label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color.main)

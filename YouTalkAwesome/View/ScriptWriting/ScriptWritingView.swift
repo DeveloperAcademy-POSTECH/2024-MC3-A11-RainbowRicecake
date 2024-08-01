@@ -15,7 +15,6 @@ struct ScriptWritingView: View {
                     .font(.largeTitle)
                 Spacer()
             }
-            
         }
     }
 }

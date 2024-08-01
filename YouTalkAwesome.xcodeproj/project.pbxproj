@@ -33,6 +33,8 @@
 		40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B272C57C6E80099E603 /* LSWideCardView.swift */; };
 		40E96B2A2C5878D90099E603 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B292C5878D80099E603 /* QuizView.swift */; };
 		40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */; };
+		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
+		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
 		EEB5CC802C5A1AFE00AC8196 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC7F2C5A1AFE00AC8196 /* SpeechView.swift */; };
 		EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */; };
 		EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */; };
@@ -72,6 +74,8 @@
 		40E96B272C57C6E80099E603 /* LSWideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSWideCardView.swift; sourceTree = "<group>"; };
 		40E96B292C5878D80099E603 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		40E96B2B2C58C64A0099E603 /* QuizDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDoneView.swift; sourceTree = "<group>"; };
+		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
+		EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePointsViewModel.swift; sourceTree = "<group>"; };
 		EEB5CC7F2C5A1AFE00AC8196 /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
 		EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellKnownSpeech.swift; sourceTree = "<group>"; };
 		EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechFlowComponentView.swift; sourceTree = "<group>"; };
@@ -245,10 +249,20 @@
 			path = Sticker;
 			sourceTree = "<group>";
 		};
+		EE95B85E2C5B208C008D4EF1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		EEB5CC7B2C5A16F200AC8196 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				EE95B85E2C5B208C008D4EF1 /* ViewModel */,
 				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
+				EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */,
 			);
 			path = Archive;
 			sourceTree = "<group>";
@@ -366,6 +380,7 @@
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */,
 				4007DC862C5396E600EA528E /* DataModel.swift in Sources */,
+				EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */,
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
 				2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */,
 				2C0645B32C57F00B00804B04 /* ScriptPracticeView.swift in Sources */,
@@ -379,6 +394,7 @@
 				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
 				40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */,
 				EEF2258F2C575924002EF8D1 /* ScriptWritingView.swift in Sources */,
+				EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */,
 				2C0645B72C58BBFE00804B04 /* SpeechSpeedSelectionView.swift in Sources */,
 				2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */,
 				2C0645C42C5A1FF800804B04 /* AudioManager.swift in Sources */,

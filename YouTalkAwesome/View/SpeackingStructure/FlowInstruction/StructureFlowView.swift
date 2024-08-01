@@ -9,7 +9,6 @@ import SwiftUI
 
 struct StructureFlowView: View {
     var speakingStructure: SpeakingStructure
-    
     @State var showExampleContents: Bool = false
     
     var body: some View {
@@ -56,6 +55,16 @@ struct StructureFlowView: View {
         .padding()
         .background(Color(hex: "F1F3F6"))
         .toolbarRole(.editor)
+        .onAppear {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground() // 불투명한 배경 사용
+            appearance.backgroundColor = UIColor.white // 배경색을 하얀색으로 설정
+            
+            UITabBar.appearance().standardAppearance = appearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
+        }
     }
     
 }
