@@ -1,5 +1,5 @@
 //
-//  ListeingSpeechView.swift
+//  ListeningSpeechView.swift
 //  YouTalkAwesome
 //
 //  Created by 문인범 on 8/1/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListeingSpeechView: View {
+struct ListeningSpeechView: View {
     @State private var audioManager: AudioManager = .init()
     @State var vm: ScriptPracticeViewModel
     
@@ -81,5 +81,5 @@ struct ListeingSpeechView: View {
 }
 
 #Preview {
-    ListeingSpeechView(vm: .init(time: 100), isPresented: .constant(true))
+    ListeningSpeechView(vm: .init(time: 100), isPresented: .constant(true))
 }

@@ -33,19 +33,12 @@ final class AudioManager: NSObject {
     }()
     
     public func requestPermission() async -> Bool {
-//        let result = await AVCaptureDevice.requestAccess(for: .audio)
         let result = await AVAudioApplication.requestRecordPermission()
         
         return result
     }
     
     public func startRecording() {
-//        guard let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-//            return
-//        }
-//
-//        let fileURL = filePath.appending(path: "speechRecord.m4a")
-        
         do {
             try audioSession.setCategory(.playAndRecord)
             try audioSession.setActive(true)
