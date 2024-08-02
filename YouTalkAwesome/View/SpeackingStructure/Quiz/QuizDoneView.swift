@@ -25,7 +25,7 @@ struct QuizDoneView: View {
                 .offset(y: -80)
                 .scaleEffect(isAnimating ? 1 : 0.3)
                 .onAppear {
-                    withAnimation(.bouncy, {
+                    withAnimation(.bouncy(duration: 0.5), {
                         isAnimating = true
                     })
                 }
@@ -45,7 +45,7 @@ struct QuizDoneView: View {
                     .frame(width: 165, height: 165)
                     .scaleEffect(isAnimating ? 1 : 0.3)
                     .onAppear {
-                        withAnimation(.bouncy, {
+                        withAnimation(.bouncy(duration: 1), {
                             isAnimating = true
                         })
                     }
@@ -64,23 +64,20 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                //TODO: QuizDoneView 에서 학습 종료시 홈 화면으로 안돌아감
-                //버튼 안에 액션이 있으면 링크가 안되나?
                 NavigationLink(destination: SpeakingStructureView()) {
-                    Button {
-                        practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 18)
-                            .fill(Color.main)
-                            .frame(width: 353, height: 54)
-                            .overlay {
-                                Text("학습 종료하기")
-                                    .customFont(.body1_bold)
-                                    .foregroundStyle(.white)
-                            }
-                    }
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.main)
+                        .frame(width: 353, height: 54)
+                        .overlay {
+                            Text("학습 종료하기")
+                                .customFont(.body1_bold)
+                                .foregroundStyle(.white)
+                        }
                 }
             }
+        }
+        .onAppear {
+            practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
         }
         .navigationBarBackButtonHidden()
     }

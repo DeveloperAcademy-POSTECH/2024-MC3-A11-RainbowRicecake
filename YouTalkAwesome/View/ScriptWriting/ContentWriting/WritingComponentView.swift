@@ -23,33 +23,33 @@ struct WritingComponentView: View {
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
             
+            
             VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
-
-                    Text(structureSection.topContent)
-                        .customFont(.body1_bold)
-                        .foregroundStyle(color)
-                    
-                    // 구조적 표현이 선택된 경우 e.g. Point, Reason, Attention etc
-                    if structureSection.isScript {
-                        TextField("", text: $textContent, axis: .vertical)
-                            .padding(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                            .lineLimit(20)
+                
+                Text(structureSection.topContent)
+                    .customFont(.body1_bold)
+                    .foregroundStyle(color)
+                
+                // 구조적 표현이 선택된 경우 e.g. Point, Reason, Attention etc
+                if structureSection.isScript {
+                    TextField("", text: $textContent, axis: .vertical)
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .lineLimit(20)
                     // 비언어적 표현이 선택된 경우
-                    } else {
-                        TextField("", text: $textContent, axis: .vertical)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .lineLimit(20)
-                            .foregroundColor(Color.gray)
-                    }
+                } else {
+                    TextField("", text: $textContent, axis: .vertical)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        .lineLimit(20)
+                        .foregroundColor(Color.gray)
                 }
             }
+            
             Spacer()
         }
         .background(alignment: .leading) {
