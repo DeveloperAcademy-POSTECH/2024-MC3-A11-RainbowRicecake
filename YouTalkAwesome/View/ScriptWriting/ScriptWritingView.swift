@@ -15,9 +15,9 @@ struct ScriptRecord: Identifiable {
     var isDone : Bool
 }
 
-enum TopicType: String, CaseIterable {
-    case casual = "생각하는 힘 기르기 💡"
-    case formal = "면접 대비!"
+enum TopicType: CaseIterable {
+    case casual
+    case formal
 }
 
 struct TopicResource: Identifiable {
@@ -59,96 +59,87 @@ struct ScriptWritingView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            
-            ScrollView {
-                VStack(alignment: .leading) {
-                    InstructionTextView(instructionKeyword : ["말하기 구조","대본"], verbalPart: ["로", "을 작성해보세요!"])
-                        .padding()
-                        .padding(.top, 45)
-                    
-                    if scriptRecords != nil{
-                        // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(scriptRecords) {
-                                    ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
-                                }
-                            }
-                            .padding(25)
-                        }
-                    }  else {
+        ScrollView {
+            VStack(alignment: .leading) {
+                InstructionTextView(instructionKeyword : ["말하기 구조","대본"], verbalPart: ["로", "을 작성해보세요!"])
+                    .padding()
+                    .padding(.top, 45)
+                
+                if scriptRecords != nil{ 
+                    // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
+                    ScrollView(.horizontal) {
                         HStack {
-                            Spacer()
-                            NavigationLink(destination: ContentWritingStartView(isTopic: false)) {
-                                ScriptRectangleView(isThisForAdding: true)
+                            ForEach(scriptRecords) {
+                                ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
                             }
-                            Spacer()
                         }
                         .padding(25)
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .background(Color.bg)
-                
-                ForEach(TopicType.allCases, id: \.self) { type in
-                    let topicsPerType = topicResources.filter { $0.type == type}
-                    VStack {
-                        HStack {
-                            Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
-                                .customFont(.title4_bold)
-                            Spacer()
-                            NavigationLink(destination: TopicListView(topic: type.rawValue)) {
-                                Image(systemName: "chevron.right")
-                                    .foregroundStyle(Color.bk)
-                            }
-                        }
-                        .padding([.top,.horizontal])
-                        
-                        ScrollView(.horizontal) {
-                            HStack (spacing: 16) {
-                                ForEach(topicsPerType) {
-                                    TopicBubbleView(topicContent: $0.content, lsName: $0.lsStructure, isWideType: false)
-                                }
-                            }
-                            .padding(.top, 5)
-                            .padding([.bottom,.horizontal])
-                        }
+                }  else {
+                    HStack {
+                        Spacer()
+                        ScriptRectangleView(isThisForAdding: true)
+                        Spacer()
                     }
+                    .padding(25)
                 }
+            }
+            .frame(maxWidth: .infinity)
+            .background(Color.bg)
+            
+            ForEach(TopicType.allCases, id: \.self) { type in
+                let topicsPerType = topicResources.filter { $0.type == type}
                 
                 VStack {
                     HStack {
-                        Text("어떤 상황을 준비하시나요?")
+                        Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
                             .customFont(.title4_bold)
                         Spacer()
                         Image(systemName: "chevron.right")
                         
                     }
-                    .padding([.top, .horizontal])
+                    .padding([.top,.horizontal])
                     
-                    ScrollView (.horizontal) {
-                        ForEach(0..<3) { rowIndex in
-                            HStack {
-                                makeSituationCard(preparedSituation[rowIndex*4]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 1]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 2]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 3]).padding([.vertical, .trailing])
+                    ScrollView(.horizontal) {
+                        HStack (spacing: 16) {
+                            ForEach(topicsPerType) {
+                                TopicBubbleView(topicContent: $0.content, lsName: $0.lsStructure, isWideType: false)
                             }
-                            .padding(.leading)
                         }
+                        .padding(.top, 5)
+                        .padding([.bottom,.horizontal])
                     }
                 }
             }
-            .scrollIndicators(.hidden)
-            .ignoresSafeArea()
+            
+            VStack {
+                HStack {
+                    Text("어떤 상황을 준비하시나요?")
+                        .customFont(.title4_bold)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                    
+                }
+                .padding([.top, .horizontal])
+                
+                ScrollView (.horizontal) {
+                    ForEach(0..<3) { rowIndex in
+                        HStack {
+                            makeSituationCard(preparedSituation[rowIndex*4]).padding([.vertical, .trailing])
+                            makeSituationCard(preparedSituation[rowIndex*4 + 1]).padding([.vertical, .trailing])
+                            makeSituationCard(preparedSituation[rowIndex*4 + 2]).padding([.vertical, .trailing])
+                            makeSituationCard(preparedSituation[rowIndex*4 + 3]).padding([.vertical, .trailing])
+                        }
+                        .padding(.leading)
+                    }
+                }
+            }
         }
+        .ignoresSafeArea(.container, edges: [.top, .horizontal])
     }
 }
 
 
 #Preview {
-    NavigationStack {
-        ScriptWritingView()
-    }
+    ScriptWritingView()
 }

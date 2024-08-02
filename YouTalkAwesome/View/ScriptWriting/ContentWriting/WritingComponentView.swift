@@ -8,50 +8,104 @@
 import SwiftUI
 
 struct WritingComponentView: View {
-    var speakingStructure: SpeakingStructure
-    var index: Int
-    @Binding var showTextBox: Bool
+    var color : Color
+    var structureSection : StructureSection
+    
+    @Binding var textContent: String
+    
+    var isEndContent : Bool
     
     var body: some View {
         HStack(alignment: .top) {
             Circle()
-                .fill(speakingStructure.color)
+                .fill(structureSection.isScript ? color : Color.white)
+                .stroke(structureSection.isScript ? Color.white : color)
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
+            
+            
             VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
-                    Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
-                        .customFont(.body1_bold)
-                        .foregroundStyle(speakingStructure.color)
-                    
-                    //대본 작성 시에는 이 부분 필요 없는듯?
-                    Text("\(speakingStructure.componentDescriptions[index])")
-                        .customFont(.caption1_light)
-                        .foregroundStyle(Color(hex:"898A8D"))
-                        .padding(.bottom, showTextBox ? 0 : 10)
-                }
                 
+                Text(structureSection.topContent)
+                    .customFont(.body1_bold)
+                    .foregroundStyle(color)
+                
+                // 구조적 표현이 선택된 경우 e.g. Point, Reason, Attention etc
+                if structureSection.isScript {
+                    TextField("", text: $textContent, axis: .vertical)
+                        .padding(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .lineLimit(20)
+                    // 비언어적 표현이 선택된 경우
+                } else {
+                    TextField("", text: $textContent, axis: .vertical)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        .lineLimit(20)
+                        .foregroundColor(Color.gray)
+                }
             }
+            
             Spacer()
         }
         .background(alignment: .leading) {
-            if index != speakingStructure.components.count - 1 {
-                Rectangle()
-                    .foregroundColor(speakingStructure.color)
-                    .frame(width: 3/*, height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width)*/)
-                    .offset(x: 3, y: 7)
+            if !isEndContent {
+                GeometryReader { geometry in
+                    Rectangle()
+                        .foregroundColor(color)
+                        .frame(width: 2, height: geometry.size.height + 40 )
+                        .offset(x: 3, y: 6)
+                }
             }
         }
+        .padding()
+        
     }
-    
-    func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
-        let textView = UITextView()
-        textView.text = text
-        textView.font = UIFont.systemFont(ofSize: 14)
-        let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
-        return size.height + 30 // Adding padding
-    }}
+}
 
 #Preview {
-    WritingComponentView(speakingStructure: .prep, index: 0, showTextBox: .constant(false))
+    
+    VStack {
+        WritingComponentView(
+            color: SpeakingStructure.prep.color,
+            structureSection: .init(
+                topContent: "\(SpeakingStructure.prep.components[1]) (\(SpeakingStructure.prep.components_kor[1]))",
+                bodyContent: "",
+                isScript: true),
+            textContent: .constant(""),
+            isEndContent: false
+        )
+        WritingComponentView(
+            color: SpeakingStructure.prep.color,
+            structureSection: .init(
+                topContent: "🫲",
+                bodyContent: "",
+                isScript: false),
+            textContent: .constant(""),
+            isEndContent: false
+        )
+        WritingComponentView(
+            color: SpeakingStructure.prep.color,
+            structureSection: .init(
+                topContent: "\(SpeakingStructure.prep.components[1]) (\(SpeakingStructure.prep.components_kor[1]))",
+                bodyContent: "",
+                isScript: true),
+            textContent: .constant(""),
+            isEndContent: false
+        )
+        WritingComponentView(
+            color: SpeakingStructure.prep.color,
+            structureSection: .init(
+                topContent: "\(SpeakingStructure.prep.components[1]) (\(SpeakingStructure.prep.components_kor[1]))",
+                bodyContent: "",
+                isScript: true),
+            textContent: .constant(""),
+            isEndContent: true
+        )
+    }
+    
 }
