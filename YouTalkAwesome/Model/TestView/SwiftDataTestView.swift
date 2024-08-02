@@ -82,7 +82,9 @@ struct SwiftDataTestView : View {
         ],
         duration: 0,
         isDone: true,
-        designatedTimestamp: Date())
+        designatedTimestamp: Date(),
+        isFreeTopic: true
+    )
     
     container.mainContext.insert(testRecord)
     

@@ -17,7 +17,7 @@ enum ModelSchemaV0: VersionedSchema {
     }
     
     @Model
-    final class LogicalSpeakingRecord {
+    final class LogicalSpeakingRecord{
         var id: UUID
         var topic: String
         var speakingStructure: SpeakingStructure
@@ -25,8 +25,9 @@ enum ModelSchemaV0: VersionedSchema {
         var duration: Int
         var isDone: Bool
         var designatedTimestamp : Date?
+        var isFreeTopic: Bool
         
-        init (id: UUID = UUID(), topic: String, speakingStructure: SpeakingStructure, content: [StructureSection], duration: Int, isDone: Bool, designatedTimestamp: Date? = nil ) {
+        init (id: UUID = UUID(), topic: String, speakingStructure: SpeakingStructure, content: [StructureSection], duration: Int, isDone: Bool, designatedTimestamp: Date? = nil, isFreeTopic : Bool ) {
             self.id = id
             self.topic = topic
             self.speakingStructure = speakingStructure
@@ -34,6 +35,7 @@ enum ModelSchemaV0: VersionedSchema {
             self.duration = duration
             self.isDone = isDone
             self.designatedTimestamp = designatedTimestamp
+            self.isFreeTopic = isFreeTopic
         }
     }
 }
