@@ -29,10 +29,17 @@ struct ContentWritingStartView: View {
     @State private var timeLimitString = ""
     
     //논리 구조 선택
-    @State private var selectedSpeakingStructure: SpeakingStructure = .prep
+    @State private var selectedSpeakingStructure: SpeakingStructure? = nil
     
-    //위 사항들 다 충족하면 true 되는 로직 구현 예쩡
-    @State private var canGoNext: Bool = true
+    //위 사항들 다 충족하면 true
+    @State private var canGoNext: Bool = false
+    
+    func checkValues() -> Bool {
+        if contentTitle != "" && selectedDateString != "" && timeLimitString != "" {
+            canGoNext = true
+        }
+        return canGoNext
+    }
     
     var body: some View {
         VStack(spacing:20) {
@@ -67,15 +74,24 @@ struct ContentWritingStartView: View {
                 
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
-                            LSCardView(speakingStructure: speakingStructure)
+                        ForEach(SpeakingStructure.allCases, id: \.self) { speakingStructure in
+                            Button(action: {
+                                selectedSpeakingStructure = speakingStructure
+                                //다 선택되면 이걸로 체크
+                                checkValues()
+                            }) {
+                                Image("\(speakingStructure.rawValue)-\(selectedSpeakingStructure == speakingStructure ? "selected" : "unselected")")
+                                    .resizable()
+                                    .scaledToFit()
+                            }
                         }
                     }
+                    .padding()
                 }
                 .scrollIndicators(.hidden)
             }
             // 새로운 대본
-            //            NavigationLink(destination: ) {
+//            NavigationLink(destination: )) {
             RoundedRectangle(cornerRadius: 18)
                 .foregroundStyle(canGoNext ? Color.main : Color.gray5)
                 .frame(width: 353, height: 54)
@@ -84,8 +100,8 @@ struct ContentWritingStartView: View {
                         .customFont(.body1_bold)
                         .foregroundStyle(canGoNext ? Color.wh : Color.gray2)
                 )
-            //            }
-            //            .disabled(!canGoNext)
+//            }
+//            .disabled(!canGoNext)
         }
         .background(Color.gray6)
         .toolbarRole(.editor)
@@ -187,6 +203,8 @@ struct ContentWritingStartView: View {
                             showTimePicker = false
                             timeLimit = selectedMinutes*60 + selectedSeconds
                             timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
+                            
+                            print(timeLimit)
                         }) {
                             Text("확인")
                                 .customFont(.body1_bold)
