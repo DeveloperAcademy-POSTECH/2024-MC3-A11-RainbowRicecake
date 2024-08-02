@@ -18,14 +18,14 @@ struct QuizDoneView: View {
                 .ignoresSafeArea()
             
             Circle()
-                .fill(.white)
+                .fill(.wh)
                 .blur(radius: 30)
             
             Image("Glitter")
                 .offset(y: -80)
                 .scaleEffect(isAnimating ? 1 : 0.3)
                 .onAppear {
-                    withAnimation(.bouncy, {
+                    withAnimation(.bouncy(duration: 0.5), {
                         isAnimating = true
                     })
                 }
@@ -45,7 +45,7 @@ struct QuizDoneView: View {
                     .frame(width: 165, height: 165)
                     .scaleEffect(isAnimating ? 1 : 0.3)
                     .onAppear {
-                        withAnimation(.bouncy, {
+                        withAnimation(.bouncy(duration: 1), {
                             isAnimating = true
                         })
                     }
@@ -53,7 +53,7 @@ struct QuizDoneView: View {
                 //TODO: 여기 Figma 디자인이랑 조금 다름 추후 논의 필요!
                 RoundedRectangle(cornerRadius: 18)
                     .stroke(.main, lineWidth: 5)
-                    .fill(Color.white)
+                    .fill(Color.wh)
                     .frame(width: 115, height: 46)
                     .overlay {
                         Text("\(speakingStructure.rawValue) +1")
@@ -64,23 +64,20 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                //TODO: QuizDoneView 에서 학습 종료시 홈 화면으로 안돌아감
-                //버튼 안에 액션이 있으면 링크가 안되나?
                 NavigationLink(destination: SpeakingStructureView()) {
-                    Button {
-                        practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 18)
-                            .fill(Color.main)
-                            .frame(width: 353, height: 54)
-                            .overlay {
-                                Text("학습 종료하기")
-                                    .customFont(.body1_bold)
-                                    .foregroundStyle(.white)
-                            }
-                    }
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.main)
+                        .frame(width: 353, height: 54)
+                        .overlay {
+                            Text("학습 종료하기")
+                                .customFont(.body1_bold)
+                                .foregroundStyle(.white)
+                        }
                 }
             }
+        }
+        .onAppear {
+            practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
         }
         .navigationBarBackButtonHidden()
     }

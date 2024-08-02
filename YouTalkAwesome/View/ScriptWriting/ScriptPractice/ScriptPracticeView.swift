@@ -77,6 +77,7 @@ struct ScriptPracticeView: View {
                 .overlay(alignment: .bottom) {
                     ZStack(alignment: .bottom) {
                         LinearGradient(colors: [.white, .clear], startPoint: .center, endPoint: .top)
+                            .allowsHitTesting(false)
                         
                         if self.isTopicSelected {
                             NavigationLink {
@@ -89,6 +90,7 @@ struct ScriptPracticeView: View {
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
+                                        .foregroundStyle(.main)
                                         .frame(height: 54)
                                     
                                     Text("완료")
@@ -120,6 +122,7 @@ struct ScriptPracticeView: View {
                                         .frame(width: 60, height: 60)
                                 }
                             }
+                            .foregroundStyle(.main)
                             .padding(.bottom, 50)
                         }
                     }
@@ -136,6 +139,7 @@ struct ScriptPracticeView: View {
                             self.isPresented = false
                         } label: {
                             Image(systemName: "xmark")
+                                .foregroundStyle(.black)
                         }
                     }
                 }
@@ -148,13 +152,13 @@ struct ScriptPracticeView: View {
             if self.isTopicSelected {
                 vm.makeTimer()
                 vm.startTimer()
-                audioManager.startRecording()
+//                audioManager.startRecording()
             }
         }
     }
 }
 
 #Preview {
-    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 2), audioManager: .constant(AudioManager()))
+    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), audioManager: .constant(AudioManager()))
 }
 

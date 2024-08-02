@@ -18,7 +18,7 @@ struct ScriptRectangleView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .fill(.white)
+            .fill(.wh)
             .aspectRatio(180/224, contentMode: .fit)
             .shadow(radius: 5)
             .overlay(alignment: .top) {
@@ -71,5 +71,4 @@ struct ScriptRectangleView: View {
 //        
 //    }
     ScriptRectangleView(isThisForAdding: false, leftDay: "5", scriptTitle: "애플 리뷰 준비", isDone: false)
-
 }

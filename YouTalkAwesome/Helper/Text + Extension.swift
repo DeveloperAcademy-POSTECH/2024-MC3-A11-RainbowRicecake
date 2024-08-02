@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// 폰트, 자간, 행간 값을 지정하는 CustomFont struct
 struct CustomFont {
     let font: Font
     let kerning: CGFloat
@@ -56,7 +55,6 @@ struct CustomFont {
     static let caption2_light = CustomFont(font: .custom("Pretendard-Regular", size: 12), kerning: -0.4, lineSpacing: 7.0)
 }
 
-// 자간, 행간 값을 설정할 수 있도록 Text를 extension
 extension Text {
     func customFont(_ customFont: CustomFont) -> some View {
         self
@@ -66,6 +64,7 @@ extension Text {
     }
 }
 
+
 extension Label {
     func customFont(_ customFont: CustomFont) -> some View {
         self
@@ -74,6 +73,16 @@ extension Label {
             .lineSpacing(customFont.lineSpacing)
     }
 }
+
+extension TextField {
+    func customFont(_ customFont: CustomFont) -> some View {
+        self
+            .font(customFont.font)
+            .kerning(customFont.kerning)
+            .lineSpacing(customFont.lineSpacing)
+    }
+}
+
 
 extension VStack {
     func customFont(_ customFont: CustomFont) -> some View {
@@ -92,4 +101,3 @@ extension HStack {
             .lineSpacing(customFont.lineSpacing)
     }
 }
-

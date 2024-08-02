@@ -67,6 +67,7 @@ struct SpeakingStructureView: View {
                 .padding()
                 .background(Color.bg)
             }
+            .scrollIndicators(.hidden)
         }
         .navigationBarBackButtonHidden()
     }
