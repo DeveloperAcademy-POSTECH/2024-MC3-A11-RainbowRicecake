@@ -64,7 +64,7 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: SpeakingStructureView()) {
+                NavigationLink(destination: ContentView()) {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(Color.main)
                         .frame(width: 353, height: 54)

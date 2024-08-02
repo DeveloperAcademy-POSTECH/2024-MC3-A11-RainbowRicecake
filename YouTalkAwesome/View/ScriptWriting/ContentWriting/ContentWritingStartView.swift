@@ -134,6 +134,7 @@ struct ContentWritingStartView: View {
                         DatePicker(
                             "예정된 발표 날짜를 선택해주세요",
                             selection: $selectedDate,
+                            in: Date()...,
                             displayedComponents: [.date]
                         )
                         .datePickerStyle(.graphical)
@@ -182,16 +183,15 @@ struct ContentWritingStartView: View {
                     VStack {
                         HStack {
                             Picker(selection: $selectedMinutes, label: Text("분")) {
-                                ForEach(0..<59) { index in
+                                ForEach(0..<60) { index in
                                     Text("\(self.minutes[index])").tag(index)
                                 }
                             }
                             .labelsHidden()
                             .pickerStyle(WheelPickerStyle())
                             Text("분")
-                            
                             Picker(selection: $selectedSeconds, label: Text("초")) {
-                                ForEach(0..<59) { index in
+                                ForEach(0..<60) { index in
                                     Text("\(self.seconds[index])").tag(index)
                                 }
                             }

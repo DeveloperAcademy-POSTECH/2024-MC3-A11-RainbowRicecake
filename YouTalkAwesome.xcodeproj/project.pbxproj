@@ -226,10 +226,9 @@
 			children = (
 				4007DC742C53949D00EA528E /* ContentView.swift */,
 				40E96B2F2C59DC440099E603 /* Sharable */,
+				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 				2C29AC042C57608A005E914A /* ScriptWriting */,
 				EEB5CC7B2C5A16F200AC8196 /* Archive */,
-				EEEBF0C02C58C1D100B26DBF /* Flow */,
-				40E96B1D2C57B1D10099E603 /* SpeackingStructure */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,11 +280,11 @@
 		40E96B1D2C57B1D10099E603 /* SpeackingStructure */ = {
 			isa = PBXGroup;
 			children = (
-				40E96B392C5B22EE0099E603 /* WellknownSpeech */,
 				40E96B1E2C57B2360099E603 /* InstructionTextView.swift */,
 				EEF2258C2C5758FA002EF8D1 /* SpeakingStructureView.swift */,
 				EEB5CC7C2C5A180700AC8196 /* FlowInstruction */,
 				EEB5CC7D2C5A182400AC8196 /* Quiz */,
+				40E96B392C5B22EE0099E603 /* WellknownSpeech */,
 			);
 			path = SpeackingStructure;
 			sourceTree = "<group>";
@@ -310,6 +309,7 @@
 		40E96B2F2C59DC440099E603 /* Sharable */ = {
 			isa = PBXGroup;
 			children = (
+				EEEBF0C02C58C1D100B26DBF /* Flow */,
 				40E96B222C57BF6D0099E603 /* Sticker */,
 				40E96B1A2C5778740099E603 /* Card */,
 				40E96B2E2C59DC330099E603 /* TopicBubble */,
