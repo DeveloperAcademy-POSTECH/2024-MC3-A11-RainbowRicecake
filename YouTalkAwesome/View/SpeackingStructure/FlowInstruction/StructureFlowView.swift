@@ -15,7 +15,7 @@ struct StructureFlowView: View {
         VStack(alignment: .leading) {
             Text("말하기 구조를 학습해보아요")
                 .customFont(.title2_bold)
-            LSWideCardView(speakingStructure: speakingStructure)
+            LSWideCardView(speakingStructure: speakingStructure, height: 120)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {

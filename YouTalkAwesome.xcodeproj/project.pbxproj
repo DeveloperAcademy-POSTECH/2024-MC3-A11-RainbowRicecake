@@ -46,6 +46,7 @@
 		40E96B492C5B609A0099E603 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B432C5B609A0099E603 /* Pretendard-Regular.otf */; };
 		40E96B4A2C5B609A0099E603 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B442C5B609A0099E603 /* Pretendard-SemiBold.otf */; };
 		40E96B4B2C5B609A0099E603 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40E96B452C5B609A0099E603 /* Rubik-Bold.ttf */; };
+		9B68AC6C2C5C6CBC0080D102 /* LearningStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B68AC6B2C5C6CBC0080D102 /* LearningStatusView.swift */; };
 		9BBE12A22C5B1A11008A4D4D /* Text + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */; };
 		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
 		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
@@ -100,6 +101,7 @@
 		40E96B432C5B609A0099E603 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		40E96B442C5B609A0099E603 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		40E96B452C5B609A0099E603 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		9B68AC6B2C5C6CBC0080D102 /* LearningStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningStatusView.swift; sourceTree = "<group>"; };
 		9BBE129E2C5B10E2008A4D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text + Extension.swift"; sourceTree = "<group>"; };
 		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				EE95B85E2C5B208C008D4EF1 /* ViewModel */,
 				EEF225902C575940002EF8D1 /* ArchiveView.swift */,
 				EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */,
+				9B68AC6B2C5C6CBC0080D102 /* LearningStatusView.swift */,
 			);
 			path = Archive;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				9BBE12A22C5B1A11008A4D4D /* Text + Extension.swift in Sources */,
 				40E96B1F2C57B2360099E603 /* InstructionTextView.swift in Sources */,
 				2C0645C22C5A1FD100804B04 /* ScriptPracticeViewModel.swift in Sources */,
+				9B68AC6C2C5C6CBC0080D102 /* LearningStatusView.swift in Sources */,
 				2C0645C62C5A216800804B04 /* SpeechSpeedStatus.swift in Sources */,
 				EEF2258D2C5758FA002EF8D1 /* SpeakingStructureView.swift in Sources */,
 				40E96B282C57C6E80099E603 /* LSWideCardView.swift in Sources */,
