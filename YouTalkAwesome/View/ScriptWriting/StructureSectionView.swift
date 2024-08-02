@@ -17,6 +17,7 @@ struct StructureSectionView: View {
             if self.isScript {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(lineWidth: 0.66)
+                    .foregroundStyle(.gray5)
             } else {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundStyle(.gray6)
@@ -26,10 +27,12 @@ struct StructureSectionView: View {
                 //TODO: 말하기 구조에 따른 색상 변경 추후 필요할 듯 합니다~
                 Text(topContent)
                     .customFont(.body1_bold)
+                    .foregroundStyle(.prep)
                     .padding(.top, 12)
                 
                 Text(bottomContent)
                     .customFont(.body2_light)
+                    .foregroundStyle( isScript ? .black : .gray2)
                     .padding(10)
             }
         }
