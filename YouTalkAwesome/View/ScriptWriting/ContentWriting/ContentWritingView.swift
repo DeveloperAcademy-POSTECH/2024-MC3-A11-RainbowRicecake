@@ -37,12 +37,12 @@ struct ContentWritingView: View {
     func makeButtonInModalView(_ word: String) -> some View {
         Text(word)
             .customFont(.body1_bold)
-            .foregroundColor(.grey3)
+            .foregroundColor(.gray3)
             .background {
                 GeometryReader {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(.white)
-                        .stroke(.grey3, lineWidth: 0.66)
+                        .stroke(.gray3, lineWidth: 0.66)
                         .frame(width: $0.size.width + 20, height: 38)
                         .position(x: $0.frame(in: .local).midX, y: $0.frame(in: .local).midY)
                 }
@@ -103,7 +103,7 @@ struct ContentWritingView: View {
                         title: { Text("추가하기").customFont(.caption1_light) },
                         icon: { Image(systemName: "plus")
                             .font(.system(size:14))}
-                    ).foregroundColor(.grey3)
+                    ).foregroundColor(.gray3)
                 }
             }
         }
