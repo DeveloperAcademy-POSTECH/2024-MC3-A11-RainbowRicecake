@@ -10,12 +10,29 @@ import SwiftUI
 struct ContentWritingStartView: View {
     var isTopic: Bool = false
     
-    @State var contentTitle: String? = nil
-    @State var presentationDate: String?
-    @State var timeLimit: Int?
-    @State var selectedSpeakingStructure: SpeakingStructure?
+    //제목 입력
+    @State private var contentTitle: String = ""
     
-    @State var canGoNext: Bool = true
+    //발표 날짜 선택
+    @State private var showDatePicker = false
+    @State private var selectedDate = Date()
+    @State private var selectedDateString = ""
+    
+    //제한 시간 선택
+    let minutes = Array(0...59)
+    let seconds = Array(0...59)
+    
+    @State private var showTimePicker = false
+    @State private var selectedMinutes = 0
+    @State private var selectedSeconds = 0
+    @State private var timeLimit: Int = 0
+    @State private var timeLimitString = ""
+    
+    //논리 구조 선택
+    @State private var selectedSpeakingStructure: SpeakingStructure = .prep
+    
+    //위 사항들 다 충족하면 true 되는 로직 구현 예쩡
+    @State private var canGoNext: Bool = true
     
     var body: some View {
         VStack(spacing:20) {
@@ -32,42 +49,13 @@ struct ContentWritingStartView: View {
                     Text("제목")
                         .customFont(.body1_bold)
                 }
-                TextField("대본의 제목을 작성해주세요.", text: Binding(
-                    get: { contentTitle ?? "" },
-                    set: { contentTitle = $0 }
-                ))
-                .textFieldStyle(.roundedBorder)
+                TextField("대본의 제목을 작성해주세요.", text: $contentTitle)
+                    .textFieldStyle(.roundedBorder)
             }
             .padding(.horizontal)
             
             if isTopic == false {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("예정 날짜")
-                            .customFont(.body1_bold)
-                    }
-                    //TODO: 여기 DatePicker 구현 예정
-                    TextField("예정된 날짜 없음", text: Binding(
-                        get: { presentationDate ?? "" },
-                        set: { presentationDate = $0 }
-                    ))
-                    .textFieldStyle(.roundedBorder)
-                }
-                .padding(.horizontal)
-
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("제한 날짜")
-                            .customFont(.body1_bold)
-                    }
-                    //TODO: 여기 시간 고르는 기능 구현 예정
-                    TextField("시간 제한 없음", text: Binding(
-                        get: { contentTitle ?? "" },
-                        set: { contentTitle = $0 }
-                    ))
-                    .textFieldStyle(.roundedBorder)
-                }
-                .padding(.horizontal)
+                forTopic
             }
             
             VStack(alignment: .leading) {
@@ -76,7 +64,7 @@ struct ContentWritingStartView: View {
                         .customFont(.body1_bold)
                 }
                 .padding(.horizontal)
-
+                
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
@@ -87,20 +75,133 @@ struct ContentWritingStartView: View {
                 .scrollIndicators(.hidden)
             }
             // 새로운 대본
-            NavigationLink(destination: TestPointView()) {
-                RoundedRectangle(cornerRadius: 18)
-                    .foregroundStyle(canGoNext ? Color.main : Color.gray5)
-                    .frame(width: 353, height: 54)
-                    .overlay(
-                        Text("새로운 대본 만들기")
-                            .customFont(.body1_bold)
-                            .foregroundStyle(canGoNext ? Color.wh : Color.gray2)
-                    )
-            }
-            .disabled(!canGoNext)
+            //            NavigationLink(destination: ) {
+            RoundedRectangle(cornerRadius: 18)
+                .foregroundStyle(canGoNext ? Color.main : Color.gray5)
+                .frame(width: 353, height: 54)
+                .overlay(
+                    Text("새로운 대본 만들기")
+                        .customFont(.body1_bold)
+                        .foregroundStyle(canGoNext ? Color.wh : Color.gray2)
+                )
+            //            }
+            //            .disabled(!canGoNext)
         }
         .background(Color.gray6)
         .toolbarRole(.editor)
+    }
+    
+    var forTopic: some View {
+        VStack(spacing: 20) {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("예정 날짜")
+                        .customFont(.body1_bold)
+                }
+                ZStack {
+                    TextField("예정된 발표 날짜를 선택해주세요", text: $selectedDateString)
+                        .disabled(true)
+                        .foregroundStyle(.primary)
+                        .textFieldStyle(.roundedBorder)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "calendar")
+                            .padding(.trailing)
+                            .foregroundStyle(Color.gray1)
+                    }
+                    .onTapGesture {
+                        showDatePicker.toggle()
+                    }
+                }
+                .sheet(isPresented: $showDatePicker) {
+                    VStack {
+                        DatePicker(
+                            "예정된 발표 날짜를 선택해주세요",
+                            selection: $selectedDate,
+                            displayedComponents: [.date]
+                        )
+                        .datePickerStyle(.graphical)
+                        .labelsHidden()
+                        .padding()
+                        
+                        Button(action: {
+                            showDatePicker = false
+                            selectedDateString = selectedDate.getYMDDate()
+                        }) {
+                            Text("확인")
+                                .customFont(.body1_bold)
+                                .padding()
+                                .background(Color.main)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                    .presentationDetents([.medium, .fraction(0.5)])
+                }
+            }
+            .padding(.horizontal)
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("제한 시간")
+                        .customFont(.body1_bold)
+                }
+                ZStack {
+                    TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString)
+                        .disabled(true)
+                        .foregroundStyle(.primary)
+                        .textFieldStyle(.roundedBorder)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "timer")
+                            .padding(.trailing)
+                            .foregroundStyle(Color.gray1)
+                    }
+                }
+                .onTapGesture {
+                    showTimePicker.toggle()
+                }
+                .sheet(isPresented: $showTimePicker) {
+                    VStack {
+                        HStack {
+                            Picker(selection: $selectedMinutes, label: Text("분")) {
+                                ForEach(0..<59) { index in
+                                    Text("\(self.minutes[index])").tag(index)
+                                }
+                            }
+                            .labelsHidden()
+                            .pickerStyle(WheelPickerStyle())
+                            Text("분")
+                            
+                            Picker(selection: $selectedSeconds, label: Text("초")) {
+                                ForEach(0..<59) { index in
+                                    Text("\(self.seconds[index])").tag(index)
+                                }
+                            }
+                            .labelsHidden()
+                            .pickerStyle(WheelPickerStyle())
+                            Text("초")
+                        }
+                        Button(action: {
+                            showTimePicker = false
+                            timeLimit = selectedMinutes*60 + selectedSeconds
+                            timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
+                        }) {
+                            Text("확인")
+                                .customFont(.body1_bold)
+                                .padding()
+                                .background(Color.main)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                    .presentationDetents([.medium, .fraction(0.5)])
+                }
+            }
+            .padding(.horizontal)
+        }
     }
 }
 

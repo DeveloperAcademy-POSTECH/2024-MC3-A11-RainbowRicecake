@@ -14,8 +14,8 @@ struct QuizView: View {
     @State private var isResultCorrect: Bool? = nil
     
     @State private var bottomBackColor : Color = .wh
-    @State private var buttonText : String = "결과 보기"
     @State private var messageColor : Color = .gray2
+    @State private var buttonText : String = "결과 보기"
     
     
     @State private var confirmationMessage : String = ""
