@@ -38,6 +38,11 @@ class PracticePointsViewModel: ObservableObject {
         saveUserDictionary()
     }
     
+    // 키에 따라 포인트를 가져오기
+    func getPoint(key: String) -> Int {
+        return practicePoints[key] ?? 0
+    }
+    
     //테스트할때 쓸까 싶어서 만들어둠
     func clearUserDictionary() {
         practicePoints = [:] // 딕셔너리 초기화

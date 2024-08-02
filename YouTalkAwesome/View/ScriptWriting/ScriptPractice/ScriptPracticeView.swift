@@ -31,101 +31,134 @@ struct ScriptPracticeView: View {
     
     var body: some View {
         NavigationStack {
-            // TODO: 자동 scroll 수정 예정
-            ScrollViewReader { proxy in
-                VStack {
-                    ScrollView {
+            VStack {
+                ScrollView {
+                    VStack {
                         Spacer(minLength: 30)
                         
                         ForEach(structureSectionSample, id: \.self) { section in
+                            // TODO: 데이터 연결
                             StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                         }
                         
                         Spacer(minLength: 180)
                     }
-                    .scrollIndicators(.hidden)
-                    .overlay(alignment: .top) {
-                        ZStack(alignment: .top) {
-                            LinearGradient(colors: [.wh, .clear], startPoint: .top, endPoint: .bottom)
-                                .frame(height: 100)
-                            
-                            PromptGuageView(currentTime: vm.currentTime, entireTime: vm.time)
-                                .padding(.horizontal, 20)
-                        }
-                    }
-                    .overlay(alignment: .bottom) {
-                        ZStack(alignment: .bottom) {
-                            LinearGradient(colors: [.wh, .clear], startPoint: .center, endPoint: .top)
-                            
-                            if self.isTopicSelected {
-                                Button {
-                                    
-                                } label: {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .frame(height: 54)
+                    .offset(y: vm.yOffset)
+                    .background {
+                        GeometryReader { proxy in
+                            VStack {}
+                                .onChange(of: vm.currentTime) { before, after in
+                                    if !self.isTopicSelected {
+                                        if vm.currentTime == 0 {
+                                            vm.isTimerEnd = true
+                                            vm.stopTimer()
+                                        }
                                         
-                                        Text("완료")
-                                            .foregroundStyle(.wh)
-                                    }
-                                    .padding(.bottom, 53)
-                                }
-                                .padding(.horizontal, 20)
-                                
-                            } else {
-                                Button {
-                                    if vm.isTimerPlaying {
-                                        vm.stopTimer()
-                                    } else {
-                                        self.vm.makeTimer()
-                                        self.vm.startTimer()
-                                    }
-                                } label: {
-                                    if vm.isTimerPlaying {
-                                        Image(systemName: "pause.circle.fill")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                    } else {
-                                        Image(systemName: "play.circle.fill")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
+                                        withAnimation(.linear) {
+                                            let elapsedTime = CGFloat(vm.time - vm.currentTime) / CGFloat(vm.time)
+                                            let pausedOffset = (-proxy.size.height + 400) * (elapsedTime)
+                                            vm.yOffset = pausedOffset
+                                        }
                                     }
                                 }
-                                .padding(.bottom, 50)
-                            }
                         }
-                        .frame(height: 250)
                     }
                 }
-                .navigationTitle("프롬프트")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    if !self.isTopicSelected {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                // TODO: 기능 구현 필요
-                                self.isPresented = false
+                .scrollDisabled( !self.isTopicSelected )
+                .overlay(alignment: .top) {
+                    ZStack(alignment: .top) {
+                        LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom)
+                            .frame(height: 100)
+                        
+                        PromptGuageView(currentTime: vm.currentTime, entireTime: vm.time)
+                            .padding(.horizontal, 20)
+                    }
+                }
+                .overlay(alignment: .bottom) {
+                    ZStack(alignment: .bottom) {
+                        LinearGradient(colors: [.white, .clear], startPoint: .center, endPoint: .top)
+                            .allowsHitTesting(false)
+                        
+                        if self.isTopicSelected {
+                            NavigationLink {
+                                SpeechPracticeCompleteView(standardTime: vm.time, elapsedTime: vm.currentTime, speakingStructure: .grow)
+                                    .navigationBarBackButtonHidden()
+                                    .onAppear {
+                                        self.vm.stopTimer()
+                                        self.audioManager.stopRecording()
+                                    }
                             } label: {
-                                Image(systemName: "xmark")
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundStyle(.main)
+                                        .frame(height: 54)
+                                    
+                                    Text("완료")
+                                        .foregroundStyle(.white)
+                                }
+                                .padding(.bottom, 53)
                             }
+                            .padding(.horizontal, 20)
+                            
+                        } else {
+                            Button {
+                                if vm.isTimerPlaying {
+                                    vm.stopTimer()
+                                } else {
+                                    if vm.isTimerEnd {
+                                        vm.resetModel()
+                                    }
+                                    self.vm.makeTimer()
+                                    self.vm.startTimer()
+                                }
+                            } label: {
+                                if vm.isTimerPlaying {
+                                    Image(systemName: "pause.circle.fill")
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                } else {
+                                    Image(systemName: "play.circle.fill")
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                }
+                            }
+                            .foregroundStyle(.main)
+                            .padding(.bottom, 50)
+                        }
+                    }
+                    .frame(height: 250)
+                }
+            }
+            .navigationTitle("프롬프트")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if !self.isTopicSelected {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            // TODO: 기능 구현 필요
+                            self.isPresented = false
+                        } label: {
+                            Image(systemName: "xmark")
+                                .foregroundStyle(.black)
                         }
                     }
                 }
-                .ignoresSafeArea(edges: .bottom)
-                .navigationBarBackButtonHidden()
             }
+            .ignoresSafeArea(edges: .bottom)
+            .navigationBarBackButtonHidden()
+            
         }
         .onAppear {
             if self.isTopicSelected {
                 vm.makeTimer()
                 vm.startTimer()
-                audioManager.startRecording()
+//                audioManager.startRecording()
             }
         }
     }
 }
 
 #Preview {
-    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 3), audioManager: .constant(AudioManager()))
+    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), audioManager: .constant(AudioManager()))
 }
 

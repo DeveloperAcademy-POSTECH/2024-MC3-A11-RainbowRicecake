@@ -9,9 +9,7 @@ import SwiftUI
 
 struct WritingCompleteView: View {
     @State private var isPresented: Bool = false
-    
     @State private var speedStatus: SpeechSpeedStatus = .standard
-    
     @State private var audioManager: AudioManager = .init()
     
     let title: String
