@@ -18,6 +18,7 @@ struct ContentWritingView: View {
     var selectedStructure : SpeakingStructure
     var designatedDate : Date?
     var expectedLeadTime : Int?
+    var isFreeTopic : Bool
 
     @State private var scriptProcess : Int = 1
     
@@ -112,7 +113,7 @@ struct ContentWritingView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime!, isDone: true, designatedTimestamp: self.designatedDate)
+                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime!, isDone: true, designatedTimestamp: self.designatedDate, isFreeTopic: self.isFreeTopic)
                     
                     do {
                         modelContext.insert(scriptRecord)
@@ -194,6 +195,6 @@ struct ContentWritingView: View {
     dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
     
     return NavigationStack {
-        ContentWritingView(topic: "AI를 활용한 UX디자인", selectedStructure: .aida, designatedDate: dateFormatter.date(from: "2024-07-31"), expectedLeadTime: 90)
+        ContentWritingView(topic: "AI를 활용한 UX디자인", selectedStructure: .aida, designatedDate: dateFormatter.date(from: "2024-07-31"), expectedLeadTime: 90, isFreeTopic: false)
     }
 }

@@ -48,4 +48,8 @@ class PracticePointsViewModel: ObservableObject {
         practicePoints = [:] // 딕셔너리 초기화
         practicePointsJson = "{}" // 저장된 데이터 초기화
     }
+    
+    func getCount() -> Int {
+        return practicePoints.count
+    }
 }

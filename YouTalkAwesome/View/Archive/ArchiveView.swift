@@ -7,9 +7,13 @@
 
 import SwiftUI
 import UIKit
+import SwiftData
 
 struct ArchiveView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+    @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
+    
+    @StateObject var practicePointsViewModel = PracticePointsViewModel()
     
     @StateObject private var viewModel: ArchiveViewModel = .init()
     
@@ -70,7 +74,7 @@ struct ArchiveView: View {
                         Text("말하기 구조 학습")
                             .customFont(.caption1_bold)
                             .foregroundStyle(.gray3)
-                        Text("16")
+                        Text("\(practicePointsViewModel.getCount())")
                             .customFont(.title3_bold)
                             .foregroundStyle(.main)
                     }
@@ -89,7 +93,7 @@ struct ArchiveView: View {
                         Text("답변한 질문")
                             .customFont(.caption1_bold)
                             .foregroundStyle(.gray3)
-                        Text("6")
+                        Text("\(records.filter{$0.isFreeTopic == false}.count)")
                             .customFont(.title3_bold)
                             .foregroundStyle(.main)
                     }
@@ -108,7 +112,7 @@ struct ArchiveView: View {
                         Text("작성한 대본")
                             .customFont(.caption1_bold)
                             .foregroundStyle(.gray3)
-                        Text("3")
+                        Text("\(records.filter{$0.isFreeTopic == true}.count)")
                             .customFont(.title3_bold)
                             .foregroundStyle(.main)
                     }
@@ -124,18 +128,20 @@ struct ArchiveView: View {
                             .foregroundStyle(.white)
                             .shadow(radius: 10)
                         
-                        HStack {
-                            Text("나의 말하기 구조 학습 현황")
-                                .customFont(.title4_bold)
-                                .foregroundStyle(.gray3)
-                            Spacer()
-                            Image(systemName: "arrow.right.circle.fill")
-                                .resizable()
-                                .foregroundStyle(.main)
-                                .frame(width: 32, height: 32)
+                        NavigationLink(destination: LearningStatusView() ) {
+                            HStack {
+                                Text("나의 말하기 구조 학습 현황")
+                                    .customFont(.title4_bold)
+                                    .foregroundStyle(.gray3)
+                                Spacer()
+                                Image(systemName: "arrow.right.circle.fill")
+                                    .resizable()
+                                    .foregroundStyle(.main)
+                                    .frame(width: 32, height: 32)
+                            }
+                            .padding(.leading, 33)
+                            .padding(.trailing, 24)
                         }
-                        .padding(.leading, 33)
-                        .padding(.trailing, 24)
                     }
                 }
                 .padding(.vertical, 32)
@@ -147,22 +153,28 @@ struct ArchiveView: View {
     }
 
     private var answeredQuestionView: some View {
-        ForEach(0..<10, id: \.self) { _ in
-            TopicBubbleView(topicContent: "아카데미에서 가장 잘생긴 사람은?", lsName: "STAR", isWideType: true)
+        
+        let filtered  = records.filter {$0.isFreeTopic == false}
+        
+        return ForEach(filtered) { record in
+            TopicBubbleView(topicContent: record.topic, lsName: record.speakingStructure.rawValue, isWideType: true)
                 .padding(.horizontal, 20)
-                .padding(.vertical, 32)
+                .padding(.vertical, 16)
         }
     }
     
     private var writtenScript: some View {
-        // TODO: 데이터 연결하기
-        LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
-            ForEach(0..<10, id: \.self) { _ in
-                ScriptRectangleView(isThisForAdding: false, leftDay: "4", scriptTitle: "아카데미 수료", isDone: false)
+        
+        let filtered  = records.filter {$0.isFreeTopic == true}
+        
+        return LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
+            ForEach(filtered) { record in
+                ScriptRectangleView(isThisForAdding: false, leftDay : "4", scriptTitle: record.topic, isDone: true)
             }
         }
         .padding(.horizontal, 20)
         .padding(.top, 20)
+        
     }
     
     private var scrollObservableView: some View {
@@ -184,6 +196,35 @@ struct ArchiveView: View {
 }
 
 #Preview {
-    ArchiveView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container : ModelContainer = {
+        let schema = Schema([LogicalSpeakingRecord.self])
+        
+        do {
+            return try ModelContainer(for: schema, configurations: config)
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    let testRecord : LogicalSpeakingRecord = .init(topic: "아카데미에서 제일 잘생긴 사람은", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: false)
+    
+    let testRecord1 : LogicalSpeakingRecord = .init(topic: "아카데미에서 제일 방구 소리가 큰 사람은", speakingStructure: .psb, content: [], duration: 90, isDone: true, isFreeTopic: false)
+    
+    let testRecord2 : LogicalSpeakingRecord = .init(topic: "커리어의 지향점은?", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: true)
+    
+    let testRecord3 : LogicalSpeakingRecord = .init(topic: "아카데미에서 제일 가치있었던 경험은?", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: true)
+    
+    let testRecord4 : LogicalSpeakingRecord = .init(topic: "추후 당신의 커리어에서 AI를 어떻게 사용할 것인가요?", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: true)
+    
+    
+    container.mainContext.insert(testRecord)
+    container.mainContext.insert(testRecord1)
+    container.mainContext.insert(testRecord2)
+    container.mainContext.insert(testRecord3)
+    container.mainContext.insert(testRecord4)
+    
+    return ArchiveView()
+        .modelContainer(container)
 }
 
