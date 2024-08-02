@@ -31,6 +31,7 @@ struct ContentView: View {
                     Label("저장소", systemImage: "person.fill")
                 }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

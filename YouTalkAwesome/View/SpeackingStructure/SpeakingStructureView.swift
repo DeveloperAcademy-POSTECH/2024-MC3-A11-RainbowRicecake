@@ -16,7 +16,7 @@ struct SpeakingStructureView: View {
                     InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
                     Spacer()
                 }
-                .padding(.horizontal)
+                .padding([.top,.horizontal])
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: 20)  {
@@ -24,6 +24,7 @@ struct SpeakingStructureView: View {
                             NavigationLink(destination: StructureFlowView(speakingStructure: speakingStructure)) {
                                 LSCardView(speakingStructure: speakingStructure)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
@@ -34,37 +35,36 @@ struct SpeakingStructureView: View {
                         ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
                         Spacer()
                     }
+                    .padding([.top,.horizontal], 10)
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches, id: \.self) { speech in
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
+                                        .padding(.leading, 10)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
-                        .padding(.top, 9)
-                        .padding(.bottom, 17)
                     }
                     
                     HStack {
                         ExampleTitleView(title: "커리어 인터뷰 ✍🏻")
                         Spacer()
                     }
+                    .padding([.top,.horizontal], 10)
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches, id: \.self) { speech in
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
+                                        .padding(.leading, 10)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
-                        .padding(.top, 9)
-                        .padding(.bottom, 17)
                     }
                 }
-                .padding()
                 .background(Color.bg)
             }
             .scrollIndicators(.hidden)
