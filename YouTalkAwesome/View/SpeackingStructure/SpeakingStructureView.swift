@@ -24,6 +24,7 @@ struct SpeakingStructureView: View {
                             NavigationLink(destination: StructureFlowView(speakingStructure: speakingStructure)) {
                                 LSCardView(speakingStructure: speakingStructure)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
