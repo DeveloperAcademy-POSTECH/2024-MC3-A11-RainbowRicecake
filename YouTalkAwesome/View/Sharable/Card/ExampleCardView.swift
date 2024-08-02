@@ -19,7 +19,7 @@ struct ExampleCardView: View {
                 .frame(width: 205, height: 128)
                 .scaledToFill()
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-            LinearGradient(gradient: Gradient(colors: [Color.black, Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [Color.bk, Color.wh]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .opacity(0.85)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading, spacing: 8) {
@@ -30,7 +30,7 @@ struct ExampleCardView: View {
                 HStack {
                 Text(speech.title)
                     .customFont(.body1_bold)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.wh)
                     .frame(width: 140, alignment: .leading)
                     Spacer()
                 }

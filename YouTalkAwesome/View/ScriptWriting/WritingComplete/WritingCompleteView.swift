@@ -19,16 +19,21 @@ struct WritingCompleteView: View {
     var duration: Int?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text( self.isTopicSelected ? "Q. \(title)" : title)
+                        .font(.custom("Pretendard-SemiBold", size: 20))
                     
                     if !isTopicSelected, timeStamp != nil, duration != nil {
                         HStack(spacing: 20) {
                             Label(timeStamp!.getYMDDate(), systemImage: "calendar")
+                                .customFont(.body2_light)
+                                .foregroundStyle(.gray3)
                             
                             Label(durationToMinute(), systemImage: "clock")
+                                .customFont(.body2_light)
+                                .foregroundStyle(.gray3)
                         }
                     }
                 }
@@ -37,7 +42,8 @@ struct WritingCompleteView: View {
             }
             .padding(.horizontal, 22)
             .padding(.bottom, 16)
-            .background(.cyan)
+            .background(.bg)
+            
 
             
             ScrollView(.vertical) {
@@ -48,13 +54,15 @@ struct WritingCompleteView: View {
                 
                 Spacer(minLength: self.isTopicSelected ? 200 : 70)
             }
+            .scrollIndicators(.hidden)
         }
         .overlay(alignment: .bottom) {
             if self.isTopicSelected {
                 ZStack(alignment: .bottom) {
                     // TODO: 색 수정
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
+                        .allowsHitTesting(false)
                     
                     VStack {
                         SpeechSpeedSelectionView(speechSpeedStatus: $speedStatus, speechSpeed: calcStringCount())
@@ -68,8 +76,9 @@ struct WritingCompleteView: View {
             } else {
                 ZStack(alignment: .bottom) {
                     // TODO: 색 수정
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
+                        .allowsHitTesting(false)
                     
                     speechStartButton
                         .padding(20)
@@ -85,6 +94,7 @@ struct WritingCompleteView: View {
                     Button("마치기") {
                         
                     }
+                    .tint(.main)
                 }
             }
         }
@@ -110,10 +120,11 @@ struct WritingCompleteView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
                     .frame(height: 54)
+                    .foregroundStyle(.main)
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
-                    .foregroundStyle(.white)
-                
+                    .customFont(.body1_bold)
+                    .foregroundStyle(.wh)
             }
         }
     }
@@ -125,9 +136,11 @@ struct WritingCompleteView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
                     .frame(height: 54)
+                    .foregroundStyle(.main)
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
-                    .foregroundStyle(.white)
+                    .customFont(.body1_bold)
+                    .foregroundStyle(.wh)
             }
         }
     }
@@ -162,7 +175,7 @@ struct WritingCompleteView: View {
 
 #Preview {
     NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: true, timeStamp: Date(), duration: 3)
+        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, timeStamp: Date(), duration: 3)
     }
 }
 

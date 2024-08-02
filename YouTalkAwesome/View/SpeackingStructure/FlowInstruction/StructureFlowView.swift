@@ -15,7 +15,7 @@ struct StructureFlowView: View {
         VStack(alignment: .leading) {
             Text("말하기 구조를 학습해보아요")
                 .customFont(.title2_bold)
-            LSWideCardView(speakingStructure: speakingStructure)
+            LSWideCardView(speakingStructure: speakingStructure, height: 120)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
@@ -37,9 +37,8 @@ struct StructureFlowView: View {
                     .foregroundColor(Color.gray3)
                 }
             }
-            
+            .scrollIndicators(.hidden)
             Spacer()
-            
             // 퀴즈로 넘어가는 버튼
             NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
                 RoundedRectangle(cornerRadius: 18)
@@ -48,7 +47,7 @@ struct StructureFlowView: View {
                     .overlay(
                         Text("흐름 학습하기")
                             .fontWeight(.bold)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.wh)
                     )
             }
         }

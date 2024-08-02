@@ -16,7 +16,7 @@ struct SpeechSpeedSelectionView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 18)
                 .frame(height: 120)
-                .foregroundStyle(.indigo)
+                .foregroundStyle(.white)
             
             VStack(spacing: 11) {
                 HStack {
@@ -36,10 +36,13 @@ struct SpeechSpeedSelectionView: View {
                             Image(systemName: "chevron.left")
                         }
                     }
+                    .foregroundStyle(.gray3)
                     
                     Spacer()
                     
                     Text(speechSpeedStatus.speechText)
+                        .customFont(.body1_bold)
+                        .foregroundStyle(.gray3)
                         .frame(width: 150)
                     
                     Spacer()
@@ -58,6 +61,7 @@ struct SpeechSpeedSelectionView: View {
                             Image(systemName: "chevron.right")
                         }
                     }
+                    .foregroundStyle(.gray3)
                     
                     Spacer()
                 }
@@ -66,14 +70,20 @@ struct SpeechSpeedSelectionView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .frame(height: 46)
                         .padding(.horizontal, 14)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.bg)
                     
                     HStack(spacing: 20) {
                         Text(speedMinText())
+                            .customFont(.title3_bold)
+                            .foregroundStyle(.main)
                         
                         Text(":")
+                            .customFont(.title3_bold)
+                            .foregroundStyle(.main)
                         
                         Text(speedSecText())
+                            .customFont(.title3_bold)
+                            .foregroundStyle(.main)
                     }
                 }
             }
@@ -111,3 +121,6 @@ struct SpeechSpeedSelectionView: View {
 }
 
 
+#Preview {
+    SpeechSpeedSelectionView(speechSpeedStatus: .constant(.standard), speechSpeed: [0, 1, 2])
+}

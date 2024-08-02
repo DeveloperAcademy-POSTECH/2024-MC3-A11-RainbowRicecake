@@ -107,6 +107,7 @@ struct ContentWritingView: View {
                 }
             }
         }
+        .scrollIndicators(.hidden)
         .ignoresSafeArea()
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {

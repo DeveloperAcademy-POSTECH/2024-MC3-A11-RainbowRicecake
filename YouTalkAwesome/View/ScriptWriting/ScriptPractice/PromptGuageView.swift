@@ -20,11 +20,12 @@ struct PromptGuageView: View {
                     
                     Capsule()
                         .frame(height: 20)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color.init(hex: "EFEFEF"))
                     
                     HStack {
                         Capsule()
                             .frame(height: 20)
+                            .foregroundStyle(Color.init(hex: "51D7A7"))
                         
                         Spacer(minLength: spacerLength)
                         
@@ -32,7 +33,9 @@ struct PromptGuageView: View {
                 }
                 .frame(height: 20)
             }
+            // TODO: 폰트 확인 필요
             Text(self.currentTime < 0 ? "+\(currentMinToString()):\(currentSecToString())" : "\(currentMinToString()):\(currentSecToString())")
+                .customFont(.title4_bold)
                 .monospaced()
                 .animation(nil)
         }
