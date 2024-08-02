@@ -75,6 +75,7 @@ struct ScriptWritingView: View {
                         }
                         .padding(25)
                     }
+                    .frame(height: 260)
                 }  else {
                     HStack {
                         Spacer()
