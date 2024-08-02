@@ -38,7 +38,7 @@ struct SpeechPracticeCompleteView: View {
             VStack {
                 HStack(alignment: .bottom) {
                     Text(speakingStructure.rawValue)
-                        .font(.system(size: 40, weight: .bold))
+                        .customFont(.point1)
                     Text("+1")
                         .font(.system(size: 24, weight: .medium))
                         .offset(y: -5)
@@ -46,7 +46,7 @@ struct SpeechPracticeCompleteView: View {
                 .padding(.top, 150)
                 
                 Text("말하기 구조 학습을 완료했어요!")
-                    .font(.system(size: 20))
+                    .customFont(.body1_bold)
                 
                 
                 Image("\(speakingStructure.rawValue)")
@@ -76,12 +76,17 @@ struct SpeechPracticeCompleteView: View {
                         .foregroundStyle(.white)
                     }
                 }
+                .foregroundStyle(LinearGradient(colors: [ .init(hex: "71FBD2"), .init(hex: "7BC8AD")], startPoint: .center, endPoint: .bottomTrailing))
                 .padding(.top, 27)
                 
-                HStack {
+                HStack(spacing: 24) {
                     Text("권장시간 : \(timeToString())")
+                        .font(.custom("Pretendard-Medium", size: 16))
+                        .foregroundStyle(.gray3)
                     
                     Text("소요시간 : \(calcElapsedTime())")
+                        .font(.custom("Pretendard-Medium", size: 16))
+                        .foregroundStyle(.gray3)
                 }
                 .padding(.bottom, 70)
                 .padding(.top, 50)
@@ -92,9 +97,11 @@ struct SpeechPracticeCompleteView: View {
                 } label: {
                     HStack {
                         Text("다시 말해보기")
+                            .font(.custom("Pretendard-Medium", size: 18))
                         Image(systemName: "arrow.counterclockwise")
                     }
                 }
+                .foregroundStyle(.main)
                 
                 Button {
                     
@@ -103,7 +110,7 @@ struct SpeechPracticeCompleteView: View {
                         .fill(Color.main)
                         .frame(width: 353, height: 54)
                         .overlay {
-                            Text("홈으로")
+                            Text("학습 종료하기")
                                 .foregroundStyle(.white)
                                 .font(.system(size: 18, weight: .semibold))
                         }

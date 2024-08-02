@@ -37,6 +37,7 @@ struct ListeningSpeechView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }
+                    .tint(.black)
                 }
             }
             .overlay(alignment: .bottom) {
@@ -64,6 +65,7 @@ struct ListeningSpeechView: View {
                                 .frame(width: 60, height: 60)
                         }
                     }
+                    .foregroundStyle(.main)
                     .padding(.bottom, 50)
                     
                 }
