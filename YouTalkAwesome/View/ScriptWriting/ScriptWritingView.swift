@@ -15,9 +15,9 @@ struct ScriptRecord: Identifiable {
     var isDone : Bool
 }
 
-enum TopicType: CaseIterable {
-    case casual
-    case formal
+enum TopicType: String, CaseIterable {
+    case casual = "생각하는 힘 기르기 💡"
+    case formal = "면접 대비!"
 }
 
 struct TopicResource: Identifiable {
@@ -78,7 +78,9 @@ struct ScriptWritingView: View {
                 }  else {
                     HStack {
                         Spacer()
-                        ScriptRectangleView(isThisForAdding: true)
+                        NavigationLink(destination: ContentWritingStartView(isTopic: false)) {
+                            ScriptRectangleView(isThisForAdding: true)
+                        }
                         Spacer()
                     }
                     .padding(25)
@@ -87,18 +89,17 @@ struct ScriptWritingView: View {
             .frame(maxWidth: .infinity)
             .background(Color.bg)
             
-
-            
             ForEach(TopicType.allCases, id: \.self) { type in
                 let topicsPerType = topicResources.filter { $0.type == type}
-                
                 VStack {
                     HStack {
                         Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
                             .customFont(.title4_bold)
                         Spacer()
-                        Image(systemName: "chevron.right")
-                        
+                        NavigationLink(destination: TopicListView(topic: type.rawValue)) {
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(Color.bk)
+                        }
                     }
                     .padding([.top,.horizontal])
                     
@@ -138,11 +139,13 @@ struct ScriptWritingView: View {
             }
         }
         .scrollIndicators(.hidden)
-        .ignoresSafeArea(.container, edges: [.top, .horizontal])
+        .ignoresSafeArea()
     }
 }
 
 
 #Preview {
-    ScriptWritingView()
+    NavigationStack {
+        ScriptWritingView()
+    }
 }

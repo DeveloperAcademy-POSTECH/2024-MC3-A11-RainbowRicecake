@@ -56,7 +56,7 @@ struct WritingCompleteView: View {
             if self.isTopicSelected {
                 ZStack(alignment: .bottom) {
                     // TODO: 색 수정
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
                     
                     VStack {
@@ -71,7 +71,7 @@ struct WritingCompleteView: View {
             } else {
                 ZStack(alignment: .bottom) {
                     // TODO: 색 수정
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
                     
                     speechStartButton
@@ -115,7 +115,7 @@ struct WritingCompleteView: View {
                     .frame(height: 54)
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.wh)
                 
             }
         }
@@ -130,7 +130,7 @@ struct WritingCompleteView: View {
                     .frame(height: 54)
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.wh)
             }
         }
     }

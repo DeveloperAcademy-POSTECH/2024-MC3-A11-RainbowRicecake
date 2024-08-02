@@ -31,11 +31,12 @@ struct TopicBubbleView: View {
                     .padding([.bottom, .trailing], 10)
             }
         }
+        .padding(5)
         .frame(width: isWideType ? 353 : 205 ,height: 110)
         .background {
             TopicBubbleShape()
-                .stroke(.black, lineWidth: 1)
-                .fill(.white)
+                .stroke(.bk, lineWidth: 1)
+                .fill(.wh)
             
         }
     }

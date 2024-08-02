@@ -47,7 +47,7 @@ struct StructureFlowView: View {
                     .overlay(
                         Text("흐름 학습하기")
                             .fontWeight(.bold)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.wh)
                     )
             }
         }

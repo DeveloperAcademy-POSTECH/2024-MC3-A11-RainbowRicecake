@@ -47,6 +47,8 @@
 		9BBE12A22C5B1A11008A4D4D /* Text + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */; };
 		EE95B85D2C5B1F18008D4EF1 /* TestPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */; };
 		EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */; };
+		EEA460ED2C5BA1F00086B912 /* ContentWritingStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA460EC2C5BA1F00086B912 /* ContentWritingStartView.swift */; };
+		EEA460EF2C5BD95B0086B912 /* TopicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA460EE2C5BD95B0086B912 /* TopicListView.swift */; };
 		EEB5CC822C5A242800AC8196 /* WellKnownSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */; };
 		EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */; };
 		EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */; };
@@ -100,6 +102,8 @@
 		9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text + Extension.swift"; sourceTree = "<group>"; };
 		EE95B85C2C5B1F18008D4EF1 /* TestPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointView.swift; sourceTree = "<group>"; };
 		EE95B85F2C5B20B9008D4EF1 /* PracticePointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePointsViewModel.swift; sourceTree = "<group>"; };
+		EEA460EC2C5BA1F00086B912 /* ContentWritingStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWritingStartView.swift; sourceTree = "<group>"; };
+		EEA460EE2C5BD95B0086B912 /* TopicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListView.swift; sourceTree = "<group>"; };
 		EEB5CC812C5A242800AC8196 /* WellKnownSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellKnownSpeech.swift; sourceTree = "<group>"; };
 		EEB5CC832C5A53CC00AC8196 /* SpeechFlowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechFlowComponentView.swift; sourceTree = "<group>"; };
 		EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -151,8 +155,9 @@
 		2C29AC042C57608A005E914A /* ScriptWriting */ = {
 			isa = PBXGroup;
 			children = (
-				40E96B3B2C5B24AA0099E603 /* ContentWriting */,
 				EEF2258E2C575924002EF8D1 /* ScriptWritingView.swift */,
+				EEA460EE2C5BD95B0086B912 /* TopicListView.swift */,
+				40E96B3B2C5B24AA0099E603 /* ContentWriting */,
 				2C0645BF2C58BCF100804B04 /* ScriptPractice */,
 				2C0645BE2C58BCC700804B04 /* WritingComplete */,
 				2C0645B82C58BC2000804B04 /* StructureSectionView.swift */,
@@ -203,8 +208,8 @@
 		4007DC822C5396C700EA528E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				40E96B2F2C59DC440099E603 /* Sharable */,
 				4007DC742C53949D00EA528E /* ContentView.swift */,
+				40E96B2F2C59DC440099E603 /* Sharable */,
 				2C29AC042C57608A005E914A /* ScriptWriting */,
 				EEB5CC7B2C5A16F200AC8196 /* Archive */,
 				EEEBF0C02C58C1D100B26DBF /* Flow */,
@@ -306,6 +311,7 @@
 		40E96B3B2C5B24AA0099E603 /* ContentWriting */ = {
 			isa = PBXGroup;
 			children = (
+				EEA460EC2C5BA1F00086B912 /* ContentWritingStartView.swift */,
 				40E96B3C2C5B24CD0099E603 /* ContentWritingView.swift */,
 				40E96B3E2C5B33C10099E603 /* WritingComponentView.swift */,
 			);
@@ -454,6 +460,7 @@
 			files = (
 				2C0645BB2C58BC4F00804B04 /* StructureSection.swift in Sources */,
 				4007DC752C53949D00EA528E /* ContentView.swift in Sources */,
+				EEA460ED2C5BA1F00086B912 /* ContentWritingStartView.swift in Sources */,
 				40E96B2C2C58C64A0099E603 /* QuizDoneView.swift in Sources */,
 				40E96B312C59DC7E0099E603 /* TopicBubbleShape.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
@@ -487,6 +494,7 @@
 				EEEBF0BB2C58B65900B26DBF /* Color + Extension.swift in Sources */,
 				40E96B3D2C5B24CD0099E603 /* ContentWritingView.swift in Sources */,
 				40E96B212C57BC9F0099E603 /* ExampleTitleView.swift in Sources */,
+				EEA460EF2C5BD95B0086B912 /* TopicListView.swift in Sources */,
 				40E96B352C5A1E070099E603 /* ScriptRectangleView.swift in Sources */,
 				4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */,
 				40E96B3F2C5B33C10099E603 /* WritingComponentView.swift in Sources */,

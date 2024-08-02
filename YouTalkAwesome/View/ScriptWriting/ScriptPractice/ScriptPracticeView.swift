@@ -46,7 +46,7 @@ struct ScriptPracticeView: View {
                     .scrollIndicators(.hidden)
                     .overlay(alignment: .top) {
                         ZStack(alignment: .top) {
-                            LinearGradient(colors: [.white, .clear], startPoint: .top, endPoint: .bottom)
+                            LinearGradient(colors: [.wh, .clear], startPoint: .top, endPoint: .bottom)
                                 .frame(height: 100)
                             
                             PromptGuageView(currentTime: vm.currentTime, entireTime: vm.time)
@@ -55,7 +55,7 @@ struct ScriptPracticeView: View {
                     }
                     .overlay(alignment: .bottom) {
                         ZStack(alignment: .bottom) {
-                            LinearGradient(colors: [.white, .clear], startPoint: .center, endPoint: .top)
+                            LinearGradient(colors: [.wh, .clear], startPoint: .center, endPoint: .top)
                             
                             if self.isTopicSelected {
                                 Button {
@@ -66,7 +66,7 @@ struct ScriptPracticeView: View {
                                             .frame(height: 54)
                                         
                                         Text("완료")
-                                            .foregroundStyle(.white)
+                                            .foregroundStyle(.wh)
                                     }
                                     .padding(.bottom, 53)
                                 }

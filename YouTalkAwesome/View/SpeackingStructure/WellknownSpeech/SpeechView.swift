@@ -37,7 +37,7 @@ struct SpeechView: View {
                     .overlay(
                         Text("\(speech.speakingStructure.rawValue) 기반 대본 쓰기")
                             .customFont(.body1_bold)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.wh)
                     )
             }
         }
@@ -54,7 +54,7 @@ struct SpeechTitleView: View {
             Image(speech.imageName)
                 .resizable()
                 .scaledToFill()
-            LinearGradient(gradient: Gradient(colors: [Color.black, Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [Color.bk, Color.wh]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .opacity(0.7)
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
@@ -62,12 +62,12 @@ struct SpeechTitleView: View {
                     LSStickerView(lsName: speech.speakingStructure.rawValue)
                     Text(speech.title)
                         .customFont(.title3_bold)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.wh)
                         .frame(width: 200, alignment: .leading)
                     HStack {
                         Text("\(speech.category) | \(speech.date)")
                             .customFont(.caption2_light)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.wh)
                     }
                 }
                 Spacer()

@@ -35,11 +35,11 @@ struct TopicBubbleShape: Shape {
 #Preview {
     VStack {
         TopicBubbleShape()
-            .stroke(.black)
+            .stroke(.bk)
             .frame(width: 205, height: 110)
             .padding()
         TopicBubbleShape()
-            .stroke(.black)
+            .stroke(.bk)
             .frame(width: 353, height: 110)
     }
 }

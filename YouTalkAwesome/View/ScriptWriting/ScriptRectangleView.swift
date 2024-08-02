@@ -18,7 +18,7 @@ struct ScriptRectangleView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .fill(.white)
+            .fill(.wh)
             .frame(width: width, height: height)
             .shadow(radius: 5)
             .overlay {

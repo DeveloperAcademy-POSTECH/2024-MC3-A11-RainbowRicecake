@@ -31,7 +31,7 @@ struct FlowComponentView: View {
                 if showTextBox {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.gray3, lineWidth: 1)
-                        .fill(Color.white)
+                        .fill(Color.wh)
                         .overlay(
                             Text("\(speakingStructure.componentExamples[index])")
                                 .customFont(.body4_light)
