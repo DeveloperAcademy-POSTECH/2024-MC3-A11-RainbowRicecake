@@ -16,7 +16,7 @@ struct SpeechSpeedSelectionView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 18)
                 .frame(height: 120)
-                .foregroundStyle(.white)
+                .foregroundStyle(.wh)
             
             VStack(spacing: 11) {
                 HStack {

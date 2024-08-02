@@ -139,7 +139,7 @@ struct ScriptPracticeView: View {
                             self.isPresented = false
                         } label: {
                             Image(systemName: "xmark")
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.bk)
                         }
                     }
                 }
