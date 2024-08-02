@@ -21,12 +21,12 @@ enum ModelSchemaV0: VersionedSchema {
         var id: UUID
         var topic: String
         var speakingStructure: SpeakingStructure
-        var content : [String]
+        var content : [StructureSection]
         var duration: Int
         var isDone: Bool
         var designatedTimestamp : Date?
         
-        init (id: UUID = UUID(), topic: String, speakingStructure: SpeakingStructure, content: [String],duration: Int, isDone: Bool, designatedTimestamp: Date? = nil ) {
+        init (id: UUID = UUID(), topic: String, speakingStructure: SpeakingStructure, content: [StructureSection], duration: Int, isDone: Bool, designatedTimestamp: Date? = nil ) {
             self.id = id
             self.topic = topic
             self.speakingStructure = speakingStructure

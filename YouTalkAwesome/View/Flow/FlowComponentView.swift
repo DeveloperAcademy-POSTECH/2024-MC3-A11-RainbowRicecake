@@ -49,7 +49,7 @@ struct FlowComponentView: View {
             if index != speakingStructure.components.count - 1 {
                 Rectangle()
                     .foregroundColor(speakingStructure.color)
-                    .frame(width: 3/*, height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width)*/)
+                    .frame(width: 3)
                     .offset(x: 3, y: 7)
             }
         }

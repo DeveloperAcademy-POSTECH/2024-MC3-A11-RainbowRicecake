@@ -87,8 +87,6 @@ struct ScriptWritingView: View {
             .frame(maxWidth: .infinity)
             .background(Color.bg)
             
-
-            
             ForEach(TopicType.allCases, id: \.self) { type in
                 let topicsPerType = topicResources.filter { $0.type == type}
                 
@@ -136,7 +134,8 @@ struct ScriptWritingView: View {
                     }
                 }
             }
-        }.ignoresSafeArea(.container, edges: [.top, .horizontal])
+        }
+        .ignoresSafeArea(.container, edges: [.top, .horizontal])
     }
 }
 
