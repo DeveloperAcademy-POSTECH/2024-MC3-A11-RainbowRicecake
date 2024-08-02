@@ -13,10 +13,9 @@ struct QuizView: View {
     @State private var isButtonDisabled = true
     @State private var isResultCorrect: Bool? = nil
     
-    @State private var bottomBackColor : Color = .white
     @State private var buttonText : String = "결과 보기"
     @State private var messageColor : Color = .gray2
-    
+    @State private var bottomBackColor : Color = .wh
     
     @State private var confirmationMessage : String = ""
     
@@ -65,7 +64,7 @@ struct QuizView: View {
         .background{
             GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.white)
+                    .fill(.wh)
                     .stroke(.gray3, lineWidth: 1)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .shadow(color: .gray, radius: 10, x: 0, y: 10)
@@ -144,7 +143,7 @@ struct QuizView: View {
                             .overlay {
                                 Text(buttonText)
                                     .customFont(.body1_bold)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.wh)
                             }
                     }
                 } else {
@@ -165,7 +164,7 @@ struct QuizView: View {
                             .overlay {
                                 Text(buttonText)
                                     .customFont(.body1_bold)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.wh)
                             }
                     }
                     .disabled(isButtonDisabled)

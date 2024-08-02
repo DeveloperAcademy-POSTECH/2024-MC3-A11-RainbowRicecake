@@ -16,8 +16,8 @@ struct LSWideCardView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.black, lineWidth: 3)
-            .fill(.white)
+            .stroke(.bk, lineWidth: 3)
+            .fill(.wh)
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)

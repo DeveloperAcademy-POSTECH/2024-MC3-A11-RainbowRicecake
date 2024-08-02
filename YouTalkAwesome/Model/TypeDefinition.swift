@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-enum SpeakingStructure : String, CaseIterable {
+enum SpeakingStructure: String, CaseIterable {
     case prep = "PREP"
     case star = "STAR"
     case aida = "AIDA"

@@ -54,11 +54,13 @@ struct WritingCompleteView: View {
                 
                 Spacer(minLength: self.isTopicSelected ? 200 : 70)
             }
+            .scrollIndicators(.hidden)
         }
         .overlay(alignment: .bottom) {
             if self.isTopicSelected {
                 ZStack(alignment: .bottom) {
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    // TODO: 색 수정
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
                         .allowsHitTesting(false)
                     
@@ -73,7 +75,8 @@ struct WritingCompleteView: View {
                 .frame(height: 300)
             } else {
                 ZStack(alignment: .bottom) {
-                    LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                    // TODO: 색 수정
+                    LinearGradient(colors: [.bk.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea(edges: .bottom)
                         .allowsHitTesting(false)
                     
@@ -121,8 +124,7 @@ struct WritingCompleteView: View {
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
                     .customFont(.body1_bold)
-                    .foregroundStyle(.white)
-                
+                    .foregroundStyle(.wh)
             }
         }
     }
@@ -138,7 +140,7 @@ struct WritingCompleteView: View {
                 
                 Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
                     .customFont(.body1_bold)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.wh)
             }
         }
     }
