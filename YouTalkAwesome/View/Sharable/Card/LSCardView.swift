@@ -16,8 +16,8 @@ struct LSCardView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.black, lineWidth: 3)
-            .fill(.white)
+            .stroke(.bk, lineWidth: 3)
+            .fill(.wh)
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
@@ -54,7 +54,7 @@ struct LSNameView : View {
     var body: some View {
         Text("\(name.rawValue)")
             .customFont(.point1)
-            .foregroundStyle(.black)
+            .foregroundStyle(.bk)
     }
 }
 

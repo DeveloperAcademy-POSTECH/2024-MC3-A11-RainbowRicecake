@@ -17,7 +17,7 @@ struct LSStickerView: View {
             .overlay {
                 Text(lsName)
                     .customFont(.point5)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.wh)
             }
     }
 }
