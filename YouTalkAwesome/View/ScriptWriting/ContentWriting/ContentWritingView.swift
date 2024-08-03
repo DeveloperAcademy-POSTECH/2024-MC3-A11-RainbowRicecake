@@ -133,7 +133,7 @@ struct ContentWritingView: View {
                         print("[Error] Speaking Record Inserting Error")
                     }
                     
-                    if !self.isFreeTopic {
+                    if self.isFreeTopic {
                         Router.shared.push(screen: .WritingCompleteWithoutTopic)
                     } else {
                         Router.shared.push(screen: .WritingCompleteWithTopic)
