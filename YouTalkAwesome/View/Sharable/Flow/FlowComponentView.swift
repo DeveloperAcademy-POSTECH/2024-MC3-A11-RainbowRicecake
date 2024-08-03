@@ -39,7 +39,7 @@ struct FlowComponentView: View {
                                 .stroke(Color.gray3, lineWidth: 1)
                                 .fill(Color.wh)
                         }
-                        .padding(.bottom)
+                        .padding(.bottom, 40)
                 }
             }
             Spacer()
