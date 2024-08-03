@@ -29,17 +29,16 @@ struct FlowComponentView: View {
                         .padding(.bottom, showTextBox ? 0 : 10)
                 }
                 if showTextBox {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray3, lineWidth: 1)
-                        .fill(Color.wh)
-                        .overlay(
-                            Text("\(speakingStructure.componentExamples[index])")
-                                .customFont(.body4_light)
-                                .padding()
-                                .fixedSize(horizontal: false, vertical: true),
-                            alignment: .topLeading
-                        )
-                        .frame(height: getTextHeight(for: speakingStructure.componentExamples[index], in: UIScreen.main.bounds.width))
+                    
+                    
+                    Text("\(speakingStructure.componentExamples[index])")
+                        .customFont(.body4_light)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray3, lineWidth: 1)
+                                .fill(Color.wh)
+                        }
                         .padding(.bottom)
                 }
             }
@@ -54,24 +53,6 @@ struct FlowComponentView: View {
             }
         }
     }
-        
-    func getTextHeight(for text: String, in width: CGFloat) -> CGFloat {
-        let textView = UITextView()
-        let customFont = UIFont(name: "Pretendard-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 12.0 // 원하는 줄 간격 값
-        let attributes: [NSAttributedString.Key: Any] = [
-            .paragraphStyle: paragraphStyle,
-            .font: customFont
-        ]
-        let attributedString = NSAttributedString(string: text, attributes: attributes)
-
-        textView.attributedText = attributedString
-
-        let size = textView.sizeThatFits(CGSize(width: width - 32, height: CGFloat.greatestFiniteMagnitude))
-        return size.height + 32 // 패딩 추가
-    }
-
 }
 
 #Preview {
