@@ -12,15 +12,17 @@ struct ScriptPracticeView: View {
     
     @Binding var isPresented: Bool
     
-    @Binding var audioManager: AudioManager
+    @State private var audioManager: AudioManager = .init()
     
     let isTopicSelected: Bool
     
-    init(isPresented: Binding<Bool>, isTopicSelected: Bool, vm: ScriptPracticeViewModel, audioManager: Binding<AudioManager>) {
+    var structureSections: [StructureSection]
+    
+    init(isPresented: Binding<Bool>, isTopicSelected: Bool, vm: ScriptPracticeViewModel, structureSections: [StructureSection]) {
         self._isPresented = isPresented
         self.isTopicSelected = isTopicSelected
         self.vm = vm
-        self._audioManager = audioManager
+        self.structureSections = structureSections
         
         let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -30,14 +32,11 @@ struct ScriptPracticeView: View {
     }
     
     var body: some View {
-        NavigationStack {
             VStack {
                 ScrollView {
                     VStack {
                         Spacer(minLength: 30)
-                        
-                        ForEach(structureSectionSample, id: \.self) { section in
-                            // TODO: 데이터 연결
+                        ForEach(structureSections, id: \.self) { section in
                             StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                         }
                         
@@ -80,13 +79,10 @@ struct ScriptPracticeView: View {
                             .allowsHitTesting(false)
                         
                         if self.isTopicSelected {
-                            NavigationLink {
-                                SpeechPracticeCompleteView(standardTime: vm.time, elapsedTime: vm.currentTime, speakingStructure: .grow)
-                                    .navigationBarBackButtonHidden()
-                                    .onAppear {
-                                        self.vm.stopTimer()
-                                        self.audioManager.stopRecording()
-                                    }
+                            Button {
+                                self.vm.stopTimer()
+                                self.audioManager.stopRecording()
+                                Router.shared.push(screen: .SpeechPracticeComplete)
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
@@ -99,7 +95,6 @@ struct ScriptPracticeView: View {
                                 .padding(.bottom, 53)
                             }
                             .padding(.horizontal, 20)
-                            
                         } else {
                             Button {
                                 if vm.isTimerPlaying {
@@ -146,19 +141,17 @@ struct ScriptPracticeView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarBackButtonHidden()
-            
-        }
-        .onAppear {
-            if self.isTopicSelected {
-                vm.makeTimer()
-                vm.startTimer()
-//                audioManager.startRecording()
+            .onAppear {
+                if self.isTopicSelected {
+                    vm.makeTimer()
+                    vm.startTimer()
+    //                audioManager.startRecording()
+                }
             }
-        }
     }
 }
 
 #Preview {
-    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), audioManager: .constant(AudioManager()))
+    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), structureSections: structureSectionSample)
 }
 

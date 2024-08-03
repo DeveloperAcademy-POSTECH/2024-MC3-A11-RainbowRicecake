@@ -68,11 +68,15 @@ struct SpeakingStructureView: View {
                 .background(Color.bg)
             }
             .scrollIndicators(.hidden)
+
         }
         .navigationBarBackButtonHidden()
+
     }
 }
 
 #Preview {
     SpeakingStructureView()
 }
+
+

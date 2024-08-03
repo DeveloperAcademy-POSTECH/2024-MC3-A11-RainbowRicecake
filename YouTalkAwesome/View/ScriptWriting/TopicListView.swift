@@ -31,6 +31,12 @@ struct TopicListView: View {
                     ForEach(topicResources) { topic in
                         TopicBubbleView(topicContent: topic.content, lsName: topic.lsStructure, isWideType: true)
                             .padding()
+                            .onTapGesture {
+                                Router.shared.setTopic(title: topic.content)
+                                Router.shared.setSelectedStructure(selection: .init(rawValue: topic.lsStructure)!)
+                                
+                                Router.shared.push(screen: .ContentWritingStartWithTopic)
+                            }
                     }
                 }
             }

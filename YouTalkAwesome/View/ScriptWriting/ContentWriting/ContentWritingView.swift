@@ -116,13 +116,27 @@ struct ContentWritingView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime!, isDone: true, designatedTimestamp: self.designatedDate, isFreeTopic: self.isFreeTopic)
+                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime ?? 0, isDone: true, designatedTimestamp: self.designatedDate, isFreeTopic: self.isFreeTopic)
+                    
+                    var finalStructureSections = [StructureSection]()
+                    for index in 0 ..< self.textFields.count {
+                        let result = StructureSection(topContent: self.structureSections[index].topContent, bodyContent: self.textFields[index], isScript: self.structureSections[index].isScript)
+                        finalStructureSections.append(result)
+                    }
+                    
+                    Router.shared.setStructureSections(finalStructureSections)
                     
                     do {
                         modelContext.insert(scriptRecord)
                         try modelContext.save()
                     } catch {
                         print("[Error] Speaking Record Inserting Error")
+                    }
+                    
+                    if !self.isFreeTopic {
+                        Router.shared.push(screen: .WritingCompleteWithoutTopic)
+                    } else {
+                        Router.shared.push(screen: .WritingCompleteWithTopic)
                     }
                 } label: {
                     Text("완료")
