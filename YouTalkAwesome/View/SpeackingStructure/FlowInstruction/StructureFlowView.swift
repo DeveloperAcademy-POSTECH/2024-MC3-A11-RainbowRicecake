@@ -39,7 +39,7 @@ struct StructureFlowView: View {
             }
             .scrollIndicators(.hidden)
             Spacer()
-            // 퀴즈로 넘어가는 버튼
+            
             NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color.main)
@@ -60,6 +60,6 @@ struct StructureFlowView: View {
 
 #Preview {
     NavigationStack {
-        StructureFlowView(speakingStructure: .prep)
+        StructureFlowView(speakingStructure: .grow)
     }
 }

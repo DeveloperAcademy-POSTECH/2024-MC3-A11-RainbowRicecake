@@ -38,7 +38,7 @@ struct SpeakingStructureView: View {
                     .padding([.top,.horizontal], 10)
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(sampleSpeeches, id: \.self) { speech in
+                            ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
                                         .padding(.leading, 10)
@@ -55,7 +55,7 @@ struct SpeakingStructureView: View {
                     .padding([.top,.horizontal], 10)
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(sampleSpeeches, id: \.self) { speech in
+                            ForEach(sampleSpeeches.filter { $0.category == "커리어 인터뷰"}, id: \.self) { speech in
                                 NavigationLink(destination: SpeechView(speech: speech)) {
                                     ExampleCardView(speech: speech, title: speech.title)
                                         .padding(.leading, 10)
