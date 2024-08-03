@@ -41,7 +41,6 @@ struct ScriptPracticeView: View {
                 }
                 .overlay(alignment: .trailing) {
                     Button {
-                        // TODO: 기능 구현 필요
                         self.isPresented = false
                     } label: {
                         Image(systemName: "xmark")
