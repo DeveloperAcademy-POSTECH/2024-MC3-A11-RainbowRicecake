@@ -28,6 +28,8 @@ struct ContentWritingView: View {
     
     @State private var isPresented : Bool = false
     
+    @State private var keyboardHeight: CGFloat = 0
+    
     let nonVerbalExpressions = ["🙂 미소", "⭐️ 강조", "🗣️ 크게 말하기", "🫲 제스쳐"]
     
     func hideKeyboard() {
@@ -58,8 +60,6 @@ struct ContentWritingView: View {
                     .customFont(.title4_bold)
                     .padding()
                     .padding(.top, 80)
-                
-
                 
                 if let designatedDate = self.designatedDate, let expectedLeadTime = self.expectedLeadTime {
                     HStack {
@@ -104,7 +104,10 @@ struct ContentWritingView: View {
                         title: { Text("추가하기").customFont(.caption1_light) },
                         icon: { Image(systemName: "plus")
                             .font(.system(size:14))}
-                    ).foregroundColor(.gray3)
+                    )
+                    .foregroundColor(.gray3)
+                    .padding(.bottom, 40)
+                    .padding(.bottom, keyboardHeight)
                 }
             }
         }
@@ -129,9 +132,17 @@ struct ContentWritingView: View {
             }
         }
         .onAppear {
-            if structureSections.count == 0 {
-                structureSections.append(.init(topContent: "\(selectedStructure.components[0]) (\(selectedStructure.components_kor[0]))", bodyContent: "", isScript: true))
-                textFields.append("")
+            structureSections.append(.init(topContent: "\(selectedStructure.components[0]) (\(selectedStructure.components_kor[0]))", bodyContent: "", isScript: true))
+            textFields.append("")
+            
+            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+                if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    keyboardHeight = keyboardSize.height
+                }
+            }
+            
+            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
+                keyboardHeight = 0
             }
         }
         .sheet(isPresented: $isPresented) {
@@ -187,6 +198,7 @@ struct ContentWritingView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 
