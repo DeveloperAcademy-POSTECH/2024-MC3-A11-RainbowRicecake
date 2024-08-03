@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContentWritingStartView: View {
     var isTopic: Bool = false
+    @StateObject var router = Router.shared
     
     //제목 입력
-    @State private var contentTitle: String = ""
+    @State var contentTitle: String = ""
     
     //발표 날짜 선택
     @State private var showDatePicker = false
@@ -29,7 +30,7 @@ struct ContentWritingStartView: View {
     @State private var timeLimitString = ""
     
     //논리 구조 선택
-    @State private var selectedSpeakingStructure: SpeakingStructure? = nil
+    @State var selectedSpeakingStructure: SpeakingStructure? = nil
     
     //위 사항들 다 충족하면 true
     @State private var canGoNext: Bool = false
@@ -90,8 +91,8 @@ struct ContentWritingStartView: View {
                 }
                 .scrollIndicators(.hidden)
             }
-            // 새로운 대본
-//            NavigationLink(destination: )) {
+            
+            // TODO: 버튼으로 수정 필요!
             RoundedRectangle(cornerRadius: 18)
                 .foregroundStyle(canGoNext ? Color.main : Color.gray5)
                 .frame(width: 353, height: 54)
@@ -100,8 +101,17 @@ struct ContentWritingStartView: View {
                         .customFont(.body1_bold)
                         .foregroundStyle(canGoNext ? Color.wh : Color.gray2)
                 )
-//            }
-//            .disabled(!canGoNext)
+                .onTapGesture {
+                    router.setTopic(title: self.contentTitle)
+                    router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
+                    
+                    if isTopic {
+                        router.push(screen: .ContentWritingWithTopic)
+                    } else {
+                        router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
+                        router.push(screen: .ContentWritingWithoutTopic)
+                    }
+                }
         }
         .background(Color.gray6)
         .toolbarRole(.editor)

@@ -93,7 +93,7 @@ struct SpeechPracticeCompleteView: View {
 
                 
                 Button {
-                    
+                    Router.shared.popToWritingCompleteView()
                 } label: {
                     HStack {
                         Text("다시 말해보기")
@@ -104,7 +104,7 @@ struct SpeechPracticeCompleteView: View {
                 .foregroundStyle(.main)
                 
                 Button {
-                    
+                    Router.shared.popToRootView()
                 } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(Color.main)

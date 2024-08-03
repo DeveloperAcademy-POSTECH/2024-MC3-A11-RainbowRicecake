@@ -23,6 +23,7 @@
 		2C27F9E72C5C6E9200B3B91B /* ScrollOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C27F9E62C5C6E9200B3B91B /* ScrollOffsetKey.swift */; };
 		2C27F9E92C5C717400B3B91B /* ArchiveSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C27F9E82C5C717400B3B91B /* ArchiveSegmentView.swift */; };
 		2C29AC062C577DEA005E914A /* WritingCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29AC052C577DEA005E914A /* WritingCompleteView.swift */; };
+		2C403F2C2C5DC84E00B2D4B0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C403F2B2C5DC84E00B2D4B0 /* NavigationRouter.swift */; };
 		4007DC732C53949D00EA528E /* YouTalkAwesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */; };
 		4007DC752C53949D00EA528E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC742C53949D00EA528E /* ContentView.swift */; };
 		4007DC772C53949D00EA528E /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC762C53949D00EA528E /* Typealias.swift */; };
@@ -83,6 +84,7 @@
 		2C27F9E62C5C6E9200B3B91B /* ScrollOffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollOffsetKey.swift; sourceTree = "<group>"; };
 		2C27F9E82C5C717400B3B91B /* ArchiveSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveSegmentView.swift; sourceTree = "<group>"; };
 		2C29AC052C577DEA005E914A /* WritingCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingCompleteView.swift; sourceTree = "<group>"; };
+		2C403F2B2C5DC84E00B2D4B0 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		4007DC6F2C53949D00EA528E /* YouTalkAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTalkAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4007DC722C53949D00EA528E /* YouTalkAwesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTalkAwesomeApp.swift; sourceTree = "<group>"; };
 		4007DC742C53949D00EA528E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				EEEBF0BA2C58B65900B26DBF /* Color + Extension.swift */,
 				9BBE12A12C5B1A11008A4D4D /* Text + Extension.swift */,
 				2C27F9E22C5C6E3000B3B91B /* SafeAreaSize.swift */,
+				2C403F2B2C5DC84E00B2D4B0 /* NavigationRouter.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				40E96B312C59DC7E0099E603 /* TopicBubbleShape.swift in Sources */,
 				40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */,
 				2C27F9DD2C5A93F300B3B91B /* SpeechPracticeCompleteView.swift in Sources */,
+				2C403F2C2C5DC84E00B2D4B0 /* NavigationRouter.swift in Sources */,
 				EEB5CC842C5A53CC00AC8196 /* SpeechFlowComponentView.swift in Sources */,
 				4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */,
 				40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */,

@@ -10,13 +10,14 @@ import SwiftUI
 struct WritingCompleteView: View {
     @State private var isPresented: Bool = false
     @State private var speedStatus: SpeechSpeedStatus = .standard
-    @State private var audioManager: AudioManager = .init()
+//    @State private var audioManager: AudioManager = .init()
     
     let title: String
     let isTopicSelected: Bool
     
-    var timeStamp: Date?
-    var duration: Int?
+    var selectedDate: Date?
+    var selectedTime: Int?
+    var structureSections: [StructureSection]
     
     var body: some View {
         VStack(spacing: 0) {
@@ -25,9 +26,9 @@ struct WritingCompleteView: View {
                     Text( self.isTopicSelected ? "Q. \(title)" : title)
                         .font(.custom("Pretendard-SemiBold", size: 20))
                     
-                    if !isTopicSelected, timeStamp != nil, duration != nil {
+                    if !isTopicSelected, selectedDate != nil, selectedTime != nil {
                         HStack(spacing: 20) {
-                            Label(timeStamp!.getYMDDate(), systemImage: "calendar")
+                            Label(selectedDate!.getYMDDate(), systemImage: "calendar")
                                 .customFont(.body2_light)
                                 .foregroundStyle(.gray3)
                             
@@ -48,7 +49,10 @@ struct WritingCompleteView: View {
             
             ScrollView(.vertical) {
                 // TODO: 나중에 수정 필요
-                ForEach(structureSectionSample, id: \.self) { section in
+//                ForEach(structureSectionSample, id: \.self) { section in
+//                    StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
+//                }
+                ForEach(self.structureSections, id: \.self) { section in
                     StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                 }
                 
@@ -92,19 +96,19 @@ struct WritingCompleteView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     // TODO: 하이파이에 따라 수정 예정
                     Button("마치기") {
-                        
+                        Router.shared.popToRootView()
                     }
                     .tint(.main)
                 }
             }
         }
         .fullScreenCover(isPresented: $isPresented) {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: duration ?? 0), audioManager: $audioManager)
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: selectedTime ?? 0), structureSections: self.structureSections)
                 .ignoresSafeArea(edges: .bottom)
         }
         .task {
             if isTopicSelected {
-                if await audioManager.requestPermission() {
+                if await AudioManager.requestPermission() {
                     print("success!")
                 } else {
                     print("fail!")
@@ -130,8 +134,9 @@ struct WritingCompleteView: View {
     }
     
     var speechStartButtonWithTopic: some View {
-        NavigationLink {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: calcStringCount()[self.speedStatus.rawValue]), audioManager: $audioManager)
+        Button {
+            Router.shared.makeVM(time: calcStringCount()[self.speedStatus.rawValue])
+            Router.shared.push(screen: .ScriptPracticeWithTopic)
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
@@ -146,8 +151,8 @@ struct WritingCompleteView: View {
     }
     
     private func durationToMinute() -> String {
-        let minute = self.duration! / 60
-        let second = self.duration! % 60
+        let minute = self.selectedTime! / 60
+        let second = self.selectedTime! % 60
         
         let result = (minute == 0 ? "\(second)초" : "\(minute)분 \(second)초")
         
@@ -156,7 +161,7 @@ struct WritingCompleteView: View {
     
     private func calcStringCount() -> [Int] {
         var charCount = 0
-        _ = structureSectionSample.map {
+        _ = structureSections.map {
             charCount += $0.bodyContent.count
         }
         
@@ -175,7 +180,7 @@ struct WritingCompleteView: View {
 
 #Preview {
     NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, timeStamp: Date(), duration: 3)
+        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, selectedDate: Date(), selectedTime: 3, structureSections: structureSectionSample)
     }
 }
 

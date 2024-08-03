@@ -32,7 +32,7 @@ final class AudioManager: NSObject {
         return fileURL
     }()
     
-    public func requestPermission() async -> Bool {
+    public static func requestPermission() async -> Bool {
         let result = await AVAudioApplication.requestRecordPermission()
         
         return result
