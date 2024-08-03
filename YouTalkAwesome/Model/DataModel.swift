@@ -17,7 +17,7 @@ enum ModelSchemaV0: VersionedSchema {
     }
     
     @Model
-    final class LogicalSpeakingRecord{
+    final class LogicalSpeakingRecord1 {
         var id: UUID
         var topic: String
         var speakingStructure: SpeakingStructure

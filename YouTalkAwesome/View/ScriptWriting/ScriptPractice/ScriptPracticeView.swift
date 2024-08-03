@@ -33,6 +33,26 @@ struct ScriptPracticeView: View {
     
     var body: some View {
             VStack {
+                HStack {
+                    Spacer()
+                    Text("프롬프트")
+                        .customFont(.body1_bold)
+                    Spacer()
+                }
+                .overlay(alignment: .trailing) {
+                    Button {
+                        // TODO: 기능 구현 필요
+                        self.isPresented = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                            .foregroundStyle(.bk)
+                    }
+                    .padding(.trailing, 11)
+                }
+                .padding(.vertical, 10)
+                
                 ScrollView {
                     VStack {
                         Spacer(minLength: 30)
