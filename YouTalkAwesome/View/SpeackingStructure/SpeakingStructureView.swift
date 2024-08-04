@@ -13,66 +13,75 @@ struct SpeakingStructureView: View {
     var body: some View {
         NavigationStack(path: $router.route) {
             ScrollView {
-                HStack {
-                    InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
-                    Spacer()
-                }
-                .padding([.top,.horizontal])
-                
-                ScrollView(.horizontal) {
-                    HStack(spacing: 20)  {
-                        ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
-                            Button {
-                                router.setSelectedStructure(selection: speakingStructure)
-                                router.push(screen: .StructureFlow)
-                            } label: {
-                                LSCardView(speakingStructure: speakingStructure)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                }
-                .padding(.bottom)
-                
-                VStack {
+                VStack(spacing: 10){
                     HStack {
-                        ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
+                        InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
                         Spacer()
                     }
-                    .padding(.top, 17)
-                    .padding(.horizontal, 10)
+                    .padding(.top, 20)
+                    .padding(.leading, 20)
+                    
                     ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
+                        HStack(spacing: 12)  {
+                            ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
                                 Button {
-                                    router.setSpeech(speech: speech)
-                                    router.push(screen: .Speech)
+                                    router.setSelectedStructure(selection: speakingStructure)
+                                    router.push(screen: .StructureFlow)
                                 } label: {
-                                    ExampleCardView(speech: speech, title: speech.title)
-                                        .padding(.leading, 10)
+                                    LSCardView(speakingStructure: speakingStructure)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
+                        }
+                        .padding(.horizontal, 8)
+                    }
+                    .padding(.bottom, 24)
+                }
+                
+                VStack(spacing: 32) {
+                    VStack(spacing: 14) {
+                        HStack {
+                            ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
+                            Spacer()
+                        }
+                        .padding(.leading, 20)
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 16) {
+                                ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
+                                    Button {
+                                        router.setSpeech(speech: speech)
+                                        router.push(screen: .Speech)
+                                    } label: {
+                                        ExampleCardView(speech: speech, title: speech.title)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                            }
+                            .padding(.horizontal, 20)
                         }
                     }
                     
-                    HStack {
-                        ExampleTitleView(title: "CEO 인터뷰 ✍🏻")
-                        Spacer()
-                    }
-                    .padding([.top,.horizontal], 10)
-                    ScrollView(.horizontal) {
+                    VStack(spacing: 14) {
                         HStack {
-                            ForEach(sampleSpeeches.filter { $0.category == "커리어 인터뷰"}, id: \.self) { speech in
-                                NavigationLink(destination: SpeechView(speech: speech)) {
-                                    ExampleCardView(speech: speech, title: speech.title)
-                                        .padding(.leading, 10)
+                            ExampleTitleView(title: "CEO 인터뷰 ✍🏻")
+                            Spacer()
+                        }
+                        .padding(.leading, 20)
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 16) {
+                                ForEach(sampleSpeeches.filter { $0.category == "커리어 인터뷰"}, id: \.self) { speech in
+                                    NavigationLink(destination: SpeechView(speech: speech)) {
+                                        ExampleCardView(speech: speech, title: speech.title)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
+                            .padding(.horizontal, 20)
                         }
                     }
                 }
+                .padding(.top, 24)
+                .padding(.bottom, 40)
                 .background(Color.bg)
             }
             .scrollIndicators(.hidden)
@@ -82,7 +91,7 @@ struct SpeakingStructureView: View {
             
         }
         .navigationBarBackButtonHidden()
-
+        
     }
 }
 
