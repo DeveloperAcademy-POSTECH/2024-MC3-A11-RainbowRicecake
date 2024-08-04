@@ -10,6 +10,15 @@ import SwiftUI
 
 
 enum ViewList: Hashable {
+    // 말하기 구조 뷰
+    case StructureFlow
+    
+    case Quiz
+    case QuizDone
+    
+    case Speech
+    
+    // 대본 작성 뷰
     case TopicList
     
     case ContentWritingStartWithTopic
@@ -24,10 +33,14 @@ enum ViewList: Hashable {
     case ScriptPracticeWithTopic
     
     case SpeechPracticeComplete
+    
+
 }
 
 final class Router: ObservableObject {
     @Published public var route: [ViewList] = []
+    
+    static let shared = Router()
     
     private var isTopicSelected: Bool = false
     private var topic: String?
@@ -36,30 +49,33 @@ final class Router: ObservableObject {
     private var selectedTime : Int?
     private var estimatedTime: Int?
     private var structureSections : [StructureSection] = []
+    private var selectedSpeech: WellKnownSpeech?
     
     private var audioManager: AudioManager?
     private var scriptPracticeViewModel: ScriptPracticeViewModel?
     
     private var selectedTopicList: String?
     
-    static let shared = Router()
-    
+    private init() {}
+}
+
+// MARK: - 네비게이션 관련 메소드
+extension Router {
     public func push(screen: ViewList) {
         route.append(screen)
     }
     
-    private init() {}
-    
     @ViewBuilder
     public func pushView(screen: ViewList) -> some View {
         switch screen {
+            // 대본 작성 뷰
         case .TopicList:
             TopicListView(topic: selectedTopicList ?? "test")
             
         case .ContentWritingStartWithTopic:
             ContentWritingStartView(isTopic: true, contentTitle: self.topic ?? "nil", selectedSpeakingStructure: self.selectedStructure)
         case .ContentWritingStartWithoutTopic:
-            ContentWritingStartView(isTopic: isTopicSelected)
+            ContentWritingStartView(isTopic: isTopicSelected, selectedSpeakingStructure: self.selectedStructure)
             
         case .ContentWritingWithoutTopic, .ContentWritingWithTopic:
             ContentWritingView(topic: self.topic ?? "nil", selectedStructure: self.selectedStructure ?? .aida, designatedDate: self.selectedDate,  expectedLeadTime: selectedTime, isFreeTopic: !isTopicSelected)
@@ -75,6 +91,18 @@ final class Router: ObservableObject {
         case .SpeechPracticeComplete:
             SpeechPracticeCompleteView(standardTime: self.scriptPracticeViewModel?.time ?? 0, elapsedTime: self.scriptPracticeViewModel?.currentTime ?? 0, speakingStructure: self.selectedStructure ?? .aida)
                 .navigationBarBackButtonHidden()
+            
+            // 말하기 구조 뷰
+        case .StructureFlow:
+            StructureFlowView(speakingStructure: self.selectedStructure ?? .aida)
+            
+        case .Quiz:
+            QuizView(lsStructure: self.selectedStructure ?? .aida)
+        case .QuizDone:
+            QuizDoneView(speakingStructure: self.selectedStructure ?? .aida)
+            
+        case .Speech:
+            SpeechView(speech: self.selectedSpeech!)
         }
     }
     
@@ -82,6 +110,24 @@ final class Router: ObservableObject {
         self.route = []
     }
     
+    public func popToWritingCompleteView() {
+        var flag = true
+        
+        while flag {
+            if let path = route.last {
+                if path == .WritingCompleteWithTopic {
+                    flag = false
+                    break
+                }
+                _ = route.popLast()!
+            }
+        }
+    }
+}
+
+
+// MARK: - 프로퍼티 관리 메소드
+extension Router {
     public func setIsTopicSelected(_ isTopicSelected: Bool) {
         self.isTopicSelected = isTopicSelected
     }
@@ -111,22 +157,11 @@ final class Router: ObservableObject {
         self.selectedTopicList = name
     }
     
+    public func setSpeech(speech: WellKnownSpeech) {
+        self.selectedSpeech = speech
+    }
+    
     public func makeVM(time: Int) {
         self.scriptPracticeViewModel = .init(time: time)
     }
-    
-    public func popToWritingCompleteView() {
-        var flag = true
-        
-        while flag {
-            if let path = route.last {
-                if path == .WritingCompleteWithTopic {
-                    flag = false
-                    break
-                }
-                _ = route.popLast()!
-            }
-        }
-    }
-
 }

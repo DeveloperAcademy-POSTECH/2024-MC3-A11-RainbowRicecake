@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct SpeakingStructureView: View {
+    @StateObject private var router = Router.shared
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.route) {
             ScrollView {
                 HStack {
                     InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
@@ -21,7 +22,10 @@ struct SpeakingStructureView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 20)  {
                         ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
-                            NavigationLink(destination: StructureFlowView(speakingStructure: speakingStructure)) {
+                            Button {
+                                router.setSelectedStructure(selection: speakingStructure)
+                                router.push(screen: .StructureFlow)
+                            } label: {
                                 LSCardView(speakingStructure: speakingStructure)
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -39,7 +43,10 @@ struct SpeakingStructureView: View {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
-                                NavigationLink(destination: SpeechView(speech: speech)) {
+                                Button {
+                                    router.setSpeech(speech: speech)
+                                    router.push(screen: .Speech)
+                                } label: {
                                     ExampleCardView(speech: speech, title: speech.title)
                                         .padding(.leading, 10)
                                 }
@@ -68,7 +75,10 @@ struct SpeakingStructureView: View {
                 .background(Color.bg)
             }
             .scrollIndicators(.hidden)
-
+            .navigationDestination(for: ViewList.self) { list in
+                router.pushView(screen: list)
+            }
+            
         }
         .navigationBarBackButtonHidden()
 
