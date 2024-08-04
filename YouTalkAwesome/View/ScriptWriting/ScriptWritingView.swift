@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 // TODO: 추구 Type 파일에 병합 필요.
 struct ScriptRecord: Identifiable {
@@ -44,6 +45,8 @@ struct ScriptWritingView: View {
     ]
     @StateObject var router = Router.shared
 
+//    @Query(filter: #Predicate<LogicalSpeakingRecord>{ $0.designatedTimestamp ?? Date() > Date() }) var record: [LogicalSpeakingRecord]
+    @Query var records: [LogicalSpeakingRecord]
     
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
@@ -68,17 +71,34 @@ struct ScriptWritingView: View {
                         .padding()
                         .padding(.top, 60)
                     
-                    if scriptRecords != nil{
+                    if !records.isEmpty {
                         // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(scriptRecords) {
-                                    ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
+                                Button {
+                                    router.push(screen: .ContentWritingStartWithoutTopic)
+                                } label: {
+                                    Image(systemName: "plus.circle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30)
+                                        .foregroundColor(.gray4)
+                                }
+
+                                
+                                ForEach(records) {
+                                    ScriptRectangleView(isThisForAdding: false, leftDay: "3", scriptTitle: $0.topic, isDone: $0.isDone, record: $0)
                                         .onTapGesture {
-                                            router.setIsTopicSelected(false)
-                                            router.push(screen: .ContentWritingStartWithoutTopic)
+                                            
                                         }
                                 }
+//                                ForEach(records) {
+//                                    ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
+//                                        .onTapGesture {
+//                                            router.setIsTopicSelected(false)
+//                                            router.push(screen: .ContentWritingStartWithoutTopic)
+//                                        }
+//                                }
                             }
                             .padding(25)
                         }
@@ -86,7 +106,12 @@ struct ScriptWritingView: View {
                     }  else {
                         HStack {
                             Spacer()
-                            ScriptRectangleView(isThisForAdding: true)
+                            ScriptRectangleView(isThisForAdding: true, record: nil)
+                                .padding(.horizontal, 75)
+                                .onTapGesture {
+                                    router.setIsTopicSelected(false)
+                                    router.push(screen: .ContentWritingStartWithoutTopic)
+                                }
 
                             Spacer()
                         }

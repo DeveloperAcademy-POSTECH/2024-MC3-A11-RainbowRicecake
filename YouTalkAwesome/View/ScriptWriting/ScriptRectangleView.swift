@@ -15,6 +15,7 @@ struct ScriptRectangleView: View {
     var scriptTitle: String?
     var isDone : Bool?
     
+    let record: LogicalSpeakingRecord?
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
@@ -39,7 +40,7 @@ struct ScriptRectangleView: View {
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("D - \(leftDay!)")
+                        Text("D - \(days(from: record?.designatedTimestamp ?? Date()))")
                             .customFont(.title4_light)
                             .foregroundStyle(.gray3)
                         Text(scriptTitle!)
@@ -47,7 +48,7 @@ struct ScriptRectangleView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Text(isDone! ? "작성완료" : "작성 중···")
+                            Text(record!.isDone ? "작성완료" : "작성 중···")
                                 .customFont(.caption1_bold)
                                 .foregroundStyle(.gray3)
                         }
@@ -60,6 +61,19 @@ struct ScriptRectangleView: View {
                 }
             }
     }
+    
+//    private func calculateDays(date: Date) -> Int {
+//
+//        let startDate =
+//        daysCount = days(from: startDate)
+//        let hundred = calendar.date(byAdding: .day, value: 100, to: startDate)
+//    }
+    
+    
+    private func days(from date: Date) -> Int {
+        let calendar = Calendar.current
+        return calendar.dateComponents([.day], from: date, to: Date()).day! + 1
+    }
 }
 
 #Preview {
@@ -70,5 +84,7 @@ struct ScriptRectangleView: View {
 //        }.padding()
 //        
 //    }
-    ScriptRectangleView(isThisForAdding: false, leftDay: "5", scriptTitle: "애플 리뷰 준비", isDone: false)
+    
+    
+    ScriptRectangleView(isThisForAdding: true, leftDay: "5", scriptTitle: "애플 리뷰 준비", isDone: false, record: nil)
 }
