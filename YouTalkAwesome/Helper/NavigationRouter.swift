@@ -109,7 +109,6 @@ extension Router {
         case .QuizDone:
             QuizDoneView(isRepeat: false, speakingStructure: self.selectedStructure ?? .aida)
                 .toolbarRole(.editor)
-            
         case .Speech:
             SpeechView(speech: self.selectedSpeech!)
                 .toolbarRole(.editor)
