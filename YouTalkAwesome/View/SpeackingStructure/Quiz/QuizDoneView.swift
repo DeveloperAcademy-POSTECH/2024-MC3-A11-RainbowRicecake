@@ -64,7 +64,9 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: ContentView()) {
+                Button {
+                    Router.shared.popToRootView()
+                } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(Color.main)
                         .frame(width: 353, height: 54)

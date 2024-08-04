@@ -40,7 +40,9 @@ struct StructureFlowView: View {
             .scrollIndicators(.hidden)
             Spacer()
             
-            NavigationLink(destination: QuizView(lsStructure: speakingStructure)) {
+            Button {
+                Router.shared.push(screen: .Quiz)
+            } label: {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color.main)
                     .frame(width: 353, height: 54)

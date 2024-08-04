@@ -136,7 +136,9 @@ struct QuizView: View {
                 Spacer()
                 
                 if isResultCorrect != nil && isResultCorrect == true {
-                    NavigationLink(destination: QuizDoneView(speakingStructure: .prep)) {
+                    Button {
+                        Router.shared.push(screen: .QuizDone)
+                    } label: {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color.main)
                             .frame(width: 353, height: 54)
