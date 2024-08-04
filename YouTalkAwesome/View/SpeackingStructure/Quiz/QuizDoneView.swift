@@ -11,7 +11,6 @@ struct QuizDoneView: View {
     @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     @State private var isAnimating = false
     var speakingStructure: SpeakingStructure
-    @State private var isPointAdded = false
     
     var body: some View {
         ZStack {
