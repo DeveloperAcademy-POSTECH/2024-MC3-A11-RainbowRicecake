@@ -40,7 +40,6 @@ struct ExampleCardView: View {
                 .padding(.bottom, 14)
                 .padding(.leading, 14)
             }
-            //.padding()
         }
         .frame(width: 205, height: 128)
     }
