@@ -62,6 +62,10 @@ struct ScriptWritingView: View {
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 }
             }
+            .onTapGesture {
+                router.setSelectedStructure(selection: evaluateSituation(text: situation))
+                router.push(screen: .ContentWritingStartWithoutTopic)
+            }
     }
     
     var body: some View {
@@ -190,6 +194,21 @@ struct ScriptWritingView: View {
         }
         .navigationBarBackButtonHidden()
 
+    }
+    
+    private func evaluateSituation(text: String) -> SpeakingStructure {
+        switch text {
+        case "깔끔 요약정리 ✍🏻", "내 말에 설득당할 걸? 😎":
+            return .prep
+        case "나의 경험 어필하기 🤓", "멋진 성장 스토리 🍀":
+            return .star
+        case "내 잠재력 어필하기 💫", "날카로운 상황 분석 📈":
+            return .grow
+        case "한 방 터뜨리기 👊🏻", "나에게 모두 이목집중 👀":
+            return .aida
+        default:
+            return .psb
+        }
     }
 }
 
