@@ -26,72 +26,56 @@ struct SpeechPracticeCompleteView: View {
                 .fill(.white)
                 .blur(radius: 30)
             
-            Image("Glitter")
+            Image("\(speakingStructure.rawValue)-confetti")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 450)
                 .offset(y: -80)
                 .scaleEffect(isAnimating ? 1 : 0.3)
                 .onAppear {
-                    withAnimation(.bouncy, {
+                    withAnimation(.bouncy(duration: 0.5), {
                         isAnimating = true
                     })
                 }
             
             VStack {
-                HStack(alignment: .bottom) {
-                    Text(speakingStructure.rawValue)
-                        .customFont(.point1)
-                    Text("+1")
-                        .font(.system(size: 24, weight: .medium))
-                        .offset(y: -5)
-                }
-                .padding(.top, 150)
-                
-                Text("말하기 구조 학습을 완료했어요!")
-                    .customFont(.body1_bold)
-                
-                
-                Image("\(speakingStructure.rawValue)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 165, height: 165)
-                    .scaleEffect(isAnimating ? 1 : 0.3)
-                    .onAppear {
-                        withAnimation(.bouncy, {
-                            isAnimating = true
-                        })
-                    }
-                
                 Spacer()
                 
-                Button {
-                    self.isListeingSpeechViewPresented = true
-                } label: {
-                    ZStack {
-                        Capsule()
-                            .frame(width: 145, height: 50)
-                        
-                        HStack {
-                            Text("내 답변 듣기")
-                            Image(systemName: "play.fill")
+                Text("질문에 답하기를 완료했어요!")
+                    .customFont(.title3_bold)
+                    .padding(.bottom, 60)
+                VStack {
+                    Button {
+                        self.isListeingSpeechViewPresented = true
+                    } label: {
+                        ZStack {
+                            Capsule()
+                                .frame(width: 145, height: 50)
+                            
+                            HStack {
+                                Text("내 답변 듣기")
+                                Image(systemName: "play.fill")
+                            }
+                            .foregroundStyle(.white)
                         }
-                        .foregroundStyle(.white)
                     }
+                    .foregroundStyle(LinearGradient(colors: [ .init(hex: "71FBD2"), .init(hex: "7BC8AD")], startPoint: .center, endPoint: .bottomTrailing))
+                    HStack(spacing: 24) {
+                        Text("권장시간 : \(timeToString())")
+                            .font(.custom("Pretendard-Medium", size: 16))
+                            .foregroundStyle(.gray3)
+                        
+                        Text("소요시간 : \(calcElapsedTime())")
+                            .font(.custom("Pretendard-Medium", size: 16))
+                            .foregroundStyle(.gray3)
+                    }
+                    .padding(.bottom, 70)
+                    .padding(.top, 10)
                 }
-                .foregroundStyle(LinearGradient(colors: [ .init(hex: "71FBD2"), .init(hex: "7BC8AD")], startPoint: .center, endPoint: .bottomTrailing))
-                .padding(.top, 27)
-                
-                HStack(spacing: 24) {
-                    Text("권장시간 : \(timeToString())")
-                        .font(.custom("Pretendard-Medium", size: 16))
-                        .foregroundStyle(.gray3)
-                    
-                    Text("소요시간 : \(calcElapsedTime())")
-                        .font(.custom("Pretendard-Medium", size: 16))
-                        .foregroundStyle(.gray3)
-                }
-                .padding(.bottom, 70)
-                .padding(.top, 50)
+                .padding(.top, 30)
 
-                
+                Spacer()
+
                 Button {
                     Router.shared.popToWritingCompleteView()
                 } label: {
