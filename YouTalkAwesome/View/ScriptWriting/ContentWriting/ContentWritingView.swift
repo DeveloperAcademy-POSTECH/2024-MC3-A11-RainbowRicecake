@@ -125,6 +125,7 @@ struct ContentWritingView: View {
                     }
                     
                     Router.shared.setStructureSections(finalStructureSections)
+                    scriptRecord.content = finalStructureSections
                     
                     do {
                         modelContext.insert(scriptRecord)

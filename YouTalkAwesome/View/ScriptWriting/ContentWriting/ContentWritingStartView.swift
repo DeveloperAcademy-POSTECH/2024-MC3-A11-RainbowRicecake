@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentWritingStartView: View {
-    var isTopic: Bool = false
+    var isTopic: Bool
     @StateObject var router = Router.shared
     
     //제목 입력
@@ -34,6 +34,10 @@ struct ContentWritingStartView: View {
     
     //위 사항들 다 충족하면 true
     @State private var canGoNext: Bool = false
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
     
     func checkValues() {
         if isTopic {
@@ -114,6 +118,7 @@ struct ContentWritingStartView: View {
                     router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
                     
                     if isTopic {
+                        
                         router.push(screen: .ContentWritingWithTopic)
                     } else {
                         router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
@@ -127,6 +132,9 @@ struct ContentWritingStartView: View {
         .toolbarRole(.editor)
         .onAppear {
             checkValues()
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
     }
     

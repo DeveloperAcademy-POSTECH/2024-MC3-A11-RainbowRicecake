@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpeechView: View {
-    var speech: WellKnownSpeech
+    let speech: WellKnownSpeech
     
     var body: some View {
         ScrollView {
@@ -23,14 +23,22 @@ struct SpeechView: View {
                 }
                 .padding()
             }
+            
             // 말하기구조 학습하기로 넘어가는 버튼
-            NavigationLink(destination: StructureFlowView(speakingStructure: speech.speakingStructure)) {
+            Button {
+                Router.shared.setSelectedStructure(selection: self.speech.speakingStructure)
+                Router.shared.push(screen: .StructureFlow)
+            } label: {
                 Text("\(speech.speakingStructure.rawValue) 학습하기")
                     .customFont(.body1_bold)
                     .foregroundStyle(Color.main)
             }
+            
             // 대본쓰기로 넘어가는 버튼
-            NavigationLink(destination: ScriptWritingView()) {
+            Button {
+                Router.shared.setSelectedStructure(selection: self.speech.speakingStructure)
+                Router.shared.push(screen: .ContentWritingStartWithoutTopic)
+            } label: {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color.main)
                     .frame(width: 353, height: 54)
