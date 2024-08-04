@@ -80,6 +80,8 @@ extension Router {
         case .ContentWritingWithoutTopic, .ContentWritingWithTopic:
             ContentWritingView(topic: self.topic ?? "nil", selectedStructure: self.selectedStructure ?? .aida, designatedDate: self.selectedDate,  expectedLeadTime: selectedTime, isFreeTopic: !isTopicSelected)
                 .toolbar(.hidden, for: .tabBar)
+                .toolbarRole(.editor)
+            
         case .WritingCompleteWithoutTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: false, selectedDate: self.selectedDate, selectedTime: self.selectedTime, structureSections: structureSections)
         case .WritingCompleteWithTopic:
