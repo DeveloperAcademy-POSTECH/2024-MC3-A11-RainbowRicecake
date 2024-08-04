@@ -185,7 +185,7 @@ struct ArchiveView: View {
                         router.setTopic(title: record.topic)
                         router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
                         router.setStructureSections(record.content)
-                        router.push(screen: .WritingCompleteWithTopic)
+                        router.push(screen: .WritingCompleteWithoutTopic)
                     }
             }
         }
