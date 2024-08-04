@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LSWideCardView: View {
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     var speakingStructure: SpeakingStructure
     
     let width: CGFloat = 345

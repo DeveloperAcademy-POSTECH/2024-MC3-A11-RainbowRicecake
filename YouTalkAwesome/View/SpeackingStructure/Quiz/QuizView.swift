@@ -29,6 +29,8 @@ struct QuizView: View {
         
     ]
     
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
+    
     @Namespace private var bottomId
     
     func replaceComponent(quiz: inout [LSQuizComponent], droppingComponent: LSQuizComponent) {
@@ -143,6 +145,7 @@ struct QuizView: View {
                     if isResultCorrect != nil && isResultCorrect == true {
                         Button {
                             Router.shared.push(screen: .QuizDone)
+                            practicePointsViewModel.addPoint(key: lsStructure.rawValue)
                         } label: {
                             RoundedRectangle(cornerRadius: 18)
                                 .fill(Color.main)
