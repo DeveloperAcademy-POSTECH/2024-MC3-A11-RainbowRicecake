@@ -125,6 +125,7 @@ struct ContentWritingView: View {
                     }
                     
                     Router.shared.setStructureSections(finalStructureSections)
+                    scriptRecord.content = finalStructureSections
                     
                     do {
                         modelContext.insert(scriptRecord)
@@ -146,9 +147,11 @@ struct ContentWritingView: View {
             }
         }
         .onAppear {
-            structureSections.append(.init(topContent: "\(selectedStructure.components[0]) (\(selectedStructure.components_kor[0]))", bodyContent: "", isScript: true))
-            textFields.append("")
-            
+            if structureSections.count == 0 {
+                structureSections.append(.init(topContent: "\(selectedStructure.components[0]) (\(selectedStructure.components_kor[0]))", bodyContent: "", isScript: true))
+                textFields.append("")
+            }
+
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
                 if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
                     keyboardHeight = keyboardSize.height
