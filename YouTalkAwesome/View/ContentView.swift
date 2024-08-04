@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
+    
     init() {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
