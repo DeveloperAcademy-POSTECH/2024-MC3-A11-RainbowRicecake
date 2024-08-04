@@ -21,7 +21,10 @@ struct QuizDoneView: View {
                 .fill(.wh)
                 .blur(radius: 30)
             
-            Image("Glitter")
+            Image("\(speakingStructure.rawValue)-confetti")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 450)
                 .offset(y: -80)
                 .scaleEffect(isAnimating ? 1 : 0.3)
                 .onAppear {
@@ -32,12 +35,17 @@ struct QuizDoneView: View {
             
             VStack {
                 Spacer()
-                Text(speakingStructure.rawValue)
-                    .customFont(.point1)
-                    .padding()
+                HStack(alignment: .bottom, spacing: 2) {
+                    Text(speakingStructure.rawValue)
+                        .customFont(.point1)
+                    Text("+1")
+                        .font(.custom("Rubik", size: 24))
+                        .fontWeight(.medium)
+                        .padding(.bottom, 5)
+                }
                 
                 Text("말하기 구조 학습을 완료했어요!")
-                    .customFont(.title4_bold)
+                    .customFont(.body1_bold)
                 
                 Image("\(speakingStructure.rawValue)")
                     .resizable()
@@ -50,17 +58,30 @@ struct QuizDoneView: View {
                         })
                     }
                 
-                //TODO: 여기 Figma 디자인이랑 조금 다름 추후 논의 필요!
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(.main, lineWidth: 5)
-                    .fill(Color.wh)
-                    .frame(width: 115, height: 46)
-                    .overlay {
-                        Text("\(speakingStructure.rawValue) +1")
-                            .customFont(.point5)
-                            .foregroundStyle(.main)
+                Spacer()
+                
+                ZStack(alignment: .leading){
+                    Capsule()
+                        .frame(width: 305, height: 20)
+                        .foregroundColor(.gray6)
+                    Capsule()
+                        .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
+                        .foregroundColor(speakingStructure.color)
+                }
+                .overlay(
+                    HStack(spacing: 4) {
+                        let point = practicePointsViewModel.getPoint(key: speakingStructure.rawValue)
+                        let color: Color = point < 5 ? .gray3 : .white
+
+                        Text("\(point)")
+                            .foregroundColor(color)
+                        Text("/")
+                            .foregroundColor(color)
+                        Text("10")
+                            .foregroundColor(point < 6 ? .gray3 : .white)
                     }
-                    .padding(.top, 70)
+                    .customFont(.caption1_bold)
+                )
                 
                 Spacer()
                 
