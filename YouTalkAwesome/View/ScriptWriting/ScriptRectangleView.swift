@@ -20,7 +20,11 @@ struct ScriptRectangleView: View {
         RoundedRectangle(cornerRadius: 20)
             .fill(.wh)
             .aspectRatio(180/224, contentMode: .fit)
-            .shadow(radius: 5)
+            .background(Color.gray1
+                                  .opacity(0.06)
+                                  .shadow(color:.gray1, radius: 4, x: 0, y: 4)
+                                  .blur(radius: 8, opaque: false)
+                  )
             .overlay(alignment: .top) {
                 Image(.clip)
                     .offset(y: -25)
