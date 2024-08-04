@@ -28,6 +28,7 @@ struct SpeakingStructureView: View {
                             } label: {
                                 LSCardView(speakingStructure: speakingStructure)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }
@@ -49,6 +50,7 @@ struct SpeakingStructureView: View {
                                     ExampleCardView(speech: speech, title: speech.title)
                                         .padding(.leading, 10)
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
