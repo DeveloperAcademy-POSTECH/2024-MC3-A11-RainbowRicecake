@@ -84,11 +84,14 @@ extension Router {
             
         case .WritingCompleteWithoutTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: false, selectedDate: self.selectedDate, selectedTime: self.selectedTime, structureSections: structureSections)
+                .toolbarRole(.editor)
         case .WritingCompleteWithTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: true, structureSections: structureSections)
+                .toolbarRole(.editor)
             
         case .ScriptPracticeWithTopic:
             ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: self.scriptPracticeViewModel!, structureSections: self.structureSections)
+                .toolbarRole(.editor)
             
         case .SpeechPracticeComplete:
             SpeechPracticeCompleteView(standardTime: self.scriptPracticeViewModel?.time ?? 0, elapsedTime: self.scriptPracticeViewModel?.currentTime ?? 0, speakingStructure: self.selectedStructure ?? .aida)
@@ -97,14 +100,18 @@ extension Router {
             // 말하기 구조 뷰
         case .StructureFlow:
             StructureFlowView(speakingStructure: self.selectedStructure ?? .aida)
+                .toolbarRole(.editor)
             
         case .Quiz:
             QuizView(lsStructure: self.selectedStructure ?? .aida)
+                .toolbarRole(.editor)
         case .QuizDone:
             QuizDoneView(speakingStructure: self.selectedStructure ?? .aida)
+                .toolbarRole(.editor)
             
         case .Speech:
             SpeechView(speech: self.selectedSpeech!)
+                .toolbarRole(.editor)
         }
     }
     
