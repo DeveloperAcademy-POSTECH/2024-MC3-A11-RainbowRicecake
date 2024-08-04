@@ -32,6 +32,7 @@ class PracticePointsDataHandler: ObservableObject {
     
     // 키에 따라 포인트를 1씩 추가하기
     func addPoint(key: String) {
+        print("addPopint 부러짐")
         if let currentPoints = practicePoints[key] {
             practicePoints[key] = currentPoints + 1
         } else {
@@ -52,10 +53,10 @@ class PracticePointsDataHandler: ObservableObject {
     }
     
     func getCount() -> Int {
-//        return practicePoints.reduce(0, x, y in {
-//    
-//        }
+        let sum = practicePoints.keys.reduce(0, {
+            $0 + practicePoints[$1]!
+        })
                                      
-        return 7
+        return sum
     }
 }
