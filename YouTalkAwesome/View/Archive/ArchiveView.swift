@@ -56,12 +56,13 @@ struct ArchiveView: View {
                     }
                     viewModel.setOffset(value)
                 }
+                .navigationDestination(for: ViewList.self) { screen in
+                    router.pushView(screen: screen)
+                }
             }
             .ignoresSafeArea(edges: .top)
         }
-        .navigationDestination(for: ViewList.self) { screen in
-            router.pushView(screen: screen)
-        }
+        
     }
     
     private var historyView: some View {
@@ -166,7 +167,7 @@ struct ArchiveView: View {
                 .onTapGesture {
                     router.setTopic(title: record.topic)
                     router.setStructureSections(record.content)
-                    router.push(screen: .ContentWritingWithTopic)
+                    router.push(screen: .WritingCompleteWithTopic)
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 16)
@@ -184,7 +185,7 @@ struct ArchiveView: View {
                         router.setTopic(title: record.topic)
                         router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
                         router.setStructureSections(record.content)
-                        router.push(screen: .ContentWritingWithoutTopic)
+                        router.push(screen: .WritingCompleteWithTopic)
                     }
             }
         }
