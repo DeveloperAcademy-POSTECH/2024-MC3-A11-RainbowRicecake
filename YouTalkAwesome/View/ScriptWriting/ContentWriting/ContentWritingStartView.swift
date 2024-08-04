@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentWritingStartView: View {
-    var isTopic: Bool = false
+    var isTopic: Bool
     @StateObject var router = Router.shared
     
     //제목 입력
@@ -35,11 +35,16 @@ struct ContentWritingStartView: View {
     //위 사항들 다 충족하면 true
     @State private var canGoNext: Bool = false
     
-    func checkValues() -> Bool {
-        if contentTitle != "" && selectedDateString != "" && timeLimitString != "" {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    func checkValues() {
+        if isTopic {
+            canGoNext = true
+        } else if !contentTitle.isEmpty && !selectedDateString.isEmpty && !timeLimitString.isEmpty {
             canGoNext = true
         }
-        return canGoNext
     }
     
     var body: some View {
@@ -57,8 +62,15 @@ struct ContentWritingStartView: View {
                     Text("제목")
                         .customFont(.body1_bold)
                 }
-                TextField("대본의 제목을 작성해주세요.", text: $contentTitle)
-                    .textFieldStyle(.roundedBorder)
+                
+                TextField("대본의 제목을 작성해주세요", text: $contentTitle)
+                    .padding(10)
+                    .background (
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .fill(.wh)
+                    )
+                    .lineLimit(20)
             }
             .padding(.horizontal)
             
@@ -106,15 +118,24 @@ struct ContentWritingStartView: View {
                     router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
                     
                     if isTopic {
+                        
                         router.push(screen: .ContentWritingWithTopic)
                     } else {
                         router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
                         router.push(screen: .ContentWritingWithoutTopic)
                     }
                 }
+                .padding(.top, isTopic ? 80 : 0)
+                .padding(.bottom)
         }
         .background(Color.gray6)
         .toolbarRole(.editor)
+        .onAppear {
+            checkValues()
+        }
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
     
     var forTopic: some View {
@@ -235,6 +256,6 @@ struct ContentWritingStartView: View {
 
 #Preview {
     NavigationStack {
-        ContentWritingStartView(isTopic: false)
+        ContentWritingStartView(isTopic: true)
     }
 }

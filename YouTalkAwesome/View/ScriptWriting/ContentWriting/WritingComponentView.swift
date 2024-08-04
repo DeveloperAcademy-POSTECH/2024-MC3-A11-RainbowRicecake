@@ -34,7 +34,7 @@ struct WritingComponentView: View {
                 if structureSection.isScript {
                     TextField("", text: $textContent, axis: .vertical)
                         .padding(10)
-                        .overlay(
+                        .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.gray, lineWidth: 1)
                         )

@@ -115,8 +115,14 @@ struct ScriptWritingView: View {
                         
                         ScrollView(.horizontal) {
                             HStack (spacing: 16) {
-                                ForEach(topicsPerType) {
-                                    TopicBubbleView(topicContent: $0.content, lsName: $0.lsStructure, isWideType: false)
+                                ForEach(topicsPerType) { topic in
+                                    TopicBubbleView(topicContent: topic.content, lsName: topic.lsStructure, isWideType: false)
+                                        .onTapGesture {
+                                            router.setTopic(title: topic.content)
+                                            router.setSelectedStructure(selection: .init(rawValue: topic.lsStructure)!)
+                                            router.setIsTopicSelected(true)
+                                            router.push(screen: .ContentWritingStartWithTopic)
+                                        }
                                 }
                             }
                             .padding(.top, 5)

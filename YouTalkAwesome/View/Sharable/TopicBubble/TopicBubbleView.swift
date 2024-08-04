@@ -39,12 +39,6 @@ struct TopicBubbleView: View {
                 .fill(.wh)
             
         }
-        .onTapGesture {
-            Router.shared.setTopic(title: topicContent)
-            Router.shared.setSelectedStructure(selection: .init(rawValue: lsName)!)
-            
-            Router.shared.push(screen: .ContentWritingStartWithTopic)
-        }
     }
 }
 
