@@ -24,11 +24,14 @@ struct ScriptPracticeView: View {
         self.vm = vm
         self.structureSections = structureSections
         
+        UINavigationBar.appearance().backgroundColor = .clear
+        
         let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.shadowColor = UIColor(Color.clear)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
     
     var body: some View {
