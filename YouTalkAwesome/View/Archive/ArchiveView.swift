@@ -13,7 +13,7 @@ struct ArchiveView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
     @StateObject private var viewModel: ArchiveViewModel = .init()
     

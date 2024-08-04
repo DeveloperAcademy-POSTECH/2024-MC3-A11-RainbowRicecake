@@ -6,9 +6,11 @@
 //
 import SwiftUI
 
-class PracticePointsViewModel: ObservableObject {
+class PracticePointsDataHandler: ObservableObject {
     @AppStorage("practicePointsJson") private var practicePointsJson: String = "{}"
     @Published var practicePoints: [String: Int] = [:]
+    
+    static let shared = PracticePointsDataHandler()
     
     init() {
         loadUserDictionary()
@@ -50,6 +52,10 @@ class PracticePointsViewModel: ObservableObject {
     }
     
     func getCount() -> Int {
-        return practicePoints.count
+//        return practicePoints.reduce(0, x, y in {
+//    
+//        }
+                                     
+        return 7
     }
 }
