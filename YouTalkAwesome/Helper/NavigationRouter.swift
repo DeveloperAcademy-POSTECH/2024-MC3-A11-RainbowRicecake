@@ -82,6 +82,7 @@ extension Router {
                 .toolbar(.hidden, for: .tabBar)
         case .WritingCompleteWithoutTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: false, selectedDate: self.selectedDate, selectedTime: self.selectedTime, structureSections: structureSections)
+                .toolbar(.hidden, for: .tabBar)
         case .WritingCompleteWithTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: true, structureSections: structureSections)
             

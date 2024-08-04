@@ -45,6 +45,7 @@ struct ScriptWritingView: View {
     ]
     @StateObject var router = Router.shared
 
+    // TODO: Query문 추후에 수정 필요
 //    @Query(filter: #Predicate<LogicalSpeakingRecord>{ $0.designatedTimestamp ?? Date() > Date() }) var record: [LogicalSpeakingRecord]
     @Query var records: [LogicalSpeakingRecord]
     
@@ -67,7 +68,10 @@ struct ScriptWritingView: View {
         NavigationStack(path: $router.route) {
             ScrollView {
                 VStack(alignment: .leading) {
-                    InstructionTextView(instructionKeyword : ["말하기 구조","대본"], verbalPart: ["로", "을 작성해보세요!"])
+                    InstructionTextView(
+                        instructionKeyword : [ records.isEmpty ? "말하기 구조" : records.first!.topic ,records.isEmpty ? "대본" : "\(records.first!.designatedTimestamp!.calcDDays())"],
+                        verbalPart: [records.isEmpty ? "로" : "까지", records.isEmpty ? "을 작성해보세요!" : "일 남았어요!"]
+                    )
                         .padding()
                         .padding(.top, 60)
                     
@@ -84,21 +88,20 @@ struct ScriptWritingView: View {
                                         .frame(width: 30)
                                         .foregroundColor(.gray4)
                                 }
+                                .padding(.trailing, 5)
 
                                 
-                                ForEach(records) {
-                                    ScriptRectangleView(isThisForAdding: false, leftDay: "3", scriptTitle: $0.topic, isDone: $0.isDone, record: $0)
+                                ForEach(records) { record in
+                                    ScriptRectangleView(isThisForAdding: false, record: record)
                                         .onTapGesture {
-                                            
+                                            router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
+                                            router.setTopic(title: record.topic)
+                                            router.setIsTopicSelected(false)
+                                            router.setSelectedStructure(selection: record.speakingStructure)
+                                            router.setStructureSections(record.content)
+                                            router.push(screen: .WritingCompleteWithoutTopic)
                                         }
                                 }
-//                                ForEach(records) {
-//                                    ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
-//                                        .onTapGesture {
-//                                            router.setIsTopicSelected(false)
-//                                            router.push(screen: .ContentWritingStartWithoutTopic)
-//                                        }
-//                                }
                             }
                             .padding(25)
                         }
