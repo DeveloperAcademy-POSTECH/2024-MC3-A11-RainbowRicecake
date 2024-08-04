@@ -7,4 +7,4 @@
 
 import SwiftData
 
-typealias LogicalSpeakingRecord = ModelSchemaV0.LogicalSpeakingRecord1
+typealias LogicalSpeakingRecord = ModelSchemaV0.LogicalSpeakingRecord
