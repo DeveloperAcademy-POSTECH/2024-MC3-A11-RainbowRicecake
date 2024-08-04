@@ -10,9 +10,9 @@ class PracticePointsDataHandler: ObservableObject {
     @AppStorage("practicePointsJson") private var practicePointsJson: String = "{}"
     @Published var practicePoints: [String: Int] = [:]
     
-    static private let shared = PracticePointsDataHandler()
+    static let shared = PracticePointsDataHandler()
     
-    init() {
+    private init() {
         loadUserDictionary()
     }
     

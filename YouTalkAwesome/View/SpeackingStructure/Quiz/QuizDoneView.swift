@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct QuizDoneView: View {
+    var isRepeat: Bool
     @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
+    var isRepeat: Bool
     @State private var isAnimating = false
     var speakingStructure: SpeakingStructure
     
@@ -38,10 +40,12 @@ struct QuizDoneView: View {
                 HStack(alignment: .bottom, spacing: 2) {
                     Text(speakingStructure.rawValue)
                         .customFont(.point1)
-                    Text("+1")
-                        .font(.custom("Rubik", size: 24))
-                        .fontWeight(.medium)
-                        .padding(.bottom, 5)
+                    if !isRepeat {
+                        Text("+1")
+                            .font(.custom("Rubik", size: 24))
+                            .fontWeight(.medium)
+                            .padding(.bottom, 5)
+                    }
                 }
                 
                 Text("말하기 구조 학습을 완료했어요!")
@@ -60,30 +64,41 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                ZStack(alignment: .leading){
-                    Capsule()
-                        .frame(width: 305, height: 20)
-                        .foregroundColor(.gray6)
-                    Capsule()
-                        .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
-                        .foregroundColor(speakingStructure.color)
-                }
-                .overlay(
-                    HStack(spacing: 4) {
-                        let point = practicePointsViewModel.getPoint(key: speakingStructure.rawValue)
-                        let color: Color = point < 5 ? .gray3 : .white
-
-                        Text("\(point)")
-                            .foregroundColor(color)
-                        Text("/")
-                            .foregroundColor(color)
-                        Text("10")
-                            .foregroundColor(point < 6 ? .gray3 : .white)
+                if !isRepeat {
+                    ZStack(alignment: .leading){
+                        Capsule()
+                            .frame(width: 305, height: 20)
+                            .foregroundColor(.gray6)
+                        Capsule()
+                            .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
+                            .foregroundColor(speakingStructure.color)
                     }
-                    .customFont(.caption1_bold)
-                )
+                    .overlay(
+                        HStack(spacing: 4) {
+                            let point = practicePointsViewModel.getPoint(key: speakingStructure.rawValue)
+                            let color: Color = point < 5 ? .gray3 : .white
+                            
+                            Text("\(point)")
+                                .foregroundColor(color)
+                            Text("/")
+                                .foregroundColor(color)
+                            Text("10")
+                                .foregroundColor(point < 6 ? .gray3 : .white)
+                        }
+                            .customFont(.caption1_bold)
+                    )
+                }
                 
                 Spacer()
+                
+                NavigationLink(destination: QuizView(lsStructure: speakingStructure, isRepeat: true)) {
+                    HStack {
+                        Text("복습하기")
+                            .customFont(.body1_light)
+                        Image(systemName: "arrow.counterclockwise")
+                    }
+                    .foregroundColor(.main)
+                }
                 
                 Button {
                     Router.shared.popToRootView()
@@ -99,12 +114,17 @@ struct QuizDoneView: View {
                 }
             }
         }
+        .onAppear {
+            if !isRepeat {
+                practicePointsViewModel.addPoint(key: speakingStructure.rawValue)
+            }
+        }
         .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
     NavigationStack {
-        QuizDoneView(speakingStructure: .prep)
+        QuizDoneView(isRepeat: true, speakingStructure: .prep)
     }
 }
