@@ -184,7 +184,7 @@ struct ArchiveView: View {
         
         return LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
             ForEach(filtered) { record in
-                ScriptRectangleView(isThisForAdding: false, leftDay : "4", scriptTitle: record.topic, isDone: true)
+                ScriptRectangleView(isThisForAdding: false, record: record)
                     .onTapGesture {
                         router.setTopic(title: record.topic)
                         router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
