@@ -39,7 +39,8 @@ struct SpeakingStructureView: View {
                         ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
                         Spacer()
                     }
-                    .padding([.top,.horizontal], 10)
+                    .padding(.top, 17)
+                    .padding(.horizontal, 10)
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
@@ -56,7 +57,7 @@ struct SpeakingStructureView: View {
                     }
                     
                     HStack {
-                        ExampleTitleView(title: "커리어 인터뷰 ✍🏻")
+                        ExampleTitleView(title: "CEO 인터뷰 ✍🏻")
                         Spacer()
                     }
                     .padding([.top,.horizontal], 10)

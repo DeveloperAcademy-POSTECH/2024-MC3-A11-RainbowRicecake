@@ -66,7 +66,7 @@ struct ScriptWritingView: View {
                 VStack(alignment: .leading) {
                     InstructionTextView(instructionKeyword : ["말하기 구조","대본"], verbalPart: ["로", "을 작성해보세요!"])
                         .padding()
-                        .padding(.top, 45)
+                        .padding(.top, 60)
                     
                     if scriptRecords != nil{
                         // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
@@ -154,11 +154,14 @@ struct ScriptWritingView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
             .ignoresSafeArea(.container, edges: [.top, .horizontal])
             .navigationDestination(for: ViewList.self) { screen in
                 router.pushView(screen: screen)
             }
         }
+        .navigationBarBackButtonHidden()
+
     }
 }
 
