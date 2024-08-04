@@ -13,7 +13,7 @@ struct ArchiveView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
     @StateObject private var viewModel: ArchiveViewModel = .init()
     
@@ -126,36 +126,32 @@ struct ArchiveView: View {
                     .frame(width: width)
                 }
                 
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: LearningStatusView().toolbarRole(.editor)) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(height: 72)
                             .foregroundStyle(.white)
-                            .background(Color.gray1
-                                                  .opacity(0.04)
-                                                  .shadow(color:.gray1, radius: 4, x: 0, y: 4)
-                                                  .blur(radius: 8, opaque: false)
-                                  )
-                        
-                        NavigationLink(destination: LearningStatusView() ) {
-                            HStack {
-                                Text("나의 말하기 구조 학습 현황")
-                                    .customFont(.title4_bold)
-                                    .foregroundStyle(.gray3)
-                                
-                                Spacer()
-                                Image(systemName: "arrow.right.circle.fill")
-                                    .resizable()
-                                    .foregroundStyle(.main)
-                                    .frame(width: 32, height: 32)
-                                
+                            .background {
+                                Color.gray1
+                                    .opacity(0.04)
+                                    .shadow(color: .gray1, radius: 4, x: 0, y: 4)
+                                    .blur(radius: 8, opaque: false)
                             }
-                            .padding(.leading, 33)
-                            .padding(.trailing, 24)
-                        }
                         
+                        HStack {
+                            Text("나의 말하기 구조 학습 현황")
+                                .customFont(.title4_bold)
+                                .foregroundStyle(.gray3)
+                            
+                            Spacer()
+                            Image(systemName: "arrow.right.circle.fill")
+                                .resizable()
+                                .foregroundStyle(.main)
+                                .frame(width: 32, height: 32)
+                            
+                        }
+                        .padding(.leading, 33)
+                        .padding(.trailing, 24)
                     }
                 }
                 .padding(.vertical, 32)

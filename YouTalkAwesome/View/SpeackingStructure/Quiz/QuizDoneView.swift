@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuizDoneView: View {
     var isRepeat: Bool
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     @State private var isAnimating = false
     var speakingStructure: SpeakingStructure
     

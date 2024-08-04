@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestPointView: View {
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
     var body: some View {
         VStack {

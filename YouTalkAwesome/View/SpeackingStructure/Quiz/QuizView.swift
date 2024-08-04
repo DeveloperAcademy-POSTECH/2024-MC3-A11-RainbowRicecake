@@ -16,7 +16,7 @@ struct QuizView: View {
     
     @State private var buttonText : String = "결과 보기"
     @State private var messageColor : Color = .gray2
-    @State private var bottomBackColor : Color = .wh
+    @State private var bottomBackColor : Color = .clear
     
     @State private var confirmationMessage : String = ""
     
@@ -29,6 +29,8 @@ struct QuizView: View {
         .init(order: 1, content: "초콜릿은 최고의 간식이라고 생각해요."),
         
     ]
+    
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
     @Namespace private var bottomId
     
@@ -121,15 +123,24 @@ struct QuizView: View {
                 }
                 .padding(.horizontal)
                 
-                Spacer()
                 
-                
+                Spacer(minLength: 200)
+            }
+            .frame(maxHeight: .infinity)
+            .toolbar(.hidden, for: .tabBar)
+            .toolbarRole(.editor)
+            .overlay(alignment: .bottom) {
                 VStack {
                     if isResultCorrect != nil {
-                        Text(confirmationMessage)
-                            .customFont(.title4_bold)
-                            .foregroundStyle(Color.main)
-                            .padding(.top, 28)
+                        HStack {
+                            Spacer()
+                            Text(confirmationMessage)
+                                .customFont(.title4_bold)
+                                .foregroundStyle(Color.main)
+                                .padding(.top, 28)
+                            Spacer()
+                        }
+
                     }
                     Spacer()
                     if isResultCorrect != nil && isResultCorrect == true {
@@ -171,18 +182,12 @@ struct QuizView: View {
                         .id(bottomId)
                     }
                 }
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: 164)
                 .background(bottomBackColor)
-                .onAppear {
-                    quiz = lsStructure.quizSentences
-                }
             }
-            .frame(maxHeight: .infinity)
-            .toolbar(.hidden, for: .tabBar)
-            .toolbarRole(.editor)
+            .onAppear {
+                quiz = lsStructure.quizSentences
+            }
         }
-        
     }
 }
 
