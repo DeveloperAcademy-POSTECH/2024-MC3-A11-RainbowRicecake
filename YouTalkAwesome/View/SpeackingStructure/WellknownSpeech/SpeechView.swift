@@ -12,17 +12,25 @@ struct SpeechView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            VStack() {
                 SpeechTitleView(speech: speech)
-                SubCardView(speakingStructure: speech.speakingStructure)
-                SubCardView(speech: speech)
+                    .padding(.top, 54)
+                VStack(spacing: 24){
+                    SubCardView(speakingStructure: speech.speakingStructure)
+                    SubCardView(speech: speech)
+                }
+                .padding(.top, 16)
+                .padding(.trailing, 2)
+                
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(0..<speech.speakingStructure.components.count, id: \.self) { index in
                         SpeechFlowComponentView(speakingStructure: speech.speakingStructure, speech: speech, index: index)
                     }
                 }
-                .padding()
+                .padding(.horizontal, 20)
+                .padding(.top, 36)
             }
+            .padding(.bottom, 100)
             
             // 말하기구조 학습하기로 넘어가는 버튼
             Button {
@@ -33,6 +41,7 @@ struct SpeechView: View {
                     .customFont(.body1_bold)
                     .foregroundStyle(Color.main)
             }
+            .padding(.bottom, 10)
             
             // 대본쓰기로 넘어가는 버튼
             Button {
@@ -48,7 +57,10 @@ struct SpeechView: View {
                             .foregroundStyle(Color.wh)
                     )
             }
+            .padding(.bottom, 120)
         }
+        
+        .ignoresSafeArea()
         .scrollIndicators(.hidden)
         .toolbarRole(.editor)
     }
@@ -73,14 +85,15 @@ struct SpeechTitleView: View {
                         .foregroundStyle(.wh)
                         .frame(width: 200, alignment: .leading)
                     HStack {
-                        Text("\(speech.category) | \(speech.date)")
+                        Text("\(speech.category)  |  \(speech.date)")
                             .customFont(.caption2_light)
                             .foregroundStyle(.wh)
                     }
                 }
                 Spacer()
             }
-            .padding()
+            .padding(.leading, 20)
+            .padding(.bottom, 16)
         }
         .frame(width: 393, height: 229)
     }
@@ -108,18 +121,18 @@ struct SubCardView: View {
         }
     }
     
-    let width: CGFloat = 361
+    let width: CGFloat = 356
     let height: CGFloat = 142 //TODO: 여기 flexible 하게 해야함
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .stroke(Color.main, lineWidth: 2)
+        RoundedRectangle(cornerRadius: 20)
+            .stroke(Color.main, lineWidth: 4)
             .fill(Color.bg)
             .frame(width: width, height: height)
             .background {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 20)
                     .fill(Color.main)
-                    .offset(x: 5, y: 5)
+                    .offset(x: 4, y: 6)
             }
             .overlay {
                 HStack {
@@ -128,14 +141,14 @@ struct SubCardView: View {
                             Label(topContent, systemImage: speakingStructure != nil ? "checkmark.circle.fill" : "square.and.pencil")
                                 .customFont(.body3_bold)
                                 .foregroundStyle(Color.main)
-                                .padding(.bottom, 3)
+                                .padding(.bottom, 12)
                         }
                         Text(bodyContent)
                             .customFont(.body3_light)
                             .foregroundStyle(.gray2)
                     }
-                    .padding(12)
-                    Spacer()
+                    .padding(.vertical, 14)
+                    .padding(.horizontal, 12)
                 }
             }
     }
@@ -144,6 +157,6 @@ struct SubCardView: View {
 
 #Preview {
     NavigationStack {
-        SpeechView(speech: sampleSpeeches[0])
+        SpeechView(speech: sampleSpeeches[1])
     }
 }

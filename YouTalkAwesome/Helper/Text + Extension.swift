@@ -27,18 +27,20 @@ struct CustomFont {
     static let title2_bold = CustomFont(font: .custom("Pretendard-Medium", size: 28), kerning: -0.4, lineSpacing: 14.0)
     
     static let title3_light = CustomFont(font: .custom("Pretendard-Regular", size: 24), kerning: -0.4, lineSpacing: 12.0)
-    static let title3_bold = CustomFont(font: .custom("Pretendard-Medium", size: 24), kerning: -0.4, lineSpacing: 12.0)
+    static let title3_bold = CustomFont(font: .custom("Pretendard-Medium", size: 24), kerning: -0.4, lineSpacing: 4.0)
     
     static let title4_light = CustomFont(font: .custom("Pretendard-Light", size: 20), kerning: -0.4, lineSpacing: 10.0)
     static let title4_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 20), kerning: -0.4, lineSpacing: 10.0)
     
     // MARK: Body (Pretendard)
     static let body1_light = CustomFont(font: .custom("Pretendard-Regular", size: 18), kerning: -1.0, lineSpacing: 10.0)
-    static let body1_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 18), kerning: -1.0, lineSpacing: 6.0)
+    static let body1_medium = CustomFont(font: .custom("Pretendard-Medium", size: 18), kerning: -1.0, lineSpacing: 6.0)
+    static let body1_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 18), kerning: -1.0, lineSpacing: 3.0)
     
     static let body2_light = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.4, lineSpacing: 12.0)
-    static let body2_light2 = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.0, lineSpacing: 10.0)
+    static let body2_light2 = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.0, lineSpacing: 3.5)
     static let body2_bold = CustomFont(font: .custom("Pretendard-Medium", size: 17), kerning: 0.4, lineSpacing: 12.0)
+    static let body2_bold2 = CustomFont(font: .custom("Pretendard-SemiBold", size: 17), kerning: -0.4, lineSpacing: 12.0)
     
     static let body3_light = CustomFont(font: .custom("Pretendard-Regular", size: 16), kerning: -0.4, lineSpacing: 8.0)
     static let body3_bold = CustomFont(font: .custom("Pretendard-Medium", size: 16), kerning: -0.4, lineSpacing: 8.0)

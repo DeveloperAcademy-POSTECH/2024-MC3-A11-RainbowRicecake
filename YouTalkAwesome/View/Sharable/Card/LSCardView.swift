@@ -12,11 +12,11 @@ struct LSCardView: View {
     var speakingStructure: SpeakingStructure
     
     let width: CGFloat = 260
-    let height: CGFloat = 318
+    let height: CGFloat = 338
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.bk, lineWidth: 3)
+            .stroke(.bk, lineWidth: 6)
             .fill(.wh)
             .frame(width: width, height: height)
             .background {
@@ -27,20 +27,23 @@ struct LSCardView: View {
             .overlay {
                 VStack  {
                     HStack {
-                        VStack (alignment: .leading) {
+                        VStack (alignment: .leading, spacing: 6) {
                             LSNameView(name: speakingStructure)
                             LSDescriptionView(shortDescription: speakingStructure.description )
                         }
                         Spacer()
                     }
-                    .padding()
+                    .padding(.top, 20)
+                    .padding(.leading, 20)
                     Spacer()
                     HStack {
                         Spacer()
                         Image("\(speakingStructure.rawValue)")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 165, height: 165)
+                            .frame(width: 140, height: 140)
+                            .padding(.trailing, 20)
+                            .padding(.bottom, 16)
                     }
                 }
             }
@@ -63,7 +66,7 @@ struct LSDescriptionView : View {
     
     var body: some View {
         Text("\(shortDescription)")
-            .customFont(.body2_light)
+            .customFont(.body2_light2)
             .foregroundStyle(.gray1)
     }
 }

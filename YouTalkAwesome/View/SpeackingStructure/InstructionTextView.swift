@@ -18,9 +18,11 @@ struct InstructionTextView: View {
                 HStack (spacing: 0) {
                     Text(instructionKeyword[index])
                         .foregroundStyle(.main)
+                        .customFont(.title1_bold)
                     Text(verbalPart[index])
+                        .customFont(.title1_light)
                 }
-                .customFont(.title1_bold)
+                
             }
         }
         

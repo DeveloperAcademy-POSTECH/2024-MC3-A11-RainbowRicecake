@@ -30,6 +30,7 @@ struct LSWideCardView: View {
                         VStack (alignment: .leading) {
                             LSNameView(name: speakingStructure)
                             LSDescriptionView(shortDescription: speakingStructure.description)
+                            Spacer()
                         }
                         Spacer()
                         Image("\(speakingStructure.rawValue)")
@@ -38,7 +39,10 @@ struct LSWideCardView: View {
                             .frame(width: 80, height: 80)
                     }
                     
+                    
                     if height == 152 {
+                        Spacer()
+                        
                         ZStack(alignment: .leading){
                             Capsule()
                                 .frame(width: 305, height: 20)
