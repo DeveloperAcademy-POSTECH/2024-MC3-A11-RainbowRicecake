@@ -20,10 +20,12 @@ struct ArchiveView: View {
     @State private var selectedView: SelectedView = .writtenScript
     @State private var scrollObservableViewHeight: CGFloat = 0
     
+    @StateObject var router = Router.shared
+    
     let width: CGFloat = (UIScreen.main.bounds.width - 42) / 3
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.route) {
             ScrollView {
                 LazyVStack(pinnedViews: .sectionHeaders) {
                     historyView
@@ -54,9 +56,13 @@ struct ArchiveView: View {
                     }
                     viewModel.setOffset(value)
                 }
+                .navigationDestination(for: ViewList.self) { screen in
+                    router.pushView(screen: screen)
+                }
             }
             .ignoresSafeArea(edges: .top)
         }
+        
     }
     
     private var historyView: some View {
@@ -158,6 +164,11 @@ struct ArchiveView: View {
         
         return ForEach(filtered) { record in
             TopicBubbleView(topicContent: record.topic, lsName: record.speakingStructure.rawValue, isWideType: true)
+                .onTapGesture {
+                    router.setTopic(title: record.topic)
+                    router.setStructureSections(record.content)
+                    router.push(screen: .WritingCompleteWithTopic)
+                }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 16)
         }
@@ -170,6 +181,12 @@ struct ArchiveView: View {
         return LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
             ForEach(filtered) { record in
                 ScriptRectangleView(isThisForAdding: false, leftDay : "4", scriptTitle: record.topic, isDone: true)
+                    .onTapGesture {
+                        router.setTopic(title: record.topic)
+                        router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
+                        router.setStructureSections(record.content)
+                        router.push(screen: .WritingCompleteWithoutTopic)
+                    }
             }
         }
         .padding(.horizontal, 20)

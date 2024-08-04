@@ -136,7 +136,7 @@ struct QuizView: View {
                 Spacer()
                 
                 if isResultCorrect != nil && isResultCorrect == true {
-                    NavigationLink(destination: QuizDoneView(speakingStructure: .prep)) {
+                    NavigationLink(destination: QuizDoneView(speakingStructure: lsStructure)) {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(Color.main)
                             .frame(width: 353, height: 54)
