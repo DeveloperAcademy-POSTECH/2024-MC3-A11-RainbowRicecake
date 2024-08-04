@@ -19,12 +19,6 @@ struct QuizView: View {
     
     @State private var confirmationMessage : String = ""
     
-    struct LSQuizComponent: Identifiable {
-        var id : UUID = .init()
-        var order : Int
-        var content : String
-    }
-    
     @State private var currentlyDragging: LSQuizComponent?
     
     @State private var quiz: [LSQuizComponent] = [
@@ -34,6 +28,8 @@ struct QuizView: View {
         .init(order: 1, content: "초콜릿은 최고의 간식이라고 생각해요."),
         
     ]
+    
+    @Namespace private var bottomId
     
     func replaceComponent(quiz: inout [LSQuizComponent], droppingComponent: LSQuizComponent) {
         if let currentlyDragging {
@@ -107,84 +103,92 @@ struct QuizView: View {
     }
     
     var body: some View {
-        VStack {
-            VStack (alignment: .leading) {
-                Text("글을 움직여 아래 순서대로 배치해보세요")
-                    .customFont(.title4_bold)
-                
-                Image("\(lsStructure.rawValue)_4")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.bottom)
-                
-                ForEach(quiz) { component in
-                    makeQuizComponentRow(component)
-                }
-            }
-            .padding(.horizontal)
-            
-            Spacer()
-            
-            VStack {
-                if isResultCorrect != nil {
-                    Text(confirmationMessage)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack (alignment: .leading) {
+                    Text("글을 움직여 아래 순서대로 배치해보세요")
                         .customFont(.title4_bold)
-                        .foregroundStyle(Color.main)
-                        .padding(.top, 28)
+                    
+                    Image("\(lsStructure.rawValue)_\(lsStructure.components.count)")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.bottom)
+                    
+                    ForEach(quiz) { component in
+                        makeQuizComponentRow(component)
+                    }
                 }
+                .padding(.horizontal)
                 
                 Spacer()
                 
-                if isResultCorrect != nil && isResultCorrect == true {
-                    Button {
-                        Router.shared.push(screen: .QuizDone)
-                    } label: {
-                        RoundedRectangle(cornerRadius: 18)
-                            .fill(Color.main)
-                            .frame(width: 353, height: 54)
-                            .overlay {
-                                Text(buttonText)
-                                    .customFont(.body1_bold)
-                                    .foregroundStyle(.wh)
-                            }
+
+                VStack {
+                    if isResultCorrect != nil {
+                        Text(confirmationMessage)
+                            .customFont(.title4_bold)
+                            .foregroundStyle(Color.main)
+                            .padding(.top, 28)
                     }
-                } else {
-                    Button {
-                        let orderInTheQuiz:[Int] = quiz.map({$0.order})
-                        if orderInTheQuiz == [1,2,3,4] {
-                            isResultCorrect = true
-                        } else {
-                            isResultCorrect = false
+                    
+                    Spacer()
+                    
+                    if isResultCorrect != nil && isResultCorrect == true {
+                        NavigationLink(destination: QuizDoneView(speakingStructure: .prep)) {
+                            RoundedRectangle(cornerRadius: 18)
+                                .fill(Color.main)
+                                .frame(width: 353, height: 54)
+                                .overlay {
+                                    Text(buttonText)
+                                        .customFont(.body1_bold)
+                                        .foregroundStyle(.wh)
+                                }
+                                .id(bottomId)
                         }
                         
-                        changeUIBasedOnTheResult()
-                        
-                    } label: {
-                        RoundedRectangle(cornerRadius: 18)
-                            .fill(isButtonDisabled ? Color.gray5 : Color.main)
-                            .frame(width: 353, height: 54)
-                            .overlay {
-                                Text(buttonText)
-                                    .customFont(.body1_bold)
-                                    .foregroundStyle(.wh)
+                    } else {
+                        Button {
+                            let orderInTheQuiz:[Int] = quiz.map({$0.order})
+                            if orderInTheQuiz == [1,2,3,4] || orderInTheQuiz == [1,2,3] {
+                                isResultCorrect = true
+                            } else {
+                                isResultCorrect = false
                             }
+                            
+                            changeUIBasedOnTheResult()
+                            proxy.scrollTo(bottomId)
+                            
+                        } label: {
+                            RoundedRectangle(cornerRadius: 18)
+                                .fill(isButtonDisabled ? Color.gray5 : Color.main)
+                                .frame(width: 353, height: 54)
+                                .overlay {
+                                    Text(buttonText)
+                                        .customFont(.body1_bold)
+                                        .foregroundStyle(.wh)
+                                }
+                        }
+                        .disabled(isButtonDisabled)
+                        .id(bottomId)
                     }
-                    .disabled(isButtonDisabled)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: 164)
+                .background(bottomBackColor)
+                .onAppear {
+                    quiz = lsStructure.quizSentences
                 }
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 164)
-            .background(bottomBackColor)
+            .frame(maxHeight: .infinity)
+            .toolbar(.hidden, for: .tabBar)
+            .toolbarRole(.editor)
         }
-        .frame(maxHeight: .infinity)
-        .toolbar(.hidden, for: .tabBar)
-        .toolbarRole(.editor)
+        
     }
-
 }
 
 #Preview {
     NavigationStack {
-        QuizView(lsStructure: .prep)
+        QuizView(lsStructure: .psb)
     }
 }
