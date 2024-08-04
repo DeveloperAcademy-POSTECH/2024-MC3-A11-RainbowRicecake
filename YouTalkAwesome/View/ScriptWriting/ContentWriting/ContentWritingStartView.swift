@@ -38,7 +38,7 @@ struct ContentWritingStartView: View {
     func checkValues() {
         if isTopic {
             canGoNext = true
-        } else if contentTitle != "" && selectedDateString != "" && timeLimitString != "" {
+        } else if !contentTitle.isEmpty && !selectedDateString.isEmpty && !timeLimitString.isEmpty {
             canGoNext = true
         }
     }
