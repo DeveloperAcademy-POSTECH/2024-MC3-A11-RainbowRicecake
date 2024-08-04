@@ -100,7 +100,7 @@ extension Router {
         case .Quiz:
             QuizView(lsStructure: self.selectedStructure ?? .aida)
         case .QuizDone:
-            QuizDoneView(speakingStructure: self.selectedStructure ?? .aida)
+            QuizDoneView(isRepeat: false, speakingStructure: self.selectedStructure ?? .aida)
             
         case .Speech:
             SpeechView(speech: self.selectedSpeech!)

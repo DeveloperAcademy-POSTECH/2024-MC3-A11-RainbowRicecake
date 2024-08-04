@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QuizView: View {
     let lsStructure : SpeakingStructure
+    var isRepeat: Bool?
     
     @State private var isButtonDisabled = true
     @State private var isResultCorrect: Bool? = nil
@@ -130,13 +131,9 @@ struct QuizView: View {
                             .foregroundStyle(Color.main)
                             .padding(.top, 28)
                     }
-                    
                     Spacer()
-                    
                     if isResultCorrect != nil && isResultCorrect == true {
-                        Button {
-                            Router.shared.push(screen: .QuizDone)
-                        } label: {
+                        NavigationLink(destination: QuizDoneView(isRepeat: isRepeat ?? false, speakingStructure: lsStructure)) {
                             RoundedRectangle(cornerRadius: 18)
                                 .fill(Color.main)
                                 .frame(width: 353, height: 54)
