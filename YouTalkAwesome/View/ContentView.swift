@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+//    
+//    @Environment(\.modelContext) private var modelContext
+//    @StateObject private var appStorageModel = PracticePointsViewModel()
     
     init() {
         UITabBar.appearance().shadowImage = UIImage()
@@ -32,6 +36,14 @@ struct ContentView: View {
                 }
         }
         .navigationBarBackButtonHidden()
+//        .onAppear {
+//            appStorageModel.clearUserDictionary()
+//            do {
+//                try modelContext.delete(model: LogicalSpeakingRecord.self)
+//            } catch {
+//                print("Failed to clear all Country and City data.")
+//            }
+//        }
     }
 }
 

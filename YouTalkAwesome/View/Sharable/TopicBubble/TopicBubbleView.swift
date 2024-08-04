@@ -42,7 +42,7 @@ struct TopicBubbleView: View {
         .onTapGesture {
             Router.shared.setTopic(title: topicContent)
             Router.shared.setSelectedStructure(selection: .init(rawValue: lsName)!)
-            
+            Router.shared.setIsTopicSelected(true)
             Router.shared.push(screen: .ContentWritingStartWithTopic)
         }
     }
