@@ -26,7 +26,7 @@ struct SpeechPracticeCompleteView: View {
                 .fill(.white)
                 .blur(radius: 30)
             
-            Image("\(speakingStructure.rawValue)-confetti")
+            Image("SpeakingPractice-confetti")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 450)
