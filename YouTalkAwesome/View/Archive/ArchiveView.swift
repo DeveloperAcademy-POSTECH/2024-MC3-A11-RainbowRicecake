@@ -13,7 +13,7 @@ struct ArchiveView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
-    @StateObject var practicePointsViewModel = PracticePointsViewModel()
+    @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
     @StateObject private var viewModel: ArchiveViewModel = .init()
     
@@ -69,9 +69,9 @@ struct ArchiveView: View {
         ZStack {
             Color.bg
             
-            VStack {
+            VStack(spacing: 2) {
                 HStack(spacing: 0) {
-                    VStack {
+                    VStack (spacing: 8) {
                         Image(systemName: "flowchart.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -80,6 +80,7 @@ struct ArchiveView: View {
                         Text("말하기 구조 학습")
                             .customFont(.caption1_bold)
                             .foregroundStyle(.gray3)
+                
                         Text("\(practicePointsViewModel.getCount())")
                             .customFont(.title3_bold)
                             .foregroundStyle(.main)
@@ -90,7 +91,7 @@ struct ArchiveView: View {
                         .frame(width: 1)
                         .foregroundStyle(.gray5)
 
-                    VStack {
+                    VStack (spacing: 8) {
                         Image(systemName: "questionmark.bubble.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -109,7 +110,7 @@ struct ArchiveView: View {
                         .frame(width: 1)
                         .foregroundStyle(.gray5)
 
-                    VStack {
+                    VStack (spacing: 8) {
                         Image(systemName: "applescript.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -125,35 +126,38 @@ struct ArchiveView: View {
                     .frame(width: width)
                 }
                 
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: LearningStatusView().toolbarRole(.editor)) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(height: 72)
                             .foregroundStyle(.white)
-                            .shadow(radius: 10)
-                        
-                        NavigationLink(destination: LearningStatusView() ) {
-                            HStack {
-                                Text("나의 말하기 구조 학습 현황")
-                                    .customFont(.title4_bold)
-                                    .foregroundStyle(.gray3)
-                                Spacer()
-                                Image(systemName: "arrow.right.circle.fill")
-                                    .resizable()
-                                    .foregroundStyle(.main)
-                                    .frame(width: 32, height: 32)
+                            .background {
+                                Color.gray1
+                                    .opacity(0.04)
+                                    .shadow(color: .gray1, radius: 4, x: 0, y: 4)
+                                    .blur(radius: 8, opaque: false)
                             }
-                            .padding(.leading, 33)
-                            .padding(.trailing, 24)
+                        
+                        HStack {
+                            Text("나의 말하기 구조 학습 현황")
+                                .customFont(.title4_bold)
+                                .foregroundStyle(.gray3)
+                            
+                            Spacer()
+                            Image(systemName: "arrow.right.circle.fill")
+                                .resizable()
+                                .foregroundStyle(.main)
+                                .frame(width: 32, height: 32)
+                            
                         }
+                        .padding(.leading, 33)
+                        .padding(.trailing, 24)
                     }
                 }
                 .padding(.vertical, 32)
             }
             .padding(.horizontal, 20)
-            .padding(.top, 100)
+            .padding(.top, 80)
             
         }
     }
@@ -180,7 +184,7 @@ struct ArchiveView: View {
         
         return LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
             ForEach(filtered) { record in
-                ScriptRectangleView(isThisForAdding: false, leftDay : "4", scriptTitle: record.topic, isDone: true)
+                ScriptRectangleView(isThisForAdding: false, record: record)
                     .onTapGesture {
                         router.setTopic(title: record.topic)
                         router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
@@ -190,7 +194,7 @@ struct ArchiveView: View {
             }
         }
         .padding(.horizontal, 20)
-        .padding(.top, 20)
+        .padding(.top, 34)
         
     }
     

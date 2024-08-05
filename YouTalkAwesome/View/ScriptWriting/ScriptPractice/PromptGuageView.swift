@@ -37,7 +37,7 @@ struct PromptGuageView: View {
             Text(self.currentTime < 0 ? "+\(currentMinToString()):\(currentSecToString())" : "\(currentMinToString()):\(currentSecToString())")
                 .customFont(.title4_bold)
                 .monospaced()
-                .animation(nil)
+                .animation(nil, value: currentTime)
         }
         .animation(.linear, value: currentTime)
     }

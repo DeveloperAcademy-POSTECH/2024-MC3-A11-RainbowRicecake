@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 // TODO: 추구 Type 파일에 병합 필요.
 struct ScriptRecord: Identifiable {
@@ -44,6 +45,9 @@ struct ScriptWritingView: View {
     ]
     @StateObject var router = Router.shared
 
+    // TODO: Query문 추후에 수정 필요
+//    @Query(filter: #Predicate<LogicalSpeakingRecord>{ $0.designatedTimestamp ?? Date() > Date() }) var record: [LogicalSpeakingRecord]
+    @Query var records: [LogicalSpeakingRecord]
     
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
@@ -58,25 +62,48 @@ struct ScriptWritingView: View {
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 }
             }
+            .onTapGesture {
+                router.setSelectedStructure(selection: evaluateSituation(text: situation))
+                router.push(screen: .ContentWritingStartWithoutTopic)
+            }
     }
     
     var body: some View {
         NavigationStack(path: $router.route) {
             ScrollView {
                 VStack(alignment: .leading) {
-                    InstructionTextView(instructionKeyword : ["말하기 구조","대본"], verbalPart: ["로", "을 작성해보세요!"])
+                    InstructionTextView(
+                        instructionKeyword : [ records.isEmpty ? "말하기 구조" : records.first!.topic ,records.isEmpty ? "대본" : "\(records.first!.designatedTimestamp!.calcDDays())"],
+                        verbalPart: [records.isEmpty ? "로" : "까지", records.isEmpty ? "을 작성해보세요!" : "일 남았어요!"]
+                    )
                         .padding()
                         .padding(.top, 60)
                     
-                    if scriptRecords != nil{
+                    if !records.isEmpty {
                         // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(scriptRecords) {
-                                    ScriptRectangleView(isThisForAdding: false, leftDay: $0.leftDay, scriptTitle: $0.scriptTitle , isDone: $0.isDone )
+                                Button {
+                                    router.push(screen: .ContentWritingStartWithoutTopic)
+                                } label: {
+                                    Image(systemName: "plus.circle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30)
+                                        .foregroundColor(.gray4)
+                                }
+                                .padding(.trailing, 5)
+
+                                
+                                ForEach(records) { record in
+                                    ScriptRectangleView(isThisForAdding: false, record: record)
                                         .onTapGesture {
+                                            router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
+                                            router.setTopic(title: record.topic)
                                             router.setIsTopicSelected(false)
-                                            router.push(screen: .ContentWritingStartWithoutTopic)
+                                            router.setSelectedStructure(selection: record.speakingStructure)
+                                            router.setStructureSections(record.content)
+                                            router.push(screen: .WritingCompleteWithoutTopic)
                                         }
                                 }
                             }
@@ -86,7 +113,12 @@ struct ScriptWritingView: View {
                     }  else {
                         HStack {
                             Spacer()
-                            ScriptRectangleView(isThisForAdding: true)
+                            ScriptRectangleView(isThisForAdding: true, record: nil)
+                                .padding(.horizontal, 75)
+                                .onTapGesture {
+                                    router.setIsTopicSelected(false)
+                                    router.push(screen: .ContentWritingStartWithoutTopic)
+                                }
 
                             Spacer()
                         }
@@ -162,6 +194,21 @@ struct ScriptWritingView: View {
         }
         .navigationBarBackButtonHidden()
 
+    }
+    
+    private func evaluateSituation(text: String) -> SpeakingStructure {
+        switch text {
+        case "깔끔 요약정리 ✍🏻", "내 말에 설득당할 걸? 😎":
+            return .prep
+        case "나의 경험 어필하기 🤓", "멋진 성장 스토리 🍀":
+            return .star
+        case "내 잠재력 어필하기 💫", "날카로운 상황 분석 📈":
+            return .grow
+        case "한 방 터뜨리기 👊🏻", "나에게 모두 이목집중 👀":
+            return .aida
+        default:
+            return .psb
+        }
     }
 }
 
