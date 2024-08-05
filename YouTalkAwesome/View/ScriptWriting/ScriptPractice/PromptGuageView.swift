@@ -25,7 +25,9 @@ struct PromptGuageView: View {
                     HStack {
                         Capsule()
                             .frame(height: 20)
-                            .foregroundStyle(Color.init(hex: "51D7A7"))
+                            .foregroundStyle(
+                                Color.init(hex:"51D7A7").gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3))
+                            )
                         
                         Spacer(minLength: spacerLength)
                         
