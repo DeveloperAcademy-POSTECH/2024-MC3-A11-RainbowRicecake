@@ -57,12 +57,13 @@ struct WritingComponentView: View {
                 GeometryReader { geometry in
                     Rectangle()
                         .foregroundColor(color)
-                        .frame(width: 2, height: geometry.size.height + 40 )
+                        .frame(width: 2, height: geometry.size.height + 30 )
                         .offset(x: 3, y: 7)
                 }
             }
         }
-        .padding()
+        .padding([.horizontal,.bottom])
+        
         
     }
 }
