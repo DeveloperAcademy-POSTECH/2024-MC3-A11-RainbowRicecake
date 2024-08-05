@@ -23,14 +23,15 @@ struct SpeechPracticeCompleteView: View {
                 .ignoresSafeArea()
             
             Circle()
-                .fill(.white)
-                .blur(radius: 30)
+                .fill(.wh)
+                .blur(radius: 20)
+                .frame(width: 560, height: 560)
             
-            Image("\(speakingStructure.rawValue)-confetti")
+            Image("SpeakingPractice-confetti")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 450)
-                .offset(y: -80)
+                .frame(width: 415)
+                .offset(y: -50)
                 .scaleEffect(isAnimating ? 1 : 0.3)
                 .onAppear {
                     withAnimation(.bouncy(duration: 0.5), {
@@ -42,8 +43,9 @@ struct SpeechPracticeCompleteView: View {
                 Spacer()
                 
                 Text("질문에 답하기를 완료했어요!")
-                    .customFont(.title3_bold)
-                    .padding(.bottom, 60)
+                    .customFont(.title3_bold2)
+                    .padding(.bottom, 20)
+                    .padding(.top, 110)
                 VStack {
                     Button {
                         self.isListeingSpeechViewPresented = true
@@ -51,22 +53,21 @@ struct SpeechPracticeCompleteView: View {
                         ZStack {
                             Capsule()
                                 .frame(width: 145, height: 50)
-                            
                             HStack {
                                 Text("내 답변 듣기")
+                                    .customFont(.body3_bold)
                                 Image(systemName: "play.fill")
                             }
                             .foregroundStyle(.white)
                         }
                     }
-                    .foregroundStyle(LinearGradient(colors: [ .init(hex: "71FBD2"), .init(hex: "7BC8AD")], startPoint: .center, endPoint: .bottomTrailing))
+                    .foregroundStyle(Color.main.gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3)))
                     HStack(spacing: 24) {
                         Text("권장시간 : \(timeToString())")
-                            .font(.custom("Pretendard-Medium", size: 16))
+                            .customFont(.body3_bold)
                             .foregroundStyle(.gray3)
-                        
                         Text("소요시간 : \(calcElapsedTime())")
-                            .font(.custom("Pretendard-Medium", size: 16))
+                            .customFont(.body3_bold)
                             .foregroundStyle(.gray3)
                     }
                     .padding(.bottom, 70)
@@ -86,6 +87,7 @@ struct SpeechPracticeCompleteView: View {
                     }
                 }
                 .foregroundStyle(.main)
+                .padding(.bottom)
                 
                 Button {
                     Router.shared.popToRootView()

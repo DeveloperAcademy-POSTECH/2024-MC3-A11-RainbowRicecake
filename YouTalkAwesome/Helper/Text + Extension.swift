@@ -28,6 +28,8 @@ struct CustomFont {
     
     static let title3_light = CustomFont(font: .custom("Pretendard-Regular", size: 24), kerning: -0.4, lineSpacing: 12.0)
     static let title3_bold = CustomFont(font: .custom("Pretendard-Medium", size: 24), kerning: -0.4, lineSpacing: 4.0)
+    static let title3_bold2 = CustomFont(font: .custom("Pretendard-Medium", size: 22), kerning: -0.4, lineSpacing: 4.0)
+    
     
     static let title4_light = CustomFont(font: .custom("Pretendard-Light", size: 20), kerning: -0.4, lineSpacing: 10.0)
     static let title4_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 20), kerning: -0.4, lineSpacing: 10.0)
@@ -37,8 +39,8 @@ struct CustomFont {
     static let body1_medium = CustomFont(font: .custom("Pretendard-Medium", size: 18), kerning: -1.0, lineSpacing: 6.0)
     static let body1_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 18), kerning: -1.0, lineSpacing: 3.0)
     
-    static let body2_light = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.4, lineSpacing: 12.0)
-    static let body2_light2 = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.0, lineSpacing: 3.5)
+    static let body2_light = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.4, lineSpacing: 9.0)
+    static let body2_light2 = CustomFont(font: .custom("Pretendard-Regular", size: 17), kerning: 0.0, lineSpacing: 8.0)
     static let body2_bold = CustomFont(font: .custom("Pretendard-Medium", size: 17), kerning: 0.4, lineSpacing: 12.0)
     static let body2_bold2 = CustomFont(font: .custom("Pretendard-SemiBold", size: 17), kerning: -0.4, lineSpacing: 12.0)
     
@@ -101,11 +103,5 @@ extension HStack {
             .font(customFont.font)
             .kerning(customFont.kerning)
             .lineSpacing(customFont.lineSpacing)
-    }
-}
-
-extension String {
-    func alignJustify() -> String {
-        return self.replacingOccurrences(of: " ", with: "\u{202F}\u{202F}")
     }
 }

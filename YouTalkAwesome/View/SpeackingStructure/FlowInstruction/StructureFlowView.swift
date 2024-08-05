@@ -12,8 +12,9 @@ struct StructureFlowView: View {
     @State var showExampleContents: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             LSWideCardView(speakingStructure: speakingStructure, height: 120)
+                .offset(x: -2)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {

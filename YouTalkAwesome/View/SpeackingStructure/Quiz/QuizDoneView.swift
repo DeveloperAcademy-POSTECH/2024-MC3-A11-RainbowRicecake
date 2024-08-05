@@ -20,7 +20,8 @@ struct QuizDoneView: View {
             
             Circle()
                 .fill(.wh)
-                .blur(radius: 30)
+                .blur(radius: 20)
+                .frame(width: 560, height: 560)
             
             Image("\(speakingStructure.rawValue)-confetti")
                 .resizable()
@@ -36,31 +37,33 @@ struct QuizDoneView: View {
             
             VStack {
                 Spacer()
-                HStack(alignment: .bottom, spacing: 2) {
-                    Text(speakingStructure.rawValue)
-                        .customFont(.point1)
-                    if !isRepeat {
-                        Text("+1")
-                            .font(.custom("Rubik", size: 24))
-                            .fontWeight(.medium)
-                            .padding(.bottom, 5)
+                VStack {
+                    HStack(alignment: .bottom, spacing: 2) {
+                        Text(speakingStructure.rawValue)
+                            .customFont(.point1)
+                        if !isRepeat {
+                            Text("+1")
+                                .font(.custom("Rubik", size: 24))
+                                .fontWeight(.medium)
+                                .padding(.bottom, 5)
+                        }
                     }
+                    
+                    Text("말하기 구조 학습을 완료했어요!")
+                        .customFont(.body1_bold)
+                    
+                    Image("\(speakingStructure.rawValue)")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 165, height: 165)
+                        .scaleEffect(isAnimating ? 1 : 0.3)
+                        .onAppear {
+                            withAnimation(.bouncy(duration: 1), {
+                                isAnimating = true
+                            })
+                        }
                 }
-                
-                Text("말하기 구조 학습을 완료했어요!")
-                    .customFont(.body1_bold)
-                
-                Image("\(speakingStructure.rawValue)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 165, height: 165)
-                    .scaleEffect(isAnimating ? 1 : 0.3)
-                    .onAppear {
-                        withAnimation(.bouncy(duration: 1), {
-                            isAnimating = true
-                        })
-                    }
-                
+                .padding(.top, 50)
                 Spacer()
                 
                 if !isRepeat {
@@ -70,7 +73,8 @@ struct QuizDoneView: View {
                             .foregroundColor(.gray6)
                         Capsule()
                             .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
-                            .foregroundColor(speakingStructure.color)
+                            .foregroundStyle(speakingStructure.color.gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3)))
+                        
                     }
                     .overlay(
                         HStack(spacing: 4) {
@@ -93,11 +97,12 @@ struct QuizDoneView: View {
                 NavigationLink(destination: QuizView(lsStructure: speakingStructure, isRepeat: true)) {
                     HStack {
                         Text("복습하기")
-                            .customFont(.body1_light)
+                            .customFont(.body1_medium)
                         Image(systemName: "arrow.counterclockwise")
                     }
                     .foregroundColor(.main)
                 }
+                .padding(.bottom, 12)
                 
                 Button {
                     Router.shared.popToRootView()
@@ -124,6 +129,6 @@ struct QuizDoneView: View {
 
 #Preview {
     NavigationStack {
-        QuizDoneView(isRepeat: true, speakingStructure: .prep)
+        QuizDoneView(isRepeat: false, speakingStructure: .prep)
     }
 }

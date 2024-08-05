@@ -33,6 +33,7 @@ struct WritingComponentView: View {
                 // 구조적 표현이 선택된 경우 e.g. Point, Reason, Attention etc
                 if structureSection.isScript {
                     TextField("", text: $textContent, axis: .vertical)
+                        .customFont(.body2_light)
                         .padding(10)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
@@ -42,6 +43,7 @@ struct WritingComponentView: View {
                     // 비언어적 표현이 선택된 경우
                 } else {
                     TextField("", text: $textContent, axis: .vertical)
+                        .customFont(.body2_light)
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)

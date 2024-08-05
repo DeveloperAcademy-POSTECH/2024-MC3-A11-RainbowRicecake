@@ -30,7 +30,7 @@ struct FlowComponentView: View {
                         .padding(.bottom, showTextBox ? 0 : 32)
                 }
                 if showTextBox {
-                    Text("\(speakingStructure.componentExamples[index])".alignJustify())
+                    Text("\(speakingStructure.componentExamples[index])")
                         .customFont(.body4_light)
                         .padding()
                         .background {
