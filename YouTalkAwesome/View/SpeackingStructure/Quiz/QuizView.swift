@@ -50,38 +50,36 @@ struct QuizView: View {
     
     @ViewBuilder
     func makeQuizComponentRow(_ quizComponent: LSQuizComponent) -> some View {
-        HStack {
+        HStack(spacing: 12) {
             Text(quizComponent.content)
-                .padding()
-            Spacer()
+                .customFont(.body1_light)
             Image(systemName: "line.3.horizontal")
-                .foregroundStyle(.gray3)
-                .padding(.trailing)
-            
+                .resizable()
+                .frame(width: 16, height: 14)
+                .foregroundStyle(.gray4)
         }
-        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 20)
+        .frame(width: 353)
         .background{
             GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.wh)
-                    .stroke(.gray3, lineWidth: 1)
+                    .stroke(.gray4, lineWidth: 0.5)
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .shadow(color: .gray, radius: 10, x: 0, y: 10)
+                    .shadow(color: .gray6, radius: 4, x: 0, y: 4)
             }
         }
-        .padding(.bottom)
-        .padding(.horizontal)
+        .padding(.bottom, 18)
         .draggable(quizComponent.id.uuidString) {
-            HStack {
+            HStack(spacing: 12) {
                 Text(quizComponent.content)
-                    .padding()
-                Spacer()
+                    .customFont(.body1_light)
                 Image(systemName: "line.3.horizontal")
-                    .foregroundStyle(.gray3)
-                    .padding(.trailing)
-                
+                    .resizable()
+                    .frame(width: 16, height: 14)
+                    .foregroundStyle(.gray4)
             }
-            .frame(maxWidth: .infinity)
             .onAppear {
                 currentlyDragging = quizComponent
             }
@@ -99,7 +97,7 @@ struct QuizView: View {
     }
     
     func changeUIBasedOnTheResult()  {
-        bottomBackColor = isResultCorrect! ? Color.bg : Color.gray3
+        bottomBackColor = isResultCorrect! ? Color.bg : Color.gray6
         buttonText = isResultCorrect! ? "학습 완료" : "재도전하기"
         confirmationMessage = isResultCorrect! ? "정답이에요! 🎉" : "다시 한 번 생각해볼까요? 💪"
         messageColor = isResultCorrect! ? Color.main : Color.gray2
@@ -108,24 +106,26 @@ struct QuizView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                VStack (alignment: .leading) {
-                    Text("글을 움직여 아래 순서대로 배치해보세요")
-                        .customFont(.title4_bold)
-                    
-                    Image("\(lsStructure.rawValue)_\(lsStructure.components.count)")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.bottom)
+                VStack(spacing: 0){
+                    VStack (alignment: .leading, spacing: 16) {
+                        Text("글을 움직여 아래 순서대로 배치해보세요")
+                            .customFont(.title4_bold)
+                        
+                        Image("\(lsStructure.rawValue)_\(lsStructure.components.count)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .padding(.bottom, 24)
                     
                     ForEach(quiz) { component in
                         makeQuizComponentRow(component)
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 20)
                 
-                
-                Spacer(minLength: 200)
+                Spacer(minLength: (isButtonDisabled ? 80 : 150))
             }
+            .scrollIndicators(.hidden)
             .frame(maxHeight: .infinity)
             .toolbar(.hidden, for: .tabBar)
             .toolbarRole(.editor)
@@ -136,11 +136,10 @@ struct QuizView: View {
                             Spacer()
                             Text(confirmationMessage)
                                 .customFont(.title4_bold)
-                                .foregroundStyle(Color.main)
+                                .foregroundStyle(isResultCorrect! ? .main : .gray2)
                                 .padding(.top, 28)
                             Spacer()
                         }
-
                     }
                     Spacer()
                     if isResultCorrect != nil && isResultCorrect == true {
@@ -155,7 +154,6 @@ struct QuizView: View {
                                 }
                                 .id(bottomId)
                         }
-                        
                     } else {
                         Button {
                             let orderInTheQuiz:[Int] = quiz.map({$0.order})
@@ -183,6 +181,7 @@ struct QuizView: View {
                     }
                 }
                 .background(bottomBackColor)
+                .frame(height: 130)
             }
             .onAppear {
                 quiz = lsStructure.quizSentences
