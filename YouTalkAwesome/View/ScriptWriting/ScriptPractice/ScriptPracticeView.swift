@@ -113,6 +113,7 @@ struct ScriptPracticeView: View {
                                     
                                     Text("완료")
                                         .foregroundStyle(.white)
+                                        .customFont(.body1_bold)
                                 }
                                 .padding(.bottom, 53)
                             }
