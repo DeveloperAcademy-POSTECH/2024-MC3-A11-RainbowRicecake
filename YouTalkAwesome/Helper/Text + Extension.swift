@@ -103,3 +103,9 @@ extension HStack {
             .lineSpacing(customFont.lineSpacing)
     }
 }
+
+extension String {
+    func alignJustify() -> String {
+        return self.replacingOccurrences(of: " ", with: "\u{202F}\u{202F}")
+    }
+}

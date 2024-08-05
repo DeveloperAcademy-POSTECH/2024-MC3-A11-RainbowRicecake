@@ -51,7 +51,7 @@ struct QuizView: View {
     @ViewBuilder
     func makeQuizComponentRow(_ quizComponent: LSQuizComponent) -> some View {
         HStack(spacing: 12) {
-            Text(quizComponent.content)
+            Text(quizComponent.content.alignJustify())
                 .customFont(.body1_light)
             Image(systemName: "line.3.horizontal")
                 .resizable()
@@ -62,13 +62,13 @@ struct QuizView: View {
         .padding(.vertical, 20)
         .frame(width: 353)
         .background{
-            GeometryReader { geometry in
+//            GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.wh)
                     .stroke(.gray4, lineWidth: 0.5)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+//                    .frame(width: geometry.size.width, height: geometry.size.height)
                     .shadow(color: .gray6, radius: 4, x: 0, y: 4)
-            }
+//            }
         }
         .padding(.bottom, 18)
         .draggable(quizComponent.id.uuidString) {
@@ -192,6 +192,6 @@ struct QuizView: View {
 
 #Preview {
     NavigationStack {
-        QuizView(lsStructure: .psb)
+        QuizView(lsStructure: .prep)
     }
 }
