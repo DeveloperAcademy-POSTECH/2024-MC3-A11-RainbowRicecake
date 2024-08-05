@@ -207,7 +207,7 @@ struct ContentWritingView: View {
                             }
                         }
                     }
-                    .presentationDetents([.height(270)])
+                    .presentationDetents([.height(indexOfSpeakingStructure < selectedStructure.components.count ? 270 : 130)])
                 }
             }
             .padding(.horizontal)
