@@ -33,7 +33,7 @@ struct CustomFont {
     static let title4_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 20), kerning: -0.4, lineSpacing: 10.0)
     
     // MARK: Body (Pretendard)
-    static let body1_light = CustomFont(font: .custom("Pretendard-Regular", size: 18), kerning: -1.0, lineSpacing: 10.0)
+    static let body1_light = CustomFont(font: .custom("Pretendard-Regular", size: 18), kerning: -1.0, lineSpacing: 8.0)
     static let body1_medium = CustomFont(font: .custom("Pretendard-Medium", size: 18), kerning: -1.0, lineSpacing: 6.0)
     static let body1_bold = CustomFont(font: .custom("Pretendard-SemiBold", size: 18), kerning: -1.0, lineSpacing: 3.0)
     
