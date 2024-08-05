@@ -44,7 +44,6 @@ struct SpeechPracticeCompleteView: View {
                 Text("질문에 답하기를 완료했어요!")
                     .customFont(.title3_bold)
                     .padding(.bottom, 60)
-                
                 VStack {
                     Button {
                         self.isListeingSpeechViewPresented = true
@@ -52,6 +51,7 @@ struct SpeechPracticeCompleteView: View {
                         ZStack {
                             Capsule()
                                 .frame(width: 145, height: 50)
+                            
                             HStack {
                                 Text("내 답변 듣기")
                                 Image(systemName: "play.fill")
@@ -86,7 +86,6 @@ struct SpeechPracticeCompleteView: View {
                     }
                 }
                 .foregroundStyle(.main)
-                .padding(.bottom)
                 
                 Button {
                     Router.shared.popToRootView()
