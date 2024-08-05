@@ -129,7 +129,7 @@ struct ArchiveView: View {
                 NavigationLink(destination: LearningStatusView().toolbarRole(.editor)) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
-                            .frame(height: 72)
+                            .frame(height: 68)
                             .foregroundStyle(.white)
                             .background {
                                 Color.gray1
@@ -154,7 +154,8 @@ struct ArchiveView: View {
                         .padding(.trailing, 24)
                     }
                 }
-                .padding(.vertical, 32)
+                .padding(.top, 30)
+                .padding(.bottom, 25)
             }
             .padding(.horizontal, 20)
             .padding(.top, 80)
@@ -182,7 +183,7 @@ struct ArchiveView: View {
         
         let filtered  = records.filter {$0.isFreeTopic == true}
         
-        return LazyVGrid(columns: [.init(spacing: 24), .init(spacing: 0)], spacing: 32) {
+        return LazyVGrid(columns: [.init(spacing: 20), .init(spacing: 0)], spacing: 32) {
             ForEach(filtered) { record in
                 ScriptRectangleView(isThisForAdding: false, record: record)
                     .onTapGesture {

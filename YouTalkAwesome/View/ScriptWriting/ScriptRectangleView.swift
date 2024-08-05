@@ -11,9 +11,6 @@ struct ScriptRectangleView: View {
     let ratio: CGFloat = 180 / 224
     
     var isThisForAdding: Bool
-//    var leftDay : String?
-//    var scriptTitle: String?
-//    var isDone : Bool?
     
     let record: LogicalSpeakingRecord?
     
@@ -43,7 +40,7 @@ struct ScriptRectangleView: View {
                             .foregroundColor(.gray4)
                     }
                 } else {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 3) {
                         Text("D - \(record?.designatedTimestamp?.calcDDays() ?? 0)")
                             .customFont(.title4_light)
                             .foregroundStyle(.gray3)
@@ -57,10 +54,10 @@ struct ScriptRectangleView: View {
                                 .foregroundStyle(.gray3)
                         }
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 16)
                     .padding(.top, 40)
-                    .padding(.bottom, 24)
-//                    .frame(width: 140, height: 150)
+                    .padding(.bottom, 14)
                     
                 }
             }
