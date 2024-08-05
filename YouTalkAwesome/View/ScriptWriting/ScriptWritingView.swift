@@ -45,9 +45,8 @@ struct ScriptWritingView: View {
     ]
     @StateObject var router = Router.shared
 
-    // TODO: Query문 추후에 수정 필요
-//    @Query(filter: #Predicate<LogicalSpeakingRecord>{ $0.designatedTimestamp ?? Date() > Date() }) var record: [LogicalSpeakingRecord]
-    @Query var records: [LogicalSpeakingRecord]
+    @Query(filter: #Predicate<LogicalSpeakingRecord> { $0.isFreeTopic }) var records: [LogicalSpeakingRecord]
+    @State private var filteredRecords: [LogicalSpeakingRecord] = []
     
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
@@ -69,13 +68,13 @@ struct ScriptWritingView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     InstructionTextView(
-                        instructionKeyword : [ records.isEmpty ? "말하기 구조" : records.first!.topic ,records.isEmpty ? "대본" : "\(records.first!.designatedTimestamp!.calcDDays())"],
-                        verbalPart: [records.isEmpty ? "로" : "까지", records.isEmpty ? "을 작성해보세요!" : "일 남았어요!"]
+                        instructionKeyword : [ filteredRecords.isEmpty ? "말하기 구조" : filteredRecords.first!.topic ,filteredRecords.isEmpty ? "대본" : "\(filteredRecords.first!.designatedTimestamp!.calcDDays())"],
+                        verbalPart: [filteredRecords.isEmpty ? "로" : "까지", filteredRecords.isEmpty ? "을 작성해보세요!" : "일 남았어요!"]
                     )
                         .padding()
                         .padding(.top, 60)
                     
-                    if !records.isEmpty {
+                    if !filteredRecords.isEmpty {
                         // TODO: 스크립트 > SWIFTDATA , 토픽/상황설명 등의 데이터들은 > JSON 혹은 STRUCT에 담아서 보관하는 것으로 추후 수정 필요.
                         ScrollView(.horizontal) {
                             HStack {
@@ -91,7 +90,7 @@ struct ScriptWritingView: View {
                                 .padding(.trailing, 5)
 
                                 
-                                ForEach(records) { record in
+                                ForEach(filteredRecords) { record in
                                     ScriptRectangleView(isThisForAdding: false, record: record)
                                         .onTapGesture {
                                             router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
@@ -189,6 +188,12 @@ struct ScriptWritingView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear {
+            self.filteredRecords = records.filter { $0.designatedTimestamp!.calcDDays() >= Date().calcDDays() }
+        }
+        .onChange(of: records) {
+            self.filteredRecords = records.filter { $0.designatedTimestamp!.calcDDays() >= Date().calcDDays() }
+        }
 
     }
 }
