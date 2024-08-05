@@ -69,7 +69,7 @@ struct SpeakingStructureView: View {
                         .padding(.leading, 20)
                         ScrollView(.horizontal) {
                             HStack(spacing: 16) {
-                                ForEach(sampleSpeeches.filter { $0.category == "커리어 인터뷰"}, id: \.self) { speech in
+                                ForEach(sampleSpeeches.filter { $0.category == "CEO 인터뷰"}, id: \.self) { speech in
                                     NavigationLink(destination: SpeechView(speech: speech)) {
                                         ExampleCardView(speech: speech, title: speech.title)
                                     }
