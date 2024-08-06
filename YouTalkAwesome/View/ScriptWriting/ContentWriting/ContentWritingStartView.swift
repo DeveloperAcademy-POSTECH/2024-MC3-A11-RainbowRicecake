@@ -110,7 +110,7 @@ struct ContentWritingStartView: View {
                 }
                 .scrollIndicators(.hidden)
             }
-
+            
             
             Button {
                 router.setTopic(title: self.contentTitle)
@@ -160,7 +160,7 @@ struct ContentWritingStartView: View {
                 }
                 
                 TextField("예정된 발표 날짜를 선택해주세요", text: $selectedDateString)
-                    .disabled(true)    
+                    .disabled(true)
                     .padding(10)
                     .background (
                         RoundedRectangle(cornerRadius: 10)
@@ -208,8 +208,8 @@ struct ContentWritingStartView: View {
                         .padding()
                         .presentationDetents([.medium, .fraction(0.5)])
                         .onChange(of: selectedDate) {
-                          self.selectingArray[1] = true
-                         }
+                            self.selectingArray[1] = true
+                        }
                     }
             }
             .padding(.horizontal)
@@ -219,8 +219,9 @@ struct ContentWritingStartView: View {
                     Text("제한 시간")
                         .customFont(.body1_bold)
                 }
-                TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString) 
-                    .disabled(true)    
+                
+                TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString)
+                    .disabled(true)
                     .padding(10)
                     .background (
                         RoundedRectangle(cornerRadius: 10)
@@ -234,53 +235,59 @@ struct ContentWritingStartView: View {
                                 .padding(.trailing)
                                 .foregroundStyle(Color.gray1)
                         }
-                        .onTapGesture {
-                            showTimePicker.toggle()
-                        }
+                        
                     }
-                
-                    .sheet(isPresented: $showTimePicker) {
-                        VStack {
-                            HStack {
-                                Picker(selection: $selectedMinutes, label: Text("분")) {
-                                    ForEach(0..<60) { index in
-                                        Text("\(self.minutes[index])").tag(index)
-                                    }
+                .onTapGesture {
+                    showTimePicker.toggle()
+                }
+                .onChange(of: selectedDate) {
+                    self.selectingArray[2] = true
+                }
+                .sheet(isPresented: $showTimePicker) {
+                    VStack {
+                        HStack {
+                            Picker(selection: $selectedMinutes, label: Text("분")) {
+                                ForEach(0..<60) { index in
+                                    Text("\(self.minutes[index])").tag(index)
                                 }
-                                .labelsHidden()
-                                .pickerStyle(WheelPickerStyle())
-                                Text("분")
-                                Picker(selection: $selectedSeconds, label: Text("초")) {
-                                    ForEach(0..<60) { index in
-                                        Text("\(self.seconds[index])").tag(index)
-                                    }
-                                }
-                                .labelsHidden()
-                                .pickerStyle(WheelPickerStyle())
-                                Text("초")
                             }
+                            .labelsHidden()
+                            .pickerStyle(WheelPickerStyle())
+                            Text("분")
+                            Picker(selection: $selectedSeconds, label: Text("초")) {
+                                ForEach(0..<60) { index in
+                                    Text("\(self.seconds[index])").tag(index)
+                                }
+                            }
+                            .labelsHidden()
+                            .pickerStyle(WheelPickerStyle())
+                            Text("초")
+                        }
+                        Button(action: {
+                            showTimePicker = false
+                            timeLimit = selectedMinutes*60 + selectedSeconds
+                            timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
                             
-                            Button {
-                                showTimePicker = false
-                                timeLimit = selectedMinutes*60 + selectedSeconds
-                                timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
-                            } label: {
-                                RoundedRectangle(cornerRadius: 18)
-                                    .foregroundStyle(Color.main)
-                                    .frame(width: 353, height: 54)
-                                    .overlay(
-                                        Text("확인")
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(Color.wh)
-                                    )
-                            }
+                            print(timeLimit)
+                        }) {
+                            Text("확인")
+                                .customFont(.body1_bold)
+                                .padding()
+                                .background(Color.main)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
                         }
-                        .padding()
-                        .presentationDetents([.medium, .fraction(0.5)])
                     }
+                    .padding()
+                    .presentationDetents([.medium, .fraction(0.5)])
+                }
             }
             .padding(.horizontal)
         }
+    }
+    
+    private func checkConditionFilled() -> Bool {
+        return self.selectingArray.filter{ !$0 }.isEmpty
     }
 }
 
