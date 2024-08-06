@@ -19,7 +19,7 @@ struct WritingComponentView: View {
         HStack(alignment: .top) {
             Circle()
                 .fill(structureSection.isScript ? color : Color.white)
-                .stroke(structureSection.isScript ? Color.white : color)
+                .stroke(color)
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
             
@@ -59,12 +59,13 @@ struct WritingComponentView: View {
                 GeometryReader { geometry in
                     Rectangle()
                         .foregroundColor(color)
-                        .frame(width: 2, height: geometry.size.height + 40 )
-                        .offset(x: 3, y: 6)
+                        .frame(width: 2, height: geometry.size.height + 30 )
+                        .offset(x: 3, y: 7)
                 }
             }
         }
-        .padding()
+        .padding([.horizontal,.bottom])
+        
         
     }
 }
