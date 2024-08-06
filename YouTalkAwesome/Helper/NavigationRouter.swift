@@ -56,6 +56,17 @@ final class Router: ObservableObject {
     
     private var selectedTopicList: String?
     
+    public var viewModel: ScriptPracticeViewModel {
+        self.scriptPracticeViewModel!
+    }
+    
+    public var audio: AudioManager {
+        self.audioManager!
+    }
+    
+    public var structure: [StructureSection] {
+        self.structureSections
+    }
     private init() {}
 }
 
@@ -89,9 +100,10 @@ extension Router {
         case .WritingCompleteWithTopic:
             WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: true, structureSections: structureSections)
                 .toolbarRole(.editor)
+                .toolbar(.hidden, for: .tabBar)
             
         case .ScriptPracticeWithTopic:
-            ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: self.scriptPracticeViewModel!, structureSections: self.structureSections)
+            ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: self.scriptPracticeViewModel!, structureSections: self.structureSections, audioManager: self.audioManager!)
                 .toolbarRole(.editor)
             
         case .SpeechPracticeComplete:
@@ -173,6 +185,10 @@ extension Router {
     
     public func makeVM(time: Int) {
         self.scriptPracticeViewModel = .init(time: time)
+    }
+    
+    public func makeAudioManager() {
+        self.audioManager = AudioManager()
     }
     
     public func resetProperty() {

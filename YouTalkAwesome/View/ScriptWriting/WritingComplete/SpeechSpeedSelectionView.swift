@@ -109,13 +109,13 @@ struct SpeechSpeedSelectionView: View {
         switch self.speechSpeedStatus {
         case .slow:
             let result = self.speechSpeed[0] % 60
-            return "\(result)"
+            return result < 10 ? "0\(result)" : "\(result)"
         case .standard:
             let result = self.speechSpeed[1] % 60
-            return "\(result)"
+            return  result < 10 ? "0\(result)" : "\(result)"
         case .fast:
             let result = self.speechSpeed[2] % 60
-            return "\(result)"
+            return  result < 10 ? "0\(result)" : "\(result)"
         }
     }
 }

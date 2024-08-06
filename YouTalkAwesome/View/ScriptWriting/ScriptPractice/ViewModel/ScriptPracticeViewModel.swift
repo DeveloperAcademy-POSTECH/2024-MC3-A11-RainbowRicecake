@@ -29,6 +29,10 @@ final class ScriptPracticeViewModel {
     }
     
     public func startTimer() {
+        if isTimerPlaying {
+            return
+        }
+        
         self.currentTime += 1
         self.isTimerPlaying = true
         if let timer = self.timer {

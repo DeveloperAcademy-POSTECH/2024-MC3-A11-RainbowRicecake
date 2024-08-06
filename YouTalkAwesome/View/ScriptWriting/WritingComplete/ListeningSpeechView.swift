@@ -21,8 +21,7 @@ struct ListeningSpeechView: View {
                     .padding(.horizontal)
                 
                 ScrollView {
-                    ForEach(structureSectionSample, id: \.self) { section in
-                        // TODO: 데이터 연결 필요
+                    ForEach(Router.shared.structure, id: \.self) { section in
                         StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                     }
                     Spacer(minLength: 200)
