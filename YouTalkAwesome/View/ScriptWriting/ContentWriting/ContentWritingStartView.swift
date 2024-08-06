@@ -262,6 +262,7 @@ struct ContentWritingStartView: View {
                             .pickerStyle(WheelPickerStyle())
                             Text("초")
                         }
+                        
                         Button(action: {
                             showTimePicker = false
                             timeLimit = selectedMinutes*60 + selectedSeconds
@@ -269,12 +270,14 @@ struct ContentWritingStartView: View {
                             
                             print(timeLimit)
                         }) {
-                            Text("확인")
-                                .customFont(.body1_bold)
-                                .padding()
-                                .background(Color.main)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                            RoundedRectangle(cornerRadius: 18)
+                                .foregroundStyle(Color.main)
+                                .frame(width: 353, height: 54)
+                                .overlay(
+                                    Text("확인")
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(Color.wh)
+                                )
                         }
                     }
                     .padding()
