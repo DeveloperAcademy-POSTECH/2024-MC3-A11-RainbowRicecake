@@ -23,12 +23,12 @@ struct SpeechFlowComponentView: View {
                     .customFont(.title4_bold)
                     .foregroundStyle(Color.main)
                     .padding(.bottom, 10)
-                
                 Text("\(speech.content[index])")
-                    .customFont(.body2_light)
+                    .customFont(.body2_light2)
                     .padding(.bottom)
             }
         }
+        .padding(.bottom)
         .background(alignment: .leading) {
             if index != speakingStructure.components.count - 1 {
                 Rectangle()

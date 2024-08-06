@@ -13,7 +13,7 @@ struct LSStickerView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.main)
-            .frame(width: 58, height: 24)
+            .frame(width: 70, height: 24)
             .overlay {
                 Text(lsName)
                     .customFont(.point5)

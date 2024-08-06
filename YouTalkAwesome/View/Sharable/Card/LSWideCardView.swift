@@ -16,13 +16,13 @@ struct LSWideCardView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .stroke(.bk, lineWidth: 3)
+            .stroke(.bk, lineWidth: 6)
             .fill(.wh)
             .frame(width: width, height: height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(speakingStructure.color)
-                    .offset(x: 10, y: 10)
+                    .offset(x: 8, y: 8)
             }
             .overlay {
                 VStack{
@@ -37,8 +37,8 @@ struct LSWideCardView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80, height: 80)
+                            .offset(y: 8)
                     }
-                    
                     
                     if height == 152 {
                         Spacer()
@@ -72,5 +72,5 @@ struct LSWideCardView: View {
 }
 
 #Preview {
-    LSWideCardView(speakingStructure: .prep, height: 152)
+    LSWideCardView(speakingStructure: .prep, height: 120)
 }
