@@ -76,6 +76,8 @@ struct ContentWritingStartView: View {
                     .onChange(of: contentTitle) {
                         if !contentTitle.isEmpty {
                             selectingArray[0] = true
+                        } else {
+                            selectingArray[0] = false
                         }
                     }
             }
@@ -140,11 +142,8 @@ struct ContentWritingStartView: View {
         .toolbarRole(.editor)
         .onAppear {
             if self.isTopic {
-                self.canGoNext = true
+                self.selectingArray = [true, true, true, true]
             }
-        }
-        .onDisappear {
-            router.resetProperty()
         }
         .onTapGesture {
             hideKeyboard()
