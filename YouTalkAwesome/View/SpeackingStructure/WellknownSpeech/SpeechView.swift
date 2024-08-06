@@ -121,36 +121,32 @@ struct SubCardView: View {
         }
     }
     
-    let width: CGFloat = 356
-    let height: CGFloat = 142 //TODO: 여기 flexible 하게 해야함
-    
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .stroke(Color.main, lineWidth: 4)
-            .fill(Color.bg)
-            .frame(width: width, height: height)
+            VStack(alignment: .leading) {
+                if speakingStructure != nil || speech != nil {
+                    Label(topContent, systemImage: speakingStructure != nil ? "checkmark.circle.fill" : "square.and.pencil")
+                        .customFont(.body3_bold)
+                        .foregroundStyle(Color.main)
+                        .padding(.bottom, 12)
+                }
+                Text(bodyContent)
+                    .customFont(.body3_light)
+                    .foregroundStyle(.gray2)
+            }
+            .padding(.vertical, 14)
+            .padding(.horizontal, 10)
             .background {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.main)
-                    .offset(x: 4, y: 6)
-            }
-            .overlay {
-                HStack {
-                    VStack(alignment: .leading) {
-                        if speakingStructure != nil || speech != nil {
-                            Label(topContent, systemImage: speakingStructure != nil ? "checkmark.circle.fill" : "square.and.pencil")
-                                .customFont(.body3_bold)
-                                .foregroundStyle(Color.main)
-                                .padding(.bottom, 12)
-                        }
-                        Text(bodyContent)
-                            .customFont(.body3_light)
-                            .foregroundStyle(.gray2)
+                    .stroke(Color.main, lineWidth: 4)
+                    .fill(Color.bg)
+                    .frame(width: 353)
+                    .background {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.main)
+                            .offset(x: 4, y: 6)
                     }
-                    .padding(.vertical, 14)
-                    .padding(.horizontal, 12)
-                }
             }
+            .frame(width: 353)
     }
 }
 

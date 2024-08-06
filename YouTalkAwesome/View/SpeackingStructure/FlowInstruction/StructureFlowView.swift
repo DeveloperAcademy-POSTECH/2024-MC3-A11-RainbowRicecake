@@ -12,10 +12,9 @@ struct StructureFlowView: View {
     @State var showExampleContents: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("말하기 구조를 학습해보아요")
-                .customFont(.title2_bold)
+        VStack {
             LSWideCardView(speakingStructure: speakingStructure, height: 120)
+                .offset(x: -2)
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
@@ -23,7 +22,7 @@ struct StructureFlowView: View {
                         FlowComponentView(speakingStructure: speakingStructure, index: index, showTextBox: $showExampleContents)
                     }
                 }
-                .padding()
+                .padding(.vertical)
                 // 예시문장 열고 닫는 버튼
                 Button(action: {
                     withAnimation {
@@ -32,10 +31,14 @@ struct StructureFlowView: View {
                 }) {
                     HStack {
                         Text(showExampleContents ? "예시닫기" : "예시보기")
+                            .customFont(.body3_bold)
                         Image(systemName: showExampleContents ? "chevron.up" : "chevron.down")
+                            .frame(width: 16, height: 16)
                     }
                     .foregroundColor(Color.gray3)
                 }
+                .padding(.top, -30)
+                .padding(.bottom, 20)
             }
             .scrollIndicators(.hidden)
             Spacer()
@@ -62,6 +65,6 @@ struct StructureFlowView: View {
 
 #Preview {
     NavigationStack {
-        StructureFlowView(speakingStructure: .grow)
+        StructureFlowView(speakingStructure: .prep)
     }
 }

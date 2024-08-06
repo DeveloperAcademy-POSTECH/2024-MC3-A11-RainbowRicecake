@@ -23,14 +23,13 @@ struct FlowComponentView: View {
                     Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
                         .customFont(.body1_bold)
                         .foregroundStyle(speakingStructure.color)
+                        .padding(.bottom, 2)
                     Text("\(speakingStructure.componentDescriptions[index])")
                         .customFont(.caption1_light)
                         .foregroundStyle(Color.gray2)
-                        .padding(.bottom, showTextBox ? 0 : 10)
+                        .padding(.bottom, showTextBox ? 0 : 32)
                 }
                 if showTextBox {
-                    
-                    
                     Text("\(speakingStructure.componentExamples[index])")
                         .customFont(.body4_light)
                         .padding()
@@ -39,7 +38,7 @@ struct FlowComponentView: View {
                                 .stroke(Color.gray3, lineWidth: 1)
                                 .fill(Color.wh)
                         }
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 20)
                 }
             }
             Spacer()
@@ -56,5 +55,5 @@ struct FlowComponentView: View {
 }
 
 #Preview {
-    FlowComponentView(speakingStructure: .aida, index: 1, showTextBox: .constant(true))
+    FlowComponentView(speakingStructure: .aida, index: 1, showTextBox: .constant(false))
 }

@@ -35,6 +35,8 @@ struct ContentWritingStartView: View {
     //위 사항들 다 충족하면 true
     @State private var canGoNext: Bool = false
     
+    @State private var selectingArray: [Bool] = [false, false, false, false]
+    
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -71,6 +73,11 @@ struct ContentWritingStartView: View {
                             .fill(.wh)
                     )
                     .lineLimit(20)
+                    .onChange(of: contentTitle) {
+                        if !contentTitle.isEmpty {
+                            selectingArray[0] = true
+                        }
+                    }
             }
             .padding(.horizontal)
             
@@ -91,7 +98,7 @@ struct ContentWritingStartView: View {
                             Button(action: {
                                 selectedSpeakingStructure = speakingStructure
                                 //다 선택되면 이걸로 체크
-                                checkValues()
+                                self.selectingArray[3] = true
                             }) {
                                 Image("\(speakingStructure.rawValue)-\(selectedSpeakingStructure == speakingStructure ? "selected" : "unselected")")
                                     .resizable()
@@ -103,36 +110,41 @@ struct ContentWritingStartView: View {
                 }
                 .scrollIndicators(.hidden)
             }
+
             
-            // TODO: 버튼으로 수정 필요!
-            RoundedRectangle(cornerRadius: 18)
-                .foregroundStyle(canGoNext ? Color.main : Color.gray5)
-                .frame(width: 353, height: 54)
-                .overlay(
-                    Text("새로운 대본 만들기")
-                        .customFont(.body1_bold)
-                        .foregroundStyle(canGoNext ? Color.wh : Color.gray2)
-                )
-                .onTapGesture {
-                    router.setTopic(title: self.contentTitle)
-                    router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
-                    
-                    if canGoNext {
-                        if isTopic {
-                            router.push(screen: .ContentWritingWithTopic)
-                        } else {
-                            router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
-                            router.push(screen: .ContentWritingWithoutTopic)
-                        }
-                    }
+            Button {
+                router.setTopic(title: self.contentTitle)
+                router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
+                
+                if isTopic {
+                    router.push(screen: .ContentWritingWithTopic)
+                } else {
+                    router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
+                    router.push(screen: .ContentWritingWithoutTopic)
                 }
-                .padding(.top, isTopic ? 80 : 0)
-                .padding(.bottom)
+            } label: {
+                RoundedRectangle(cornerRadius: 18)
+                    .frame(width: 353, height: 54)
+                    .overlay(
+                        Text("새로운 대본 만들기")
+                            .customFont(.body1_bold)
+                            .foregroundStyle(Color.wh)
+                    )
+            }
+            .tint(.main)
+            .disabled( !checkConditionFilled() )
+            .padding(.top, isTopic ? 80 : 0)
+            .padding(.bottom)
         }
         .background(Color.gray6)
         .toolbarRole(.editor)
         .onAppear {
-            checkValues()
+            if self.isTopic {
+                self.canGoNext = true
+            }
+        }
+        .onDisappear {
+            router.resetProperty()
         }
         .onTapGesture {
             hideKeyboard()
@@ -195,6 +207,9 @@ struct ContentWritingStartView: View {
                         }
                         .padding()
                         .presentationDetents([.medium, .fraction(0.5)])
+                        .onChange(of: selectedDate) {
+                          self.selectingArray[1] = true
+                         }
                     }
             }
             .padding(.horizontal)
@@ -204,7 +219,6 @@ struct ContentWritingStartView: View {
                     Text("제한 시간")
                         .customFont(.body1_bold)
                 }
-                
                 TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString) 
                     .disabled(true)    
                     .padding(10)

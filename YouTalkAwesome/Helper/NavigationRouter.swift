@@ -75,7 +75,7 @@ extension Router {
         case .ContentWritingStartWithTopic:
             ContentWritingStartView(isTopic: true, contentTitle: self.topic ?? "nil", selectedSpeakingStructure: self.selectedStructure)
         case .ContentWritingStartWithoutTopic:
-            ContentWritingStartView(isTopic: isTopicSelected, selectedSpeakingStructure: self.selectedStructure)
+            ContentWritingStartView(isTopic: false, selectedSpeakingStructure: self.selectedStructure)
             
         case .ContentWritingWithoutTopic, .ContentWritingWithTopic:
             ContentWritingView(topic: self.topic ?? "nil", selectedStructure: self.selectedStructure ?? .aida, designatedDate: self.selectedDate,  expectedLeadTime: selectedTime, isFreeTopic: !isTopicSelected)
@@ -172,5 +172,19 @@ extension Router {
     
     public func makeVM(time: Int) {
         self.scriptPracticeViewModel = .init(time: time)
+    }
+    
+    public func resetProperty() {
+        self.isTopicSelected = false
+        self.topic = nil
+        self.selectedStructure = nil
+        self.selectedDate = nil
+        self.selectedTime = nil
+        self.estimatedTime = nil
+        self.structureSections = []
+        self.selectedSpeech = nil
+        self.audioManager = nil
+        self.scriptPracticeViewModel = nil
+        self.selectedTopicList = nil
     }
 }
