@@ -148,6 +148,7 @@ struct ContentWritingStartView: View {
                 }
                 
                 TextField("예정된 발표 날짜를 선택해주세요", text: $selectedDateString)
+                    .disabled(true)    
                     .padding(10)
                     .background (
                         RoundedRectangle(cornerRadius: 10)
@@ -204,7 +205,8 @@ struct ContentWritingStartView: View {
                         .customFont(.body1_bold)
                 }
                 
-                TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString)
+                TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString) 
+                    .disabled(true)    
                     .padding(10)
                     .background (
                         RoundedRectangle(cornerRadius: 10)
