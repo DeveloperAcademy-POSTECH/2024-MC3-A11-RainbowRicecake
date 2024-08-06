@@ -37,7 +37,6 @@ struct LSWideCardView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80, height: 80)
-                            .offset(y: 8)
                     }
                     
                     if height == 152 {
@@ -49,8 +48,9 @@ struct LSWideCardView: View {
                                 .foregroundColor(.gray6)
                             Capsule()
                                 .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
-                                .foregroundColor(speakingStructure.color)
+                                .foregroundStyle(speakingStructure.color.gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3)))
                         }
+                        .padding(.bottom, 2)
                         .overlay(
                             HStack(spacing: 4) {
                                 // 게이지가 절반이 넘어갈 때 색깔의 분기점이 생기기 때문에 경우 나눠서 색 지정
@@ -72,5 +72,5 @@ struct LSWideCardView: View {
 }
 
 #Preview {
-    LSWideCardView(speakingStructure: .prep, height: 120)
+    LSWideCardView(speakingStructure: .prep, height: 152)
 }

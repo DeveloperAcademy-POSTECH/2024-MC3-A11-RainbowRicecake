@@ -19,16 +19,15 @@ struct TopicBubbleView: View {
             GeometryReader {
                 Text(topicContent)
                     .customFont(.body1_light)
-                    .frame(width: $0.size.width - 10, alignment: .leading)
-                    .lineSpacing(8)
+                    .multilineTextAlignment(.leading)
+                    .frame(width: $0.size.width - 10, height: $0.size.height, alignment: .leading)
                     .padding([.top, .leading], 10)
             }
             Spacer()
-            
             HStack {
                 Spacer()
                 LSStickerView(lsName: lsName)
-                    .padding([.bottom, .trailing], 10)
+                    .padding([.top, .bottom, .trailing], 10)
             }
         }
         .padding(5)

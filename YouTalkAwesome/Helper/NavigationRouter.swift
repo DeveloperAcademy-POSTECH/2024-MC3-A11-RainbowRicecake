@@ -97,6 +97,7 @@ extension Router {
         case .SpeechPracticeComplete:
             SpeechPracticeCompleteView(standardTime: self.scriptPracticeViewModel?.time ?? 0, elapsedTime: self.scriptPracticeViewModel?.currentTime ?? 0, speakingStructure: self.selectedStructure ?? .aida)
                 .navigationBarBackButtonHidden()
+                .toolbar(.hidden, for: .tabBar)
             
             // 말하기 구조 뷰
         case .StructureFlow:
