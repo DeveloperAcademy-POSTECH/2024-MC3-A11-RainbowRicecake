@@ -167,8 +167,6 @@ struct ScriptWritingView: View {
                         Text("어떤 상황을 준비하시나요?")
                             .customFont(.title4_bold)
                         Spacer()
-                        Image(systemName: "chevron.right")
-                        
                     }
                     .padding([.top, .horizontal])
                     

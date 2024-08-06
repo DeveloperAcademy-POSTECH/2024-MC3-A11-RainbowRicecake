@@ -17,10 +17,10 @@ enum SpeakingStructure: String, CaseIterable {
     var description: String {
         switch self {
         case .prep : return "논리적인 설명이 필요할 때"
-        case .star : return "과거의 경험을 \n설명하고 싶을 때"
-        case .aida : return "청중의 관심을 끌고 \n행동을 유도해야 할 때"
-        case .psb : return "문제에 대한 해결책을 \n제시하고 싶을 때"
-        case .grow : return "목표와 잠재력을 \n어필하고 싶을 때"
+        case .star : return "과거의 경험을 설명할 때"
+        case .aida : return "청중의 관심을 끌어야 할 때"
+        case .psb : return "문제의 해결책을 제시할 때"
+        case .grow : return "목표와 잠재력을 어필할 때"
         }
     }
     

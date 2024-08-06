@@ -143,9 +143,6 @@ struct ContentWritingStartView: View {
                 self.canGoNext = true
             }
         }
-        .onDisappear {
-            router.resetProperty()
-        }
         .onTapGesture {
             hideKeyboard()
         }
