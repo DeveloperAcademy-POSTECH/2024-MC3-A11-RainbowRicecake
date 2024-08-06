@@ -19,6 +19,6 @@ extension Date {
     
     public func calcDDays() -> Int {
         let calendar = Calendar.current
-        return calendar.dateComponents([.day], from: Date(), to: self).day! + 1
+        return calendar.dateComponents([.day], from: Date(), to: self).day!
     }
 }
