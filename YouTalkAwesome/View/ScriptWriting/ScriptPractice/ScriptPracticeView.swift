@@ -12,17 +12,18 @@ struct ScriptPracticeView: View {
     
     @Binding var isPresented: Bool
     
-    @State private var audioManager: AudioManager = .init()
+    @State private var audioManager: AudioManager
     
     let isTopicSelected: Bool
     
     var structureSections: [StructureSection]
     
-    init(isPresented: Binding<Bool>, isTopicSelected: Bool, vm: ScriptPracticeViewModel, structureSections: [StructureSection]) {
+    init(isPresented: Binding<Bool>, isTopicSelected: Bool, vm: ScriptPracticeViewModel, structureSections: [StructureSection], audioManager: AudioManager) {
         self._isPresented = isPresented
         self.isTopicSelected = isTopicSelected
         self.vm = vm
         self.structureSections = structureSections
+        self.audioManager = audioManager
         
         UINavigationBar.appearance().backgroundColor = .clear
         
@@ -36,24 +37,26 @@ struct ScriptPracticeView: View {
     
     var body: some View {
             VStack {
-                HStack {
-                    Spacer()
-                    Text("프롬프트")
-                        .customFont(.body1_bold)
-                    Spacer()
-                }
-                .overlay(alignment: .trailing) {
-                    Button {
-                        self.isPresented = false
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 23, height: 23)
-                            .foregroundStyle(.bk)
+                if !isTopicSelected {
+                    HStack {
+                        Spacer()
+                        Text("프롬프트")
+                            .customFont(.body1_bold)
+                        Spacer()
                     }
-                    .padding(.trailing, 11)
+                    .overlay(alignment: .trailing) {
+                        Button {
+                            self.isPresented = false
+                        } label: {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 23, height: 23)
+                                .foregroundStyle(.bk)
+                        }
+                        .padding(.trailing, 11)
+                    }
+                    .padding(.vertical, 10)
                 }
-                .padding(.vertical, 10)
                 
                 ScrollView {
                     VStack {
@@ -164,17 +167,10 @@ struct ScriptPracticeView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarBackButtonHidden()
-            .onAppear {
-                if self.isTopicSelected {
-                    vm.makeTimer()
-                    vm.startTimer()
-                    audioManager.startRecording()
-                }
-            }
     }
 }
 
-#Preview {
-    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), structureSections: structureSectionSample)
-}
+//#Preview {
+//    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), structureSections: structureSectionSample)
+//}
 

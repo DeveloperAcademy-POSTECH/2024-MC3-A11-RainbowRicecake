@@ -10,7 +10,6 @@ import SwiftUI
 struct WritingCompleteView: View {
     @State private var isPresented: Bool = false
     @State private var speedStatus: SpeechSpeedStatus = .standard
-//    @State private var audioManager: AudioManager = .init()
     
     let title: String
     let isTopicSelected: Bool
@@ -48,10 +47,6 @@ struct WritingCompleteView: View {
 
             
             ScrollView(.vertical) {
-                // TODO: 나중에 수정 필요
-//                ForEach(structureSectionSample, id: \.self) { section in
-//                    StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
-//                }
                 ForEach(self.structureSections, id: \.self) { section in
                     StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                 }
@@ -103,7 +98,7 @@ struct WritingCompleteView: View {
             }
         }
         .fullScreenCover(isPresented: $isPresented) {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: selectedTime ?? 0), structureSections: self.structureSections)
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: selectedTime ?? 0), structureSections: self.structureSections, audioManager: .init())
                 .ignoresSafeArea(edges: .bottom)
         }
         .task {
@@ -136,6 +131,13 @@ struct WritingCompleteView: View {
     var speechStartButtonWithTopic: some View {
         Button {
             Router.shared.makeVM(time: calcStringCount()[self.speedStatus.rawValue])
+            Router.shared.makeAudioManager()
+            Router.shared.setStructureSections(self.structureSections)
+            
+            Router.shared.viewModel.makeTimer()
+            Router.shared.viewModel.startTimer()
+            Router.shared.audio.startRecording()
+            
             Router.shared.push(screen: .ScriptPracticeWithTopic)
         } label: {
             ZStack {

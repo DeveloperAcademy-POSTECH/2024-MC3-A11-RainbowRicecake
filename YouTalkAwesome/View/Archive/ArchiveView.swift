@@ -17,7 +17,7 @@ struct ArchiveView: View {
     
     @StateObject private var viewModel: ArchiveViewModel = .init()
     
-    @State private var selectedView: SelectedView = .writtenScript
+    @State private var selectedView: SelectedView = .answeredQuestion
     @State private var scrollObservableViewHeight: CGFloat = 0
     
     @StateObject var router = Router.shared
