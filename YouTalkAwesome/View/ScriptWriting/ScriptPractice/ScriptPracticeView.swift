@@ -168,7 +168,7 @@ struct ScriptPracticeView: View {
                 if self.isTopicSelected {
                     vm.makeTimer()
                     vm.startTimer()
-    //                audioManager.startRecording()
+                    audioManager.startRecording()
                 }
             }
     }
