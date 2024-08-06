@@ -106,12 +106,11 @@ struct ContentWritingStartView: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding([.horizontal,.bottom])
                 }
                 .scrollIndicators(.hidden)
             }
-            
-            // TODO: 버튼으로 수정 필요!
+
             
             Button {
                 router.setTopic(title: self.contentTitle)
@@ -159,51 +158,59 @@ struct ContentWritingStartView: View {
                     Text("예정 날짜")
                         .customFont(.body1_bold)
                 }
-                ZStack {
-                    TextField("예정된 발표 날짜를 선택해주세요", text: $selectedDateString)
-                        .disabled(true)
-                        .foregroundStyle(.primary)
-                        .textFieldStyle(.roundedBorder)
-                    HStack {
-                        Spacer()
-                        Image(systemName: "calendar")
-                            .padding(.trailing)
-                            .foregroundStyle(Color.gray1)
-                    }
-                    .onTapGesture {
-                        showDatePicker.toggle()
-                    }
-                }
-                .sheet(isPresented: $showDatePicker) {
-                    VStack {
-                        DatePicker(
-                            "예정된 발표 날짜를 선택해주세요",
-                            selection: $selectedDate,
-                            in: Date()...,
-                            displayedComponents: [.date]
-                        )
-                        .datePickerStyle(.graphical)
-                        .labelsHidden()
-                        .padding()
-                        
-                        Button(action: {
-                            showDatePicker = false
-                            selectedDateString = selectedDate.getYMDDate()
-                        }) {
-                            Text("확인")
-                                .customFont(.body1_bold)
-                                .padding()
-                                .background(Color.main)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                
+                TextField("예정된 발표 날짜를 선택해주세요", text: $selectedDateString)
+                    .disabled(true)    
+                    .padding(10)
+                    .background (
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .fill(.wh)
+                    )
+                    .overlay {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "calendar")
+                                .padding(.trailing)
+                                .foregroundStyle(Color.gray1)
+                        }
+                        .onTapGesture {
+                            showDatePicker.toggle()
                         }
                     }
-                    .padding()
-                    .presentationDetents([.medium, .fraction(0.5)])
-                    .onChange(of: selectedDate) {
-                        self.selectingArray[1] = true
+                    .sheet(isPresented: $showDatePicker) {
+                        VStack {
+                            DatePicker(
+                                "예정된 발표 날짜를 선택해주세요",
+                                selection: $selectedDate,
+                                in: Date()...,
+                                displayedComponents: [.date]
+                            )
+                            .datePickerStyle(.graphical)
+                            .labelsHidden()
+                            .padding()
+                            
+                            
+                            Button {
+                                showDatePicker = false
+                                selectedDateString = selectedDate.getYMDDate()
+                            } label: {
+                                RoundedRectangle(cornerRadius: 18)
+                                    .foregroundStyle(Color.main)
+                                    .frame(width: 353, height: 54)
+                                    .overlay(
+                                        Text("확인")
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(Color.wh)
+                                    )
+                            }
+                        }
+                        .padding()
+                        .presentationDetents([.medium, .fraction(0.5)])
+                        .onChange(of: selectedDate) {
+                          self.selectingArray[1] = true
+                         }
                     }
-                }
             }
             .padding(.horizontal)
             
@@ -212,74 +219,73 @@ struct ContentWritingStartView: View {
                     Text("제한 시간")
                         .customFont(.body1_bold)
                 }
-                ZStack {
-                    TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString)
-                        .disabled(true)
-                        .foregroundStyle(.primary)
-                        .textFieldStyle(.roundedBorder)
-                    HStack {
-                        Spacer()
-                        Image(systemName: "timer")
-                            .padding(.trailing)
-                            .foregroundStyle(Color.gray1)
-                    }
-                }
-                .onTapGesture {
-                    showTimePicker.toggle()
-                }
-                .onChange(of: selectedDate) {
-                    self.selectingArray[2] = true
-                }
-                .sheet(isPresented: $showTimePicker) {
-                    VStack {
+                TextField("발표 제한 시간을 선택해주세요", text: $timeLimitString) 
+                    .disabled(true)    
+                    .padding(10)
+                    .background (
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .fill(.wh)
+                    )
+                    .overlay {
                         HStack {
-                            Picker(selection: $selectedMinutes, label: Text("분")) {
-                                ForEach(0..<60) { index in
-                                    Text("\(self.minutes[index])").tag(index)
-                                }
-                            }
-                            .labelsHidden()
-                            .pickerStyle(WheelPickerStyle())
-                            Text("분")
-                            Picker(selection: $selectedSeconds, label: Text("초")) {
-                                ForEach(0..<60) { index in
-                                    Text("\(self.seconds[index])").tag(index)
-                                }
-                            }
-                            .labelsHidden()
-                            .pickerStyle(WheelPickerStyle())
-                            Text("초")
+                            Spacer()
+                            Image(systemName: "timer")
+                                .padding(.trailing)
+                                .foregroundStyle(Color.gray1)
                         }
-                        Button(action: {
-                            showTimePicker = false
-                            timeLimit = selectedMinutes*60 + selectedSeconds
-                            timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
-                            
-                            print(timeLimit)
-                        }) {
-                            Text("확인")
-                                .customFont(.body1_bold)
-                                .padding()
-                                .background(Color.main)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                        .onTapGesture {
+                            showTimePicker.toggle()
                         }
                     }
-                    .padding()
-                    .presentationDetents([.medium, .fraction(0.5)])
-                }
+                
+                    .sheet(isPresented: $showTimePicker) {
+                        VStack {
+                            HStack {
+                                Picker(selection: $selectedMinutes, label: Text("분")) {
+                                    ForEach(0..<60) { index in
+                                        Text("\(self.minutes[index])").tag(index)
+                                    }
+                                }
+                                .labelsHidden()
+                                .pickerStyle(WheelPickerStyle())
+                                Text("분")
+                                Picker(selection: $selectedSeconds, label: Text("초")) {
+                                    ForEach(0..<60) { index in
+                                        Text("\(self.seconds[index])").tag(index)
+                                    }
+                                }
+                                .labelsHidden()
+                                .pickerStyle(WheelPickerStyle())
+                                Text("초")
+                            }
+                            
+                            Button {
+                                showTimePicker = false
+                                timeLimit = selectedMinutes*60 + selectedSeconds
+                                timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
+                            } label: {
+                                RoundedRectangle(cornerRadius: 18)
+                                    .foregroundStyle(Color.main)
+                                    .frame(width: 353, height: 54)
+                                    .overlay(
+                                        Text("확인")
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(Color.wh)
+                                    )
+                            }
+                        }
+                        .padding()
+                        .presentationDetents([.medium, .fraction(0.5)])
+                    }
             }
             .padding(.horizontal)
         }
-    }
-    
-    private func checkConditionFilled() -> Bool {
-        return self.selectingArray.filter{ !$0 }.isEmpty
     }
 }
 
 #Preview {
     NavigationStack {
-        ContentWritingStartView(isTopic: true)
+        ContentWritingStartView(isTopic: false)
     }
 }
