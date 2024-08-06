@@ -20,7 +20,8 @@ struct TopicBubbleView: View {
                 Text(topicContent)
                     .customFont(.body1_light)
                     .multilineTextAlignment(.leading)
-                    .frame(width: $0.size.width - 10, height: $0.size.height, alignment: .leading)
+                    .frame(width: $0.size.width - 10, alignment: .leading)
+                    .fixedSize(horizontal: true, vertical: true)
                     .padding([.top, .leading], 10)
             }
             Spacer()
