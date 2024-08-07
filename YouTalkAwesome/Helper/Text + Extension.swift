@@ -44,7 +44,7 @@ struct CustomFont {
     static let body2_bold = CustomFont(font: .custom("Pretendard-Medium", size: 17), kerning: 0.4, lineSpacing: 12.0)
     static let body2_bold2 = CustomFont(font: .custom("Pretendard-SemiBold", size: 17), kerning: -0.4, lineSpacing: 12.0)
     
-    static let body3_light = CustomFont(font: .custom("Pretendard-Regular", size: 16), kerning: -0.4, lineSpacing: 8.0)
+    static let body3_light = CustomFont(font: .custom("Pretendard-Regular", size: 16), kerning: -0.4, lineSpacing: 4.0)
     static let body3_bold = CustomFont(font: .custom("Pretendard-Medium", size: 16), kerning: -0.4, lineSpacing: 8.0)
     
     static let body4_light = CustomFont(font: .custom("Pretendard-Regular", size: 15), kerning: -0.4, lineSpacing: 12.0)

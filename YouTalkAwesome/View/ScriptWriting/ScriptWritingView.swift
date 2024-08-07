@@ -51,7 +51,9 @@ struct ScriptWritingView: View {
         .init(type: .formal, content: "어떤 문제를 해결하기 위해 팀원들과 협력한 경험이 있나요? ", lsStructure: SpeakingStructure.psb.rawValue),
         .init(type: .formal, content: "당신이 존경하는 인물은 누구이며, 그 이유는 무엇인가요?", lsStructure: SpeakingStructure.aida.rawValue),
         .init(type: .formal, content: "본인의 가장 큰 약점은 무엇이라고 생각하시나요?", lsStructure: SpeakingStructure.prep.rawValue),
-        .init(type: .formal, content: "문제가 발생했을 때, 새로운 접근 방식을 시도한 적이 있나요?", lsStructure: SpeakingStructure.psb.rawValue)
+        .init(type: .formal, content: "문제가 발생했을 때, 새로운 접근 방식을 시도한 적이 있나요?", lsStructure: SpeakingStructure.psb.rawValue),
+        .init(type: .formal, content: "팀워크에서 가장 중요한 요소는 무엇일까요?", lsStructure: SpeakingStructure.prep.rawValue),
+        .init(type: .formal, content: "당신의 삶을 한 문장으로 설명하면 무엇인가요?", lsStructure: SpeakingStructure.prep.rawValue)
     ]
     
     let preparedSituation = [
@@ -65,7 +67,8 @@ struct ScriptWritingView: View {
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
         Text(situation)
-            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
+//            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
+            .customFont(.body3_light)
             .frame(height: 16)
             .background {
                 GeometryReader { geometry in
@@ -122,7 +125,7 @@ struct ScriptWritingView: View {
                             }
                             .padding(25)
                         }
-                        .frame(height: 260)
+                        .frame(height: 270)
                     }  else {
                         HStack {
                             Spacer()
@@ -146,7 +149,7 @@ struct ScriptWritingView: View {
                     
                     VStack {
                         HStack {
-                            Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
+                            Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비! 토픽모음✨")
                                 .customFont(.title4_bold)
                             Spacer()
                             Image(systemName: "chevron.right")
