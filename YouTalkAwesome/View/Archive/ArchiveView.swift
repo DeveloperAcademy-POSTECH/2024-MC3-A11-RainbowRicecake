@@ -71,7 +71,7 @@ struct ArchiveView: View {
             
             VStack(spacing: 2) {
                 HStack(spacing: 0) {
-                    VStack (spacing: 8) {
+                    VStack (spacing: 6) {
                         Image(systemName: "flowchart.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -91,7 +91,7 @@ struct ArchiveView: View {
                         .frame(width: 1)
                         .foregroundStyle(.gray5)
 
-                    VStack (spacing: 8) {
+                    VStack (spacing: 6) {
                         Image(systemName: "questionmark.bubble.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -110,7 +110,7 @@ struct ArchiveView: View {
                         .frame(width: 1)
                         .foregroundStyle(.gray5)
 
-                    VStack (spacing: 8) {
+                    VStack (spacing: 6) {
                         Image(systemName: "applescript.fill")
                             .resizable()
                             .frame(width: 20, height: 20)

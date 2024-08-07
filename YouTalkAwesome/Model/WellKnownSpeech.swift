@@ -35,7 +35,7 @@ let sampleSpeeches: [WellKnownSpeech] = [
     WellKnownSpeech(
         imageName: "AmyCuddy",
         speakingStructure: .prep,
-        title: "에미이 커디\n신체언어의 중요성",
+        title: "에이미 커디\n신체언어의 중요성",
         category: "연설",
         date: "2012. 10. 02",
         summary: "에이미 커디는 2012년 테드 강연에서 신체 언어가 우리의 자아 인식과 사회적 상호작용에 미치는 영향을 설명했어요. '파워 포즈' 같은 당당한 자세를 취하면 자신감을 키울 수 있고, 자신감을 갖기 위해 '가짜로 해도, 결국엔 진짜가 된다'는 마음가짐을 가지는 게 중요하다고 강조합니다.",
