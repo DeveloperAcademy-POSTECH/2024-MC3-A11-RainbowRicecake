@@ -30,8 +30,8 @@ struct ExampleCardView: View {
                     Spacer()
                     LSStickerView(lsName: speech.speakingStructure.rawValue)
                 }
-                .padding(.top, 12)
-                .padding(.trailing, 12)
+                .padding(.top, 10)
+                .padding(.trailing, 10)
                 
                 Spacer(minLength: 0)
                 

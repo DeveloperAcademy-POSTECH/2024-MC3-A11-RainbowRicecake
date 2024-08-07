@@ -36,7 +36,7 @@ struct ScriptWritingView: View {
     let topicResources:[TopicResource] = [
         .init(type: .casual, content: "가장 기억에 남는 여행지는 어딘가요?", lsStructure: SpeakingStructure.prep.rawValue),
         .init(type: .casual, content: "이성과 감성 중 무엇이 더 중요할까요?", lsStructure: SpeakingStructure.prep.rawValue),
-        .init(type: .formal, content: "팀워크에서 가장 중요한 요소는 무엇이라고 생각하시나요?", lsStructure: SpeakingStructure.prep.rawValue),
+        .init(type: .formal, content: "팀워크에서 가장 중요한 요소는 무엇일까요?", lsStructure: SpeakingStructure.prep.rawValue),
         .init(type: .formal, content: "당신의 삶을 한 문장으로 설명하면 무엇인가요?", lsStructure: SpeakingStructure.prep.rawValue)
     ]
     
@@ -51,7 +51,8 @@ struct ScriptWritingView: View {
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
         Text(situation)
-            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
+//            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
+            .customFont(.body3_light)
             .frame(height: 16)
             .background {
                 GeometryReader { geometry in
@@ -108,7 +109,7 @@ struct ScriptWritingView: View {
                             }
                             .padding(25)
                         }
-                        .frame(height: 260)
+                        .frame(height: 270)
                     }  else {
                         HStack {
                             Spacer()
@@ -132,7 +133,7 @@ struct ScriptWritingView: View {
                     
                     VStack {
                         HStack {
-                            Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
+                            Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비! 토픽모음✨")
                                 .customFont(.title4_bold)
                             Spacer()
                             Image(systemName: "chevron.right")

@@ -18,7 +18,7 @@ struct TopicBubbleView: View {
         VStack(alignment: .leading) {
             GeometryReader {
                 Text(topicContent)
-                    .customFont(.body1_light)
+                    .customFont(isWideType ? .body1_light : .body3_light)
                     .multilineTextAlignment(.leading)
                     .frame(width: $0.size.width - 10, alignment: .leading)
                     .fixedSize(horizontal: true, vertical: true)
@@ -28,7 +28,7 @@ struct TopicBubbleView: View {
             HStack {
                 Spacer()
                 LSStickerView(lsName: lsName)
-                    .padding([.top, .bottom, .trailing], 10)
+                    .padding([.top, .bottom, .trailing], 6)
             }
         }
         .padding(5)
