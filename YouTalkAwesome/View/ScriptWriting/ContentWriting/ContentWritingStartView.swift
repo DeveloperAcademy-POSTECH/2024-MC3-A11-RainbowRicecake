@@ -59,61 +59,102 @@ struct ContentWritingStartView: View {
             .padding(.horizontal)
             Spacer()
             
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("제목")
-                        .customFont(.body1_bold)
-                }
-                
-                TextField("대본의 제목을 작성해주세요", text: $contentTitle)
-                    .padding(10)
-                    .background (
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
-                            .fill(.wh)
-                    )
-                    .lineLimit(20)
-                    .onChange(of: contentTitle) {
-                        if !contentTitle.isEmpty {
-                            selectingArray[0] = true
-                        } else {
-                            selectingArray[0] = false
-                        }
-                    }
-            }
-            .padding(.horizontal)
-            
-            if isTopic == false {
-                forTopic
-            }
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("참고할 논리구조")
-                        .customFont(.body1_bold)
-                }
-                .padding(.horizontal)
-                
-                ScrollView(.horizontal) {
+            ScrollView {
+                VStack(alignment: .leading) {
                     HStack {
-                        ForEach(SpeakingStructure.allCases, id: \.self) { speakingStructure in
-                            Button(action: {
-                                selectedSpeakingStructure = speakingStructure
-                                //다 선택되면 이걸로 체크
-                                self.selectingArray[3] = true
-                            }) {
-                                Image("\(speakingStructure.rawValue)-\(selectedSpeakingStructure == speakingStructure ? "selected" : "unselected")")
-                                    .resizable()
-                                    .scaledToFit()
+                        Text("제목")
+                            .customFont(.body1_bold)
+                    }
+                    
+                    TextField("대본의 제목을 작성해주세요", text: $contentTitle)
+                        .padding(10)
+                        .background (
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray, lineWidth: 1)
+                                .fill(.wh)
+                        )
+                        .lineLimit(20)
+                        .onChange(of: contentTitle) {
+                            if !contentTitle.isEmpty {
+                                selectingArray[0] = true
+                            } else {
+                                selectingArray[0] = false
                             }
                         }
-                    }
-                    .padding([.horizontal,.bottom])
                 }
-                .scrollIndicators(.hidden)
+                .padding()
+                
+                if isTopic == false {
+                    forTopic
+                }
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("참고할 논리구조")
+                            .customFont(.body1_bold)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(SpeakingStructure.allCases, id: \.self) { speakingStructure in
+                                Button(action: {
+                                    selectedSpeakingStructure = speakingStructure
+                                    //다 선택되면 이걸로 체크
+                                    self.selectingArray[3] = true
+                                }) {
+                                    Image("\(speakingStructure.rawValue)-\(selectedSpeakingStructure == speakingStructure ? "selected" : "unselected")")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 220)
+                                }
+                            }
+                        }
+                        .padding([.horizontal,.bottom])
+                    }
+                    .scrollIndicators(.hidden)
+                    
+                    Spacer(minLength: 100)
+                }
+                
+                
+//                Button {
+//                    router.setTopic(title: self.contentTitle)
+//                    router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
+//                    
+//                    if isTopic {
+//                        router.push(screen: .ContentWritingWithTopic)
+//                    } else {
+//                        router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
+//                        router.push(screen: .ContentWritingWithoutTopic)
+//                    }
+//                } label: {
+//                    RoundedRectangle(cornerRadius: 18)
+//                        .frame(width: 353, height: 54)
+//                        .overlay(
+//                            Text("새로운 대본 만들기")
+//                                .customFont(.body1_bold)
+//                                .foregroundStyle(Color.wh)
+//                        )
+//                }
+//                .tint(.main)
+//                .disabled( !checkConditionFilled() )
+//                .padding(.top, isTopic ? 80 : 0)
+//                .padding(.bottom)
             }
-            
-            
+        }
+        .background(Color.gray6)
+        .toolbarRole(.editor)
+        .onAppear {
+            if self.isTopic {
+                self.selectingArray = [true, true, true, true]
+            }
+        }
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .overlay(alignment: .bottom) {
             Button {
                 router.setTopic(title: self.contentTitle)
                 router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
@@ -137,16 +178,6 @@ struct ContentWritingStartView: View {
             .disabled( !checkConditionFilled() )
             .padding(.top, isTopic ? 80 : 0)
             .padding(.bottom)
-        }
-        .background(Color.gray6)
-        .toolbarRole(.editor)
-        .onAppear {
-            if self.isTopic {
-                self.selectingArray = [true, true, true, true]
-            }
-        }
-        .onTapGesture {
-            hideKeyboard()
         }
     }
     

@@ -41,7 +41,7 @@ struct ScriptWritingView: View {
         .init(type: .casual, content: "기억에 남는 꿈이 있나요? 그 꿈이 어떤 내용이었나요?", lsStructure: SpeakingStructure.aida.rawValue),
         .init(type: .casual, content: "어릴 적 꿈꿨던 직업은 무엇인가요? 그 꿈이 어떻게 변해왔나요?", lsStructure: SpeakingStructure.grow.rawValue),
         .init(type: .casual, content: "최근에 읽은 책이나 본 영화 중에서 가장 인상 깊었던 것은 무엇인가요?", lsStructure: SpeakingStructure.aida.rawValue),
-        .init(type: .casual, content: "가장 좋아하는 계절은 무엇인가요? 그 계절을 좋아하는 이유는 무엇인가요?", lsStructure: SpeakingStructure.prep.rawValue),
+        .init(type: .casual, content: "가장 좋아하는 계절은 무엇인가요?", lsStructure: SpeakingStructure.prep.rawValue),
         .init(type: .casual, content: "일상적인 습관을 개선하거나 바꿔본 적이 있나요?", lsStructure: SpeakingStructure.psb.rawValue),
         .init(type: .formal, content: "팀워크에서 가장 중요한 요소는 무엇이라고 생각하시나요?", lsStructure: SpeakingStructure.prep.rawValue),
         .init(type: .formal, content: "당신의 삶을 한 문장으로 설명하면 무엇인가요?", lsStructure: SpeakingStructure.aida.rawValue),
