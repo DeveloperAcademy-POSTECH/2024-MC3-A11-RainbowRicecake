@@ -35,13 +35,13 @@ struct SpeakingStructureView: View {
                         }
                         .padding(.horizontal, 8)
                     }
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 22)
                 }
                 
                 VStack(spacing: 32) {
                     VStack(spacing: 14) {
                         HStack {
-                            ExampleTitleView(title: "청중의 마음을 움직인 연설🎙️")
+                            ExampleTitleView(title: "청중의 마음을 움직인 연설 🎙️")
                             Spacer()
                         }
                         .padding(.leading, 20)

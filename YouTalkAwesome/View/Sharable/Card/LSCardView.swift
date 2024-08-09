@@ -27,7 +27,7 @@ struct LSCardView: View {
             .overlay {
                 VStack  {
                     HStack {
-                        VStack (alignment: .leading, spacing: 6) {
+                        VStack (alignment: .leading, spacing: 4) {
                             LSNameView(name: speakingStructure)
                             LSDescriptionView(shortDescription: speakingStructure.description )
                         }

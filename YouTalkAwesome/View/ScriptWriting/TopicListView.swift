@@ -27,10 +27,11 @@ struct TopicListView: View {
             }
             Spacer()
             ScrollView {
-                VStack {
+                VStack(spacing: 0) {
                     ForEach(topicResources) { topic in
                         TopicBubbleView(topicContent: topic.content, lsName: topic.lsStructure, isWideType: true)
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.vertical, 16)
                             .onTapGesture {
                                 Router.shared.setTopic(title: topic.content)
                                 Router.shared.setSelectedStructure(selection: .init(rawValue: topic.lsStructure)!)
