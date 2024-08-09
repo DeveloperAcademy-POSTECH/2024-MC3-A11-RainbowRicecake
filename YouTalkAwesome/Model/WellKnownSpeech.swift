@@ -49,7 +49,7 @@ let sampleSpeeches: [WellKnownSpeech] = [
     WellKnownSpeech(
         imageName: "JKRowling",
         speakingStructure: .grow,
-        title: "J.K 롤링 하버드 졸업 축사",
+        title: "J.K 롤링\n하버드 졸업 축사",
         category: "연설",
         date: "2008. 06. 05",
         summary: "J.K. 롤링의 연설은 GROW 기법을 통해 졸업생들에게 목표 설정, 현실 직시, 다양한 옵션 탐색, 강한 의지의 중요성을 효과적으로 전달합니다. 그녀의 연설은 실패를 두려워하지 않고, 이를 통해 성장하며 자신의 목표를 향해 나아가라는 강력한 메시지를 담고 있어요.",

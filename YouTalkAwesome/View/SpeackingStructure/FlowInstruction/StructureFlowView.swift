@@ -13,32 +13,37 @@ struct StructureFlowView: View {
     
     var body: some View {
         VStack {
-            LSWideCardView(speakingStructure: speakingStructure, height: 120)
-                .offset(x: -2)
-            
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(0..<speakingStructure.components.count, id: \.self) { index in
-                        FlowComponentView(speakingStructure: speakingStructure, index: index, showTextBox: $showExampleContents)
+                VStack {
+                    LSWideCardView(speakingStructure: speakingStructure, height: 120)
+                        .offset(x: -2)
+                        .padding(.top, 3)
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        
+                        
+                        ForEach(0..<speakingStructure.components.count, id: \.self) { index in
+                            FlowComponentView(speakingStructure: speakingStructure, index: index, showTextBox: $showExampleContents)
+                        }
                     }
+                    .padding(.vertical)
+                    // 예시문장 열고 닫는 버튼
+                    Button(action: {
+                        withAnimation {
+                            showExampleContents.toggle()
+                        }
+                    }) {
+                        HStack {
+                            Text(showExampleContents ? "예시닫기" : "예시보기")
+                                .customFont(.body3_bold)
+                            Image(systemName: showExampleContents ? "chevron.up" : "chevron.down")
+                                .frame(width: 16, height: 16)
+                        }
+                        .foregroundColor(Color.gray3)
+                    }
+                    .padding(.top, -30)
+                    .padding(.bottom, 20)
                 }
-                .padding(.vertical)
-                // 예시문장 열고 닫는 버튼
-                Button(action: {
-                    withAnimation {
-                        showExampleContents.toggle()
-                    }
-                }) {
-                    HStack {
-                        Text(showExampleContents ? "예시닫기" : "예시보기")
-                            .customFont(.body3_bold)
-                        Image(systemName: showExampleContents ? "chevron.up" : "chevron.down")
-                            .frame(width: 16, height: 16)
-                    }
-                    .foregroundColor(Color.gray3)
-                }
-                .padding(.top, -30)
-                .padding(.bottom, 20)
             }
             .scrollIndicators(.hidden)
             Spacer()

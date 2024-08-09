@@ -121,11 +121,12 @@ struct ScriptWritingView: View {
                                             router.setStructureSections(record.content)
                                             router.push(screen: .WritingCompleteWithoutTopic)
                                         }
+                                        .padding(.leading, 6)
                                 }
                             }
-                            .padding(25)
+                            .padding(30)
                         }
-                        .frame(height: 270)
+                        .frame(height: 280)
                     }  else {
                         HStack {
                             Spacer()
