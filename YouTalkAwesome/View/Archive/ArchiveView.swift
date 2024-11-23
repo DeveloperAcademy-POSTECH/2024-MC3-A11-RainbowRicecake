@@ -162,41 +162,58 @@ struct ArchiveView: View {
             
         }
     }
-
+    
     private var answeredQuestionView: some View {
+        let filtered = records.filter { !$0.isFreeTopic }
         
-        let filtered  = records.filter {$0.isFreeTopic == false}
-        
-        return ForEach(filtered) { record in
-            TopicBubbleView(topicContent: record.topic, lsName: record.speakingStructure.rawValue, isWideType: true)
-                .onTapGesture {
-                    router.setTopic(title: record.topic)
-                    router.setStructureSections(record.content)
-                    router.push(screen: .WritingCompleteWithTopic)
+        return ZStack {
+            if filtered.isEmpty {
+                Text("답변한 질문이 아직 없어요")
+                    .customFont(.body1_medium)
+                    .foregroundStyle(.gray5)
+                    .offset(x: 0, y: 180)
+            } else {
+                ForEach(filtered) { record in
+                    TopicBubbleView(topicContent: record.topic, lsName: record.speakingStructure.rawValue, isWideType: true)
+                        .onTapGesture {
+                            router.setTopic(title: record.topic)
+                            router.setStructureSections(record.content)
+                            router.push(screen: .WritingCompleteWithTopic)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 16)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     private var writtenScript: some View {
-        
         let filtered  = records.filter {$0.isFreeTopic == true}
         
-        return LazyVGrid(columns: [.init(spacing: 20), .init(spacing: 0)], spacing: 32) {
-            ForEach(filtered) { record in
-                ScriptRectangleView(isThisForAdding: false, record: record)
-                    .onTapGesture {
-                        router.setTopic(title: record.topic)
-                        router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
-                        router.setStructureSections(record.content)
-                        router.push(screen: .WritingCompleteWithoutTopic)
+        return ZStack {
+            if filtered.isEmpty {
+                Text("작성한 대본이 아직 없어요")
+                    .customFont(.body1_medium)
+                    .foregroundStyle(.gray5)
+                    .offset(x: 0, y: 180)
+            } else {
+                LazyVGrid(columns: [.init(spacing: 20), .init(spacing: 0)], spacing: 32) {
+                    ForEach(filtered) { record in
+                        ScriptRectangleView(isThisForAdding: false, record: record)
+                            .onTapGesture {
+                                router.setTopic(title: record.topic)
+                                router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
+                                router.setStructureSections(record.content)
+                                router.push(screen: .WritingCompleteWithoutTopic)
+                            }
                     }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 34)
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 34)
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     private var scrollObservableView: some View {
@@ -238,7 +255,6 @@ struct ArchiveView: View {
     let testRecord3 : LogicalSpeakingRecord = .init(topic: "아카데미에서 제일 가치있었던 경험은?", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: true)
     
     let testRecord4 : LogicalSpeakingRecord = .init(topic: "추후 당신의 커리어에서 AI를 어떻게 사용할 것인가요?", speakingStructure: .prep, content: [], duration: 90, isDone: true, isFreeTopic: true)
-    
     
     container.mainContext.insert(testRecord)
     container.mainContext.insert(testRecord1)
