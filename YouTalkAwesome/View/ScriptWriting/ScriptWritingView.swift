@@ -67,7 +67,6 @@ struct ScriptWritingView: View {
     @ViewBuilder
     func makeSituationCard(_ situation: String) -> some View {
         Text(situation)
-//            .font(.system(size: 18, weight: .regular)) //별도 customfont 지정 없음
             .customFont(.body3_light)
             .frame(height: 16)
             .background {
