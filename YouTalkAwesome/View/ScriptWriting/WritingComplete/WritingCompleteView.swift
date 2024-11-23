@@ -141,7 +141,7 @@ struct WritingCompleteView: View {
                     .frame(height: 54)
                     .foregroundStyle(.main)
                 
-                Text( self.isTopicSelected ? "말하기 연습 시작" : "프롬프트 재생")
+                Text( self.isTopicSelected ? "연습하기" : "프롬프트 재생")
                     .customFont(.body1_bold)
                     .foregroundStyle(.wh)
             }
