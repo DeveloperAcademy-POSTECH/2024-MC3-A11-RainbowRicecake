@@ -148,10 +148,11 @@ struct ScriptWritingView: View {
             
             ForEach(TopicType.allCases, id: \.self) { type in
                 let topicsPerType = topicResources.filter { $0.type == type}
+                let topicTitle = (type == TopicType.casual) ? "생각하는 힘 기르기 💡" : "면접 대비! 실전 연습 ✨"
                 
                 VStack {
                     HStack {
-                        Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비! 토픽모음✨")
+                        Text( type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비! 실전 연습 ✨")
                             .customFont(.title4_bold)
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -159,8 +160,7 @@ struct ScriptWritingView: View {
 //                                router.setTopicList(name: type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
 //                                router.push(screen: .TopicList)
                                 
-                                let topic = (type == TopicType.casual) ? "생각하는 힘 기르기 💡" : "면접 대비!"
-                                coordinator.push(.TopicList(topic: topic))
+                                coordinator.push(.TopicList(topic: topicTitle))
                             }
                         
                     }
@@ -176,7 +176,7 @@ struct ScriptWritingView: View {
 //                                        router.setIsTopicSelected(true)
 //                                        router.push(screen: .ContentWritingStartWithTopic)
                                         
-                                        coordinator.push(.ContentWritingStartWithTopic(isWithTopic: true, title: topic.content, selectedStructure: .init(rawValue: topic.lsStructure)!))
+                                        coordinator.push(.ContentWritingStartWithTopic(isWithTopic: true, introductionTitle: topicTitle, title: topic.content, selectedStructure: .init(rawValue: topic.lsStructure)!))
                                     }
                             }
                         }

@@ -53,6 +53,7 @@ final class Router: ObservableObject {
     private var scriptPracticeViewModel: ScriptPracticeViewModel?
     
     private var selectedTopicList: String?
+    private var introductionTitle: String?
     
     public var viewModel: ScriptPracticeViewModel {
         self.scriptPracticeViewModel!
@@ -82,7 +83,7 @@ extension Router {
             TopicListView(topic: selectedTopicList ?? "test")
             
         case .ContentWritingStartWithTopic:
-            ContentWritingStartView(isTopic: true, contentTitle: self.topic ?? "nil", selectedSpeakingStructure: self.selectedStructure)
+            ContentWritingStartView(isTopic: true, introductionTitle: self.introductionTitle ?? nil, contentTitle: self.topic ?? "nil", selectedSpeakingStructure: self.selectedStructure)
         case .ContentWritingStartWithoutTopic:
             ContentWritingStartView(isTopic: false, selectedSpeakingStructure: self.selectedStructure)
             
@@ -179,6 +180,10 @@ extension Router {
     
     public func setSpeech(speech: WellKnownSpeech) {
         self.selectedSpeech = speech
+    }
+    
+    public func setTopicIntroductionTitle(title: String) {
+        self.introductionTitle = title
     }
     
     public func makeVM(time: Int) {
@@ -290,8 +295,8 @@ final class AppCoordinator: AppCoordinatorProtocol {
                 .toolbarRole(.editor)
         case .TopicList(let topic):
             TopicListView(topic: topic)
-        case .ContentWritingStartWithTopic(let isWithTopic, let title, let structure):
-            ContentWritingStartView(isTopic: isWithTopic, contentTitle: title, selectedSpeakingStructure: structure)
+        case .ContentWritingStartWithTopic(let isWithTopic, let introductionTitle, let title, let structure):
+            ContentWritingStartView(isTopic: isWithTopic, introductionTitle: introductionTitle, contentTitle: title, selectedSpeakingStructure: structure)
         case .ContentWritingStartWithoutTopic(let isWithTopic, let structure):
             ContentWritingStartView(isTopic: isWithTopic, contentTitle: "", selectedSpeakingStructure: structure)
         case .ContentWritingWithoutTopic(let title, let structure, let date, let time, let isTopic):
@@ -357,7 +362,7 @@ enum Screen: Identifiable, Hashable {
     // 대본 작성 뷰
     case TopicList(topic: String)
     
-    case ContentWritingStartWithTopic(isWithTopic: Bool, title: String, selectedStructure: SpeakingStructure?)
+    case ContentWritingStartWithTopic(isWithTopic: Bool, introductionTitle: String, title: String, selectedStructure: SpeakingStructure?)
     case ContentWritingStartWithoutTopic(isWithTopic: Bool, selectedStructure: SpeakingStructure?)
     
     case ContentWritingWithoutTopic(title: String, structure: SpeakingStructure, date: Date?, time: Int?, isTopic: Bool)
