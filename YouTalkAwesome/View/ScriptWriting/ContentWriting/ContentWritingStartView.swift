@@ -166,7 +166,7 @@ struct ContentWritingStartView: View {
                 } else {
                     coordinator.push(.ContentWritingWithoutTopic(title: self.contentTitle, structure: self.selectedSpeakingStructure!, date: self.selectedDate, time: self.timeLimit, isTopic: false))
                 }
-            }
+            
         } label: {
             RoundedRectangle(cornerRadius: 18)
                 .frame(width: 353, height: 54)
@@ -181,6 +181,7 @@ struct ContentWritingStartView: View {
         .padding(.top, isTopic ? 80 : 0)
         .padding(.bottom)
     }
+
     
     
     
