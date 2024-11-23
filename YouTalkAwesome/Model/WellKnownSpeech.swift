@@ -27,13 +27,13 @@ enum CaseSpeech: String, CaseIterable {
         case .attention:
             return "나에게 모두의 이목을"
         case .onePunch:
-            return "한 방을 터뜨리고"
+            return "스피치로 한 방을 터뜨리고"
         case .analysis:
             return "날카로운 상황 분석이"
         case .potential:
             return "내 잠재력을"
         case .summary:
-            return "깔끔 요약 정리가"
+            return "깔끔한 요약 정리가"
         case .persuasion:
             return "내 말로 상대방을"
         case .growthStory:
@@ -133,13 +133,13 @@ enum CaseSpeech: String, CaseIterable {
         case .problemDiagnosis:
             return "이 말하기 예시는 문제를 진단하고 해결책을 제시하기 위해 상세하고 분석적인 접근을 취하고 있어요. 비영리 단체의 특성을 고려하여 소셜 미디어 활용의 전략적 개선을 강조하는 예시입니다."
         case .experience:
-            return ""
+            return "이 말하기 예시는 자연스럽고 캐주얼한 말투로, 경험을 간결하게 전달하면서도 핵심을 잘 담고 있어요. 다음은 글쓰기 모임장을 맡을 수 있는 역량을 설명하는 예시입니다."
         case .solution:
-            return ""
+            return "이 말하기 예시는 문제를 명확하게 정의하고, 구체적인 해결책을 제시하는 방식으로 팀원들에게 신뢰를 주고 있어요."
         case .problemSolving:
-            return ""
+            return "이 말하기 예시는 AI 툴을 활용하여 문제를 해결할 수 있는 방법을 제시하며, 문제 해결 능력과 창의성을 동시에 어필하고 있어요."
         case .vividDescription:
-            return ""
+            return "이 말하기 예시는 외국인 고객과의 언어 및 문화 장벽 문제를 해결하기 위한 구체적인 전략을 중심으로 작성되었어요."
         }
     }
     

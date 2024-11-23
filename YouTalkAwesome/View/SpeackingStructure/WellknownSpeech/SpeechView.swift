@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct SpeechView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
     let caseSpeech: CaseSpeech
     
     var body: some View {
         ScrollView {
             VStack() {
                 SpeechTitleView(caseSpeech: caseSpeech)
-                    .padding(.top, 54)
+                    .padding(.top, 0) // 필요에 따라 여백 추가
                 VStack(spacing: 24){
-                    SubCardView(contentType: .effect(caseSpeech.effect))
-                    SubCardView(contentType: .summary(caseSpeech.summary))
+                    SubCardView(speakingStructure: caseSpeech.speakingStructure, contentType: .effect(caseSpeech.effect))
+                    SubCardView(speakingStructure: caseSpeech.speakingStructure, contentType: .summary(caseSpeech.summary))
                 }
                 .padding(.top, 16)
                 .padding(.trailing, 2)
@@ -34,8 +35,7 @@ struct SpeechView: View {
             
             // 말하기구조 학습하기로 넘어가는 버튼
             Button {
-                Router.shared.setSelectedStructure(selection: self.caseSpeech.speakingStructure)
-                Router.shared.push(screen: .StructureFlow)
+                coordinator.push(.Quiz(structure: caseSpeech.speakingStructure, isRepeat: false))
             } label: {
                 Text("\(caseSpeech.speakingStructure.rawValue) 학습하기")
                     .customFont(.body1_bold)
@@ -45,8 +45,7 @@ struct SpeechView: View {
             
             // 대본쓰기로 넘어가는 버튼
             Button {
-                Router.shared.setSelectedStructure(selection: self.caseSpeech.speakingStructure)
-                Router.shared.push(screen: .ContentWritingStartWithoutTopic)
+                coordinator.push(.ContentWritingStartWithoutTopic(isWithTopic: false, selectedStructure: caseSpeech.speakingStructure))
             } label: {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color.main)
@@ -71,7 +70,8 @@ struct SpeechTitleView: View {
     var body: some View {
         ZStack {
             Color.bg
-            
+                .ignoresSafeArea()
+
             VStack(alignment: .leading, spacing: 8) {
                 Spacer()
                 
@@ -91,6 +91,7 @@ struct SpeechTitleView: View {
                     Spacer()
                 }
             }
+            .padding([.top], 16)
             .padding([.leading, .bottom], 16)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -99,6 +100,7 @@ struct SpeechTitleView: View {
 }
 
 struct SubCardView: View {
+    var speakingStructure: SpeakingStructure
     enum ContentType: Equatable {
         case effect(String) // 효과 텍스트
         case summary(String) // 요약 텍스트
@@ -117,7 +119,7 @@ struct SubCardView: View {
     var topContent: String {
         switch contentType {
         case .effect:
-            return "효과"
+            return "\(speakingStructure.rawValue)의 효과"
         case .summary:
             return "요약"
         }

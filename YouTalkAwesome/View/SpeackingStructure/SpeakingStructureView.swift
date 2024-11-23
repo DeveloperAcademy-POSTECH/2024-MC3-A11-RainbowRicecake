@@ -37,7 +37,7 @@ struct SpeakingStructureView: View {
                     }
                     .padding(.horizontal, 8)
                 }
-                .padding(.bottom, 22)
+                .padding(.bottom, 8)
                 
                 VStack {
                     HStack {
@@ -45,20 +45,23 @@ struct SpeakingStructureView: View {
                             .customFont(.title4_bold)
                         Spacer()
                     }
+
                     .padding([.top, .horizontal])
-                    
-                    ScrollView (.horizontal) {
+                    ScrollView(.horizontal) {
                         ForEach(0..<3) { rowIndex in
                             HStack {
-                                makeSituationCard(preparedSituation[rowIndex*4]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 1]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 2]).padding([.vertical, .trailing])
-                                makeSituationCard(preparedSituation[rowIndex*4 + 3]).padding([.vertical, .trailing])
+                                ForEach(0..<4) { columnIndex in
+                                    let cardIndex = rowIndex * 4 + columnIndex
+                                    makeSituationCard(preparedSituation[cardIndex])
+                                        .padding([.vertical, .trailing])
+                                        .padding(.leading, cardIndex == 0 ? 8 : 0)
+                                }
                             }
                             .padding(.leading)
                         }
                     }
-                }            }
+                }
+            }
             .navigationBarBackButtonHidden()
         }
         .scrollIndicators(.hidden)
@@ -78,6 +81,8 @@ struct SpeakingStructureView: View {
                 }
             }
             .onTapGesture {
+                let caseSpeech = CaseSpeech(rawValue: situation)!
+                coordinator.push(.Speech(speech: caseSpeech))
             }
     }
     

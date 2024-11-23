@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SpeechFlowComponentView: View {
-//    var speakingStructure: SpeakingStructure
     var speech: CaseSpeech
-//    var speech: WellKnownSpeech
     var index: Int
     
     var body: some View {
