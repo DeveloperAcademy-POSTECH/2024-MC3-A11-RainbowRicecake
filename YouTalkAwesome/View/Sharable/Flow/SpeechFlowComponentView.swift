@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SpeechFlowComponentView: View {
-    var speakingStructure: SpeakingStructure
-    var speech: WellKnownSpeech
+//    var speakingStructure: SpeakingStructure
+    var speech: CaseSpeech
+//    var speech: WellKnownSpeech
     var index: Int
     
     var body: some View {
@@ -19,7 +20,7 @@ struct SpeechFlowComponentView: View {
                 .frame(width: 9, height: 9)
                 .offset(y: 7)
             VStack(alignment: .leading) {
-                Text("\(speakingStructure.components[index]) (\(speakingStructure.components_kor[index]))")
+                Text("\(speech.speakingStructure.components[index]) (\(speech.speakingStructure.components_kor[index]))")
                     .customFont(.title4_bold)
                     .foregroundStyle(Color.main)
                     .padding(.bottom, 10)
@@ -30,7 +31,7 @@ struct SpeechFlowComponentView: View {
         }
         .padding(.bottom)
         .background(alignment: .leading) {
-            if index != speakingStructure.components.count - 1 {
+            if index != speech.speakingStructure.components.count - 1 {
                 Rectangle()
                     .foregroundColor(Color.main)
                     .frame(width: 3)
@@ -39,8 +40,4 @@ struct SpeechFlowComponentView: View {
         }
     }
     
-}
-
-#Preview {
-    SpeechFlowComponentView(speakingStructure: .aida, speech: sampleSpeeches[0], index: 1)
 }

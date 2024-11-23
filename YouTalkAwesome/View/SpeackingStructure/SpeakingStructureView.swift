@@ -13,7 +13,7 @@ struct SpeakingStructureView: View {
     let preparedSituation = [
         "나에게 모두 이목집중 👀","한 방 터뜨리기 👊🏻","날카로운 상황 분석 📈","내 잠재력 어필하기 💫", "깔끔 요약정리 ✍🏻", "내 말에 설득당할 걸? 😎", "멋진 성장 스토리 🍀","현재 문제점 진단하기 🦔", "나의 경험 어필하기 🤓", "해결책 제시하기 💡", "문제해결 능력 어필⚡️", "생생하게 상황 묘사 🌼"
     ]
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 10){
@@ -38,7 +38,27 @@ struct SpeakingStructureView: View {
                     .padding(.horizontal, 8)
                 }
                 .padding(.bottom, 22)
-            }
+                
+                VStack {
+                    HStack {
+                        Text("실전에서 말하기 구조 활용하기")
+                            .customFont(.title4_bold)
+                        Spacer()
+                    }
+                    .padding([.top, .horizontal])
+                    
+                    ScrollView (.horizontal) {
+                        ForEach(0..<3) { rowIndex in
+                            HStack {
+                                makeSituationCard(preparedSituation[rowIndex*4]).padding([.vertical, .trailing])
+                                makeSituationCard(preparedSituation[rowIndex*4 + 1]).padding([.vertical, .trailing])
+                                makeSituationCard(preparedSituation[rowIndex*4 + 2]).padding([.vertical, .trailing])
+                                makeSituationCard(preparedSituation[rowIndex*4 + 3]).padding([.vertical, .trailing])
+                            }
+                            .padding(.leading)
+                        }
+                    }
+                }            }
             .navigationBarBackButtonHidden()
         }
         .scrollIndicators(.hidden)
