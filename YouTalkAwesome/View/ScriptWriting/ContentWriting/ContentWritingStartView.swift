@@ -11,6 +11,7 @@ struct ContentWritingStartView: View {
     @EnvironmentObject private var coordinator: AppCoordinator
     
     var isTopic: Bool
+    var introductionTitle : String?
     
     //제목 입력
     @State var contentTitle: String = ""
@@ -41,18 +42,6 @@ struct ContentWritingStartView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
-//    private var checkGoNext: Bool {
-//        if isTopic {
-//            return true
-//        } else {
-//            if !contentTitle.isEmpty && !selectedDateString.isEmpty && !timeLimitString.isEmpty && selectedSpeakingStructure != nil {
-//                return true
-//            }
-//        }
-//        
-//        return false
-//    }
-//    
     func checkValues() {
         if isTopic {
             canGoNext = true
@@ -64,8 +53,14 @@ struct ContentWritingStartView: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack {
-                Text("어떤 대본을 작성하시나요?")
-                    .customFont(.title2_bold)
+                if let title = introductionTitle{
+                    Text(title)
+                        .customFont(.title2_bold)
+                } else {
+                    Text("어떤 대본을 작성하시나요?")
+                        .customFont(.title2_bold)
+                }
+                
                 Spacer()
             }
             .padding(.horizontal)
@@ -74,8 +69,14 @@ struct ContentWritingStartView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("제목")
-                            .customFont(.body1_bold)
+                        if let title = introductionTitle {
+                            Text("질문")
+                                .customFont(.body1_bold)
+                        } else {
+                            Text("제목")
+                                .customFont(.body1_bold)
+                        }
+                        
                     }
 
                     TextField("대본의 제목을 작성해주세요", text: $contentTitle)
