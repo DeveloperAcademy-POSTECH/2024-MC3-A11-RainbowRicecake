@@ -11,6 +11,8 @@ struct QuizView: View {
     let lsStructure : SpeakingStructure
     var isRepeat: Bool?
     
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     @State private var isButtonDisabled = true
     @State private var isResultCorrect: Bool? = nil
     
@@ -141,7 +143,13 @@ struct QuizView: View {
                     }
                     Spacer()
                     if isResultCorrect != nil && isResultCorrect == true {
-                        NavigationLink(destination: QuizDoneView(isRepeat: isRepeat ?? false, speakingStructure: lsStructure)) {
+                        Button {
+                            if self.isRepeat != nil && self.isRepeat! {
+                                coordinator.push(.QuizDone(structure: lsStructure, isRepeat: true))
+                            } else {
+                                coordinator.push(.QuizDone(structure: lsStructure, isRepeat: false))
+                            }
+                        } label: {
                             RoundedRectangle(cornerRadius: 18)
                                 .fill(Color.main)
                                 .frame(width: 353, height: 54)

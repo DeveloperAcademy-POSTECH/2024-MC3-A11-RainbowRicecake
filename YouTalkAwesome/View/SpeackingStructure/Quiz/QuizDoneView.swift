@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QuizDoneView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     var isRepeat: Bool
     @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     @State private var isAnimating = false
@@ -94,7 +96,9 @@ struct QuizDoneView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: QuizView(lsStructure: speakingStructure, isRepeat: true)) {
+                Button {
+                    coordinator.push(.Quiz(structure: speakingStructure, isRepeat: true))
+                } label: {
                     HStack {
                         Text("복습하기")
                             .customFont(.body1_medium)
@@ -105,7 +109,7 @@ struct QuizDoneView: View {
                 .padding(.bottom, 12)
                 
                 Button {
-                    Router.shared.popToRootView()
+                    coordinator.popToRoot()
                 } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(Color.main)

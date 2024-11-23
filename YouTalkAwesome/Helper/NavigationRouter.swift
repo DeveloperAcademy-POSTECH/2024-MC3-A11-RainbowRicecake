@@ -33,8 +33,6 @@ enum ViewList: Hashable {
     case ScriptPracticeWithTopic
     
     case SpeechPracticeComplete
-    
-
 }
 
 final class Router: ObservableObject {
@@ -203,5 +201,224 @@ extension Router {
         self.audioManager = nil
         self.scriptPracticeViewModel = nil
         self.selectedTopicList = nil
+    }
+}
+
+
+final class AppCoordinator: AppCoordinatorProtocol {
+    @Published public var speakingStructurePath: NavigationPath = .init()
+    @Published public var scriptWritingPath: NavigationPath = .init()
+    @Published public var archivePath: NavigationPath = .init()
+    
+    var currentScreen: currentScreen = .speakingStructure
+    
+    var sheet: Sheet?
+    var fullScreenCover: FullScreenCover?
+    
+    func push(_ screen: Screen) {
+        switch self.currentScreen {
+        case .speakingStructure:
+            speakingStructurePath.append(screen)
+            print(speakingStructurePath.count)
+        case .scriptWriting:
+            scriptWritingPath.append(screen)
+        case .archive:
+            archivePath.append(screen)
+        }
+    }
+    
+    func presentSheet(_ sheet: Sheet) {
+        self.sheet = sheet
+    }
+    
+    func presentFullScreenCover(_ fullScreenCover: FullScreenCover) {
+        self.fullScreenCover = fullScreenCover
+    }
+    
+    func pop() {
+        switch self.currentScreen {
+        case .speakingStructure:
+            if speakingStructurePath.count > 0 {
+                speakingStructurePath.removeLast()
+            }
+        case .scriptWriting:
+            if scriptWritingPath.count > 0 {
+                scriptWritingPath.removeLast()
+            }
+        case .archive:
+            if archivePath.count > 0 {
+                archivePath.removeLast()
+            }
+        }
+    }
+    
+    func popToRoot() {
+        switch self.currentScreen {
+        case .speakingStructure:
+            speakingStructurePath.removeLast(speakingStructurePath.count)
+        case .scriptWriting:
+            scriptWritingPath.removeLast(scriptWritingPath.count)
+        case .archive:
+            archivePath.removeLast(archivePath.count)
+        }
+    }
+    
+    func dismissSheet() {
+        self.sheet = nil
+    }
+    
+    func dismissFullScreenCover() {
+        self.fullScreenCover = nil
+    }
+    
+    
+    @ViewBuilder
+    @MainActor
+    func build(_ screen: Screen) -> some View {
+        switch screen {
+        case .StructureFlow(let structure):
+            StructureFlowView(speakingStructure: structure)
+                .toolbarRole(.editor)
+        case .Quiz(let structure, let isRepeat):
+            QuizView(lsStructure: structure, isRepeat: isRepeat)
+                .toolbarRole(.editor)
+        case .QuizDone(let structure, let isRepeat):
+            QuizDoneView(isRepeat: isRepeat, speakingStructure: structure)
+                .toolbarRole(.editor)
+        case .Speech(let speech):
+            SpeechView(speech: speech)
+                .toolbarRole(.editor)
+        case .TopicList(let topic):
+            TopicListView(topic: topic)
+        case .ContentWritingStartWithTopic(let isWithTopic, let title, let structure):
+            ContentWritingStartView(isTopic: isWithTopic, contentTitle: title, selectedSpeakingStructure: structure)
+        case .ContentWritingStartWithoutTopic(let isWithTopic, let structure):
+            ContentWritingStartView(isTopic: isWithTopic, contentTitle: "", selectedSpeakingStructure: structure)
+        case .ContentWritingWithoutTopic(let title, let structure, let date, let time, let isTopic):
+            ContentWritingView(topic: title, selectedStructure: structure, designatedDate: date, expectedLeadTime: time, isFreeTopic: isTopic)
+                .toolbar(.hidden, for: .tabBar)
+                .toolbarRole(.editor)
+        case .ContentWritingWithTopic(let title, let structure, let isTopic):
+            ContentWritingView(topic: title, selectedStructure: structure, designatedDate: nil, expectedLeadTime: nil, isFreeTopic: isTopic)
+                .toolbar(.hidden, for: .tabBar)
+                .toolbarRole(.editor)
+        case .WritingCompleteWithoutTopic(let title, let date, let time, let structure):
+            WritingCompleteView(title: title, isTopicSelected: true, selectedDate: date, selectedTime: time, structureSections: structure)
+                .toolbarRole(.editor)
+                .toolbar(.hidden, for: .tabBar)
+        case .WritingCompleteWithTopic(let title, let structure):
+            WritingCompleteView(title: title, isTopicSelected: false, structureSections: structure)
+                .toolbarRole(.editor)
+                .toolbar(.hidden, for: .tabBar)
+        case .SpeechPracticeComplete(let standardTime, let elapsedTime, let structure):
+            SpeechPracticeCompleteView(standardTime: standardTime, elapsedTime: elapsedTime, speakingStructure: structure)
+                .navigationBarBackButtonHidden()
+                .toolbar(.hidden, for: .tabBar)
+        }
+    }
+    
+    enum currentScreen {
+        case speakingStructure
+        case scriptWriting
+        case archive
+    }
+}
+
+
+
+protocol AppCoordinatorProtocol: ObservableObject {
+    var speakingStructurePath: NavigationPath { get set }
+    var scriptWritingPath: NavigationPath { get set }
+    var archivePath: NavigationPath { get set }
+    
+    var sheet: Sheet? { get set }
+    var fullScreenCover: FullScreenCover? { get set }
+    
+    func push(_ screen: Screen)
+    func presentSheet(_ sheet: Sheet)
+    func presentFullScreenCover(_ fullScreenCover: FullScreenCover)
+    
+    func pop()
+    func popToRoot()
+    
+    func dismissSheet()
+    func dismissFullScreenCover()
+}
+
+
+enum Screen: Identifiable, Hashable {
+    case StructureFlow(structure: SpeakingStructure)
+    
+    case Quiz(structure: SpeakingStructure, isRepeat: Bool)
+    case QuizDone(structure: SpeakingStructure, isRepeat: Bool)
+    
+    case Speech(speech: WellKnownSpeech)
+    
+    // 대본 작성 뷰
+    case TopicList(topic: String)
+    
+    case ContentWritingStartWithTopic(isWithTopic: Bool, title: String, selectedStructure: SpeakingStructure?)
+    case ContentWritingStartWithoutTopic(isWithTopic: Bool, selectedStructure: SpeakingStructure?)
+    
+    case ContentWritingWithoutTopic(title: String, structure: SpeakingStructure, date: Date?, time: Int?, isTopic: Bool)
+    case ContentWritingWithTopic(title: String, structure: SpeakingStructure, isTopic: Bool)
+    
+    case WritingCompleteWithoutTopic(title: String, date: Date?, time: Int?, structure: [StructureSection])
+    case WritingCompleteWithTopic(title: String, structure: [StructureSection])
+    
+//    case ScriptPracticeWithTopic
+    
+    case SpeechPracticeComplete(standardTime: Int, elapsedTime: Int, structure: SpeakingStructure)
+    
+    var id: Self { self }
+}
+
+enum Sheet: Identifiable, Hashable {
+    case none
+    
+    var id: Self { self }
+}
+
+enum FullScreenCover: Identifiable, Hashable {
+
+    case none(test: () -> Void)
+    
+    var id: Self { self }
+}
+
+
+
+
+// MARK: - 열거형 프로토콜 충족
+extension Screen {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        default:
+            hasher.combine("hashable")
+        }
+    }
+    
+    static func == (lhs: Screen, rhs: Screen) -> Bool {
+        switch (lhs, rhs) {
+        default:
+            return true
+        }
+    }
+}
+
+
+extension FullScreenCover {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .none:
+            hasher.combine("none")
+        }
+    }
+    
+    static func == (lhs: FullScreenCover, rhs: FullScreenCover) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none):
+            return true
+        }
     }
 }

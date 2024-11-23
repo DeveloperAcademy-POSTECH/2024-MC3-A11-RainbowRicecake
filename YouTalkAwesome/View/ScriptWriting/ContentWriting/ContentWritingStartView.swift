@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentWritingStartView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     var isTopic: Bool
-    @StateObject var router = Router.shared
     
     //제목 입력
     @State var contentTitle: String = ""
@@ -41,6 +42,18 @@ struct ContentWritingStartView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
+//    private var checkGoNext: Bool {
+//        if isTopic {
+//            return true
+//        } else {
+//            if !contentTitle.isEmpty && !selectedDateString.isEmpty && !timeLimitString.isEmpty && selectedSpeakingStructure != nil {
+//                return true
+//            }
+//        }
+//        
+//        return false
+//    }
+//    
     func checkValues() {
         if isTopic {
             canGoNext = true
@@ -156,14 +169,10 @@ struct ContentWritingStartView: View {
         }
         .overlay(alignment: .bottom) {
             Button {
-                router.setTopic(title: self.contentTitle)
-                router.setSelectedStructure(selection: self.selectedSpeakingStructure ?? .aida)
-                
                 if isTopic {
-                    router.push(screen: .ContentWritingWithTopic)
+                    coordinator.push(.ContentWritingWithTopic(title: self.contentTitle, structure: self.selectedSpeakingStructure!, isTopic: true))
                 } else {
-                    router.setDateAndTime(date: self.selectedDate, time: self.timeLimit)
-                    router.push(screen: .ContentWritingWithoutTopic)
+                    coordinator.push(.ContentWritingWithoutTopic(title: self.contentTitle, structure: self.selectedSpeakingStructure!, date: self.selectedDate, time: self.timeLimit, isTopic: false))
                 }
             } label: {
                 RoundedRectangle(cornerRadius: 18)
@@ -180,6 +189,8 @@ struct ContentWritingStartView: View {
             .padding(.bottom)
         }
     }
+    
+    
     
     var forTopic: some View {
         VStack(spacing: 20) {
@@ -224,6 +235,7 @@ struct ContentWritingStartView: View {
                             Button {
                                 showDatePicker = false
                                 selectedDateString = selectedDate.getYMDDate()
+                                self.selectingArray[1] = true
                             } label: {
                                 RoundedRectangle(cornerRadius: 18)
                                     .foregroundStyle(Color.main)
@@ -237,9 +249,6 @@ struct ContentWritingStartView: View {
                         }
                         .padding()
                         .presentationDetents([.medium, .fraction(0.5)])
-                        .onChange(of: selectedDate) {
-                            self.selectingArray[1] = true
-                        }
                     }
             }
             .padding(.horizontal)
@@ -270,8 +279,12 @@ struct ContentWritingStartView: View {
                 .onTapGesture {
                     showTimePicker.toggle()
                 }
-                .onChange(of: selectedDate) {
-                    self.selectingArray[2] = true
+                .onChange(of: timeLimitString) {
+                    if !(timeLimitString == "0분 0초") {
+                        self.selectingArray[2] = true
+                    } else {
+                        self.selectingArray[2] = false
+                    }
                 }
                 .sheet(isPresented: $showTimePicker) {
                     VStack {

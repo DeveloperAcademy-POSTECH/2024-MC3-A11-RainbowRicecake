@@ -11,6 +11,9 @@ import SwiftData
 
 struct ArchiveView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+    
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
     @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
@@ -25,44 +28,41 @@ struct ArchiveView: View {
     let width: CGFloat = (UIScreen.main.bounds.width - 42) / 3
     
     var body: some View {
-        NavigationStack(path: $router.route) {
-            ScrollView {
-                LazyVStack(pinnedViews: .sectionHeaders) {
-                    historyView
-                    
-                    Section {
-                        switch selectedView {
-                        case .answeredQuestion:
-                            answeredQuestionView
-                        case .writtenScript:
-                            writtenScript
-                        }
-                    } header: {
-                        VStack(spacing: 0) {
-                            scrollObservableView
-                            
-                            ArchiveSegmentView(selectedView: $selectedView)
-                                .background(.white)
-                        }
+        ScrollView {
+            LazyVStack(pinnedViews: .sectionHeaders) {
+                historyView
+                
+                Section {
+                    switch selectedView {
+                    case .answeredQuestion:
+                        answeredQuestionView
+                    case .writtenScript:
+                        writtenScript
                     }
-                }
-                .onPreferenceChange(ScrollOffsetKey.self) { value in
-                    if value <= safeAreaInsets.top - 10 {
-                        withAnimation {
-                            self.scrollObservableViewHeight = safeAreaInsets.top
-                        }
-                    } else {
-                        self.scrollObservableViewHeight = 0
+                } header: {
+                    VStack(spacing: 0) {
+                        scrollObservableView
+                        
+                        ArchiveSegmentView(selectedView: $selectedView)
+                            .background(.white)
                     }
-                    viewModel.setOffset(value)
-                }
-                .navigationDestination(for: ViewList.self) { screen in
-                    router.pushView(screen: screen)
                 }
             }
-            .ignoresSafeArea(edges: .top)
+            .onPreferenceChange(ScrollOffsetKey.self) { value in
+                if value <= safeAreaInsets.top - 10 {
+                    withAnimation {
+                        self.scrollObservableViewHeight = safeAreaInsets.top
+                    }
+                } else {
+                    self.scrollObservableViewHeight = 0
+                }
+                viewModel.setOffset(value)
+            }
+            .navigationDestination(for: ViewList.self) { screen in
+                router.pushView(screen: screen)
+            }
         }
-        
+        .ignoresSafeArea(edges: .top)
     }
     
     private var historyView: some View {
