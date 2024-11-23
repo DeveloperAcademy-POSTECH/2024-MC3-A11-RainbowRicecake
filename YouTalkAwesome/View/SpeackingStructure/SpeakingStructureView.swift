@@ -37,52 +37,6 @@ struct SpeakingStructureView: View {
                     }
                     .padding(.bottom, 22)
                 }
-                
-//                VStack(spacing: 32) {
-//                    VStack(spacing: 14) {
-//                        HStack {
-//                            ExampleTitleView(title: "청중의 마음을 움직인 연설 🎙️")
-//                            Spacer()
-//                        }
-//                        .padding(.leading, 20)
-//                        ScrollView(.horizontal) {
-//                            HStack(spacing: 16) {
-//                                ForEach(sampleSpeeches.filter { $0.category == "연설"}, id: \.self) { speech in
-//                                    Button {
-//                                        router.setSpeech(speech: speech)
-//                                        router.push(screen: .Speech)
-//                                    } label: {
-//                                        ExampleCardView(speech: speech, title: speech.title)
-//                                    }
-//                                    .buttonStyle(PlainButtonStyle())
-//                                }
-//                            }
-//                            .padding(.horizontal, 20)
-//                        }
-//                    }
-//                    
-//                    VStack(spacing: 14) {
-//                        HStack {
-//                            ExampleTitleView(title: "CEO 인터뷰 ✍🏻")
-//                            Spacer()
-//                        }
-//                        .padding(.leading, 20)
-//                        ScrollView(.horizontal) {
-//                            HStack(spacing: 16) {
-//                                ForEach(sampleSpeeches.filter { $0.category == "CEO 인터뷰"}, id: \.self) { speech in
-//                                    NavigationLink(destination: SpeechView(speech: speech)) {
-//                                        ExampleCardView(speech: speech, title: speech.title)
-//                                    }
-//                                    .buttonStyle(PlainButtonStyle())
-//                                }
-//                            }
-//                            .padding(.horizontal, 20)
-//                        }
-//                    }
-//                }
-//                .padding(.top, 24)
-//                .padding(.bottom, 40)
-//                .background(Color.bg)
             }
             .scrollIndicators(.hidden)
             .navigationDestination(for: ViewList.self) { list in
