@@ -298,8 +298,6 @@ struct ContentWritingStartView: View {
                             showTimePicker = false
                             timeLimit = selectedMinutes*60 + selectedSeconds
                             timeLimitString = "\(selectedMinutes)분 \(selectedSeconds)초"
-                            
-                            print(timeLimit)
                         }) {
                             RoundedRectangle(cornerRadius: 18)
                                 .foregroundStyle(Color.main)
