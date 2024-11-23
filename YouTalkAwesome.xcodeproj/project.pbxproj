@@ -31,6 +31,7 @@
 		4007DC7C2C53949E00EA528E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */; };
 		4007DC862C5396E600EA528E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC852C5396E600EA528E /* DataModel.swift */; };
 		4007DC892C53C9C600EA528E /* SwiftDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */; };
+		409464AE2CF1A2570093BF7E /* StructureFlowShortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409464AD2CF1A2570093BF7E /* StructureFlowShortView.swift */; };
 		40E96AF72C5632CB0099E603 /* TypeDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96AF62C5632CB0099E603 /* TypeDefinition.swift */; };
 		40E96B1C2C5778D20099E603 /* LSCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B1B2C5778D20099E603 /* LSCardView.swift */; };
 		40E96B1F2C57B2360099E603 /* InstructionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E96B1E2C57B2360099E603 /* InstructionTextView.swift */; };
@@ -93,6 +94,7 @@
 		4007DC7B2C53949E00EA528E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4007DC852C5396E600EA528E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4007DC882C53C9C600EA528E /* SwiftDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestView.swift; sourceTree = "<group>"; };
+		409464AD2CF1A2570093BF7E /* StructureFlowShortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructureFlowShortView.swift; sourceTree = "<group>"; };
 		40E96AF62C5632CB0099E603 /* TypeDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDefinition.swift; sourceTree = "<group>"; };
 		40E96B1B2C5778D20099E603 /* LSCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSCardView.swift; sourceTree = "<group>"; };
 		40E96B1E2C57B2360099E603 /* InstructionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionTextView.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				EEEBF0BC2C58BCA500B26DBF /* StructureFlowView.swift */,
+				409464AD2CF1A2570093BF7E /* StructureFlowShortView.swift */,
 				40E96B202C57BC9F0099E603 /* ExampleTitleView.swift */,
 			);
 			path = FlowInstruction;
@@ -500,6 +503,7 @@
 				2C27F9E32C5C6E3000B3B91B /* SafeAreaSize.swift in Sources */,
 				EE95B8602C5B20B9008D4EF1 /* PracticePointsViewModel.swift in Sources */,
 				4007DC772C53949D00EA528E /* Typealias.swift in Sources */,
+				409464AE2CF1A2570093BF7E /* StructureFlowShortView.swift in Sources */,
 				40E96B332C59FE190099E603 /* TopicBubbleView.swift in Sources */,
 				2C0645BD2C58BC7E00804B04 /* PromptGuageView.swift in Sources */,
 				40E96B3A2C5B22EE0099E603 /* SpeechView.swift in Sources */,
