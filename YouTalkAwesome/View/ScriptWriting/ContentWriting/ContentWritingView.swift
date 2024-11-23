@@ -11,8 +11,9 @@ import SwiftData
 
 // TODO: 완료버튼 이외에도 "현재 페이지를 이탈했을 때에 현재까지의 상황을 저장/전달"하는 기능 구현
 struct ContentWritingView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
     
-    @Environment (\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext
     
     var topic : String
     var selectedStructure : SpeakingStructure
@@ -116,7 +117,7 @@ struct ContentWritingView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime ?? 0, isDone: true, designatedTimestamp: self.designatedDate, isFreeTopic: self.isFreeTopic)
+                    let scriptRecord: LogicalSpeakingRecord = .init(topic: self.topic, speakingStructure: self.selectedStructure, content: self.structureSections, duration: self.expectedLeadTime ?? 0, isDone: true, designatedTimestamp: self.designatedDate, isFreeTopic: !self.isFreeTopic)
                     
                     var finalStructureSections = [StructureSection]()
                     for index in 0 ..< self.textFields.count {
@@ -135,9 +136,9 @@ struct ContentWritingView: View {
                     }
                     
                     if self.isFreeTopic {
-                        Router.shared.push(screen: .WritingCompleteWithoutTopic)
+                        coordinator.push(.WritingCompleteWithoutTopic(title: self.topic, date: nil, time: nil, structure: finalStructureSections))
                     } else {
-                        Router.shared.push(screen: .WritingCompleteWithTopic)
+                        coordinator.push(.WritingCompleteWithTopic(title: self.topic, structure: finalStructureSections))
                     }
                 } label: {
                     Text("완료")

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SwiftDataTestView : View {
-    @Environment (\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext
     @Query(sort: \LogicalSpeakingRecord.id) var records: [LogicalSpeakingRecord]
     
     var body: some View {

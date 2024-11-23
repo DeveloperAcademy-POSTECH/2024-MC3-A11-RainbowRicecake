@@ -8,44 +8,36 @@
 import SwiftUI
 
 struct SpeakingStructureView: View {
-    @StateObject private var router = Router.shared
+    @EnvironmentObject private var coordinator: AppCoordinator
     
     var body: some View {
-        NavigationStack(path: $router.route) {
-            ScrollView {
-                VStack(spacing: 10){
-                    HStack {
-                        InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
-                        Spacer()
-                    }
-                    .padding(.top, 20)
-                    .padding(.leading, 20)
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 12)  {
-                            ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
-                                Button {
-                                    router.setSelectedStructure(selection: speakingStructure)
-                                    router.push(screen: .StructureFlow)
-                                } label: {
-                                    LSCardView(speakingStructure: speakingStructure)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            }
-                        }
-                        .padding(.horizontal, 8)
-                    }
-                    .padding(.bottom, 22)
+        ScrollView {
+            VStack(spacing: 10){
+                HStack {
+                    InstructionTextView(instructionKeyword : ["말하기 구조","학습"], verbalPart: ["를", "해보세요!"])
+                    Spacer()
                 }
+                .padding(.top, 20)
+                .padding(.leading, 20)
+                
+                ScrollView(.horizontal) {
+                    HStack(spacing: 12)  {
+                        ForEach (SpeakingStructure.allCases, id: \.self) { speakingStructure in
+                            Button {
+                                coordinator.push(.StructureFlow(structure: speakingStructure))
+                            } label: {
+                                LSCardView(speakingStructure: speakingStructure)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding(.horizontal, 8)
+                }
+                .padding(.bottom, 22)
             }
-            .scrollIndicators(.hidden)
-            .navigationDestination(for: ViewList.self) { list in
-                router.pushView(screen: list)
-            }
-            
+            .navigationBarBackButtonHidden()
         }
-        .navigationBarBackButtonHidden()
-        
+        .scrollIndicators(.hidden)
     }
 }
 

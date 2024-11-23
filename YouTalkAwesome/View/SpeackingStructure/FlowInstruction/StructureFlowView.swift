@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StructureFlowView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
     var speakingStructure: SpeakingStructure
     @State var showExampleContents: Bool = false
     
@@ -49,7 +50,7 @@ struct StructureFlowView: View {
             Spacer()
             
             Button {
-                Router.shared.push(screen: .Quiz)
+                coordinator.push(.Quiz(structure: speakingStructure, isRepeat: false))
             } label: {
                 RoundedRectangle(cornerRadius: 18)
                     .foregroundStyle(Color.main)
