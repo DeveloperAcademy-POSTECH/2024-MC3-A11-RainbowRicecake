@@ -122,7 +122,7 @@ extension Router {
             QuizDoneView(isRepeat: false, speakingStructure: self.selectedStructure ?? .aida)
                 .toolbarRole(.editor)
         case .Speech:
-            SpeechView(speech: self.selectedSpeech!)
+            SpeechView(caseSpeech: .analysis)
                 .toolbarRole(.editor)
         }
     }
@@ -291,7 +291,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
             QuizDoneView(isRepeat: isRepeat, speakingStructure: structure)
                 .toolbarRole(.editor)
         case .Speech(let speech):
-            SpeechView(speech: speech)
+            SpeechView(caseSpeech: speech)
                 .toolbarRole(.editor)
         case .TopicList(let topic):
             TopicListView(topic: topic)
@@ -359,7 +359,7 @@ enum Screen: Identifiable, Hashable {
     case Quiz(structure: SpeakingStructure, isRepeat: Bool)
     case QuizDone(structure: SpeakingStructure, isRepeat: Bool)
     
-    case Speech(speech: WellKnownSpeech)
+    case Speech(speech: CaseSpeech)
     
     // 대본 작성 뷰
     case TopicList(topic: String)

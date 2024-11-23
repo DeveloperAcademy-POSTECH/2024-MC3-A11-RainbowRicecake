@@ -56,33 +56,9 @@ struct ScriptWritingView: View {
         .init(type: .formal, content: "당신의 삶을 한 문장으로 설명하면 무엇인가요?", lsStructure: SpeakingStructure.prep.rawValue)
     ]
     
-    let preparedSituation = [
-        "나에게 모두 이목집중 👀","한 방 터뜨리기 👊🏻","날카로운 상황 분석 📈","내 잠재력 어필하기 💫", "깔끔 요약정리 ✍🏻", "내 말에 설득당할 걸? 😎", "멋진 성장 스토리 🍀","현재 문제점 진단하기 🦔", "나의 경험 어필하기 🤓", "해결책 제시하기 💡", "문제해결 능력 어필⚡️", "생생하게 상황 묘사 🌼"
-    ]
     @EnvironmentObject private var coordinator: AppCoordinator
-    
-    @StateObject var router = Router.shared
-    
     @Query(filter: #Predicate<LogicalSpeakingRecord> { $0.isFreeTopic }) var records: [LogicalSpeakingRecord]
     @State private var filteredRecords: [LogicalSpeakingRecord] = []
-    
-    @ViewBuilder
-    func makeSituationCard(_ situation: String) -> some View {
-        Text(situation)
-            .customFont(.body3_light)
-            .frame(height: 16)
-            .background {
-                GeometryReader { geometry in
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.gray6)
-                        .frame(width: geometry.size.width + 15, height: 44)
-                        .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
-                }
-            }
-            .onTapGesture {
-                
-            }
-    }
     
     var body: some View {
         ScrollView {
@@ -169,27 +145,6 @@ struct ScriptWritingView: View {
                     }
                 }
             }
-            
-            VStack {
-                HStack {
-                    Text("어떤 상황을 준비하시나요?")
-                        .customFont(.title4_bold)
-                    Spacer()
-                }
-                .padding([.top, .horizontal])
-                
-                ScrollView (.horizontal) {
-                    ForEach(0..<3) { rowIndex in
-                        HStack {
-                            makeSituationCard(preparedSituation[rowIndex*4]).padding([.vertical, .trailing])
-                            makeSituationCard(preparedSituation[rowIndex*4 + 1]).padding([.vertical, .trailing])
-                            makeSituationCard(preparedSituation[rowIndex*4 + 2]).padding([.vertical, .trailing])
-                            makeSituationCard(preparedSituation[rowIndex*4 + 3]).padding([.vertical, .trailing])
-                        }
-                        .padding(.leading)
-                    }
-                }
-            }
         }
         .scrollIndicators(.hidden)
         .ignoresSafeArea(.container, edges: [.top, .horizontal])
@@ -201,23 +156,7 @@ struct ScriptWritingView: View {
             self.filteredRecords = records.filter { $0.designatedTimestamp!.calcDDays() >= Date().calcDDays() }
         }
     }
-    
-    private func evaluateSituation(text: String) -> SpeakingStructure {
-        switch text {
-        case "깔끔 요약정리 ✍🏻", "내 말에 설득당할 걸? 😎":
-            return .prep
-        case "나의 경험 어필하기 🤓", "멋진 성장 스토리 🍀":
-            return .star
-        case "내 잠재력 어필하기 💫", "날카로운 상황 분석 📈":
-            return .grow
-        case "한 방 터뜨리기 👊🏻", "나에게 모두 이목집중 👀":
-            return .aida
-        default:
-            return .psb
-        }
-    }
 }
-
 
 #Preview {
     ScriptWritingView()
