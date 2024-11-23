@@ -30,10 +30,11 @@ class PracticePointsDataHandler: ObservableObject {
         }
     }
     
-    // 키에 따라 포인트를 1씩 추가하기
+    // 키에 따라 포인트를 1씩 추가하기 (지금은 1만)
     func addPoint(key: String) {
         if let currentPoints = practicePoints[key] {
-            practicePoints[key] = currentPoints + 1
+            practicePoints[key] = 1
+//            practicePoints[key] = currentPoints + 1
         } else {
             practicePoints[key] = 1
         }

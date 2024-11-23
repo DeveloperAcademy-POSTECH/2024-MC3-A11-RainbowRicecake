@@ -69,26 +69,27 @@ struct QuizDoneView: View {
                 Spacer()
                 
                 if !isRepeat {
-                    ZStack(alignment: .leading){
+                    ZStack(alignment: .leading) {
                         Capsule()
                             .frame(width: 305, height: 20)
                             .foregroundColor(.gray6)
-                        Capsule()
-                            .frame(width: 30.5 * CGFloat(practicePointsViewModel.getPoint(key: speakingStructure.rawValue)), height: 20)
-                            .foregroundStyle(speakingStructure.color.gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3)))
                         
+                        if practicePointsViewModel.getPoint(key: speakingStructure.rawValue) != 0 {
+                            Capsule()
+                                .frame(width: 305, height: 20)
+                                .foregroundStyle(speakingStructure.color.gradient.shadow(.inner(color: .white.opacity(0.7), radius: 3)))
+                        }
                     }
+                    .padding(.bottom, 2)
                     .overlay(
                         HStack(spacing: 4) {
-                            let point = practicePointsViewModel.getPoint(key: speakingStructure.rawValue)
-                            let color: Color = point < 5 ? .gray3 : .white
-                            
-                            Text("\(point)")
-                                .foregroundColor(color)
+                            // 게이지가 절반이 넘어갈 때 색깔의 분기점이 생기기 때문에 경우 나눠서 색 지정 (지금은 1만..)
+                            Text("\(practicePointsViewModel.getPoint(key: speakingStructure.rawValue))")
+                                .foregroundColor(practicePointsViewModel.getPoint(key: speakingStructure.rawValue) == 1 ? .white : .gray3)
                             Text("/")
-                                .foregroundColor(color)
-                            Text("10")
-                                .foregroundColor(point < 6 ? .gray3 : .white)
+                                .foregroundColor(practicePointsViewModel.getPoint(key: speakingStructure.rawValue) == 1 ? .white : .gray3)
+                            Text("1")
+                                .foregroundColor(practicePointsViewModel.getPoint(key: speakingStructure.rawValue) == 1 ? .white : .gray3)
                         }
                             .customFont(.caption1_bold)
                     )

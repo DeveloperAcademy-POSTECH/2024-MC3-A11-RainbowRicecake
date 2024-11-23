@@ -31,7 +31,7 @@ struct ContentWritingView: View {
     
     @State private var keyboardHeight: CGFloat = 0
     
-    let nonVerbalExpressions = ["🙂 미소", "⭐️ 강조", "🗣️ 크게 말하기", "🫲 제스쳐"]
+    let nonVerbalExpressions = ["⭐️ 강조", "🫲 제스쳐", "🙂 미소", "🗣️ 크게 말하기"]
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -208,6 +208,7 @@ struct ContentWritingView: View {
                             }
                         }
                     }
+                    .scrollIndicators(.hidden)
                     .presentationDetents([.height(indexOfSpeakingStructure < selectedStructure.components.count ? 270 : 130)])
                 }
             }

@@ -13,6 +13,8 @@ struct ScriptRectangleView: View {
     var isThisForAdding: Bool
     
     let record: LogicalSpeakingRecord?
+    @State var leftDays: Int = 0
+    @State var isEventBefore: Bool = true
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
@@ -41,7 +43,7 @@ struct ScriptRectangleView: View {
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("D - \(record?.designatedTimestamp?.calcDDays() ?? 0)")
+                        Text("D \(isEventBefore ? "-" : "+") \(abs(leftDays))")
                             .customFont(.title4_light)
                             .foregroundStyle(.gray3)
                         Text(record?.topic ?? "nil")
@@ -61,18 +63,19 @@ struct ScriptRectangleView: View {
                     
                 }
             }
+            .onAppear {
+                guard let record = record else { return }
+                leftDays = record.designatedTimestamp?.calcDDays() ?? 0
+                
+                if leftDays < 0 {
+                    isEventBefore = false
+                }
+            }
     }
 }
 
 #Preview {
-//    ScrollView(.horizontal) {
-//        HStack {
-//            ScriptRectangleView(isThisForAdding: true)
-//            ScriptRectangleView(isThisForAdding: false, leftDay: "5", scriptTitle: "애플 리뷰 준비", isDone: false)
-//        }.padding()
-//        
-//    }
+    let record:LogicalSpeakingRecord = .init(topic: "aaa", speakingStructure: .aida, content: [], duration: 13, isDone: false, designatedTimestamp: Date(timeIntervalSinceNow: -1000000), isFreeTopic : false)
     
-    
-    ScriptRectangleView(isThisForAdding: true, record: nil)
+    ScriptRectangleView(isThisForAdding: false, record: record)
 }
