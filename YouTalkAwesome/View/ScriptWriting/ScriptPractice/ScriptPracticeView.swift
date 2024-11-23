@@ -14,6 +14,8 @@ struct ScriptPracticeView: View {
     
     @State private var audioManager: AudioManager
     
+    @State private var isFirstSettingForPractice: Bool = true
+    
     let isTopicSelected: Bool
     
     var structureSections: [StructureSection]
@@ -105,16 +107,23 @@ struct ScriptPracticeView: View {
                         
                         if self.isTopicSelected {
                             Button {
-                                self.vm.stopTimer()
-                                self.audioManager.stopRecording()
-                                Router.shared.push(screen: .SpeechPracticeComplete)
+                                if isFirstSettingForPractice {
+                                    Router.shared.viewModel.makeTimer()
+                                    Router.shared.viewModel.startTimer()
+                                    Router.shared.audio.startRecording()
+                                    isFirstSettingForPractice = false
+                                } else {
+                                    self.vm.stopTimer()
+                                    self.audioManager.stopRecording()
+                                    Router.shared.push(screen: .SpeechPracticeComplete)
+                                }
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
                                         .foregroundStyle(.main)
                                         .frame(height: 54)
                                     
-                                    Text("완료")
+                                    Text(isFirstSettingForPractice ? "시작" : "완료")
                                         .foregroundStyle(.white)
                                         .customFont(.body1_bold)
                                 }
@@ -170,7 +179,7 @@ struct ScriptPracticeView: View {
     }
 }
 
-//#Preview {
-//    ScriptPracticeView(isPresented: .constant(true), isTopicSelected: true, vm: .init(time: 30), structureSections: structureSectionSample)
-//}
+#Preview {
+    ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: ScriptPracticeViewModel(time: 10), structureSections: structureSectionSample, audioManager: AudioManager())
+}
 

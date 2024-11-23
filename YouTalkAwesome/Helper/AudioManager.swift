@@ -15,7 +15,7 @@ final class AudioManager: NSObject {
     public var isRecording: Bool = false
     public var isPlaying: Bool = false
     public var isStarted: Bool = false
-
+    
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
     
@@ -38,17 +38,20 @@ final class AudioManager: NSObject {
         return result
     }
     
-    public func startRecording() {
+    public func prepareAudio() {
         do {
             try audioSession.setCategory(.playAndRecord)
             try audioSession.setActive(true)
             
             self.audioRecorder = try AVAudioRecorder(url: fileURL, settings: recorderSettings)
-            self.audioRecorder?.record()
-            self.isRecording = true
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    public func startRecording() {
+        self.audioRecorder?.record()
+        self.isRecording = true
     }
     
     public func stopRecording() {

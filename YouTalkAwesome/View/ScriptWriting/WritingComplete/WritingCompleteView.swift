@@ -134,9 +134,8 @@ struct WritingCompleteView: View {
             Router.shared.makeAudioManager()
             Router.shared.setStructureSections(self.structureSections)
             
-            Router.shared.viewModel.makeTimer()
-            Router.shared.viewModel.startTimer()
-            Router.shared.audio.startRecording()
+
+            Router.shared.audio.prepareAudio()
             
             Router.shared.push(screen: .ScriptPracticeWithTopic)
         } label: {
@@ -182,7 +181,7 @@ struct WritingCompleteView: View {
 
 #Preview {
     NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: false, selectedDate: Date(), selectedTime: 3, structureSections: structureSectionSample)
+        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: true, selectedDate: Date(), selectedTime: 3, structureSections: structureSectionSample)
     }
 }
 
