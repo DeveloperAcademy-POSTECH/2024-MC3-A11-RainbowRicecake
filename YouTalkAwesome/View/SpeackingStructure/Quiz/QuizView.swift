@@ -32,6 +32,8 @@ struct QuizView: View {
     
     @StateObject var practicePointsViewModel = PracticePointsDataHandler.shared
     
+    @State private var showHelpPage = false
+    
     @Namespace private var bottomId
     
     func replaceComponent(quiz: inout [LSQuizComponent], droppingComponent: LSQuizComponent) {
@@ -63,10 +65,10 @@ struct QuizView: View {
         .padding(.vertical, 20)
         .frame(width: 353)
         .background{
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.wh)
-                    .stroke(.gray4, lineWidth: 0.5)
-                    .shadow(color: .gray6, radius: 4, x: 0, y: 4)
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.wh)
+                .stroke(.gray4, lineWidth: 0.5)
+                .shadow(color: .gray6, radius: 4, x: 0, y: 4)
         }
         .padding(.bottom, 18)
         .draggable(quizComponent.id.uuidString) {
@@ -183,6 +185,23 @@ struct QuizView: View {
             }
             .onAppear {
                 quiz = lsStructure.quizSentences
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button{
+                        showHelpPage.toggle()
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                            .font(.title3.weight(.semibold))
+                            .tint(.main)
+                    }
+                }
+            }
+            .sheet(isPresented: $showHelpPage) {
+                StructureFlowShortView(speakingStructure: lsStructure)
+                    .padding(.top, 45)
+                    .presentationDetents([.height(400)])
+                    .presentationDragIndicator(.visible)
             }
         }
     }
