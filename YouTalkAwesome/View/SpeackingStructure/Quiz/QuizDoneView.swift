@@ -43,12 +43,13 @@ struct QuizDoneView: View {
                     HStack(alignment: .bottom, spacing: 2) {
                         Text(speakingStructure.rawValue)
                             .customFont(.point1)
-                        if !isRepeat {
-                            Text("+1")
-                                .font(.custom("Rubik", size: 24))
-                                .fontWeight(.medium)
-                                .padding(.bottom, 5)
-                        }
+// 나중에 쓸까 싶어 일단 주석처리
+//                        if !isRepeat {
+//                            Text("+1")
+//                                .font(.custom("Rubik", size: 24))
+//                                .fontWeight(.medium)
+//                                .padding(.bottom, 5)
+//                        }
                     }
                     
                     Text("말하기 구조 학습을 완료했어요!")
