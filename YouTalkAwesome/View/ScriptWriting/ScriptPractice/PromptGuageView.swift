@@ -38,6 +38,7 @@ struct PromptGuageView: View {
             // TODO: 폰트 확인 필요
             Text(self.currentTime < 0 ? "+\(currentMinToString()):\(currentSecToString())" : "\(currentMinToString()):\(currentSecToString())")
                 .customFont(.title4_bold)
+                .foregroundColor(currentTime < 0 ? .gray3 : .main)
                 .monospaced()
                 .animation(nil, value: currentTime)
         }
