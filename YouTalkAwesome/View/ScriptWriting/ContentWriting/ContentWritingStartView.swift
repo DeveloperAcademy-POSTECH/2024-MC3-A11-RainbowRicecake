@@ -53,7 +53,7 @@ struct ContentWritingStartView: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack {
-                if let title = introductionTitle{
+                if let title = introductionTitle {
                     Text(title)
                         .customFont(.title2_bold)
                 } else {

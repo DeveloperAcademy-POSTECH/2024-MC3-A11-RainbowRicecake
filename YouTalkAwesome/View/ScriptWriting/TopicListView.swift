@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TopicListView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     var topic: String
 
     //임시
@@ -49,11 +51,8 @@ struct TopicListView: View {
                             .padding(.horizontal)
                             .padding(.vertical, 16)
                             .onTapGesture {
-                                Router.shared.setTopic(title: topicResource.content)
-                                Router.shared.setSelectedStructure(selection: .init(rawValue: topicResource.lsStructure)!)
-                                Router.shared.setTopicIntroductionTitle(title: topic)
+                                coordinator.push(.ContentWritingStartWithTopic(isWithTopic: true, introductionTitle: topic, title: topicResource.content, selectedStructure: .init(rawValue: topicResource.lsStructure)))
                                 
-                                Router.shared.push(screen: .ContentWritingStartWithTopic)
                             }
                     }
                 }
