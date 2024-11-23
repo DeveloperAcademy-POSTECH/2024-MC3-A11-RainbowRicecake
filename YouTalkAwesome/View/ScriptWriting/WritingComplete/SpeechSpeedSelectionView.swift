@@ -105,7 +105,6 @@ struct SpeechSpeedSelectionView: View {
     }
     
     private func speedSecText() -> String {
-        print(speechSpeed)
         switch self.speechSpeedStatus {
         case .slow:
             let result = self.speechSpeed[0] % 60

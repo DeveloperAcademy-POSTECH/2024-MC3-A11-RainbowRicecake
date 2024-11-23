@@ -20,6 +20,5 @@ final class ArchiveViewModel: ObservableObject {
     
     func setOffset(_ offset: CGFloat) {
         self.offset = offset
-        print(offset)
     }
 }
