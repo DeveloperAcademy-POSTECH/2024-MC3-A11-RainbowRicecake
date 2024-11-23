@@ -146,18 +146,6 @@ struct ContentWritingStartView: View {
         }
     }
 
-    private func structureButton(for speakingStructure: SpeakingStructure) -> some View {
-        Button(action: {
-            selectedSpeakingStructure = speakingStructure
-            selectingArray[3] = true
-        }) {
-            Image("\(speakingStructure.rawValue)-\(selectedSpeakingStructure == speakingStructure ? "selected" : "unselected")")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 220)
-        }
-    }
-
     private var bottomButton: some View {
         Button {
             router.setTopic(title: contentTitle)
