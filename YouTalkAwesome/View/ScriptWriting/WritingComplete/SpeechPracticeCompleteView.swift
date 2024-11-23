@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct SpeechPracticeCompleteView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     @State private var isAnimating: Bool = false
     @State private var isListeingSpeechViewPresented: Bool = false
     
@@ -16,6 +18,7 @@ struct SpeechPracticeCompleteView: View {
     let elapsedTime: Int
     
     var speakingStructure: SpeakingStructure
+    var structureSections: [StructureSection]
     
     var body: some View {
         ZStack {
@@ -78,7 +81,8 @@ struct SpeechPracticeCompleteView: View {
                 Spacer()
 
                 Button {
-                    Router.shared.popToWritingCompleteView()
+                    coordinator.pop()
+                    coordinator.pop()
                 } label: {
                     HStack {
                         Text("다시 말해보기")
@@ -90,7 +94,7 @@ struct SpeechPracticeCompleteView: View {
                 .padding(.bottom)
                 
                 Button {
-                    Router.shared.popToRootView()
+                    coordinator.popToRoot()
                 } label: {
                     RoundedRectangle(cornerRadius: 18)
                         .fill(Color.main)
@@ -104,7 +108,7 @@ struct SpeechPracticeCompleteView: View {
             }
         }
         .sheet(isPresented: $isListeingSpeechViewPresented) {
-            ListeningSpeechView(vm: .init(time: (standardTime - elapsedTime)/10), isPresented: $isListeingSpeechViewPresented)
+            ListeningSpeechView(vm: .init(time: (standardTime - elapsedTime)/10), isPresented: $isListeingSpeechViewPresented, sections: self.structureSections)
         }
     }
     
@@ -129,8 +133,4 @@ struct SpeechPracticeCompleteView: View {
             return "\(min)분 \(sec)초"
         }
     }
-}
-
-#Preview {
-    SpeechPracticeCompleteView(standardTime: 1000, elapsedTime: 100, speakingStructure: .grow)
 }

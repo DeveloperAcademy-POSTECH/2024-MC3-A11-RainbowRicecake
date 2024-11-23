@@ -125,7 +125,6 @@ struct ContentWritingView: View {
                         finalStructureSections.append(result)
                     }
                     
-                    Router.shared.setStructureSections(finalStructureSections)
                     scriptRecord.content = finalStructureSections
                     
                     do {
@@ -136,9 +135,9 @@ struct ContentWritingView: View {
                     }
                     
                     if self.isFreeTopic {
-                        coordinator.push(.WritingCompleteWithoutTopic(title: self.topic, date: nil, time: nil, structure: finalStructureSections))
+                        coordinator.push(.WritingCompleteWithoutTopic(title: self.topic, date: nil, time: nil, structure: finalStructureSections, ss: self.selectedStructure))
                     } else {
-                        coordinator.push(.WritingCompleteWithTopic(title: self.topic, structure: finalStructureSections))
+                        coordinator.push(.WritingCompleteWithTopic(title: self.topic, structure: finalStructureSections, ss: self.selectedStructure))
                     }
                 } label: {
                     Text("완료")

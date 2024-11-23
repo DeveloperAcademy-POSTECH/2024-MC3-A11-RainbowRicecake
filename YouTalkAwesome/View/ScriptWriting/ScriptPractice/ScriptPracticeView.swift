@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ScriptPracticeView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     @State private var vm: ScriptPracticeViewModel
     
     @Binding var isPresented: Bool
     
-    @State private var audioManager: AudioManager
+    @State private var audioManager: AudioManager = .init()
     
     @State private var isFirstSettingForPractice: Bool = true
     
@@ -20,12 +22,15 @@ struct ScriptPracticeView: View {
     
     var structureSections: [StructureSection]
     
-    init(isPresented: Binding<Bool>, isTopicSelected: Bool, vm: ScriptPracticeViewModel, structureSections: [StructureSection], audioManager: AudioManager) {
+    var selectedStructure: SpeakingStructure
+    
+    init(isPresented: Binding<Bool>, isTopicSelected: Bool, time: Int, structureSections: [StructureSection], selectedStructure: SpeakingStructure) {
+        let vm = ScriptPracticeViewModel(time: time)
         self._isPresented = isPresented
         self.isTopicSelected = isTopicSelected
         self.vm = vm
         self.structureSections = structureSections
-        self.audioManager = audioManager
+        self.selectedStructure = selectedStructure
         
         UINavigationBar.appearance().backgroundColor = .clear
         
@@ -108,14 +113,16 @@ struct ScriptPracticeView: View {
                         if self.isTopicSelected {
                             Button {
                                 if isFirstSettingForPractice {
-                                    Router.shared.viewModel.makeTimer()
-                                    Router.shared.viewModel.startTimer()
-                                    Router.shared.audio.startRecording()
+                                    self.vm.makeTimer()
+                                    self.vm.startTimer()
+                                    self.audioManager.startRecording()
+                                    
                                     isFirstSettingForPractice = false
                                 } else {
                                     self.vm.stopTimer()
                                     self.audioManager.stopRecording()
-                                    Router.shared.push(screen: .SpeechPracticeComplete)
+                                    
+                                    coordinator.push(.SpeechPracticeComplete(standardTime: self.vm.time, elapsedTime: self.vm.currentTime, structure: self.selectedStructure, section: structureSections))
                                 }
                             } label: {
                                 ZStack {
@@ -176,10 +183,8 @@ struct ScriptPracticeView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarBackButtonHidden()
+            .onAppear {
+                self.audioManager.prepareAudio()
+            }
     }
 }
-
-#Preview {
-    ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: ScriptPracticeViewModel(time: 10), structureSections: structureSectionSample, audioManager: AudioManager())
-}
-

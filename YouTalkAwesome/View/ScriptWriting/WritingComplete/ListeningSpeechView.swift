@@ -13,6 +13,7 @@ struct ListeningSpeechView: View {
     
     @Binding var isPresented: Bool
     
+    var sections: [StructureSection]
     
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct ListeningSpeechView: View {
                     .padding(.horizontal)
                 
                 ScrollView {
-                    ForEach(Router.shared.structure, id: \.self) { section in
+                    ForEach(sections, id: \.self) { section in
                         StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                     }
                     Spacer(minLength: 200)
@@ -79,8 +80,4 @@ struct ListeningSpeechView: View {
             }
         }
     }
-}
-
-#Preview {
-    ListeningSpeechView(vm: .init(time: 100), isPresented: .constant(true))
 }
