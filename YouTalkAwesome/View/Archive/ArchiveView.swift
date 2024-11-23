@@ -23,7 +23,6 @@ struct ArchiveView: View {
     @State private var selectedView: SelectedView = .answeredQuestion
     @State private var scrollObservableViewHeight: CGFloat = 0
     
-    @StateObject var router = Router.shared
     
     let width: CGFloat = (UIScreen.main.bounds.width - 42) / 3
     
@@ -57,9 +56,6 @@ struct ArchiveView: View {
                     self.scrollObservableViewHeight = 0
                 }
                 viewModel.setOffset(value)
-            }
-            .navigationDestination(for: ViewList.self) { screen in
-                router.pushView(screen: screen)
             }
         }
         .ignoresSafeArea(edges: .top)
@@ -176,9 +172,11 @@ struct ArchiveView: View {
                 ForEach(filtered) { record in
                     TopicBubbleView(topicContent: record.topic, lsName: record.speakingStructure.rawValue, isWideType: true)
                         .onTapGesture {
-                            router.setTopic(title: record.topic)
-                            router.setStructureSections(record.content)
-                            router.push(screen: .WritingCompleteWithTopic)
+//                            router.setTopic(title: record.topic)
+//                            router.setStructureSections(record.content)
+//                            router.push(screen: .WritingCompleteWithTopic)
+                            
+                            coordinator.push(.WritingCompleteWithTopic(title: record.topic, structure: record.content, ss: record.speakingStructure))
                         }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 16)
@@ -202,10 +200,7 @@ struct ArchiveView: View {
                     ForEach(filtered) { record in
                         ScriptRectangleView(isThisForAdding: false, record: record)
                             .onTapGesture {
-                                router.setTopic(title: record.topic)
-                                router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
-                                router.setStructureSections(record.content)
-                                router.push(screen: .WritingCompleteWithoutTopic)
+                                coordinator.push(.WritingCompleteWithoutTopic(title: record.topic, date: record.designatedTimestamp!, time: record.duration, structure: record.content, ss: record.speakingStructure))
                             }
                     }
                 }

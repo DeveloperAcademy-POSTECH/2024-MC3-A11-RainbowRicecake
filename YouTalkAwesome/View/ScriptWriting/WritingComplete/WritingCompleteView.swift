@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WritingCompleteView: View {
+    @EnvironmentObject private var coordinator: AppCoordinator
+    
     @State private var isPresented: Bool = false
     @State private var speedStatus: SpeechSpeedStatus = .standard
     
@@ -17,6 +19,7 @@ struct WritingCompleteView: View {
     var selectedDate: Date?
     var selectedTime: Int?
     var structureSections: [StructureSection]
+    var structure: SpeakingStructure
     
     var body: some View {
         VStack(spacing: 0) {
@@ -91,14 +94,14 @@ struct WritingCompleteView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     // TODO: 하이파이에 따라 수정 예정
                     Button("마치기") {
-                        Router.shared.popToRootView()
+                        coordinator.popToRoot()
                     }
                     .tint(.main)
                 }
             }
         }
         .fullScreenCover(isPresented: $isPresented) {
-            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, vm: .init(time: selectedTime ?? 0), structureSections: self.structureSections, audioManager: .init())
+            ScriptPracticeView(isPresented: $isPresented, isTopicSelected: self.isTopicSelected, time: selectedTime ?? 0, structureSections: self.structureSections, selectedStructure: self.structure)
                 .ignoresSafeArea(edges: .bottom)
         }
         .task {
@@ -130,14 +133,8 @@ struct WritingCompleteView: View {
     
     var speechStartButtonWithTopic: some View {
         Button {
-            Router.shared.makeVM(time: calcStringCount()[self.speedStatus.rawValue])
-            Router.shared.makeAudioManager()
-            Router.shared.setStructureSections(self.structureSections)
+            coordinator.push(.ScriptPracticeWithTopic(time: calcStringCount()[self.speedStatus.rawValue], section: self.structureSections, structure: self.structure))
             
-
-            Router.shared.audio.prepareAudio()
-            
-            Router.shared.push(screen: .ScriptPracticeWithTopic)
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
@@ -178,12 +175,6 @@ struct WritingCompleteView: View {
     }
 }
 
-
-#Preview {
-    NavigationStack {
-        WritingCompleteView(title: "AI를 활용한 UX 디자인", isTopicSelected: true, selectedDate: Date(), selectedTime: 3, structureSections: structureSectionSample)
-    }
-}
 
 
 let structureSectionSample: [StructureSection] = [

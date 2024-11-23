@@ -93,20 +93,20 @@ extension Router {
                 .toolbarRole(.editor)
             
         case .WritingCompleteWithoutTopic:
-            WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: false, selectedDate: self.selectedDate, selectedTime: self.selectedTime, structureSections: structureSections)
+            WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: false, selectedDate: self.selectedDate, selectedTime: self.selectedTime, structureSections: structureSections, structure: .aida)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
         case .WritingCompleteWithTopic:
-            WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: true, structureSections: structureSections)
+            WritingCompleteView(title: self.topic ?? "nil", isTopicSelected: true, structureSections: structureSections, structure: .aida)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
             
         case .ScriptPracticeWithTopic:
-            ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, vm: self.scriptPracticeViewModel!, structureSections: self.structureSections, audioManager: self.audioManager!)
+            ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, time: 1, structureSections: self.structureSections, selectedStructure: .aida)
                 .toolbarRole(.editor)
             
         case .SpeechPracticeComplete:
-            SpeechPracticeCompleteView(standardTime: self.scriptPracticeViewModel?.time ?? 0, elapsedTime: self.scriptPracticeViewModel?.currentTime ?? 0, speakingStructure: self.selectedStructure ?? .aida)
+            SpeechPracticeCompleteView(standardTime: self.scriptPracticeViewModel?.time ?? 0, elapsedTime: self.scriptPracticeViewModel?.currentTime ?? 0, speakingStructure: self.selectedStructure ?? .aida, structureSections: [])
                 .navigationBarBackButtonHidden()
                 .toolbar(.hidden, for: .tabBar)
             
@@ -307,18 +307,20 @@ final class AppCoordinator: AppCoordinatorProtocol {
             ContentWritingView(topic: title, selectedStructure: structure, designatedDate: nil, expectedLeadTime: nil, isFreeTopic: isTopic)
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarRole(.editor)
-        case .WritingCompleteWithoutTopic(let title, let date, let time, let structure):
-            WritingCompleteView(title: title, isTopicSelected: true, selectedDate: date, selectedTime: time, structureSections: structure)
+        case .WritingCompleteWithoutTopic(let title, let date, let time, let sections, let structure):
+            WritingCompleteView(title: title, isTopicSelected: true, selectedDate: date, selectedTime: time, structureSections: sections, structure: structure)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
-        case .WritingCompleteWithTopic(let title, let structure):
-            WritingCompleteView(title: title, isTopicSelected: false, structureSections: structure)
+        case .WritingCompleteWithTopic(let title, let sections, let structure):
+            WritingCompleteView(title: title, isTopicSelected: false, structureSections: sections, structure: structure)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
-        case .SpeechPracticeComplete(let standardTime, let elapsedTime, let structure):
-            SpeechPracticeCompleteView(standardTime: standardTime, elapsedTime: elapsedTime, speakingStructure: structure)
+        case .SpeechPracticeComplete(let standardTime, let elapsedTime, let structure, let sections):
+            SpeechPracticeCompleteView(standardTime: standardTime, elapsedTime: elapsedTime, speakingStructure: structure, structureSections: sections)
                 .navigationBarBackButtonHidden()
                 .toolbar(.hidden, for: .tabBar)
+        case .ScriptPracticeWithTopic(let time, let section, let structure):
+            ScriptPracticeView(isPresented: .constant(false), isTopicSelected: true, time: time, structureSections: section, selectedStructure: structure)
         }
     }
     
@@ -368,12 +370,12 @@ enum Screen: Identifiable, Hashable {
     case ContentWritingWithoutTopic(title: String, structure: SpeakingStructure, date: Date?, time: Int?, isTopic: Bool)
     case ContentWritingWithTopic(title: String, structure: SpeakingStructure, isTopic: Bool)
     
-    case WritingCompleteWithoutTopic(title: String, date: Date?, time: Int?, structure: [StructureSection])
-    case WritingCompleteWithTopic(title: String, structure: [StructureSection])
+    case WritingCompleteWithoutTopic(title: String, date: Date?, time: Int?, structure: [StructureSection], ss: SpeakingStructure)
+    case WritingCompleteWithTopic(title: String, structure: [StructureSection], ss: SpeakingStructure)
     
-//    case ScriptPracticeWithTopic
+    case ScriptPracticeWithTopic(time: Int, section: [StructureSection], structure: SpeakingStructure)
     
-    case SpeechPracticeComplete(standardTime: Int, elapsedTime: Int, structure: SpeakingStructure)
+    case SpeechPracticeComplete(standardTime: Int, elapsedTime: Int, structure: SpeakingStructure, section: [StructureSection])
     
     var id: Self { self }
 }

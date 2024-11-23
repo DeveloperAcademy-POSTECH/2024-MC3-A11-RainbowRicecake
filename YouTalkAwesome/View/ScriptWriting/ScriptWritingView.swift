@@ -80,6 +80,7 @@ struct ScriptWritingView: View {
                 }
             }
             .onTapGesture {
+                
             }
     }
     
@@ -112,14 +113,7 @@ struct ScriptWritingView: View {
                             ForEach(filteredRecords) { record in
                                 ScriptRectangleView(isThisForAdding: false, record: record)
                                     .onTapGesture {
-//                                        router.setDateAndTime(date: record.designatedTimestamp!, time: record.duration)
-//                                        router.setTopic(title: record.topic)
-//                                        router.setIsTopicSelected(false)
-//                                        router.setSelectedStructure(selection: record.speakingStructure)
-//                                        router.setStructureSections(record.content)
-//                                        router.push(screen: .WritingCompleteWithoutTopic)
-//                                        coordinator.push(.WritingCompleteWithoutTopic(title: record.designatedTimestamp!, date: record.duration, time: 1, structure: record.content))
-                                        coordinator.push(.WritingCompleteWithoutTopic(title: record.topic, date: record.designatedTimestamp!, time: record.duration, structure: record.content))
+                                        coordinator.push(.WritingCompleteWithoutTopic(title: record.topic, date: record.designatedTimestamp!, time: record.duration, structure: record.content, ss: record.speakingStructure))
                                     }
                                     .padding(.leading, 6)
                             }
@@ -133,8 +127,6 @@ struct ScriptWritingView: View {
                         ScriptRectangleView(isThisForAdding: true, record: nil)
                             .padding(.horizontal, 75)
                             .onTapGesture {
-//                                router.setIsTopicSelected(false)
-//                                router.push(screen: .ContentWritingStartWithoutTopic)
                                 coordinator.push(.ContentWritingStartWithoutTopic(isWithTopic: false, selectedStructure: nil))
                             }
                         
@@ -157,9 +149,6 @@ struct ScriptWritingView: View {
                         Spacer()
                         Image(systemName: "chevron.right")
                             .onTapGesture {
-//                                router.setTopicList(name: type == TopicType.casual ? "생각하는 힘 기르기 💡" : "면접 대비!")
-//                                router.push(screen: .TopicList)
-                                
                                 coordinator.push(.TopicList(topic: topicTitle))
                             }
                         
@@ -171,11 +160,6 @@ struct ScriptWritingView: View {
                             ForEach(topicsPerType) { topic in
                                 TopicBubbleView(topicContent: topic.content, lsName: topic.lsStructure, isWideType: false)
                                     .onTapGesture {
-//                                        router.setTopic(title: topic.content)
-//                                        router.setSelectedStructure(selection: .init(rawValue: topic.lsStructure)!)
-//                                        router.setIsTopicSelected(true)
-//                                        router.push(screen: .ContentWritingStartWithTopic)
-                                        
                                         coordinator.push(.ContentWritingStartWithTopic(isWithTopic: true, introductionTitle: topicTitle, title: topic.content, selectedStructure: .init(rawValue: topic.lsStructure)!))
                                     }
                             }

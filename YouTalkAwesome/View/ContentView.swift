@@ -43,7 +43,7 @@ struct ContentView: View {
             }
             .tag(1)
             
-            NavigationStack(path: $appCoordinator.scriptWritingPath) {
+            NavigationStack(path: $appCoordinator.archivePath) {
                 ArchiveView()
                     .navigationDestination(for: Screen.self) { screen in
                         appCoordinator.build(screen)
