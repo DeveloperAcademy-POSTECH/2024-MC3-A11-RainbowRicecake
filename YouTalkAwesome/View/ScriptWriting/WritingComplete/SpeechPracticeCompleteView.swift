@@ -108,7 +108,7 @@ struct SpeechPracticeCompleteView: View {
             }
         }
         .sheet(isPresented: $isListeingSpeechViewPresented) {
-            ListeningSpeechView(vm: .init(time: (standardTime - elapsedTime)/10), isPresented: $isListeingSpeechViewPresented, sections: self.structureSections)
+            ListeningSpeechView(speakingStructure: speakingStructure, vm: .init(time: (standardTime - elapsedTime)/10), isPresented: $isListeingSpeechViewPresented, sections: self.structureSections)
         }
     }
     

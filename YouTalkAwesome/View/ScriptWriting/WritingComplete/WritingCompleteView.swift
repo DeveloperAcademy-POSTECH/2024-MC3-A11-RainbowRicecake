@@ -47,11 +47,9 @@ struct WritingCompleteView: View {
             .padding(.bottom, 16)
             .background(.bg)
             
-
-            
             ScrollView(.vertical) {
                 ForEach(self.structureSections, id: \.self) { section in
-                    StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
+                    StructureSectionView(speakingStructure: structure, topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                 }
                 
                 Spacer(minLength: self.isTopicSelected ? 200 : 70)
