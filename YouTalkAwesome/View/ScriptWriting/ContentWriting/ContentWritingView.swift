@@ -134,8 +134,8 @@ struct ContentWritingView: View {
                         print("[Error] Speaking Record Inserting Error")
                     }
                     
-                    if self.isFreeTopic {
-                        coordinator.push(.WritingCompleteWithoutTopic(title: self.topic, date: nil, time: nil, structure: finalStructureSections, ss: self.selectedStructure))
+                    if !self.isFreeTopic {
+                        coordinator.push(.WritingCompleteWithoutTopic(title: self.topic, date: self.designatedDate!, time: self.expectedLeadTime, structure: finalStructureSections, ss: self.selectedStructure))
                     } else {
                         coordinator.push(.WritingCompleteWithTopic(title: self.topic, structure: finalStructureSections, ss: self.selectedStructure))
                     }
