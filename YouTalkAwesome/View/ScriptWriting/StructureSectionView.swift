@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StructureSectionView: View {
+    let speakingStructure: SpeakingStructure
     let topContent: String
     let bottomContent: String
     let isScript: Bool
@@ -27,7 +28,7 @@ struct StructureSectionView: View {
                 //TODO: 말하기 구조에 따른 색상 변경 추후 필요할 듯 합니다~
                 Text(topContent)
                     .customFont(.body1_bold)
-                    .foregroundStyle(.prep)
+                    .foregroundStyle(speakingStructure.color)
                     .padding(.top, 12)
                 
                 Text(bottomContent)
@@ -42,5 +43,5 @@ struct StructureSectionView: View {
 }
 
 #Preview {
-    StructureSectionView(topContent: "topContent", bottomContent: "bottomContent", isScript: true)
+    StructureSectionView(speakingStructure: .psb, topContent: "topContent", bottomContent: "bottomContent", isScript: true)
 }

@@ -69,7 +69,7 @@ struct ScriptPracticeView: View {
                     VStack {
                         Spacer(minLength: 30)
                         ForEach(structureSections, id: \.self) { section in
-                            StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
+                            StructureSectionView(speakingStructure: selectedStructure, topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                         }
                         
                         Spacer(minLength: 180)

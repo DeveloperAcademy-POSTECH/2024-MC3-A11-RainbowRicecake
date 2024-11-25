@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ListeningSpeechView: View {
+    var speakingStructure: SpeakingStructure
     @State private var audioManager: AudioManager = .init()
     @State var vm: ScriptPracticeViewModel
     
@@ -23,7 +24,7 @@ struct ListeningSpeechView: View {
                 
                 ScrollView {
                     ForEach(sections, id: \.self) { section in
-                        StructureSectionView(topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
+                        StructureSectionView(speakingStructure: speakingStructure, topContent: section.topContent, bottomContent: section.bodyContent, isScript: section.isScript)
                     }
                     Spacer(minLength: 200)
                 }
