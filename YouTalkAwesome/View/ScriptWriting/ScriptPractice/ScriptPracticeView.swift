@@ -32,14 +32,14 @@ struct ScriptPracticeView: View {
         self.structureSections = structureSections
         self.selectedStructure = selectedStructure
         
-        UINavigationBar.appearance().backgroundColor = .clear
-        
-        let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.shadowColor = UIColor(Color.clear)
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().compactAppearance = appearance
+//        UINavigationBar.appearance().backgroundColor = .clear
+//
+//        let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.shadowColor = UIColor(Color.clear)
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        UINavigationBar.appearance().compactAppearance = appearance
     }
     
     var body: some View {
@@ -185,6 +185,9 @@ struct ScriptPracticeView: View {
             .navigationBarBackButtonHidden()
             .onAppear {
                 self.audioManager.prepareAudio()
+            }
+            .navigationBarBackground {
+                Color.clear
             }
     }
 }

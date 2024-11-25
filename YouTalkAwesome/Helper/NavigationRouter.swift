@@ -224,7 +224,6 @@ final class AppCoordinator: AppCoordinatorProtocol {
         switch self.currentScreen {
         case .speakingStructure:
             speakingStructurePath.append(screen)
-            print(speakingStructurePath.count)
         case .scriptWriting:
             scriptWritingPath.append(screen)
         case .archive:
@@ -308,11 +307,11 @@ final class AppCoordinator: AppCoordinatorProtocol {
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarRole(.editor)
         case .WritingCompleteWithoutTopic(let title, let date, let time, let sections, let structure):
-            WritingCompleteView(title: title, isTopicSelected: true, selectedDate: date, selectedTime: time, structureSections: sections, structure: structure)
+            WritingCompleteView(title: title, isTopicSelected: false, selectedDate: date, selectedTime: time, structureSections: sections, structure: structure)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
         case .WritingCompleteWithTopic(let title, let sections, let structure):
-            WritingCompleteView(title: title, isTopicSelected: false, structureSections: sections, structure: structure)
+            WritingCompleteView(title: title, isTopicSelected: true, structureSections: sections, structure: structure)
                 .toolbarRole(.editor)
                 .toolbar(.hidden, for: .tabBar)
         case .SpeechPracticeComplete(let standardTime, let elapsedTime, let structure, let sections):
@@ -427,5 +426,43 @@ extension FullScreenCover {
         case (.none, .none):
             return true
         }
+    }
+}
+
+
+struct NavigationBarColorModifier<Background>: ViewModifier where Background: View {
+    
+    let background: () -> Background
+    
+    public init(@ViewBuilder background: @escaping () -> Background) {
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = .clear
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+
+        self.background = background
+    }
+
+    func body(content: Content) -> some View {
+        // Color(UIColor.secondarySystemBackground)
+        ZStack {
+            content
+            VStack {
+                background()
+                    .edgesIgnoringSafeArea([.top, .leading, .trailing])
+                    .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 0, alignment: .center)
+
+                Spacer() // to move the navigation bar to top
+            }
+        }
+    }
+}
+
+public extension View {
+    func navigationBarBackground<Background: View>(@ViewBuilder _ background: @escaping () -> Background) -> some View {
+        modifier(NavigationBarColorModifier(background: background))
     }
 }
